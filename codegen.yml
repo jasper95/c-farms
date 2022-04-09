@@ -1,0 +1,31 @@
+schema:
+  - https://localhost:8080/v1/graphql:
+      headers:
+        X-Hasura-Admin-Secret: 5j81xF6vFi0o1RHzIRWiAz7-Aob_RJP8
+documents: 'src/**/*.graphql'
+overwrite: true
+generates:
+  src/shared/generated/graphql.types.ts:
+    plugins:
+      - 'typescript'
+    hooks:
+      afterOneFileWrite:
+        - eslint --fix
+  src/shared/generated/graphql.schema.json:
+    plugins:
+      - 'introspection'
+  src/:
+    preset: near-operation-file
+    presetConfig:
+      extension: .ts
+      baseTypesPath: '~@/shared/generated/graphql.types'
+    plugins:
+      - 'typescript-operations'
+      - 'typescript-react-query'
+    hooks:
+      afterOneFileWrite:
+        - eslint --fix
+    config:
+      fetcher:
+        func: '@/shared/fetcher#fetcher'
+        isReactHook: true
