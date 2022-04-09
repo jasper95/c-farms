@@ -1,8 +1,8 @@
-import { useNotificationStore } from "@/shared/stores/notification";
-import Notification from "@/components/notification";
+import { useNotificationStore } from '@/shared/stores/notification'
+import Notification from '@/components/notification'
 
 function NotificationContainer() {
-  const { notifications, dismissNotification } = useNotificationStore();
+  const { notifications, dismissNotification } = useNotificationStore()
 
   return (
     <>
@@ -14,7 +14,7 @@ function NotificationContainer() {
         />
       ))}
     </>
-  );
+  )
 }
 
 export default NotificationContainer

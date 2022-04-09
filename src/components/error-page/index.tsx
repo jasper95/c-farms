@@ -4,7 +4,7 @@ import DashboardLayout from '@/components/layout/dashboard-layout'
 function ErrorPage(props: ErrorProps) {
   return (
     <DashboardLayout>
-      <Error {...props}/>
+      <Error {...props} />
     </DashboardLayout>
   )
 }

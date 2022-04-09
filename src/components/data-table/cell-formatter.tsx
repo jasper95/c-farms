@@ -1,8 +1,8 @@
-import React from 'react';
-import capitalize from 'lodash/capitalize';
+import React from 'react'
+import capitalize from 'lodash/capitalize'
 // import day from 'dayjs';
 // import { formatTimeRangeDisplay } from 'shared/utils/tools';
-import get from 'lodash/get';
+import get from 'lodash/get'
 
 // export const capitalizeCell = (key: string) => (row: { [key: string]: string }) => <>{capitalize(row[key])}</>;
 

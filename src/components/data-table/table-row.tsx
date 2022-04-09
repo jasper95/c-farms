@@ -1,6 +1,6 @@
-import { Theme } from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
-import TableRow from '@material-ui/core/TableRow';
+import { Theme } from '@material-ui/core'
+import { withStyles } from '@material-ui/styles'
+import TableRow from '@material-ui/core/TableRow'
 
 const StyledTableRow = withStyles((theme: Theme) => ({
   root: {
@@ -8,6 +8,6 @@ const StyledTableRow = withStyles((theme: Theme) => ({
       backgroundColor: theme.palette.action.hover,
     },
   },
-}))(TableRow);
+}))(TableRow)
 
 export default StyledTableRow

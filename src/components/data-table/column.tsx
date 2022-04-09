@@ -1,8 +1,14 @@
-import React from 'react';
-import get from 'lodash/get';
-import { RowProp } from './types';
-import TableCell from '@material-ui/core/TableCell/TableCell';
-import { createStyles, IconButton, Theme, Tooltip, withStyles } from '@material-ui/core';
+import React from 'react'
+import get from 'lodash/get'
+import { RowProp } from './types'
+import TableCell from '@material-ui/core/TableCell/TableCell'
+import {
+  createStyles,
+  IconButton,
+  Theme,
+  Tooltip,
+  withStyles,
+} from '@material-ui/core'
 
 export const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
@@ -13,10 +19,10 @@ export const StyledTableCell = withStyles((theme: Theme) =>
     body: {
       fontSize: 14,
     },
-  }),
-)(TableCell);
+  })
+)(TableCell)
 function Column<T>(props: RowProp<T>) {
-  const { row, column, index } = props;
+  const { row, column, index } = props
   const {
     type = 'default',
     accessor = '',
@@ -26,11 +32,11 @@ function Column<T>(props: RowProp<T>) {
     fn = () => null,
     componentProps = {},
     title,
-  } = column;
-  let children;
+  } = column
+  let children
   if (type === 'actions') {
     children = (
-      <div className='flex'>
+      <div className="flex">
         {actions.map(
           ({
             label,
@@ -42,35 +48,43 @@ function Column<T>(props: RowProp<T>) {
             conditionalRendering = (arg) => true,
           }) => {
             if (!conditionalRendering(row)) {
-              return <span key={label} className="column-no-action" />;
+              return <span key={label} className="column-no-action" />
             }
             if (actionType === 'component') {
-              return <Action key={label} row={row} label={label} icon={icon} onClick={onClick} />;
+              return (
+                <Action
+                  key={label}
+                  row={row}
+                  label={label}
+                  icon={icon}
+                  onClick={onClick}
+                />
+              )
             }
             return (
               <Tooltip key={label} title={label}>
                 <IconButton
-                  className='p-2'
+                  className="p-2"
                   onClick={(e: any) => {
-                    e.stopPropagation();
-                    onClick(row);
+                    e.stopPropagation()
+                    onClick(row)
                   }}
                   key={label}
                 >
                   {icon}
                 </IconButton>
               </Tooltip>
-            );
-          },
+            )
+          }
         )}
       </div>
-    );
+    )
   } else if (type === 'component') {
-    children = <Cell index={index} row={row} {...componentProps} />;
+    children = <Cell index={index} row={row} {...componentProps} />
   } else if (type === 'function') {
-    children = fn(row, index);
+    children = fn(row, index)
   } else {
-    children = `${get(row, accessor)}`;
+    children = `${get(row, accessor)}`
   }
 
   return (
@@ -79,7 +93,7 @@ function Column<T>(props: RowProp<T>) {
       {/* <div className="tableCell" data-header-title={title}>
       </div> */}
     </StyledTableCell>
-  );
+  )
 }
 
-export default Column;
+export default Column
