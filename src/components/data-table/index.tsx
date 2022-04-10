@@ -116,7 +116,7 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
           {!loading &&
             rows.map((row, rowIndex) => (
               <StyledTableRow
-                selected={checkedItems?.includes(row.id)}
+                selected={checkedItems?.includes(`${row.id}`)}
                 key={row.id}
                 onClick={(e) => {
                   e.stopPropagation()
