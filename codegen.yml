@@ -1,5 +1,5 @@
 schema:
-  - https://localhost:8080/v1/graphql:
+  - http://localhost:8080/v1/graphql:
       headers:
         X-Hasura-Admin-Secret: 5j81xF6vFi0o1RHzIRWiAz7-Aob_RJP8
 documents: 'src/**/*.graphql'
@@ -21,11 +21,7 @@ generates:
       baseTypesPath: '~@/shared/generated/graphql.types'
     plugins:
       - 'typescript-operations'
-      - 'typescript-react-query'
+      - 'typescript-urql'
     hooks:
       afterOneFileWrite:
         - eslint --fix
-    config:
-      fetcher:
-        func: '@/shared/fetcher#fetcher'
-        isReactHook: true

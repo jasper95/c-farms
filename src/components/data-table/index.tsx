@@ -42,17 +42,17 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
     rows,
     columns,
     onRowClick,
-    className,
-    isSelectable,
+    // className,
+    // isSelectable,
     showPagination,
     tableState,
     tableDispatch,
-    pageSizes,
+    // pageSizes,
     loading,
     rowClassName = () => '',
     checkedItems,
-    rowCheckboxEnabled = () => true,
-    stickyHeader,
+    // rowCheckboxEnabled = () => true,
+    // stickyHeader,
   } = props
   const sort = get(tableState, 'sort', [])
   const additionalColumns: ColumnType<T>[] = []
@@ -64,42 +64,37 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
           <TableRow>
             {columns
               .concat(additionalColumns)
-              .map(
-                (
-                  { title, accessor = '', headProps = {}, sortable = true },
-                  idx
-                ) => {
-                  const sorted = sortable
-                    ? sort.find((e) => e.column === accessor)
-                    : undefined
-                  return (
-                    <TableCell
-                      sortDirection={sorted?.direction ?? false}
-                      key={idx}
-                    >
-                      <TableSortLabel
-                        hideSortIcon={!sortable}
-                        active={Boolean(sorted)}
-                        direction={sorted?.direction}
-                        onClick={() => {
-                          if (tableDispatch && sortable) {
-                            const payload: ColumnSort = {
-                              column: `${accessor}`,
-                              direction:
-                                !sorted || get(sorted, 'direction') === 'desc'
-                                  ? 'asc'
-                                  : 'desc',
-                            }
-                            tableDispatch({ type: 'SetSort', payload })
+              .map(({ title, accessor = '', sortable = true }, idx) => {
+                const sorted = sortable
+                  ? sort.find((e) => e.column === accessor)
+                  : undefined
+                return (
+                  <TableCell
+                    sortDirection={sorted?.direction ?? false}
+                    key={idx}
+                  >
+                    <TableSortLabel
+                      hideSortIcon={!sortable}
+                      active={Boolean(sorted)}
+                      direction={sorted?.direction}
+                      onClick={() => {
+                        if (tableDispatch && sortable) {
+                          const payload: ColumnSort = {
+                            column: `${accessor}`,
+                            direction:
+                              !sorted || get(sorted, 'direction') === 'desc'
+                                ? 'asc'
+                                : 'desc',
                           }
-                        }}
-                      >
-                        {title}
-                      </TableSortLabel>
-                    </TableCell>
-                  )
-                }
-              )}
+                          tableDispatch({ type: 'SetSort', payload })
+                        }
+                      }}
+                    >
+                      {title}
+                    </TableSortLabel>
+                  </TableCell>
+                )
+              })}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -118,21 +113,27 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
               columns={columns.length}
             />
           )}
-          {rows.map((row, rowIndex) => (
-            <StyledTableRow
-              selected={checkedItems?.includes(row.id)}
-              key={row.id}
-              onClick={(e) => {
-                e.stopPropagation()
-                onRowClick(row)
-              }}
-              className={rowClassName(row)}
-            >
-              {columns.concat(additionalColumns).map((column, idx) => (
-                <Column index={rowIndex} key={idx} column={column} row={row} />
-              ))}
-            </StyledTableRow>
-          ))}
+          {!loading &&
+            rows.map((row, rowIndex) => (
+              <StyledTableRow
+                selected={checkedItems?.includes(row.id)}
+                key={row.id}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onRowClick(row)
+                }}
+                className={rowClassName(row)}
+              >
+                {columns.concat(additionalColumns).map((column, idx) => (
+                  <Column
+                    index={rowIndex}
+                    key={idx}
+                    column={column}
+                    row={row}
+                  />
+                ))}
+              </StyledTableRow>
+            ))}
         </TableBody>
       </Table>
       {showPagination && tableState && tableDispatch && (

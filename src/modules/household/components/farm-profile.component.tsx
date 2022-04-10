@@ -6,11 +6,11 @@ import FormControl from '@material-ui/core/FormControl'
 import FormLabel from '@material-ui/core/FormLabel'
 import CreatableSelect from 'react-select/creatable'
 import TextField from '@material-ui/core/TextField'
-import { LIVELIHOOD_OPTIONS } from './const'
+import { LIVELIHOOD_OPTIONS } from '@/modules/household/constants'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 
-function NewHouseholdStep3() {
+export function FarmProfile() {
   return (
     <Grid container spacing={4}>
       <Grid item xs={12} md={6}>
@@ -76,5 +76,3 @@ function NewHouseholdStep3() {
     </Grid>
   )
 }
-
-export default NewHouseholdStep3

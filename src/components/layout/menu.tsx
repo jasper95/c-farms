@@ -20,8 +20,8 @@ const menuItems = [
   },
   {
     icon: PeopleIcon,
-    primaryText: 'Users',
-    path: '/users',
+    primaryText: 'Map',
+    path: '/map',
   },
   // {
   //   icon: SettingsIcon,

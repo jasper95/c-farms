@@ -4,9 +4,12 @@ import Divider from '@material-ui/core/Divider'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
-import { BOOLEAN_OPTION, EDUCATION_BACKGROUND_OPTIONS } from './const'
+import {
+  BOOLEAN_OPTION,
+  EDUCATION_BACKGROUND_OPTIONS,
+} from '@/modules/household/constants'
 
-function NewHouseholdStep2() {
+export function OtherDetails() {
   return (
     <Grid container spacing={4}>
       <Grid item md={12} xs={12}>
@@ -103,5 +106,3 @@ function NewHouseholdStep2() {
     </Grid>
   )
 }
-
-export default NewHouseholdStep2

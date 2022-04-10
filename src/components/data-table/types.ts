@@ -6,7 +6,7 @@ export type ColumnSort = {
 }
 
 export type Identifiable = {
-  id: string
+  id: string | number
 }
 
 export type ColumnType<T = any> = {

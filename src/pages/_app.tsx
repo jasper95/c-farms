@@ -8,12 +8,14 @@ import { AppProps } from 'next/dist/shared/lib/router/router'
 import DialogContainer from '@/components/layout/dialog-container'
 import NotificationContainer from '@/components/layout/notification-container'
 import { SnackbarProvider } from 'notistack'
+import { Provider as UrqlProvider } from 'urql'
 
 import Amplify from 'aws-amplify'
 import config from '@/aws-exports'
 import 'tailwindcss/tailwind.css'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-draw/dist/leaflet.draw.css'
+import { urqlClient } from '@/shared/urql/client'
 
 Amplify.configure({
   ...config,
@@ -31,25 +33,27 @@ export default function MyApp(props: AppProps) {
   }, [])
 
   return (
-    <React.Fragment>
-      <Head>
-        <title>{process.env.NEXT_PUBLIC_PROJECT_NAME}</title>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
-      </Head>
-      <SnackbarProvider>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <StylesProvider injectFirst>
-            <Component {...pageProps} />
-          </StylesProvider>
-          <DialogContainer />
-          <NotificationContainer />
-        </ThemeProvider>
-      </SnackbarProvider>
-    </React.Fragment>
+    <UrqlProvider value={urqlClient}>
+      <React.Fragment>
+        <Head>
+          <title>{process.env.NEXT_PUBLIC_PROJECT_NAME}</title>
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width"
+          />
+        </Head>
+        <SnackbarProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <StylesProvider injectFirst>
+              <Component {...pageProps} />
+            </StylesProvider>
+            <DialogContainer />
+            <NotificationContainer />
+          </ThemeProvider>
+        </SnackbarProvider>
+      </React.Fragment>
+    </UrqlProvider>
   )
 }
 

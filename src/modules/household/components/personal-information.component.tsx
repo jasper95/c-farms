@@ -2,11 +2,14 @@ import { Grid } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField'
 import Divider from '@material-ui/core/Divider'
 import { KeyboardDatePicker } from '@material-ui/pickers/DatePicker'
-import { CIVIL_STATUS_OPTIONS, GENDER_OPTIONS } from './const'
+import {
+  CIVIL_STATUS_OPTIONS,
+  GENDER_OPTIONS,
+} from '@/modules/household/constants'
 import RadioSelect from '@/components/radio-select'
 import SelectField from '@/components/select-field'
 
-function NewHouseholdStep1() {
+export function PersonalInformation() {
   return (
     <Grid container spacing={4}>
       <Grid item xs={12} sm={6} md={3}>
@@ -138,5 +141,3 @@ function NewHouseholdStep1() {
     </Grid>
   )
 }
-
-export default NewHouseholdStep1

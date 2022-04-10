@@ -23,7 +23,7 @@ const MapWrapper = () => {
         center={[51.505, -0.09]}
         zoom={13}
         scrollWheelZoom={false}
-        style={{ height: '100vh', width: '100%' }}
+        style={{ height: `calc(100vh - 192px)`, width: '100%' }}
       >
         <TileLayer {...osmProviders} />
         <FeatureGroup>

@@ -1,0 +1,25 @@
+query HouseHoldList(
+  $where: farm_household_bool_exp
+  $order_by: [farm_household_order_by!]
+  $offset: Int
+  $limit: Int
+) {
+  result: farm_household(
+    where: $where
+    offset: $offset
+    order_by: $order_by
+    limit: $limit
+  ) {
+    fname
+    id
+    lname
+    mname
+    reference_no
+    barangay
+  }
+  pagination: farm_household_aggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
