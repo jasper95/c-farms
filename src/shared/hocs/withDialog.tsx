@@ -1,33 +1,48 @@
-import DialogLayout, { DialogLayoutProps } from '@/components/dialog/dialog-layout';
-import { useDialogStore } from '@/shared/stores/dialog';
-import { useFormik, FormikProps, FormikConfig } from 'formik';
-import React from 'react';
-import pick from 'lodash/pick';
+import DialogLayout, {
+  DialogLayoutProps,
+} from '@/components/dialog/dialog-layout'
+import { useDialogStore } from '@/shared/stores/dialog'
+import {
+  useForm,
+  UseFormProps,
+  SubmitHandler,
+  UseFormReturn,
+} from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as Yup from 'yup'
+import type Lazy from 'yup/lib/Lazy'
+
+import React from 'react'
+import pick from 'lodash/pick'
 
 export type IDialogForm<T> = {
-  initialValues?: T;
-  validationSchema?: any;
-  onCancel?(): void;
-  onContinue?(): void;
-  onValid?: FormikConfig<T>['onSubmit'];
-};
-export type IWithDialogProps<T> = Omit<DialogLayoutProps, 'onCancel' | 'onContinue' | 'children'> & IDialogForm<T>;
+  defaultValues: UseFormProps<T>['defaultValues']
+  validationSchema?: Yup.AnyObjectSchema | Lazy<any>
+  onCancel?(): void
+  onContinue?(): void
+  onValid: SubmitHandler<T>
+}
+export type IWithDialogProps<T> = Omit<
+  DialogLayoutProps,
+  'onCancel' | 'onContinue' | 'children'
+> &
+  IDialogForm<T>
 
 export type IDialogContentProps<T> = {
-  formProps: FormikProps<T>;
-};
+  formProps: UseFormReturn<T>
+}
 
 function withDialog<T>(WrappedComponent: React.FC<IDialogContentProps<T>>) {
   const Dialog: React.FC<IWithDialogProps<T>> = (props) => {
-    const { hideDialog } = useDialogStore();
-    const { title, onContinue, onCancel, initialValues = {} as T, validationSchema, onValid } = props;
-    const formProps: FormikProps<T> = useFormik<T>({
-      validationSchema,
-      initialValues,
-      onSubmit: (data, helpers) => {
-        onValid?.(data, helpers);
-      },
-    });
+    const { hideDialog } = useDialogStore()
+    const { title, onContinue, onCancel, defaultValues, validationSchema } =
+      props
+    const formProps = useForm<T>({
+      defaultValues,
+      ...(validationSchema && {
+        resolver: yupResolver(validationSchema),
+      }),
+    })
     return (
       <DialogLayout
         {...pick(props, 'isProcessing')}
@@ -37,17 +52,19 @@ function withDialog<T>(WrappedComponent: React.FC<IDialogContentProps<T>>) {
       >
         <WrappedComponent formProps={formProps} />
       </DialogLayout>
-    );
+    )
 
     function onClickCancel() {
-      hideDialog();
+      hideDialog()
     }
 
     function onClickContinue() {
-      formProps.handleSubmit();
+      formProps.handleSubmit((data) => {
+        props.onValid?.(data)
+      })
     }
-  };
-  return Dialog;
+  }
+  return Dialog
 }
 
-export default withDialog;
+export default withDialog

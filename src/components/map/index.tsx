@@ -34,6 +34,9 @@ const MapWrapper = () => {
               polyline: false,
               circlemarker: false,
               marker: false,
+              polygon: {
+                allowIntersection: false,
+              },
             }}
           />
         </FeatureGroup>

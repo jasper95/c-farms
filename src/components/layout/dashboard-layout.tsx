@@ -13,7 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import AccountCircle from '@material-ui/icons/AccountCircle'
 import NavMenu from './menu'
 import useMediaQuery from '@material-ui/core/useMediaQuery/useMediaQuery'
-import { useEffect } from 'react'
+import { useSidebarStore } from '@/shared/stores/sidebar'
 
 const drawerWidth = 270
 
@@ -36,9 +36,6 @@ const useStyles = makeStyles((theme) =>
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
-    },
-    menuButton: {
-      margin: theme.spacing(1),
     },
     menuButtonIconClosed: {
       transition: theme.transitions.create(['transform'], {
@@ -110,7 +107,7 @@ type DashboardLayoutProps = {
 export default function DashboardLayout(props: DashboardLayoutProps) {
   const classes = useStyles()
 
-  const open = true
+  const { sidbarOpened, toggleSidebar } = useSidebarStore()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const authMenuOpen = Boolean(anchorEl)
 
@@ -118,6 +115,7 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
     setAnchorEl(event.currentTarget)
   }
   const handleClose = () => {
+    toggleSidebar()
     setAnchorEl(null)
   }
 
@@ -125,17 +123,11 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
     (theme) => theme.breakpoints.down('xs'),
     { noSsr: true }
   )
-  useEffect(() => {
-    if (isXSmall) {
-      handleDrawer()
-    }
-  }, [])
   return (
     <div className={classes.root}>
-      <AppBar position="absolute" className={clsx(classes.appBar)}>
+      <AppBar position="fixed" className={clsx(classes.appBar)}>
         <Toolbar className={classes.toolbar}>
           <IconButton
-            className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawer}
@@ -143,7 +135,7 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
           >
             <MenuIcon
               classes={{
-                root: open
+                root: sidbarOpened
                   ? classes.menuButtonIconOpen
                   : classes.menuButtonIconClosed,
               }}
@@ -193,15 +185,15 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
         <SwipeableDrawer
           onClose={handleDrawer}
           onOpen={handleDrawer}
-          open={open}
+          open={sidbarOpened}
           className={clsx(classes.drawer, {
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
+            [classes.drawerOpen]: sidbarOpened,
+            [classes.drawerClose]: !sidbarOpened,
           })}
           classes={{
             paper: clsx({
-              [classes.drawerOpen]: open,
-              [classes.drawerClose]: !open,
+              [classes.drawerOpen]: sidbarOpened,
+              [classes.drawerClose]: !sidbarOpened,
             }),
           }}
         >
@@ -209,17 +201,17 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
         </SwipeableDrawer>
       ) : (
         <Drawer
-          open={open}
+          open={sidbarOpened}
           variant="permanent"
           onClose={handleDrawer}
           className={clsx(classes.drawer, {
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
+            [classes.drawerOpen]: sidbarOpened,
+            [classes.drawerClose]: !sidbarOpened,
           })}
           classes={{
             paper: clsx({
-              [classes.drawerOpen]: open,
-              [classes.drawerClose]: !open,
+              [classes.drawerOpen]: sidbarOpened,
+              [classes.drawerClose]: !sidbarOpened,
             }),
           }}
         >
@@ -235,6 +227,6 @@ export default function DashboardLayout(props: DashboardLayoutProps) {
   )
 
   function handleDrawer() {
-    // dispatch(toggleDrawer())
+    toggleSidebar()
   }
 }
