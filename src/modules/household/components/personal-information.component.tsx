@@ -1,142 +1,117 @@
-import { Grid } from '@material-ui/core'
-import TextField from '@material-ui/core/TextField'
+import Grid from '@material-ui/core/Grid'
+import TextField from '@/components/text-field'
 import Divider from '@material-ui/core/Divider'
 import { KeyboardDatePicker } from '@material-ui/pickers/DatePicker'
 import {
   CIVIL_STATUS_OPTIONS,
   GENDER_OPTIONS,
+  IPersonalInformationSchema,
 } from '@/modules/household/constants'
 import RadioSelect from '@/components/radio-select'
 import SelectField from '@/components/select-field'
+import DatePicker from '@/components/date-picker'
+import { UseFormReturn } from 'react-hook-form/dist/types'
 
-export function PersonalInformation() {
+interface IPersonalInformation {
+  formProps: UseFormReturn<IPersonalInformationSchema>
+}
+export function PersonalInformation(props: IPersonalInformation) {
+  const { formProps } = props
+  const { control, formState } = formProps
   return (
     <Grid container spacing={4}>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField fullWidth label="Surname" name="text" variant="outlined" />
+        <TextField control={control} name="lname" label="Surname" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField fullWidth label="Firstname" name="text" variant="outlined" />
+        <TextField control={control} name="fname" label="Firstname" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField
-          fullWidth
-          label="Middlename"
-          name="text"
-          variant="outlined"
-        />
+        <TextField control={control} name="mname" label="Middlename" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField
-          fullWidth
-          label="Extension Name"
-          name="text"
-          variant="outlined"
-        />
+        <TextField control={control} label="Extension Name" name="extname" />
       </Grid>
       <Grid item xs={12}>
         <Divider />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
         <TextField
-          fullWidth
+          control={control}
           label="House/Lot/Bldg No"
-          name="text"
-          variant="outlined"
+          name="house_no"
         />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField
-          fullWidth
-          label="Street/Sitio/Subdv"
-          name="text"
-          variant="outlined"
-        />
+        <TextField control={control} label="Street/Sitio/Subdv" name="street" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField fullWidth label="Barangay" name="text" variant="outlined" />
+        <TextField control={control} label="Barangay" name="barangay" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField
-          fullWidth
-          label="Municipality"
-          name="text"
-          variant="outlined"
-        />
+        <TextField control={control} label="Municipality" name="municipality" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField fullWidth label="Province" name="text" variant="outlined" />
+        <TextField control={control} label="Province" name="province" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField fullWidth label="Region" name="text" variant="outlined" />
+        <TextField control={control} label="Region" name="region" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField
-          fullWidth
-          label="Contact No."
-          name="text"
-          variant="outlined"
-        />
+        <TextField control={control} label="Contact No." name="contact_no" />
       </Grid>
       <Grid item xs={12}>
         <Divider />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <RadioSelect options={GENDER_OPTIONS} label="Gender" />
+        <RadioSelect
+          name="sex"
+          control={control}
+          options={GENDER_OPTIONS}
+          label="Gender"
+        />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <SelectField label="Civil Status" options={CIVIL_STATUS_OPTIONS} />
+        <SelectField
+          control={control}
+          name="civil_status"
+          label="Civil Status"
+          options={CIVIL_STATUS_OPTIONS}
+        />
       </Grid>
 
       <Grid item xs={12} sm={6} md={3}>
         <TextField
-          fullWidth
+          control={control}
           label="Name of Spouse"
-          name="text"
+          name="spouse"
           variant="outlined"
         />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
         <TextField
-          fullWidth
+          control={control}
           label="Mother's Maiden Name"
-          name="text"
-          variant="outlined"
+          name="mothers_maiden"
         />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField fullWidth label="Religion" name="text" variant="outlined" />
+        <TextField
+          control={control}
+          fullWidth
+          label="Religion"
+          name="religion"
+          variant="outlined"
+        />
       </Grid>
       <Grid item xs={12}>
         <Divider />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <KeyboardDatePicker
-          disableToolbar
-          variant="inline"
-          format="MM/dd/yyyy"
-          margin="normal"
-          label="Birthdate"
-          KeyboardButtonProps={{
-            'aria-label': 'change date',
-          }}
-          id="published_date"
-          autoOk
-          value={new Date()}
-          onChange={() => {
-            // setValue('published_date', value)
-          }}
-          // error={Boolean(errors.published_date)}
-          // helperText={errors.published_date?.message}
-        />
+        <DatePicker control={control} name="dob" label="Date of birth" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField
-          fullWidth
-          label="Place of birth"
-          name="text"
-          variant="outlined"
-        />
+        <TextField control={control} label="Place of birth" name="pob" />
       </Grid>
     </Grid>
   )

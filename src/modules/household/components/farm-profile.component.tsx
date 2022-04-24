@@ -1,31 +1,50 @@
-import FormGroup from '@material-ui/core/FormGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Checkbox from '@material-ui/core/Checkbox'
 import Grid from '@material-ui/core/Grid'
 import FormControl from '@material-ui/core/FormControl'
 import FormLabel from '@material-ui/core/FormLabel'
-import CreatableSelect from 'react-select/creatable'
-import TextField from '@material-ui/core/TextField'
-import { LIVELIHOOD_OPTIONS } from '@/modules/household/constants'
+import {
+  LIVELIHOOD_OPTIONS,
+  IFarmProfileSchema,
+} from '@/modules/household/constants'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
+import { UseFormReturn } from 'react-hook-form/dist/types/form'
+import TextField from '@/components/text-field'
+import CreatableSelectField from '@/components/creatable-select-field'
+import CheckboxField from '@/components/checkbox-field'
+import { useState } from 'react'
+import { Option } from '@/components/creatable-select-field/interface'
 
-export function FarmProfile() {
+interface IFarmProfile {
+  formProps: UseFormReturn<IFarmProfileSchema>
+}
+export function FarmProfile(props: IFarmProfile) {
+  const { formProps } = props
+  const { control } = formProps
+  const [options, setOptions] = useState<Option[]>([])
   return (
     <Grid container spacing={4}>
+      <Grid item xs={12}>
+        <Typography variant="subtitle1">
+          <b>Gross annual income last year:</b>
+        </Typography>
+      </Grid>
+      <Grid item md={4}>
+        <TextField control={control} label="Farming" name="gross_ann_farming" />
+      </Grid>
+      <Grid item md={4}>
+        <TextField
+          control={control}
+          label="Non-farming"
+          name="gross_ann_farming_non_farming"
+        />
+      </Grid>
       <Grid item xs={12} md={6}>
-        <FormControl>
-          <FormLabel component="legend">Main livelihood:</FormLabel>
-          <FormGroup row>
-            {LIVELIHOOD_OPTIONS.map((option) => (
-              <FormControlLabel
-                key={option.value}
-                control={<Checkbox name="checkedA" />}
-                label={option.label}
-              />
-            ))}
-          </FormGroup>
-        </FormControl>
+        <CheckboxField
+          control={control}
+          name="livelihoods"
+          options={LIVELIHOOD_OPTIONS}
+          label="Main livelihood:"
+        />
       </Grid>
       <Grid item xs={12}>
         <Divider />
@@ -34,45 +53,31 @@ export function FarmProfile() {
         <FormControl>
           <FormLabel component="legend">Kind of work:</FormLabel>
         </FormControl>
-        <CreatableSelect
-          isClearable
-          menuIsOpen={false}
-          isMulti
-          onChange={() => {}}
+        <CreatableSelectField
+          control={control}
+          name="farmworker_activities"
           placeholder="Type and enter"
+          options={options}
+          onCreateOption={onCreate}
         />
       </Grid>
       <Grid item md={6}>
         <FormControl>
           <FormLabel component="legend">Type of fishing activity:</FormLabel>
         </FormControl>
-        <CreatableSelect
-          isClearable
-          menuIsOpen={false}
-          isMulti
-          onChange={() => {}}
+        <CreatableSelectField
+          control={control}
+          name="fisherfolk_activities"
           placeholder="Type and enter"
         />
       </Grid>
       <Grid item xs={12}>
         <Divider />
       </Grid>
-      <Grid item xs={12}>
-        <Typography variant="subtitle1">
-          <b>Gross annual income last year:</b>
-        </Typography>
-      </Grid>
-      <Grid item md={4}>
-        <TextField fullWidth label="Farming" name="text" variant="outlined" />
-      </Grid>
-      <Grid item md={4}>
-        <TextField
-          fullWidth
-          label="Non-farming"
-          name="text"
-          variant="outlined"
-        />
-      </Grid>
     </Grid>
   )
+
+  function onCreate(string: string) {
+    setOptions([...options, { value: `${Math.random()}`, label: string }])
+  }
 }

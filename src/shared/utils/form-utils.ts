@@ -1,8 +1,7 @@
-import capitalize from 'lodash/capitalize';
-import * as yup from 'yup';
+import capitalize from 'lodash/capitalize'
 
 export function fieldIsRequired(params: any) {
-  const { label, path } = params;
+  const { label, path } = params
   const display =
     label ||
     path
@@ -11,12 +10,12 @@ export function fieldIsRequired(params: any) {
       .split('_')
       .filter((e: any) => e !== 'id')
       .map(capitalize)
-      .join(' ');
-  return `${display} is required`;
+      .join(' ')
+  return `${display} is required`
 }
 
 export function fieldIsInvalid(params: any) {
-  const { label, path } = params;
+  const { label, path } = params
   const display =
     label ||
     path
@@ -25,6 +24,6 @@ export function fieldIsInvalid(params: any) {
       .split('_')
       .filter((e: any) => e !== 'id')
       .map(capitalize)
-      .join(' ');
-  return `${display} is required`;
+      .join(' ')
+  return `${display} is required`
 }

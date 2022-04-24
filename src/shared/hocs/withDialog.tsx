@@ -2,18 +2,19 @@ import DialogLayout, {
   DialogLayoutProps,
 } from '@/components/dialog/dialog-layout'
 import { useDialogStore } from '@/shared/stores/dialog'
-import {
-  useForm,
-  UseFormProps,
-  SubmitHandler,
-  UseFormReturn,
-} from 'react-hook-form'
+
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 import type Lazy from 'yup/lib/Lazy'
 
 import React from 'react'
 import pick from 'lodash/pick'
+import {
+  SubmitHandler,
+  useForm,
+  UseFormProps,
+  UseFormReturn,
+} from 'react-hook-form'
 
 export type IDialogForm<T> = {
   defaultValues: UseFormProps<T>['defaultValues']

@@ -4,13 +4,20 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Radio from '@material-ui/core/Radio'
 import { IRadioSelectProps } from './interface'
+import { FieldValues, useController } from 'react-hook-form'
 
-function RadioSelect(props: IRadioSelectProps) {
-  const { options, label } = props
+export default function RadioSelect<T extends FieldValues>(
+  props: IRadioSelectProps<T>
+) {
+  const { options, label, control, name } = props
+  const { field } = useController({
+    control,
+    name,
+  })
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">{label}</FormLabel>
-      <RadioGroup row aria-label="radio-select" name="row-radio-buttons-group">
+      <RadioGroup row aria-label={`radio-select-${name}`} {...field}>
         {options.map((option) => (
           <FormControlLabel
             key={`${option.value}`}
@@ -23,5 +30,3 @@ function RadioSelect(props: IRadioSelectProps) {
     </FormControl>
   )
 }
-
-export default RadioSelect
