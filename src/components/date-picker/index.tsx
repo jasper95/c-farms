@@ -3,7 +3,6 @@ import DateFnsUtils from '@date-io/date-fns'
 import { KeyboardDatePicker } from '@material-ui/pickers/DatePicker/DatePicker'
 import { IDatePickerProps } from './interface'
 import { FieldValues, useController } from 'react-hook-form'
-import omit from 'lodash/omit'
 
 export default function DatePicker<T extends FieldValues>(
   props: IDatePickerProps<T>
@@ -28,7 +27,8 @@ export default function DatePicker<T extends FieldValues>(
         autoOk
         error={Boolean(formState.errors[name])}
         helperText={formState.errors[name]?.message}
-        {...omit(field, 'ref')}
+        value={field.value ? new Date(field.value) : field.value}
+        onChange={(date) => field.onChange(date)}
       />
     </MuiPickersUtilsProvider>
   )
