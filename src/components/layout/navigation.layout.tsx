@@ -47,10 +47,7 @@ const useStyles = makeStyles((theme) =>
 export default function Navigation() {
   const { sidbarOpened: open, toggleSidebar } = useSidebarStore()
   const classes = useStyles()
-  const isSmall = useMediaQuery<Theme>(
-    (theme) => theme.breakpoints.down('xs'),
-    { noSsr: true }
-  )
+  const isSmall = useMediaQuery<Theme>((theme) => theme.breakpoints.down('xs'))
   return (
     <Drawer
       variant={isSmall ? 'temporary' : 'permanent'}

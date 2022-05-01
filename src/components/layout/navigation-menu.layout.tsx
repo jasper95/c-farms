@@ -1,11 +1,17 @@
 import React from 'react'
 import List from '@material-ui/core/List'
+import Tooltip from '@material-ui/core/Tooltip'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import DashboardIcon from '@material-ui/icons/Dashboard'
+import MapIcon from '@material-ui/icons/Map'
 import PeopleIcon from '@material-ui/icons/People'
 import Link from '@/components/link'
+import { useSidebarStore } from '@/shared/stores/sidebar'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { Theme } from '@material-ui/core/styles'
+import { useRouter } from 'next/router'
 
 const menuItems = [
   {
@@ -19,40 +25,39 @@ const menuItems = [
     path: '/household',
   },
   {
-    icon: PeopleIcon,
+    icon: MapIcon,
     primaryText: 'Map',
     path: '/map',
   },
-  // {
-  //   icon: SettingsIcon,
-  //   primaryText: 'Settings',
-  //   path: '/app/settings',
-  // },
-  // {
-  //   icon: AssetsIcon,
-  //   primaryText: 'Assets',
-  //   path: '/app/assets',
-  // },
 ] as const
 
 export default function Menu() {
-  // const location = useLocation()
+  const { toggleSidebar } = useSidebarStore()
+  const isSmall = useMediaQuery<Theme>((theme) => theme.breakpoints.down('xs'))
+  const router = useRouter()
+
   return (
     <List>
       {menuItems.map((item) => (
-        <ListItem
-          key={item.path}
-          selected={false}
-          component={Link}
-          naked
-          href={item.path}
-          button
-        >
-          <ListItemIcon>
-            <item.icon />
-          </ListItemIcon>
-          <ListItemText primary={item.primaryText} />
-        </ListItem>
+        <Tooltip title={item.primaryText} key={item.path}>
+          <ListItem
+            selected={`${item.path}/`.indexOf(`${router.pathname}/`) === 0}
+            component={Link}
+            naked
+            href={item.path}
+            button
+            onClick={() => {
+              if (isSmall) {
+                toggleSidebar()
+              }
+            }}
+          >
+            <ListItemIcon>
+              <item.icon />
+            </ListItemIcon>
+            <ListItemText primary={item.primaryText} />
+          </ListItem>
+        </Tooltip>
       ))}
     </List>
   )

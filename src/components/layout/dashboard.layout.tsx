@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import Header from './header.layout'
-import Navigation from './navigaton.layout'
+import Navigation from './navigation.layout'
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) =>
       alignItems: 'center',
       justifyContent: 'flex-end',
       padding: theme.spacing(0, 1),
-      // necessary for content to be below app bar
       ...theme.mixins.toolbar,
     },
     content: {

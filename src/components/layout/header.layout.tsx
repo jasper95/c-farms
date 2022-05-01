@@ -7,6 +7,8 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import { useSidebarStore } from '@/shared/stores/sidebar'
 import { DRAWER_WIDTH } from './constants'
+import Typography from '@material-ui/core/Typography'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -26,7 +28,7 @@ const useStyles = makeStyles((theme) =>
       }),
     },
     menuButton: {
-      padding: theme.spacing(2, 3),
+      marginRight: theme.spacing(3),
     },
     menuButtonHidden: {
       display: 'none',
@@ -37,11 +39,14 @@ const useStyles = makeStyles((theme) =>
 export default function Header() {
   const classes = useStyles()
   const { sidbarOpened: open, toggleSidebar } = useSidebarStore()
+  const isSmall = useMediaQuery<Theme>((theme) => theme.breakpoints.down('xs'))
   return (
     <AppBar
       elevation={0}
       position="fixed"
-      className={clsx(classes.appBar, open && classes.appBarOpen)}
+      className={clsx(classes.appBar, {
+        [classes.appBarOpen]: open && !isSmall,
+      })}
     >
       <Toolbar>
         <IconButton
@@ -49,10 +54,15 @@ export default function Header() {
           color="inherit"
           aria-label="open drawer"
           onClick={toggleSidebar}
-          className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+          className={clsx(classes.menuButton, {
+            [classes.menuButtonHidden]: open,
+          })}
         >
           <MenuIcon />
         </IconButton>
+        <Typography variant="h6" noWrap>
+          Mini variant drawer
+        </Typography>
       </Toolbar>
     </AppBar>
   )
