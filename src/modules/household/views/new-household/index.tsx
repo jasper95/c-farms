@@ -3,7 +3,7 @@ import Dashboard from '@/components/layout/dashboard.layout'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
 import Stepper from '@material-ui/core/Stepper'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/styles'
@@ -42,12 +42,17 @@ export function NewHouseholdView() {
     defaultValues: FARM_PROFILE_SCHEMA.cast({}),
     resolver: yupResolver(FARM_PROFILE_SCHEMA, { abortEarly: false }),
   })
+  const topRef = useRef<HTMLDivElement | null>(null)
+  useEffect(() => {
+    topRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }, [activeStep])
   return (
     <Dashboard>
       <Breadcrumbs
         crumbs={[{ name: 'Household' }, { name: 'New Household' }]}
       />
-      <Stepper activeStep={activeStep}>
+      <div ref={topRef} />
+      <Stepper alternativeLabel nonLinear activeStep={activeStep}>
         {CREATE_HOUSEHOLD_STEPS.map((label) => {
           const stepProps = {}
           const labelProps = {}
