@@ -1,5 +1,5 @@
 import Breadcrumbs from '@/components/breadcrumbs'
-import DashboardLayout from '@/components/layout/dashboard-layout'
+import Dashboard from '@/components/layout/dashboard.layout'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
 import Stepper from '@material-ui/core/Stepper'
@@ -43,7 +43,7 @@ export function NewHouseholdView() {
     resolver: yupResolver(FARM_PROFILE_SCHEMA, { abortEarly: false }),
   })
   return (
-    <DashboardLayout>
+    <Dashboard>
       <Breadcrumbs
         crumbs={[{ name: 'Household' }, { name: 'New Household' }]}
       />
@@ -82,7 +82,7 @@ export function NewHouseholdView() {
           </Button>
         </div>
       </Toolbar>
-    </DashboardLayout>
+    </Dashboard>
   )
 
   function onBack() {

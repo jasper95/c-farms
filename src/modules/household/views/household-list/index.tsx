@@ -1,4 +1,4 @@
-import DashboardLayout from '@/components/layout/dashboard-layout'
+import Dashboard from '@/components/layout/dashboard.layout'
 import Breadcrumbs from '@/components/breadcrumbs'
 import Button from '@material-ui/core/Button'
 import SearchBar from '@/components/search-bar'
@@ -12,7 +12,7 @@ export function HouseholdListView() {
     { tableDispatch, onSearchChanged },
   ] = useHouseholdList()
   return (
-    <DashboardLayout>
+    <Dashboard>
       <Breadcrumbs crumbs={[{ name: 'Household' }]} />
       <div className="grid grid-cols-12 gap-4 pb-4">
         <div className="col-span-full md:col-span-4 flex items-center">
@@ -34,6 +34,6 @@ export function HouseholdListView() {
         showPagination
         loading={loading}
       />
-    </DashboardLayout>
+    </Dashboard>
   )
 }
