@@ -1,10 +1,10 @@
-query HouseholdList(
-  $where: HouseholdBoolExp
-  $orderBy: [HouseholdOrderBy!]
+query ProgramList(
+  $where: ProgramBoolExp
+  $orderBy: [ProgramOrderBy!]
   $offset: Int
   $limit: Int
 ) {
-  householdList: householdAggregate(
+  programList: programAggregate(
     where: $where
     orderBy: $orderBy
     offset: $offset
@@ -12,11 +12,11 @@ query HouseholdList(
   ) {
     data: nodes {
       id
-      lastName
-      firstName
-      middleName
-      referenceNo
-      barangay
+      name
+      type
+      sponsoringAgency
+      dateStart
+      dateEnd
     }
     meta: aggregate {
       count(columns: id, distinct: true)

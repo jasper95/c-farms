@@ -4,13 +4,18 @@ import Button from '@material-ui/core/Button'
 import SearchBar from '@/components/search-bar'
 import Link from '@/components/link'
 import DataTable from '@/components/data-table'
-import { useHouseholdList } from './hooks/use-household-list'
+import { useHouseholdList } from '@/modules/household/hooks'
 
 export function HouseholdListView() {
-  const [
-    { columns, rows, tableState, loading },
-    { tableDispatch, onSearchChanged },
-  ] = useHouseholdList()
+  const {
+    columns,
+    rows,
+    tableDispatch,
+    tableState,
+    onSearchChanged,
+    listResponse,
+    totalRows,
+  } = useHouseholdList()
   return (
     <Dashboard>
       <Breadcrumbs crumbs={[{ name: 'Household' }]} />
@@ -30,9 +35,10 @@ export function HouseholdListView() {
         columns={columns}
         tableDispatch={tableDispatch}
         tableState={tableState}
+        totalRows={totalRows}
         rows={rows}
         showPagination
-        loading={loading}
+        loading={listResponse.fetching}
       />
     </Dashboard>
   )

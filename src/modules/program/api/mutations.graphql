@@ -1,0 +1,5 @@
+mutation CreateProgram($object: ProgramInsertInput!) {
+  insertProgramOne(object: $object) {
+    id
+  }
+}

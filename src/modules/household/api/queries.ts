@@ -3,7 +3,7 @@ import * as Types from '@/shared/generated/graphql.types'
 import gql from 'graphql-tag'
 import * as Urql from 'urql'
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
-export type HouseHoldListQueryVariables = Types.Exact<{
+export type HouseholdListQueryVariables = Types.Exact<{
   where?: Types.InputMaybe<Types.HouseholdBoolExp>
   orderBy?: Types.InputMaybe<
     Array<Types.HouseholdOrderBy> | Types.HouseholdOrderBy
@@ -12,7 +12,7 @@ export type HouseHoldListQueryVariables = Types.Exact<{
   limit?: Types.InputMaybe<Types.Scalars['Int']>
 }>
 
-export type HouseHoldListQuery = {
+export type HouseholdListQuery = {
   __typename?: 'query_root'
   householdList: {
     __typename?: 'HouseholdAggregate'
@@ -32,8 +32,8 @@ export type HouseHoldListQuery = {
   }
 }
 
-export const HouseHoldListDocument = gql`
-  query HouseHoldList(
+export const HouseholdListDocument = gql`
+  query HouseholdList(
     $where: HouseholdBoolExp
     $orderBy: [HouseholdOrderBy!]
     $offset: Int
@@ -60,11 +60,11 @@ export const HouseHoldListDocument = gql`
   }
 `
 
-export function useHouseHoldListQuery(
-  options?: Omit<Urql.UseQueryArgs<HouseHoldListQueryVariables>, 'query'>
+export function useHouseholdListQuery(
+  options?: Omit<Urql.UseQueryArgs<HouseholdListQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<HouseHoldListQuery>({
-    query: HouseHoldListDocument,
+  return Urql.useQuery<HouseholdListQuery>({
+    query: HouseholdListDocument,
     ...options,
   })
 }

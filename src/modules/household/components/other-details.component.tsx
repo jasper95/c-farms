@@ -23,7 +23,7 @@ export function OtherDetails(props: IOtherDetailsProps) {
       <Grid item md={12} xs={12}>
         <RadioSelect
           control={control}
-          name="hh_head"
+          name="nameOfHouseholdHead"
           options={BOOLEAN_OPTION}
           label="Household head"
         />
@@ -37,13 +37,13 @@ export function OtherDetails(props: IOtherDetailsProps) {
         <TextField
           control={control}
           label="Name of household head"
-          name="hh_head"
+          name="nameOfHouseholdHead"
         />
       </Grid>
       <Grid item md={4} xs={12}>
         <TextField
           control={control}
-          name="relationship_head"
+          name="relationshipToHouseholdHead"
           label="Relationship"
         />
       </Grid>
@@ -55,7 +55,7 @@ export function OtherDetails(props: IOtherDetailsProps) {
       <Grid item md={4} xs={12}>
         <TextField
           control={control}
-          name="member_male"
+          name="maleCount"
           label="Male"
           type="number"
         />
@@ -63,7 +63,7 @@ export function OtherDetails(props: IOtherDetailsProps) {
       <Grid item md={4} xs={12}>
         <TextField
           control={control}
-          name="member_female"
+          name="femaleCount"
           label="Female"
           type="number"
         />
@@ -82,7 +82,7 @@ export function OtherDetails(props: IOtherDetailsProps) {
       <Grid item md={4}>
         <RadioSelect
           control={control}
-          name="is_pwd"
+          name="personWithDisability"
           options={BOOLEAN_OPTION}
           label="Person with disability"
         />
@@ -90,7 +90,7 @@ export function OtherDetails(props: IOtherDetailsProps) {
       <Grid item md={4}>
         <RadioSelect
           control={control}
-          name="is_4ps"
+          name="is4psBeneficiary"
           options={BOOLEAN_OPTION}
           label="4P's benificiary"
         />
@@ -98,31 +98,23 @@ export function OtherDetails(props: IOtherDetailsProps) {
       <Grid item md={4}>
         <TextField
           control={control}
-          name="ip_membership"
+          name="ipMembership"
           label="IP Membership"
         />
       </Grid>
       <Grid item md={4} xs={12}>
         <TextField
           control={control}
-          name="gov_id_type"
+          name="governmentIdType"
           label="Government ID type"
         />
       </Grid>
       <Grid item md={4} xs={12}>
         <TextField
           control={control}
-          name="gov_id_no"
+          name="governmentIdNo"
           label="Government ID No."
           type="text"
-        />
-      </Grid>
-      <Grid item md={4} xs={12}>
-        <TextField
-          control={control}
-          label="Association membership"
-          type="text"
-          name="assoc_id"
         />
       </Grid>
       <Grid item xs={12}>
@@ -131,7 +123,7 @@ export function OtherDetails(props: IOtherDetailsProps) {
       <Grid item md={4} xs={12}>
         <TextField
           control={control}
-          name="emergency_contact_person"
+          name="emergencyContactName"
           label="Emergency Contact Name"
         />
       </Grid>
@@ -139,7 +131,7 @@ export function OtherDetails(props: IOtherDetailsProps) {
         <TextField
           control={control}
           label="Emergency Contact No."
-          name="emergency_contact_no"
+          name="emergencyContactNumber"
         />
       </Grid>
     </Grid>

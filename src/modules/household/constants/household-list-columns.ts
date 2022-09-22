@@ -1,8 +1,8 @@
 import { ColumnType } from '@/components/data-table/types'
-import { HouseHoldListQuery } from '@/modules/household/api/queries'
+import { HouseholdListQuery } from '@/modules/household/api/queries'
 
 export const HOUSE_LIST_COLUMNS: ColumnType<
-  HouseHoldListQuery['householdList']['data'][0]
+  HouseholdListQuery['householdList']['data'][0]
 >[] = [
   {
     title: 'Reference No',

@@ -19,6 +19,7 @@ import { Typography } from '@material-ui/core'
 
 type DataTableProps<T extends Identifiable> = {
   rows: T[]
+  totalRows: number
   columns: ColumnType<T>[]
   onRowClick: (row: T) => void
   className: string
@@ -40,6 +41,7 @@ type DataTableProps<T extends Identifiable> = {
 function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
   const {
     rows,
+    totalRows,
     columns,
     onRowClick,
     // className,
@@ -140,7 +142,7 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
-          count={tableState.total}
+          count={totalRows}
           rowsPerPage={tableState?.size}
           page={tableState?.page}
           onPageChange={(_, payload) =>

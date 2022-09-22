@@ -25,6 +25,11 @@ const menuItems = [
     path: '/household',
   },
   {
+    icon: PeopleIcon,
+    primaryText: 'Program',
+    path: '/program',
+  },
+  {
     icon: MapIcon,
     primaryText: 'Map',
     path: '/map',

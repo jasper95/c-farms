@@ -1,1 +1,1 @@
-export { NewHouseholdView as default } from '@/modules/household/views/new-household'
+export { HouseholdNewView as default } from '@/modules/household/views'

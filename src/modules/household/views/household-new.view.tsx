@@ -3,7 +3,6 @@ import Dashboard from '@/components/layout/dashboard.layout'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
 import Stepper from '@material-ui/core/Stepper'
-import { useEffect, useRef, useState } from 'react'
 import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/styles'
@@ -13,39 +12,25 @@ import {
   OtherDetails,
   FarmProfile,
 } from '@/modules/household/components'
-import {
-  CREATE_HOUSEHOLD_STEPS,
-  PERSONAL_INFORMATION_SCHEMA,
-  OTHER_DETAILS_SCHEMA,
-  FARM_PROFILE_SCHEMA,
-} from '@/modules/household/constants'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm } from 'react-hook-form'
+import { CREATE_HOUSEHOLD_STEPS } from '@/modules/household/constants'
+import { useHouseholdNew } from '@/modules/household/hooks/use-household-new.hook'
 
 const useStyles = makeStyles(() => ({
   toolbar: {
     backgroundColor: grey[100],
   },
 }))
-export function NewHouseholdView() {
-  const [activeStep, setActiveStep] = useState(0)
+export function HouseholdNewView() {
   const classes = useStyles()
-  const personalInformationFormProps = useForm({
-    defaultValues: PERSONAL_INFORMATION_SCHEMA.cast({}),
-    resolver: yupResolver(PERSONAL_INFORMATION_SCHEMA, { abortEarly: false }),
-  })
-  const otherDetailsFormProps = useForm({
-    defaultValues: OTHER_DETAILS_SCHEMA.cast({}),
-    resolver: yupResolver(OTHER_DETAILS_SCHEMA, { abortEarly: false }),
-  })
-  const farmProfileFormProps = useForm({
-    defaultValues: FARM_PROFILE_SCHEMA.cast({}),
-    resolver: yupResolver(FARM_PROFILE_SCHEMA, { abortEarly: false }),
-  })
-  const topRef = useRef<HTMLDivElement | null>(null)
-  useEffect(() => {
-    topRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }, [activeStep])
+  const {
+    activeStep,
+    topRef,
+    personalInformationFormProps,
+    otherDetailsFormProps,
+    farmProfileFormProps,
+    onBack,
+    validateAndNext,
+  } = useHouseholdNew()
   return (
     <Dashboard>
       <Breadcrumbs
@@ -89,31 +74,4 @@ export function NewHouseholdView() {
       </Toolbar>
     </Dashboard>
   )
-
-  function onBack() {
-    setActiveStep((prev) => prev - 1)
-  }
-
-  function onNext() {
-    setActiveStep((prev) => prev + 1)
-  }
-
-  function validateAndNext() {
-    switch (activeStep) {
-      case 0: {
-        personalInformationFormProps.handleSubmit(onNext)()
-        break
-      }
-      case 1: {
-        otherDetailsFormProps.handleSubmit(onNext)()
-        break
-      }
-      case 2: {
-        farmProfileFormProps.handleSubmit(onNext)()
-        break
-      }
-      default: {
-      }
-    }
-  }
 }

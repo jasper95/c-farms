@@ -1,19 +1,18 @@
 import * as yup from 'yup'
 
 export const OTHER_DETAILS_SCHEMA = yup.object({
-  hh_head: yup.string().default(''),
-  relationship_head: yup.string().default(''),
-  member_male: yup.number().default(0),
-  member_female: yup.number().default(0),
-  gov_id_type: yup.string().default(''),
-  gov_id_no: yup.string().default(''),
-  assoc_id: yup.string().default(''),
+  nameOfHouseholdHead: yup.string().default(''),
+  relationshipToHouseholdHead: yup.string().default(''),
+  maleCount: yup.number().default(0),
+  femaleCount: yup.number().default(0),
+  governmentIdType: yup.string().default(''),
+  governmentIdNo: yup.string().default(''),
   highest_education: yup.string().default(''),
-  is_pwd: yup.boolean().default(false),
-  is_4ps: yup.boolean().default(false),
-  ip_membership: yup.string().default(''),
-  emergency_contact_person: yup.string().default(''),
-  emergency_contact_no: yup.string().default(''),
+  personWithDisability: yup.boolean().default(false),
+  is4psBeneficiary: yup.boolean().default(false),
+  ipMembership: yup.string().default(''),
+  emergencyContactName: yup.string().default(''),
+  emergencyContactNumber: yup.string().default(''),
 })
 
 export type IOtherDetailsSchema = yup.InferType<typeof OTHER_DETAILS_SCHEMA>
