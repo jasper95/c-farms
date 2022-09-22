@@ -6,8 +6,12 @@ export const PROGRAM_SCHEMA = yup.object({
   description: yup.string().required(fieldIsRequired).default(''),
   type: yup.string().required(fieldIsRequired).default(''),
   sponsoringAgency: yup.string().required(fieldIsRequired).default(''),
-  dateEnd: yup.date().required(fieldIsRequired).label('End date'),
-  dateStart: yup.date().required(fieldIsRequired).label('Start date'),
+  dateEnd: yup.date().required(fieldIsRequired).label('End date').default(null),
+  dateStart: yup
+    .date()
+    .required(fieldIsRequired)
+    .label('Start date')
+    .default(null),
 })
 
 export type IProgramSchema = yup.InferType<typeof PROGRAM_SCHEMA>

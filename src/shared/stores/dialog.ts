@@ -1,17 +1,17 @@
-import React, { ComponentType, ReactElement, ReactNode } from 'react';
-import create from 'zustand';
+import React, { ComponentType, ReactElement, ReactNode } from 'react'
+import create from 'zustand'
 
 export type IDialog<T> = {
-  component: ComponentType<T>;
-  props: T;
-};
+  component: ComponentType<T>
+  props: T
+}
 
 type IDialogStore<T = any> = {
-  dialog: IDialog<T> | null;
-  showDialog<T>(dialog: { component: ComponentType<T>; props: T }): void;
-  hideDialog(): void;
-  toggleDialogLoading(): void;
-};
+  dialog: IDialog<T> | null
+  showDialog<T>(dialog: { component: ComponentType<T>; props: T }): void
+  hideDialog(): void
+  toggleDialogLoading(): void
+}
 
 export const useDialogStore = create<IDialogStore>((set) => ({
   dialog: null,
@@ -28,9 +28,9 @@ export const useDialogStore = create<IDialogStore>((set) => ({
               isProcessing: !Boolean(state.dialog?.props?.isProcessing),
             },
           },
-        };
+        }
       }
-      return state;
+      return state
     }),
   hideDialog: () => set(() => ({ dialog: null })),
-}));
+}))

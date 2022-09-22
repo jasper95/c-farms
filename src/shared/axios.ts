@@ -1,6 +1,6 @@
-import Axios, { AxiosRequestConfig } from 'axios';
+import Axios, { AxiosRequestConfig } from 'axios'
 
-import { useNotificationStore } from '@/shared/stores/notification';
+import { useNotificationStore } from '@/shared/stores/notification'
 
 // function authRequestInterceptor(config: AxiosRequestConfig) {
 //   const token = storage.getToken();
@@ -13,20 +13,20 @@ import { useNotificationStore } from '@/shared/stores/notification';
 
 export const axios = Axios.create({
   baseURL: '/api',
-});
+})
 
 // axios.interceptors.request.use(authRequestInterceptor);
 axios.interceptors.response.use(
   (response) => {
-    return response.data;
+    return response.data
   },
   (error) => {
-    const message = error.response?.data?.message || error.message;
+    const message = error.response?.data?.message || error.message
     useNotificationStore.getState().addNotification({
       type: 'error',
       message,
-    });
+    })
 
-    return Promise.reject(error);
+    return Promise.reject(error)
   }
-);
+)
