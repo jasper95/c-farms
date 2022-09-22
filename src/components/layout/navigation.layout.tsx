@@ -1,87 +1,79 @@
 import { useSidebarStore } from '@/shared/stores/sidebar'
-import { styled } from '@mui/material/styles'
-import Drawer from '@mui/material/Drawer'
+import { CSSObject, styled, useTheme } from '@mui/material/styles'
+import MuiDrawer from '@mui/material/Drawer'
 import IconButton from '@mui/material/IconButton'
 import { Theme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import clsx from 'clsx'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import NavigationMenu from './navigation-menu.layout'
 import { DRAWER_WIDTH } from './constants'
 
-const PREFIX = 'navigation'
+const openedMixin = (theme: Theme): CSSObject => ({
+  width: DRAWER_WIDTH,
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  overflowX: 'hidden',
+})
 
-const classes = {
-  toolbar: `${PREFIX}-toolbar`,
-  drawer: `${PREFIX}-drawer`,
-  drawerOpen: `${PREFIX}-drawerOpen`,
-  drawerClose: `${PREFIX}-drawerClose`,
-}
-
-const StyledDrawer = styled(Drawer)(({ theme }) => ({
-  [`& .${classes.toolbar}`]: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    boxShadow: `inset 0px -1px 0px #F4F5F6`,
+const closedMixin = (theme: Theme): CSSObject => ({
+  transition: theme.transitions.create('width', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  overflowX: 'hidden',
+  width: `calc(${theme.spacing(7)} + 1px)`,
+  [theme.breakpoints.up('sm')]: {
+    width: `calc(${theme.spacing(8)} + 1px)`,
   },
+})
 
-  [`&.${classes.drawer}`]: {
-    width: DRAWER_WIDTH,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-  },
+export const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+}))
 
-  [`&.${classes.drawerOpen}`]: {
-    width: DRAWER_WIDTH,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-
-  [`&.${classes.drawerClose}`]: {
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: 'hidden',
-    width: theme.spacing(7) + 1,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing(9) + 1,
-    },
-  },
+const Drawer = styled(MuiDrawer)(({ theme, open }) => ({
+  width: DRAWER_WIDTH,
+  flexShrink: 0,
+  whiteSpace: 'nowrap',
+  boxSizing: 'border-box',
+  ...(open && {
+    ...openedMixin(theme),
+    '& .MuiDrawer-paper': openedMixin(theme),
+  }),
+  ...(!open && {
+    ...closedMixin(theme),
+    '& .MuiDrawer-paper': closedMixin(theme),
+  }),
 }))
 
 export default function Navigation() {
   const { sidbarOpened: open, toggleSidebar } = useSidebarStore()
-
+  const theme = useTheme()
   const isSmall = useMediaQuery<Theme>((theme) => theme.breakpoints.down('sm'))
   return (
-    <StyledDrawer
+    <Drawer
       variant={isSmall ? 'temporary' : 'permanent'}
-      className={clsx(classes.drawer, {
-        [classes.drawerOpen]: open,
-        [classes.drawerClose]: !open,
-      })}
-      classes={{
-        paper: clsx({
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
-        }),
-      }}
       open={open}
       onClose={toggleSidebar}
     >
-      <div className={classes.toolbar}>
-        <IconButton onClick={toggleSidebar} size="large">
-          <ChevronLeftIcon />
+      <DrawerHeader>
+        <IconButton onClick={toggleSidebar}>
+          {theme.direction === 'rtl' ? (
+            <ChevronRightIcon />
+          ) : (
+            <ChevronLeftIcon />
+          )}
         </IconButton>
-      </div>
+      </DrawerHeader>
       <NavigationMenu />
-    </StyledDrawer>
+    </Drawer>
   )
 }

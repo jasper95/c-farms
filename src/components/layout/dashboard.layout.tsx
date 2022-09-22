@@ -1,51 +1,24 @@
 import React, { ReactElement, ReactNode } from 'react'
-import { styled } from '@mui/material/styles'
 import Header from './header.layout'
-import Navigation from './navigation.layout'
-
-const PREFIX = 'dashboard'
-
-const classes = {
-  root: `${PREFIX}-root`,
-  toolbar: `${PREFIX}-toolbar`,
-  content: `${PREFIX}-content`,
-}
-
-const StyledDashboard = styled(Dashboard)(({ theme }) => ({
-  [`& .${classes.root}`]: {
-    display: 'flex',
-  },
-
-  [`& .${classes.toolbar}`]: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
-  },
-
-  [`& .${classes.content}`]: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-}))
+import Navigation, { DrawerHeader } from './navigation.layout'
+import Box from '@mui/material/Box'
 
 type DashboardProps = {
   children: ReactNode
 }
 export function Dashboard(props: DashboardProps) {
   return (
-    <div className={classes.root}>
+    <Box sx={{ display: 'flex' }}>
       <Header />
       <Navigation />
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <DrawerHeader />
         {props.children}
-      </main>
-    </div>
+      </Box>
+    </Box>
   )
 }
 
 export default function getDashboardLayout(page: ReactElement) {
-  return <StyledDashboard>{page}</StyledDashboard>
+  return <Dashboard>{page}</Dashboard>
 }

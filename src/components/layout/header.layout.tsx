@@ -2,7 +2,7 @@ import React from 'react'
 import { styled } from '@mui/material/styles'
 import clsx from 'clsx'
 import { Theme } from '@mui/material/styles'
-import AppBar from '@mui/material/AppBar'
+import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
@@ -11,62 +11,43 @@ import { DRAWER_WIDTH } from './constants'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
-const PREFIX = 'header'
-
-const classes = {
-  appBar: `${PREFIX}-appBar`,
-  appBarOpen: `${PREFIX}-appBarOpen`,
-  menuButton: `${PREFIX}-menuButton`,
-  menuButtonHidden: `${PREFIX}-menuButtonHidden`,
+interface AppBarProps extends MuiAppBarProps {
+  open?: boolean
 }
 
-const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  [`&.${classes.appBar}`]: {
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    zIndex: theme.zIndex.drawer + 1,
-  },
-
-  [`&.${classes.appBarOpen}`]: {
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})<AppBarProps>(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
     marginLeft: DRAWER_WIDTH,
     width: `calc(100% - ${DRAWER_WIDTH}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-  },
-
-  [`& .${classes.menuButton}`]: {
-    marginRight: theme.spacing(3),
-  },
-
-  [`& .${classes.menuButtonHidden}`]: {
-    display: 'none',
-  },
+  }),
 }))
 
 export default function Header() {
   const { sidbarOpened: open, toggleSidebar } = useSidebarStore()
   const isSmall = useMediaQuery<Theme>((theme) => theme.breakpoints.down('sm'))
   return (
-    <StyledAppBar
-      elevation={0}
-      position="fixed"
-      className={clsx(classes.appBar, {
-        [classes.appBarOpen]: open && !isSmall,
-      })}
-    >
+    <AppBar elevation={0} position="fixed" open={open}>
       <Toolbar>
         <IconButton
           edge="start"
           color="inherit"
           aria-label="open drawer"
           onClick={toggleSidebar}
-          className={clsx(classes.menuButton, {
-            [classes.menuButtonHidden]: open,
-          })}
+          sx={{
+            marginRight: 1,
+            ...(open && { display: 'none' }),
+          }}
           size="large"
         >
           <MenuIcon />
@@ -75,6 +56,6 @@ export default function Header() {
           Mini variant drawer
         </Typography>
       </Toolbar>
-    </StyledAppBar>
+    </AppBar>
   )
 }
