@@ -1,9 +1,9 @@
 import React from 'react'
 import DefaultTitle, { DialogTitleProps } from './dialog-title'
 import DefaultActions, { DialogActionsProps } from './dialog-actions'
-import Dialog from '@material-ui/core/Dialog'
+import Dialog from '@mui/material/Dialog'
 import pick from 'lodash/pick'
-import DialogContent from '@material-ui/core/DialogContent'
+import DialogContent from '@mui/material/DialogContent'
 
 export type DialogLayoutProps = DialogTitleProps &
   DialogActionsProps & {

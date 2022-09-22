@@ -1,12 +1,12 @@
-import Grid from '@material-ui/core/Grid'
-import FormControl from '@material-ui/core/FormControl'
-import FormLabel from '@material-ui/core/FormLabel'
+import Grid from '@mui/material/Grid'
+import FormControl from '@mui/material/FormControl'
+import FormLabel from '@mui/material/FormLabel'
 import {
   LIVELIHOOD_OPTIONS,
   IFarmProfileSchema,
 } from '@/modules/household/constants'
-import Typography from '@material-ui/core/Typography'
-import Divider from '@material-ui/core/Divider'
+import Typography from '@mui/material/Typography'
+import Divider from '@mui/material/Divider'
 import { UseFormReturn } from 'react-hook-form/dist/types/form'
 import TextField from '@/components/text-field'
 import CreatableSelectField from '@/components/creatable-select-field'

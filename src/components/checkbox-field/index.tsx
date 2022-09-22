@@ -1,10 +1,10 @@
-import MuiCheckbox from '@material-ui/core/Checkbox'
+import MuiCheckbox from '@mui/material/Checkbox'
 import { ICheckboxProps } from './interface'
 import { Controller, FieldValues } from 'react-hook-form'
-import FormControl from '@material-ui/core/FormControl'
-import FormLabel from '@material-ui/core/FormLabel'
-import FormGroup from '@material-ui/core/FormGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
+import FormControl from '@mui/material/FormControl'
+import FormLabel from '@mui/material/FormLabel'
+import FormGroup from '@mui/material/FormGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
 
 export default function CheckboxField<T extends FieldValues>(
   props: ICheckboxProps<T>

@@ -1,5 +1,5 @@
 import Breadcrumbs from '@/components/breadcrumbs'
-import Button from '@material-ui/core/Button'
+import Button from '@mui/material/Button'
 import SearchBar from '@/components/search-bar'
 import Link from '@/components/link'
 import DataTable from '@/components/data-table'

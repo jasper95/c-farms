@@ -1,5 +1,5 @@
 import withDialog, { IDialogContentProps } from '@/shared/hocs/withDialog'
-import Typography from '@material-ui/core/Typography'
+import Typography from '@mui/material/Typography'
 import { useWatch } from 'react-hook-form'
 
 type IConfirmPaylaod = {

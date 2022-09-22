@@ -1,6 +1,6 @@
 import React from 'react'
-import Skeleton from '@material-ui/lab/Skeleton'
-import Grid from '@material-ui/core/Grid'
+import Skeleton from '@mui/material/Skeleton'
+import Grid from '@mui/material/Grid'
 import range from 'lodash/range'
 import { getRandomInt } from '@/shared/utils/general'
 import StyledTableRow from './table-row'

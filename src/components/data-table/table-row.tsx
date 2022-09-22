@@ -1,6 +1,6 @@
-import { Theme } from '@material-ui/core'
-import { withStyles } from '@material-ui/styles'
-import TableRow from '@material-ui/core/TableRow'
+import { Theme } from '@mui/material'
+import { withStyles } from '@mui/styles'
+import TableRow from '@mui/material/TableRow'
 
 const StyledTableRow = withStyles((theme: Theme) => ({
   root: {

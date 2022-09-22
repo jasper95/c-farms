@@ -1,10 +1,16 @@
-import { makeStyles } from '@material-ui/styles'
-import grey from '@material-ui/core/colors/grey'
-import Toolbar from '@material-ui/core/Toolbar'
-import Button from '@material-ui/core/Button'
+import { styled } from '@mui/material/styles'
+import Toolbar from '@mui/material/Toolbar'
+import Button from '@mui/material/Button'
+import { grey } from '@mui/material/colors'
 
-const useStyles = makeStyles(() => ({
-  toolbar: {
+const PREFIX = 'index'
+
+const classes = {
+  toolbar: `${PREFIX}-toolbar`,
+}
+
+const StyledToolbar = styled(Toolbar)(() => ({
+  [`& .${classes.toolbar}`]: {
     backgroundColor: grey[100],
   },
 }))
@@ -21,7 +27,6 @@ export interface FormToolbarProps {
 }
 
 export function FormToolbar(props: FormToolbarProps) {
-  const classes = useStyles()
   const {
     onCancel,
     cancelDisabled = false,
@@ -33,7 +38,7 @@ export function FormToolbar(props: FormToolbarProps) {
     confirmLabel = 'Save',
   } = props
   return (
-    <Toolbar
+    <StyledToolbar
       className={`${classes.toolbar} grid grid-cols-2 justify-items-stretch`}
     >
       <div className="justify-self-start">
@@ -53,6 +58,6 @@ export function FormToolbar(props: FormToolbarProps) {
           {confirmLabel}
         </Button>
       </div>
-    </Toolbar>
+    </StyledToolbar>
   )
 }

@@ -1,16 +1,16 @@
 import React from 'react'
-import List from '@material-ui/core/List'
-import Tooltip from '@material-ui/core/Tooltip'
-import ListItemText from '@material-ui/core/ListItemText'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import DashboardIcon from '@material-ui/icons/Dashboard'
-import MapIcon from '@material-ui/icons/Map'
-import PeopleIcon from '@material-ui/icons/People'
+import List from '@mui/material/List'
+import Tooltip from '@mui/material/Tooltip'
+import ListItemText from '@mui/material/ListItemText'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import DashboardIcon from '@mui/icons-material/Dashboard'
+import MapIcon from '@mui/icons-material/Map'
+import PeopleIcon from '@mui/icons-material/People'
 import Link from '@/components/link'
 import { useSidebarStore } from '@/shared/stores/sidebar'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { Theme } from '@material-ui/core/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { Theme } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 
 const menuItems = [
@@ -38,7 +38,7 @@ const menuItems = [
 
 export default function Menu() {
   const { toggleSidebar } = useSidebarStore()
-  const isSmall = useMediaQuery<Theme>((theme) => theme.breakpoints.down('xs'))
+  const isSmall = useMediaQuery<Theme>((theme) => theme.breakpoints.down('sm'))
   const router = useRouter()
 
   return (

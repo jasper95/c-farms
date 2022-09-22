@@ -1,8 +1,12 @@
 import React, { ReactElement, ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
-import { ThemeProvider, StylesProvider } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
+import StylesProvider from '@mui/styles/StylesProvider'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+
+import CssBaseline from '@mui/material/CssBaseline'
 import theme from '@/shared/theme'
 import { AppProps } from 'next/dist/shared/lib/router/router'
 import DialogContainer from '@/components/layout/dialog-container.layout'
@@ -17,6 +21,8 @@ import 'leaflet/dist/leaflet.css'
 import 'leaflet-draw/dist/leaflet.draw.css'
 import { urqlClient } from '@/shared/urql/client'
 import { NextPage } from 'next'
+import { CacheProvider, EmotionCache } from '@emotion/react'
+import createEmotionCache from '@/shared/utils/create-emotion-cache'
 
 Amplify.configure({
   ...config,
@@ -28,16 +34,18 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
+  emotionCache?: EmotionCache
 }
 
+const clientSideEmotionCache = createEmotionCache()
+
 export default function MyApp(props: AppPropsWithLayout) {
-  const { Component, pageProps } = props
+  const { Component, pageProps, emotionCache = clientSideEmotionCache } = props
 
   React.useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles: Element | null = document.querySelector('#jss-server-side')
+    const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles) {
-      jssStyles.parentElement?.removeChild(jssStyles)
+      jssStyles?.parentElement?.removeChild(jssStyles)
     }
   }, [])
   const getLayout = Component.getLayout ?? ((page) => page)
@@ -53,14 +61,20 @@ export default function MyApp(props: AppPropsWithLayout) {
           />
         </Head>
         <SnackbarProvider>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <StylesProvider injectFirst>
-              {getLayout(<Component {...pageProps} />)}
-            </StylesProvider>
-            <DialogContainer />
-            <NotificationContainer />
-          </ThemeProvider>
+          <CacheProvider value={emotionCache}>
+            <StyledEngineProvider injectFirst>
+              <ThemeProvider theme={theme}>
+                <CssBaseline />
+                {/* <StylesProvider injectFirst> */}
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  {getLayout(<Component {...pageProps} />)}
+                </LocalizationProvider>
+                {/* </StylesProvider> */}
+                <DialogContainer />
+                <NotificationContainer />
+              </ThemeProvider>
+            </StyledEngineProvider>
+          </CacheProvider>
         </SnackbarProvider>
       </React.Fragment>
     </UrqlProvider>

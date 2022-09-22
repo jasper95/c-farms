@@ -1,11 +1,7 @@
 import Breadcrumbs from '@/components/breadcrumbs'
-import Step from '@material-ui/core/Step'
-import StepLabel from '@material-ui/core/StepLabel'
-import Stepper from '@material-ui/core/Stepper'
-import Toolbar from '@material-ui/core/Toolbar'
-import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/styles'
-import grey from '@material-ui/core/colors/grey'
+import Step from '@mui/material/Step'
+import StepLabel from '@mui/material/StepLabel'
+import Stepper from '@mui/material/Stepper'
 import {
   PersonalInformation,
   OtherDetails,
@@ -14,14 +10,9 @@ import {
 import { CREATE_HOUSEHOLD_STEPS } from '@/modules/household/constants'
 import { useHouseholdNew } from '@/modules/household/hooks/use-household-new.hook'
 import getDashboardLayout from '@/components/layout/dashboard.layout'
+import { FormToolbar } from '@/components/form-toolbar'
 
-const useStyles = makeStyles(() => ({
-  toolbar: {
-    backgroundColor: grey[100],
-  },
-}))
 export function HouseholdNewView() {
-  const classes = useStyles()
   const {
     activeStep,
     topRef,
@@ -56,22 +47,13 @@ export function HouseholdNewView() {
         {activeStep === 2 && <FarmProfile formProps={farmProfileFormProps} />}
       </div>
 
-      <Toolbar
-        className={`${classes.toolbar} grid grid-cols-2 justify-items-stretch`}
-      >
-        <div className="justify-self-start">
-          {activeStep !== 0 && (
-            <Button variant="contained" color="primary" onClick={onBack}>
-              Back
-            </Button>
-          )}
-        </div>
-        <div className="justify-self-end">
-          <Button variant="contained" color="primary" onClick={validateAndNext}>
-            Next
-          </Button>
-        </div>
-      </Toolbar>
+      <FormToolbar
+        cancelVisible={activeStep !== 0}
+        onCancel={onBack}
+        onConfirm={validateAndNext}
+        cancelLabel="Back"
+        confirmLabel="Next"
+      />
     </>
   )
 }

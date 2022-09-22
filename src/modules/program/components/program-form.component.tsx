@@ -1,4 +1,4 @@
-import Grid from '@material-ui/core/Grid'
+import Grid from '@mui/material/Grid'
 import { UseFormReturn } from 'react-hook-form'
 import { IProgramSchema } from '@/modules/program/constants'
 import TextField from '@/components/text-field'

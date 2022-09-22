@@ -1,26 +1,19 @@
 import React from 'react'
+import { styled } from '@mui/material/styles'
 import get from 'lodash/get'
 import { RowProp } from './types'
-import TableCell from '@material-ui/core/TableCell/TableCell'
-import {
-  createStyles,
-  IconButton,
-  Theme,
-  Tooltip,
-  withStyles,
-} from '@material-ui/core'
+import TableCell, { tableCellClasses } from '@mui/material/TableCell'
+import { IconButton, Theme, Tooltip } from '@mui/material'
 
-export const StyledTableCell = withStyles((theme: Theme) =>
-  createStyles({
-    head: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    body: {
-      fontSize: 14,
-    },
-  })
-)(TableCell)
+export const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}))
 function Column<T>(props: RowProp<T>) {
   const { row, column, index } = props
   const {
@@ -70,6 +63,7 @@ function Column<T>(props: RowProp<T>) {
                     onClick(row)
                   }}
                   key={label}
+                  size="large"
                 >
                   {icon}
                 </IconButton>

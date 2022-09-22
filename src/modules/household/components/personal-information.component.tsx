@@ -1,7 +1,6 @@
-import Grid from '@material-ui/core/Grid'
+import Grid from '@mui/material/Grid'
 import TextField from '@/components/text-field'
-import Divider from '@material-ui/core/Divider'
-import { KeyboardDatePicker } from '@material-ui/pickers/DatePicker'
+import Divider from '@mui/material/Divider'
 import {
   CIVIL_STATUS_OPTIONS,
   GENDER_OPTIONS,

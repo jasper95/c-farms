@@ -1,7 +1,7 @@
-import Snackbar from '@material-ui/core/Snackbar'
-import Slide from '@material-ui/core/Slide'
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert'
-import { TransitionProps } from '@material-ui/core/transitions/transition'
+import Snackbar from '@mui/material/Snackbar'
+import Slide from '@mui/material/Slide'
+import MuiAlert, { AlertProps } from '@mui/material/Alert'
+// import { TransitionProps } from '@mui/material/transitions/transition'
 import { Notification as INotification } from '@/shared/stores/notification'
 
 export type NotificationProps = {
@@ -9,7 +9,7 @@ export type NotificationProps = {
   onDismiss: (id: string) => void
 }
 
-function SlideTransition(props: TransitionProps) {
+function SlideTransition(props: any) {
   return <Slide {...props} direction="right" />
 }
 

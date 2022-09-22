@@ -1,8 +1,8 @@
 import React from 'react'
-import Paper from '@material-ui/core/Paper'
-import InputBase, { InputBaseProps } from '@material-ui/core/InputBase'
-import IconButton from '@material-ui/core/IconButton'
-import SearchIcon from '@material-ui/icons/Search'
+import Paper from '@mui/material/Paper'
+import InputBase, { InputBaseProps } from '@mui/material/InputBase'
+import IconButton from '@mui/material/IconButton'
+import SearchIcon from '@mui/icons-material/Search'
 
 export type ISearchBarProps = {
   onChange: InputBaseProps['onChange']
@@ -17,7 +17,12 @@ export default function SearchBar(props: ISearchBarProps) {
         inputProps={{ 'aria-label': 'search google maps' }}
         onChange={props.onChange}
       />
-      <IconButton type="submit" className="p-2.5" aria-label="search">
+      <IconButton
+        type="submit"
+        className="p-2.5"
+        aria-label="search"
+        size="large"
+      >
         <SearchIcon />
       </IconButton>
     </Paper>

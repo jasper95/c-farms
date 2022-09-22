@@ -1,8 +1,8 @@
 import React from 'react'
-import MuiDialogActions from '@material-ui/core/DialogActions'
-import Button from '@material-ui/core/Button'
-import Box from '@material-ui/core/Box'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import MuiDialogActions from '@mui/material/DialogActions'
+import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
+import CircularProgress from '@mui/material/CircularProgress'
 
 export type DialogActionsProps = {
   onContinue(): void
