@@ -1,7 +1,8 @@
-import DashboardLayout from '@/components/layout/dashboard.layout'
+import getDashboardLayout from '@/components/layout/dashboard.layout'
 
 function DashboardIndexPage() {
-  return <DashboardLayout>Dashboard</DashboardLayout>
+  return 'Dashboard'
 }
 
+DashboardIndexPage.getLayout = getDashboardLayout
 export default DashboardIndexPage

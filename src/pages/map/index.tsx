@@ -1,5 +1,5 @@
 import Breadcrumbs from '@/components/breadcrumbs'
-import Dashboard from '@/components/layout/dashboard.layout'
+import getDashboardLayout from '@/components/layout/dashboard.layout'
 import dynamic from 'next/dynamic'
 
 const PolygonMap = dynamic(() => import('@/components/map'), {
@@ -9,11 +9,13 @@ const PolygonMap = dynamic(() => import('@/components/map'), {
 
 const MapPage = () => {
   return (
-    <Dashboard>
+    <>
       <Breadcrumbs crumbs={[{ name: 'Farm Map' }]} />
       <PolygonMap />
-    </Dashboard>
+    </>
   )
 }
+
+MapPage.getLayout = getDashboardLayout
 
 export default MapPage

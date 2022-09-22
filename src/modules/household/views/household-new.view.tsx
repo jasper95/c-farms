@@ -1,5 +1,4 @@
 import Breadcrumbs from '@/components/breadcrumbs'
-import Dashboard from '@/components/layout/dashboard.layout'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
 import Stepper from '@material-ui/core/Stepper'
@@ -14,6 +13,7 @@ import {
 } from '@/modules/household/components'
 import { CREATE_HOUSEHOLD_STEPS } from '@/modules/household/constants'
 import { useHouseholdNew } from '@/modules/household/hooks/use-household-new.hook'
+import getDashboardLayout from '@/components/layout/dashboard.layout'
 
 const useStyles = makeStyles(() => ({
   toolbar: {
@@ -32,7 +32,7 @@ export function HouseholdNewView() {
     validateAndNext,
   } = useHouseholdNew()
   return (
-    <Dashboard>
+    <>
       <Breadcrumbs
         crumbs={[{ name: 'Household' }, { name: 'New Household' }]}
       />
@@ -72,6 +72,8 @@ export function HouseholdNewView() {
           </Button>
         </div>
       </Toolbar>
-    </Dashboard>
+    </>
   )
 }
+
+HouseholdNewView.getLayout = getDashboardLayout

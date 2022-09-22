@@ -11,7 +11,7 @@ interface ProgramFormProps {
 export default function ProgramForm(props: ProgramFormProps) {
   const { control } = props.formProps
   return (
-    <Grid container spacing={4}>
+    <Grid className="p-4" container spacing={4}>
       <Grid container item xs={12} md={6} spacing={4}>
         <Grid item xs={12}>
           <TextField control={control} name="name" label="Program Name" />

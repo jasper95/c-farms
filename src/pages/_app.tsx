@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
 import { ThemeProvider, StylesProvider } from '@material-ui/core/styles'
@@ -16,12 +16,21 @@ import 'tailwindcss/tailwind.css'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-draw/dist/leaflet.draw.css'
 import { urqlClient } from '@/shared/urql/client'
+import { NextPage } from 'next'
 
 Amplify.configure({
   ...config,
 })
 
-export default function MyApp(props: AppProps) {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+export default function MyApp(props: AppPropsWithLayout) {
   const { Component, pageProps } = props
 
   React.useEffect(() => {
@@ -31,6 +40,7 @@ export default function MyApp(props: AppProps) {
       jssStyles.parentElement?.removeChild(jssStyles)
     }
   }, [])
+  const getLayout = Component.getLayout ?? ((page) => page)
 
   return (
     <UrqlProvider value={urqlClient}>
@@ -46,7 +56,7 @@ export default function MyApp(props: AppProps) {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <StylesProvider injectFirst>
-              <Component {...pageProps} />
+              {getLayout(<Component {...pageProps} />)}
             </StylesProvider>
             <DialogContainer />
             <NotificationContainer />

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import Header from './header.layout'
 import Navigation from './navigation.layout'
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) =>
 type DashboardProps = {
   children: ReactNode
 }
-export default function Dashboard(props: DashboardProps) {
+export function Dashboard(props: DashboardProps) {
   const classes = useStyles()
   return (
     <div className={classes.root}>
@@ -37,4 +37,8 @@ export default function Dashboard(props: DashboardProps) {
       </main>
     </div>
   )
+}
+
+export default function getDashboardLayout(page: ReactElement) {
+  return <Dashboard>{page}</Dashboard>
 }

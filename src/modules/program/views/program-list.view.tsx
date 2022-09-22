@@ -1,10 +1,10 @@
-import Dashboard from '@/components/layout/dashboard.layout'
 import Breadcrumbs from '@/components/breadcrumbs'
 import Button from '@material-ui/core/Button'
 import SearchBar from '@/components/search-bar'
 import Link from '@/components/link'
 import DataTable from '@/components/data-table'
 import useProgramList from '@/modules/program/hooks/use-program-list.hook'
+import getDashboardLayout from '@/components/layout/dashboard.layout'
 
 export function ProgramListView() {
   const {
@@ -17,7 +17,7 @@ export function ProgramListView() {
     totalRows,
   } = useProgramList()
   return (
-    <Dashboard>
+    <>
       <Breadcrumbs crumbs={[{ name: 'Program' }]} />
       <div className="grid grid-cols-12 gap-4 pb-4">
         <div className="col-span-full md:col-span-4 flex items-center">
@@ -40,6 +40,8 @@ export function ProgramListView() {
         showPagination
         loading={listResponse.fetching}
       />
-    </Dashboard>
+    </>
   )
 }
+
+ProgramListView.getLayout = getDashboardLayout
