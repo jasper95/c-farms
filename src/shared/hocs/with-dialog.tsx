@@ -33,7 +33,9 @@ export type IDialogContentProps<T> = {
   formProps: UseFormReturn<T>
 }
 
-function withDialog<T>(WrappedComponent: React.FC<IDialogContentProps<T>>) {
+export function withDialog<T>(
+  WrappedComponent: React.FC<IDialogContentProps<T>>
+) {
   const Dialog: React.FC<IWithDialogProps<T>> = (props) => {
     const { hideDialog } = useDialogStore()
     const { title, onContinue, onCancel, defaultValues, validationSchema } =
@@ -67,5 +69,3 @@ function withDialog<T>(WrappedComponent: React.FC<IDialogContentProps<T>>) {
   }
   return Dialog
 }
-
-export default withDialog
