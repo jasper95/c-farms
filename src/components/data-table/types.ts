@@ -5,8 +5,8 @@ export type ColumnSort = {
   direction: 'asc' | 'desc'
 }
 
-export type Identifiable = {
-  id: string | number
+export interface Identifiable {
+  id: any
 }
 
 export type ColumnType<T = any> = {

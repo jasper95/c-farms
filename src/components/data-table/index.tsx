@@ -80,7 +80,7 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
                       onClick={() => {
                         if (tableDispatch && sortable) {
                           const payload: ColumnSort = {
-                            column: `${accessor}`,
+                            column: String(accessor),
                             direction:
                               !sorted || get(sorted, 'direction') === 'desc'
                                 ? 'asc'

@@ -16,18 +16,20 @@ export function useHouseholdList() {
     },
   })
 
+  const count = response?.data?.householdList?.meta?.count || 0
+  const rows = response?.data?.householdList?.data || []
   useEffect(() => {
     tableDispatch({
       type: 'SetTotal',
-      payload: response?.data?.pagination?.aggregate?.count || 0,
+      payload: count,
     })
-  }, [response?.data?.pagination?.aggregate?.count, tableDispatch])
+  }, [count, tableDispatch])
 
   return [
     {
       tableState,
       columns: HOUSE_LIST_COLUMNS,
-      rows: response.data?.result ?? [],
+      rows,
       loading: response.fetching,
       error: response.error,
     },

@@ -4,9 +4,9 @@ import gql from 'graphql-tag'
 import * as Urql from 'urql'
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type HouseHoldListQueryVariables = Types.Exact<{
-  where?: Types.InputMaybe<Types.Farm_Household_Bool_Exp>
-  order_by?: Types.InputMaybe<
-    Array<Types.Farm_Household_Order_By> | Types.Farm_Household_Order_By
+  where?: Types.InputMaybe<Types.HouseholdBoolExp>
+  orderBy?: Types.InputMaybe<
+    Array<Types.HouseholdOrderBy> | Types.HouseholdOrderBy
   >
   offset?: Types.InputMaybe<Types.Scalars['Int']>
   limit?: Types.InputMaybe<Types.Scalars['Int']>
@@ -14,19 +14,19 @@ export type HouseHoldListQueryVariables = Types.Exact<{
 
 export type HouseHoldListQuery = {
   __typename?: 'query_root'
-  result: Array<{
-    __typename?: 'farm_household'
-    fname: string
-    id: number
-    lname: string
-    mname?: string | null | undefined
-    reference_no: string
-    barangay?: string | null | undefined
-  }>
-  pagination: {
-    __typename?: 'farm_household_aggregate'
-    aggregate?:
-      | { __typename?: 'farm_household_aggregate_fields'; count: number }
+  householdList: {
+    __typename?: 'HouseholdAggregate'
+    data: Array<{
+      __typename?: 'Household'
+      id: any
+      lastName: string
+      firstName: string
+      middleName?: string | null | undefined
+      referenceNo: string
+      barangay?: string | null | undefined
+    }>
+    meta?:
+      | { __typename?: 'HouseholdAggregateFields'; count: number }
       | null
       | undefined
   }
@@ -34,27 +34,27 @@ export type HouseHoldListQuery = {
 
 export const HouseHoldListDocument = gql`
   query HouseHoldList(
-    $where: farm_household_bool_exp
-    $order_by: [farm_household_order_by!]
+    $where: HouseholdBoolExp
+    $orderBy: [HouseholdOrderBy!]
     $offset: Int
     $limit: Int
   ) {
-    result: farm_household(
+    householdList: householdAggregate(
       where: $where
+      orderBy: $orderBy
       offset: $offset
-      order_by: $order_by
       limit: $limit
     ) {
-      fname
-      id
-      lname
-      mname
-      reference_no
-      barangay
-    }
-    pagination: farm_household_aggregate(where: $where) {
-      aggregate {
-        count
+      data: nodes {
+        id
+        lastName
+        firstName
+        middleName
+        referenceNo
+        barangay
+      }
+      meta: aggregate {
+        count(columns: id, distinct: true)
       }
     }
   }

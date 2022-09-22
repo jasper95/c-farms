@@ -3,18 +3,26 @@ import * as yup from 'yup'
 import { CIVIL_STATUS_OPTIONS, GENDER_OPTIONS } from './form-options'
 
 export const PERSONAL_INFORMATION_SCHEMA = yup.object({
-  lname: yup.string().required(fieldIsRequired).label('Lastname').default(''),
-  fname: yup.string().required(fieldIsRequired).label('Firstname').default(''),
-  mname: yup.string().default(''),
-  extname: yup.string().default(''),
-  house_no: yup.string().default(''),
-  reference_no: yup.string().default(''),
+  lastName: yup
+    .string()
+    .required(fieldIsRequired)
+    .label('Lastname')
+    .default(''),
+  firstName: yup
+    .string()
+    .required(fieldIsRequired)
+    .label('Firstname')
+    .default(''),
+  middleName: yup.string().default(''),
+  extensionName: yup.string().default(''),
+  houseNo: yup.string().default(''),
+  referenceNo: yup.string().default(''),
   street: yup.string().default(''),
   barangay: yup.string().required(fieldIsRequired).default(''),
   municipality: yup.string().required(fieldIsRequired).default('Candijay'),
   province: yup.string().required(fieldIsRequired).default('Bohol'),
   region: yup.string().required(fieldIsRequired).default('VII'),
-  contact_no: yup.string().required(fieldIsRequired).default(''),
+  contactNumber: yup.string().required(fieldIsRequired).default(''),
   sex: yup
     .string()
     .oneOf(GENDER_OPTIONS.map((e) => e.value))
@@ -24,14 +32,14 @@ export const PERSONAL_INFORMATION_SCHEMA = yup.object({
     .oneOf(CIVIL_STATUS_OPTIONS.map((e) => e.value))
     .default('Single'),
   spouse: yup.string().default(''),
-  mothers_maiden: yup.string().default(''),
+  mothersMaidenName: yup.string().default(''),
   religion: yup.string().default(''),
-  dob: yup
+  dateOfBirth: yup
     .date()
     .required(fieldIsRequired)
     .label('Date of birth')
     .default(null),
-  pob: yup
+  placeOfBirth: yup
     .string()
     .required(fieldIsRequired)
     .label('Place of birth')

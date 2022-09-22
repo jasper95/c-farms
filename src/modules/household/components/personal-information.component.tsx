@@ -21,26 +21,26 @@ export function PersonalInformation(props: IPersonalInformation) {
   return (
     <Grid container spacing={4}>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField control={control} name="lname" label="Surname" />
+        <TextField control={control} name="lastName" label="Surname" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField control={control} name="fname" label="Firstname" />
+        <TextField control={control} name="firstName" label="Firstname" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField control={control} name="mname" label="Middlename" />
+        <TextField control={control} name="middleName" label="Middlename" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField control={control} label="Extension Name" name="extname" />
+        <TextField
+          control={control}
+          label="Extension Name"
+          name="extensionName"
+        />
       </Grid>
       <Grid item xs={12}>
         <Divider />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField
-          control={control}
-          label="House/Lot/Bldg No"
-          name="house_no"
-        />
+        <TextField control={control} label="House/Lot/Bldg No" name="houseNo" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
         <TextField control={control} label="Street/Sitio/Subdv" name="street" />
@@ -58,7 +58,7 @@ export function PersonalInformation(props: IPersonalInformation) {
         <TextField control={control} label="Region" name="region" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField control={control} label="Contact No." name="contact_no" />
+        <TextField control={control} label="Contact No." name="contactNumber" />
       </Grid>
       <Grid item xs={12}>
         <Divider />
@@ -92,7 +92,7 @@ export function PersonalInformation(props: IPersonalInformation) {
         <TextField
           control={control}
           label="Mother's Maiden Name"
-          name="mothers_maiden"
+          name="mothersMaidenName"
         />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
@@ -108,10 +108,18 @@ export function PersonalInformation(props: IPersonalInformation) {
         <Divider />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <DatePicker control={control} name="dob" label="Date of birth" />
+        <DatePicker
+          control={control}
+          name="dateOfBirth"
+          label="Date of birth"
+        />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField control={control} label="Place of birth" name="pob" />
+        <TextField
+          control={control}
+          label="Place of birth"
+          name="placeOfBirth"
+        />
       </Grid>
     </Grid>
   )

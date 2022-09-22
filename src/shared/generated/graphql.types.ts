@@ -16,87 +16,553 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
-  _jsonb: any
-  bit: any
+  _text: any
   bpchar: any
   date: any
+  jsonb: any
   numeric: any
+  timestamp: any
+  uuid: any
 }
 
-/** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
-export type Int_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['Int']>
-  _gt?: InputMaybe<Scalars['Int']>
-  _gte?: InputMaybe<Scalars['Int']>
-  _in?: InputMaybe<Array<Scalars['Int']>>
-  _is_null?: InputMaybe<Scalars['Boolean']>
-  _lt?: InputMaybe<Scalars['Int']>
-  _lte?: InputMaybe<Scalars['Int']>
-  _neq?: InputMaybe<Scalars['Int']>
-  _nin?: InputMaybe<Array<Scalars['Int']>>
+/** columns and relationships of "annualInfo" */
+export type AnnualInfo = {
+  __typename?: 'AnnualInfo'
+  associationMembership?: Maybe<Scalars['String']>
+  createdAt: Scalars['timestamp']
+  farmworkerActivityType?: Maybe<Scalars['String']>
+  fisherActivityType?: Maybe<Scalars['String']>
+  grossAnnualIncomeFarming: Scalars['numeric']
+  grossAnnualIncomeNonfarming: Scalars['numeric']
+  highestFormalEducation: Scalars['String']
+  /** An object relationship */
+  household: Household
+  householdId: Scalars['uuid']
+  id: Scalars['uuid']
+  is4PsBeneficiary: Scalars['Boolean']
+  mainLivelihood?: Maybe<Scalars['_text']>
+  personWithDisability: Scalars['Boolean']
+  updatedAt: Scalars['timestamp']
+  year: Scalars['Int']
 }
 
-/** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
-export type String_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['String']>
-  _gt?: InputMaybe<Scalars['String']>
-  _gte?: InputMaybe<Scalars['String']>
-  /** does the column match the given case-insensitive pattern */
-  _ilike?: InputMaybe<Scalars['String']>
-  _in?: InputMaybe<Array<Scalars['String']>>
-  /** does the column match the given POSIX regular expression, case insensitive */
-  _iregex?: InputMaybe<Scalars['String']>
-  _is_null?: InputMaybe<Scalars['Boolean']>
-  /** does the column match the given pattern */
-  _like?: InputMaybe<Scalars['String']>
-  _lt?: InputMaybe<Scalars['String']>
-  _lte?: InputMaybe<Scalars['String']>
-  _neq?: InputMaybe<Scalars['String']>
-  /** does the column NOT match the given case-insensitive pattern */
-  _nilike?: InputMaybe<Scalars['String']>
-  _nin?: InputMaybe<Array<Scalars['String']>>
-  /** does the column NOT match the given POSIX regular expression, case insensitive */
-  _niregex?: InputMaybe<Scalars['String']>
-  /** does the column NOT match the given pattern */
-  _nlike?: InputMaybe<Scalars['String']>
-  /** does the column NOT match the given POSIX regular expression, case sensitive */
-  _nregex?: InputMaybe<Scalars['String']>
-  /** does the column NOT match the given SQL regular expression */
-  _nsimilar?: InputMaybe<Scalars['String']>
-  /** does the column match the given POSIX regular expression, case sensitive */
-  _regex?: InputMaybe<Scalars['String']>
-  /** does the column match the given SQL regular expression */
-  _similar?: InputMaybe<Scalars['String']>
+/** aggregated selection of "annualInfo" */
+export type AnnualInfoAggregate = {
+  __typename?: 'AnnualInfoAggregate'
+  aggregate?: Maybe<AnnualInfoAggregateFields>
+  nodes: Array<AnnualInfo>
 }
 
-/** Boolean expression to compare columns of type "_jsonb". All fields are combined with logical 'AND'. */
-export type _Jsonb_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['_jsonb']>
-  _gt?: InputMaybe<Scalars['_jsonb']>
-  _gte?: InputMaybe<Scalars['_jsonb']>
-  _in?: InputMaybe<Array<Scalars['_jsonb']>>
-  _is_null?: InputMaybe<Scalars['Boolean']>
-  _lt?: InputMaybe<Scalars['_jsonb']>
-  _lte?: InputMaybe<Scalars['_jsonb']>
-  _neq?: InputMaybe<Scalars['_jsonb']>
-  _nin?: InputMaybe<Array<Scalars['_jsonb']>>
+/** aggregate fields of "annualInfo" */
+export type AnnualInfoAggregateFields = {
+  __typename?: 'AnnualInfoAggregateFields'
+  avg?: Maybe<AnnualInfoAvgFields>
+  count: Scalars['Int']
+  max?: Maybe<AnnualInfoMaxFields>
+  min?: Maybe<AnnualInfoMinFields>
+  stddev?: Maybe<AnnualInfoStddevFields>
+  stddevPop?: Maybe<AnnualInfoStddev_PopFields>
+  stddevSamp?: Maybe<AnnualInfoStddev_SampFields>
+  sum?: Maybe<AnnualInfoSumFields>
+  varPop?: Maybe<AnnualInfoVar_PopFields>
+  varSamp?: Maybe<AnnualInfoVar_SampFields>
+  variance?: Maybe<AnnualInfoVarianceFields>
 }
 
-/** Boolean expression to compare columns of type "bit". All fields are combined with logical 'AND'. */
-export type Bit_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['bit']>
-  _gt?: InputMaybe<Scalars['bit']>
-  _gte?: InputMaybe<Scalars['bit']>
-  _in?: InputMaybe<Array<Scalars['bit']>>
-  _is_null?: InputMaybe<Scalars['Boolean']>
-  _lt?: InputMaybe<Scalars['bit']>
-  _lte?: InputMaybe<Scalars['bit']>
-  _neq?: InputMaybe<Scalars['bit']>
-  _nin?: InputMaybe<Array<Scalars['bit']>>
+/** aggregate fields of "annualInfo" */
+export type AnnualInfoAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<AnnualInfoSelectColumn>>
+  distinct?: InputMaybe<Scalars['Boolean']>
+}
+
+/** order by aggregate values of table "annualInfo" */
+export type AnnualInfoAggregateOrderBy = {
+  avg?: InputMaybe<AnnualInfo_Avg_Order_By>
+  count?: InputMaybe<OrderBy>
+  max?: InputMaybe<AnnualInfo_Max_Order_By>
+  min?: InputMaybe<AnnualInfo_Min_Order_By>
+  stddev?: InputMaybe<AnnualInfo_Stddev_Order_By>
+  stddev_pop?: InputMaybe<AnnualInfo_Stddev_Pop_Order_By>
+  stddev_samp?: InputMaybe<AnnualInfo_Stddev_Samp_Order_By>
+  sum?: InputMaybe<AnnualInfo_Sum_Order_By>
+  var_pop?: InputMaybe<AnnualInfo_Var_Pop_Order_By>
+  var_samp?: InputMaybe<AnnualInfo_Var_Samp_Order_By>
+  variance?: InputMaybe<AnnualInfo_Variance_Order_By>
+}
+
+/** input type for inserting array relation for remote table "annualInfo" */
+export type AnnualInfoArrRelInsertInput = {
+  data: Array<AnnualInfoInsertInput>
+  /** upsert condition */
+  onConflict?: InputMaybe<AnnualInfoOnConflict>
+}
+
+/** aggregate avg on columns */
+export type AnnualInfoAvgFields = {
+  __typename?: 'AnnualInfoAvgFields'
+  grossAnnualIncomeFarming?: Maybe<Scalars['Float']>
+  grossAnnualIncomeNonfarming?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** Boolean expression to filter rows from the table "annualInfo". All fields are combined with a logical 'AND'. */
+export type AnnualInfoBoolExp = {
+  _and?: InputMaybe<Array<AnnualInfoBoolExp>>
+  _not?: InputMaybe<AnnualInfoBoolExp>
+  _or?: InputMaybe<Array<AnnualInfoBoolExp>>
+  associationMembership?: InputMaybe<StringComparisonExp>
+  createdAt?: InputMaybe<TimestampComparisonExp>
+  farmworkerActivityType?: InputMaybe<StringComparisonExp>
+  fisherActivityType?: InputMaybe<StringComparisonExp>
+  grossAnnualIncomeFarming?: InputMaybe<NumericComparisonExp>
+  grossAnnualIncomeNonfarming?: InputMaybe<NumericComparisonExp>
+  highestFormalEducation?: InputMaybe<StringComparisonExp>
+  household?: InputMaybe<HouseholdBoolExp>
+  householdId?: InputMaybe<UuidComparisonExp>
+  id?: InputMaybe<UuidComparisonExp>
+  is4PsBeneficiary?: InputMaybe<BooleanComparisonExp>
+  mainLivelihood?: InputMaybe<_TextComparisonExp>
+  personWithDisability?: InputMaybe<BooleanComparisonExp>
+  updatedAt?: InputMaybe<TimestampComparisonExp>
+  year?: InputMaybe<IntComparisonExp>
+}
+
+/** unique or primary key constraints on table "annualInfo" */
+export enum AnnualInfoConstraint {
+  /** unique or primary key constraint on columns "id" */
+  AnnualinfoPk = 'annualinfo_pk',
+}
+
+/** input type for incrementing numeric columns in table "annualInfo" */
+export type AnnualInfoIncInput = {
+  grossAnnualIncomeFarming?: InputMaybe<Scalars['numeric']>
+  grossAnnualIncomeNonfarming?: InputMaybe<Scalars['numeric']>
+  year?: InputMaybe<Scalars['Int']>
+}
+
+/** input type for inserting data into table "annualInfo" */
+export type AnnualInfoInsertInput = {
+  associationMembership?: InputMaybe<Scalars['String']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  farmworkerActivityType?: InputMaybe<Scalars['String']>
+  fisherActivityType?: InputMaybe<Scalars['String']>
+  grossAnnualIncomeFarming?: InputMaybe<Scalars['numeric']>
+  grossAnnualIncomeNonfarming?: InputMaybe<Scalars['numeric']>
+  highestFormalEducation?: InputMaybe<Scalars['String']>
+  household?: InputMaybe<HouseholdObjRelInsertInput>
+  householdId?: InputMaybe<Scalars['uuid']>
+  id?: InputMaybe<Scalars['uuid']>
+  is4PsBeneficiary?: InputMaybe<Scalars['Boolean']>
+  mainLivelihood?: InputMaybe<Scalars['_text']>
+  personWithDisability?: InputMaybe<Scalars['Boolean']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+  year?: InputMaybe<Scalars['Int']>
+}
+
+/** aggregate max on columns */
+export type AnnualInfoMaxFields = {
+  __typename?: 'AnnualInfoMaxFields'
+  associationMembership?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  farmworkerActivityType?: Maybe<Scalars['String']>
+  fisherActivityType?: Maybe<Scalars['String']>
+  grossAnnualIncomeFarming?: Maybe<Scalars['numeric']>
+  grossAnnualIncomeNonfarming?: Maybe<Scalars['numeric']>
+  highestFormalEducation?: Maybe<Scalars['String']>
+  householdId?: Maybe<Scalars['uuid']>
+  id?: Maybe<Scalars['uuid']>
+  updatedAt?: Maybe<Scalars['timestamp']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** aggregate min on columns */
+export type AnnualInfoMinFields = {
+  __typename?: 'AnnualInfoMinFields'
+  associationMembership?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  farmworkerActivityType?: Maybe<Scalars['String']>
+  fisherActivityType?: Maybe<Scalars['String']>
+  grossAnnualIncomeFarming?: Maybe<Scalars['numeric']>
+  grossAnnualIncomeNonfarming?: Maybe<Scalars['numeric']>
+  highestFormalEducation?: Maybe<Scalars['String']>
+  householdId?: Maybe<Scalars['uuid']>
+  id?: Maybe<Scalars['uuid']>
+  updatedAt?: Maybe<Scalars['timestamp']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** response of any mutation on the table "annualInfo" */
+export type AnnualInfoMutationResponse = {
+  __typename?: 'AnnualInfoMutationResponse'
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']
+  /** data from the rows affected by the mutation */
+  returning: Array<AnnualInfo>
+}
+
+/** on_conflict condition type for table "annualInfo" */
+export type AnnualInfoOnConflict = {
+  constraint: AnnualInfoConstraint
+  update_columns?: Array<AnnualInfoUpdateColumn>
+  where?: InputMaybe<AnnualInfoBoolExp>
+}
+
+/** Ordering options when selecting data from "annualInfo". */
+export type AnnualInfoOrderBy = {
+  associationMembership?: InputMaybe<OrderBy>
+  createdAt?: InputMaybe<OrderBy>
+  farmworkerActivityType?: InputMaybe<OrderBy>
+  fisherActivityType?: InputMaybe<OrderBy>
+  grossAnnualIncomeFarming?: InputMaybe<OrderBy>
+  grossAnnualIncomeNonfarming?: InputMaybe<OrderBy>
+  highestFormalEducation?: InputMaybe<OrderBy>
+  household?: InputMaybe<HouseholdOrderBy>
+  householdId?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  is4PsBeneficiary?: InputMaybe<OrderBy>
+  mainLivelihood?: InputMaybe<OrderBy>
+  personWithDisability?: InputMaybe<OrderBy>
+  updatedAt?: InputMaybe<OrderBy>
+  year?: InputMaybe<OrderBy>
+}
+
+/** primary key columns input for table: annualInfo */
+export type AnnualInfoPkColumnsInput = {
+  id: Scalars['uuid']
+}
+
+/** select columns of table "annualInfo" */
+export enum AnnualInfoSelectColumn {
+  /** column name */
+  AssociationMembership = 'associationMembership',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  FarmworkerActivityType = 'farmworkerActivityType',
+  /** column name */
+  FisherActivityType = 'fisherActivityType',
+  /** column name */
+  GrossAnnualIncomeFarming = 'grossAnnualIncomeFarming',
+  /** column name */
+  GrossAnnualIncomeNonfarming = 'grossAnnualIncomeNonfarming',
+  /** column name */
+  HighestFormalEducation = 'highestFormalEducation',
+  /** column name */
+  HouseholdId = 'householdId',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Is4PsBeneficiary = 'is4PsBeneficiary',
+  /** column name */
+  MainLivelihood = 'mainLivelihood',
+  /** column name */
+  PersonWithDisability = 'personWithDisability',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  Year = 'year',
+}
+
+/** input type for updating data in table "annualInfo" */
+export type AnnualInfoSetInput = {
+  associationMembership?: InputMaybe<Scalars['String']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  farmworkerActivityType?: InputMaybe<Scalars['String']>
+  fisherActivityType?: InputMaybe<Scalars['String']>
+  grossAnnualIncomeFarming?: InputMaybe<Scalars['numeric']>
+  grossAnnualIncomeNonfarming?: InputMaybe<Scalars['numeric']>
+  highestFormalEducation?: InputMaybe<Scalars['String']>
+  householdId?: InputMaybe<Scalars['uuid']>
+  id?: InputMaybe<Scalars['uuid']>
+  is4PsBeneficiary?: InputMaybe<Scalars['Boolean']>
+  mainLivelihood?: InputMaybe<Scalars['_text']>
+  personWithDisability?: InputMaybe<Scalars['Boolean']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+  year?: InputMaybe<Scalars['Int']>
+}
+
+/** aggregate stddev on columns */
+export type AnnualInfoStddevFields = {
+  __typename?: 'AnnualInfoStddevFields'
+  grossAnnualIncomeFarming?: Maybe<Scalars['Float']>
+  grossAnnualIncomeNonfarming?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_pop on columns */
+export type AnnualInfoStddev_PopFields = {
+  __typename?: 'AnnualInfoStddev_popFields'
+  grossAnnualIncomeFarming?: Maybe<Scalars['Float']>
+  grossAnnualIncomeNonfarming?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_samp on columns */
+export type AnnualInfoStddev_SampFields = {
+  __typename?: 'AnnualInfoStddev_sampFields'
+  grossAnnualIncomeFarming?: Maybe<Scalars['Float']>
+  grossAnnualIncomeNonfarming?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate sum on columns */
+export type AnnualInfoSumFields = {
+  __typename?: 'AnnualInfoSumFields'
+  grossAnnualIncomeFarming?: Maybe<Scalars['numeric']>
+  grossAnnualIncomeNonfarming?: Maybe<Scalars['numeric']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** update columns of table "annualInfo" */
+export enum AnnualInfoUpdateColumn {
+  /** column name */
+  AssociationMembership = 'associationMembership',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  FarmworkerActivityType = 'farmworkerActivityType',
+  /** column name */
+  FisherActivityType = 'fisherActivityType',
+  /** column name */
+  GrossAnnualIncomeFarming = 'grossAnnualIncomeFarming',
+  /** column name */
+  GrossAnnualIncomeNonfarming = 'grossAnnualIncomeNonfarming',
+  /** column name */
+  HighestFormalEducation = 'highestFormalEducation',
+  /** column name */
+  HouseholdId = 'householdId',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Is4PsBeneficiary = 'is4PsBeneficiary',
+  /** column name */
+  MainLivelihood = 'mainLivelihood',
+  /** column name */
+  PersonWithDisability = 'personWithDisability',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  Year = 'year',
+}
+
+export type AnnualInfoUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<AnnualInfoIncInput>
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<AnnualInfoSetInput>
+  where: AnnualInfoBoolExp
+}
+
+/** aggregate var_pop on columns */
+export type AnnualInfoVar_PopFields = {
+  __typename?: 'AnnualInfoVar_popFields'
+  grossAnnualIncomeFarming?: Maybe<Scalars['Float']>
+  grossAnnualIncomeNonfarming?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate var_samp on columns */
+export type AnnualInfoVar_SampFields = {
+  __typename?: 'AnnualInfoVar_sampFields'
+  grossAnnualIncomeFarming?: Maybe<Scalars['Float']>
+  grossAnnualIncomeNonfarming?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate variance on columns */
+export type AnnualInfoVarianceFields = {
+  __typename?: 'AnnualInfoVarianceFields'
+  grossAnnualIncomeFarming?: Maybe<Scalars['Float']>
+  grossAnnualIncomeNonfarming?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** columns and relationships of "association" */
+export type Association = {
+  __typename?: 'Association'
+  active: Scalars['Boolean']
+  createdAt: Scalars['timestamp']
+  description?: Maybe<Scalars['String']>
+  id: Scalars['uuid']
+  name: Scalars['String']
+  shortName?: Maybe<Scalars['String']>
+  updatedAt: Scalars['timestamp']
+}
+
+/** aggregated selection of "association" */
+export type AssociationAggregate = {
+  __typename?: 'AssociationAggregate'
+  aggregate?: Maybe<AssociationAggregateFields>
+  nodes: Array<Association>
+}
+
+/** aggregate fields of "association" */
+export type AssociationAggregateFields = {
+  __typename?: 'AssociationAggregateFields'
+  count: Scalars['Int']
+  max?: Maybe<AssociationMaxFields>
+  min?: Maybe<AssociationMinFields>
+}
+
+/** aggregate fields of "association" */
+export type AssociationAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<AssociationSelectColumn>>
+  distinct?: InputMaybe<Scalars['Boolean']>
+}
+
+/** Boolean expression to filter rows from the table "association". All fields are combined with a logical 'AND'. */
+export type AssociationBoolExp = {
+  _and?: InputMaybe<Array<AssociationBoolExp>>
+  _not?: InputMaybe<AssociationBoolExp>
+  _or?: InputMaybe<Array<AssociationBoolExp>>
+  active?: InputMaybe<BooleanComparisonExp>
+  createdAt?: InputMaybe<TimestampComparisonExp>
+  description?: InputMaybe<StringComparisonExp>
+  id?: InputMaybe<UuidComparisonExp>
+  name?: InputMaybe<StringComparisonExp>
+  shortName?: InputMaybe<StringComparisonExp>
+  updatedAt?: InputMaybe<TimestampComparisonExp>
+}
+
+/** unique or primary key constraints on table "association" */
+export enum AssociationConstraint {
+  /** unique or primary key constraint on columns "id" */
+  AssociationPk = 'association_pk',
+}
+
+/** input type for inserting data into table "association" */
+export type AssociationInsertInput = {
+  active?: InputMaybe<Scalars['Boolean']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  description?: InputMaybe<Scalars['String']>
+  id?: InputMaybe<Scalars['uuid']>
+  name?: InputMaybe<Scalars['String']>
+  shortName?: InputMaybe<Scalars['String']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
+/** aggregate max on columns */
+export type AssociationMaxFields = {
+  __typename?: 'AssociationMaxFields'
+  createdAt?: Maybe<Scalars['timestamp']>
+  description?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['uuid']>
+  name?: Maybe<Scalars['String']>
+  shortName?: Maybe<Scalars['String']>
+  updatedAt?: Maybe<Scalars['timestamp']>
+}
+
+/** aggregate min on columns */
+export type AssociationMinFields = {
+  __typename?: 'AssociationMinFields'
+  createdAt?: Maybe<Scalars['timestamp']>
+  description?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['uuid']>
+  name?: Maybe<Scalars['String']>
+  shortName?: Maybe<Scalars['String']>
+  updatedAt?: Maybe<Scalars['timestamp']>
+}
+
+/** response of any mutation on the table "association" */
+export type AssociationMutationResponse = {
+  __typename?: 'AssociationMutationResponse'
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']
+  /** data from the rows affected by the mutation */
+  returning: Array<Association>
+}
+
+/** on_conflict condition type for table "association" */
+export type AssociationOnConflict = {
+  constraint: AssociationConstraint
+  update_columns?: Array<AssociationUpdateColumn>
+  where?: InputMaybe<AssociationBoolExp>
+}
+
+/** Ordering options when selecting data from "association". */
+export type AssociationOrderBy = {
+  active?: InputMaybe<OrderBy>
+  createdAt?: InputMaybe<OrderBy>
+  description?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  name?: InputMaybe<OrderBy>
+  shortName?: InputMaybe<OrderBy>
+  updatedAt?: InputMaybe<OrderBy>
+}
+
+/** primary key columns input for table: association */
+export type AssociationPkColumnsInput = {
+  id: Scalars['uuid']
+}
+
+/** select columns of table "association" */
+export enum AssociationSelectColumn {
+  /** column name */
+  Active = 'active',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  ShortName = 'shortName',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+}
+
+/** input type for updating data in table "association" */
+export type AssociationSetInput = {
+  active?: InputMaybe<Scalars['Boolean']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  description?: InputMaybe<Scalars['String']>
+  id?: InputMaybe<Scalars['uuid']>
+  name?: InputMaybe<Scalars['String']>
+  shortName?: InputMaybe<Scalars['String']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
+/** update columns of table "association" */
+export enum AssociationUpdateColumn {
+  /** column name */
+  Active = 'active',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Description = 'description',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  ShortName = 'shortName',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+}
+
+export type AssociationUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<AssociationSetInput>
+  where: AssociationBoolExp
+}
+
+/** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
+export type BooleanComparisonExp = {
+  _eq?: InputMaybe<Scalars['Boolean']>
+  _gt?: InputMaybe<Scalars['Boolean']>
+  _gte?: InputMaybe<Scalars['Boolean']>
+  _in?: InputMaybe<Array<Scalars['Boolean']>>
+  _isNull?: InputMaybe<Scalars['Boolean']>
+  _lt?: InputMaybe<Scalars['Boolean']>
+  _lte?: InputMaybe<Scalars['Boolean']>
+  _neq?: InputMaybe<Scalars['Boolean']>
+  _nin?: InputMaybe<Array<Scalars['Boolean']>>
 }
 
 /** Boolean expression to compare columns of type "bpchar". All fields are combined with logical 'AND'. */
-export type Bpchar_Comparison_Exp = {
+export type BpcharComparisonExp = {
   _eq?: InputMaybe<Scalars['bpchar']>
   _gt?: InputMaybe<Scalars['bpchar']>
   _gte?: InputMaybe<Scalars['bpchar']>
@@ -105,7 +571,7 @@ export type Bpchar_Comparison_Exp = {
   _in?: InputMaybe<Array<Scalars['bpchar']>>
   /** does the column match the given POSIX regular expression, case insensitive */
   _iregex?: InputMaybe<Scalars['bpchar']>
-  _is_null?: InputMaybe<Scalars['Boolean']>
+  _isNull?: InputMaybe<Scalars['Boolean']>
   /** does the column match the given pattern */
   _like?: InputMaybe<Scalars['bpchar']>
   _lt?: InputMaybe<Scalars['bpchar']>
@@ -128,364 +594,202 @@ export type Bpchar_Comparison_Exp = {
   _similar?: InputMaybe<Scalars['bpchar']>
 }
 
-/** columns and relationships of "crop_commodity" */
-export type Crop_Commodity = {
-  __typename?: 'crop_commodity'
+/** columns and relationships of "commodity" */
+export type Commodity = {
+  __typename?: 'Commodity'
+  commodity: Scalars['String']
+  commodityType: Scalars['String']
+  createdAt: Scalars['timestamp']
   /** An object relationship */
-  farm: Farm
-  farm_id: Scalars['Int']
-  ha_assigned: Scalars['numeric']
-  id: Scalars['Int']
-  is_organic: Scalars['bit']
-  name_type: Scalars['String']
-  no_of_heads?: Maybe<Scalars['Int']>
+  farm?: Maybe<Farm>
+  farmId?: Maybe<Scalars['uuid']>
+  id: Scalars['uuid']
+  updatedAt: Scalars['timestamp']
 }
 
-/** aggregated selection of "crop_commodity" */
-export type Crop_Commodity_Aggregate = {
-  __typename?: 'crop_commodity_aggregate'
-  aggregate?: Maybe<Crop_Commodity_Aggregate_Fields>
-  nodes: Array<Crop_Commodity>
+/** aggregated selection of "commodity" */
+export type CommodityAggregate = {
+  __typename?: 'CommodityAggregate'
+  aggregate?: Maybe<CommodityAggregateFields>
+  nodes: Array<Commodity>
 }
 
-/** aggregate fields of "crop_commodity" */
-export type Crop_Commodity_Aggregate_Fields = {
-  __typename?: 'crop_commodity_aggregate_fields'
-  avg?: Maybe<Crop_Commodity_Avg_Fields>
+/** aggregate fields of "commodity" */
+export type CommodityAggregateFields = {
+  __typename?: 'CommodityAggregateFields'
   count: Scalars['Int']
-  max?: Maybe<Crop_Commodity_Max_Fields>
-  min?: Maybe<Crop_Commodity_Min_Fields>
-  stddev?: Maybe<Crop_Commodity_Stddev_Fields>
-  stddev_pop?: Maybe<Crop_Commodity_Stddev_Pop_Fields>
-  stddev_samp?: Maybe<Crop_Commodity_Stddev_Samp_Fields>
-  sum?: Maybe<Crop_Commodity_Sum_Fields>
-  var_pop?: Maybe<Crop_Commodity_Var_Pop_Fields>
-  var_samp?: Maybe<Crop_Commodity_Var_Samp_Fields>
-  variance?: Maybe<Crop_Commodity_Variance_Fields>
+  max?: Maybe<CommodityMaxFields>
+  min?: Maybe<CommodityMinFields>
 }
 
-/** aggregate fields of "crop_commodity" */
-export type Crop_Commodity_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Crop_Commodity_Select_Column>>
+/** aggregate fields of "commodity" */
+export type CommodityAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<CommoditySelectColumn>>
   distinct?: InputMaybe<Scalars['Boolean']>
 }
 
-/** order by aggregate values of table "crop_commodity" */
-export type Crop_Commodity_Aggregate_Order_By = {
-  avg?: InputMaybe<Crop_Commodity_Avg_Order_By>
-  count?: InputMaybe<Order_By>
-  max?: InputMaybe<Crop_Commodity_Max_Order_By>
-  min?: InputMaybe<Crop_Commodity_Min_Order_By>
-  stddev?: InputMaybe<Crop_Commodity_Stddev_Order_By>
-  stddev_pop?: InputMaybe<Crop_Commodity_Stddev_Pop_Order_By>
-  stddev_samp?: InputMaybe<Crop_Commodity_Stddev_Samp_Order_By>
-  sum?: InputMaybe<Crop_Commodity_Sum_Order_By>
-  var_pop?: InputMaybe<Crop_Commodity_Var_Pop_Order_By>
-  var_samp?: InputMaybe<Crop_Commodity_Var_Samp_Order_By>
-  variance?: InputMaybe<Crop_Commodity_Variance_Order_By>
+/** order by aggregate values of table "commodity" */
+export type CommodityAggregateOrderBy = {
+  count?: InputMaybe<OrderBy>
+  max?: InputMaybe<Commodity_Max_Order_By>
+  min?: InputMaybe<Commodity_Min_Order_By>
 }
 
-/** input type for inserting array relation for remote table "crop_commodity" */
-export type Crop_Commodity_Arr_Rel_Insert_Input = {
-  data: Array<Crop_Commodity_Insert_Input>
+/** input type for inserting array relation for remote table "commodity" */
+export type CommodityArrRelInsertInput = {
+  data: Array<CommodityInsertInput>
   /** upsert condition */
-  on_conflict?: InputMaybe<Crop_Commodity_On_Conflict>
+  onConflict?: InputMaybe<CommodityOnConflict>
 }
 
-/** aggregate avg on columns */
-export type Crop_Commodity_Avg_Fields = {
-  __typename?: 'crop_commodity_avg_fields'
-  farm_id?: Maybe<Scalars['Float']>
-  ha_assigned?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  no_of_heads?: Maybe<Scalars['Float']>
+/** Boolean expression to filter rows from the table "commodity". All fields are combined with a logical 'AND'. */
+export type CommodityBoolExp = {
+  _and?: InputMaybe<Array<CommodityBoolExp>>
+  _not?: InputMaybe<CommodityBoolExp>
+  _or?: InputMaybe<Array<CommodityBoolExp>>
+  commodity?: InputMaybe<StringComparisonExp>
+  commodityType?: InputMaybe<StringComparisonExp>
+  createdAt?: InputMaybe<TimestampComparisonExp>
+  farm?: InputMaybe<FarmBoolExp>
+  farmId?: InputMaybe<UuidComparisonExp>
+  id?: InputMaybe<UuidComparisonExp>
+  updatedAt?: InputMaybe<TimestampComparisonExp>
 }
 
-/** order by avg() on columns of table "crop_commodity" */
-export type Crop_Commodity_Avg_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  ha_assigned?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  no_of_heads?: InputMaybe<Order_By>
-}
-
-/** Boolean expression to filter rows from the table "crop_commodity". All fields are combined with a logical 'AND'. */
-export type Crop_Commodity_Bool_Exp = {
-  _and?: InputMaybe<Array<Crop_Commodity_Bool_Exp>>
-  _not?: InputMaybe<Crop_Commodity_Bool_Exp>
-  _or?: InputMaybe<Array<Crop_Commodity_Bool_Exp>>
-  farm?: InputMaybe<Farm_Bool_Exp>
-  farm_id?: InputMaybe<Int_Comparison_Exp>
-  ha_assigned?: InputMaybe<Numeric_Comparison_Exp>
-  id?: InputMaybe<Int_Comparison_Exp>
-  is_organic?: InputMaybe<Bit_Comparison_Exp>
-  name_type?: InputMaybe<String_Comparison_Exp>
-  no_of_heads?: InputMaybe<Int_Comparison_Exp>
-}
-
-/** unique or primary key constraints on table "crop_commodity" */
-export enum Crop_Commodity_Constraint {
-  /** unique or primary key constraint */
+/** unique or primary key constraints on table "commodity" */
+export enum CommodityConstraint {
+  /** unique or primary key constraint on columns "id" */
   CropCommodityPk = 'crop_commodity_pk',
 }
 
-/** input type for incrementing numeric columns in table "crop_commodity" */
-export type Crop_Commodity_Inc_Input = {
-  farm_id?: InputMaybe<Scalars['Int']>
-  ha_assigned?: InputMaybe<Scalars['numeric']>
-  id?: InputMaybe<Scalars['Int']>
-  no_of_heads?: InputMaybe<Scalars['Int']>
-}
-
-/** input type for inserting data into table "crop_commodity" */
-export type Crop_Commodity_Insert_Input = {
-  farm?: InputMaybe<Farm_Obj_Rel_Insert_Input>
-  farm_id?: InputMaybe<Scalars['Int']>
-  ha_assigned?: InputMaybe<Scalars['numeric']>
-  id?: InputMaybe<Scalars['Int']>
-  is_organic?: InputMaybe<Scalars['bit']>
-  name_type?: InputMaybe<Scalars['String']>
-  no_of_heads?: InputMaybe<Scalars['Int']>
+/** input type for inserting data into table "commodity" */
+export type CommodityInsertInput = {
+  commodity?: InputMaybe<Scalars['String']>
+  commodityType?: InputMaybe<Scalars['String']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  farm?: InputMaybe<FarmObjRelInsertInput>
+  farmId?: InputMaybe<Scalars['uuid']>
+  id?: InputMaybe<Scalars['uuid']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
 }
 
 /** aggregate max on columns */
-export type Crop_Commodity_Max_Fields = {
-  __typename?: 'crop_commodity_max_fields'
-  farm_id?: Maybe<Scalars['Int']>
-  ha_assigned?: Maybe<Scalars['numeric']>
-  id?: Maybe<Scalars['Int']>
-  name_type?: Maybe<Scalars['String']>
-  no_of_heads?: Maybe<Scalars['Int']>
-}
-
-/** order by max() on columns of table "crop_commodity" */
-export type Crop_Commodity_Max_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  ha_assigned?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  name_type?: InputMaybe<Order_By>
-  no_of_heads?: InputMaybe<Order_By>
+export type CommodityMaxFields = {
+  __typename?: 'CommodityMaxFields'
+  commodity?: Maybe<Scalars['String']>
+  commodityType?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  farmId?: Maybe<Scalars['uuid']>
+  id?: Maybe<Scalars['uuid']>
+  updatedAt?: Maybe<Scalars['timestamp']>
 }
 
 /** aggregate min on columns */
-export type Crop_Commodity_Min_Fields = {
-  __typename?: 'crop_commodity_min_fields'
-  farm_id?: Maybe<Scalars['Int']>
-  ha_assigned?: Maybe<Scalars['numeric']>
-  id?: Maybe<Scalars['Int']>
-  name_type?: Maybe<Scalars['String']>
-  no_of_heads?: Maybe<Scalars['Int']>
+export type CommodityMinFields = {
+  __typename?: 'CommodityMinFields'
+  commodity?: Maybe<Scalars['String']>
+  commodityType?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  farmId?: Maybe<Scalars['uuid']>
+  id?: Maybe<Scalars['uuid']>
+  updatedAt?: Maybe<Scalars['timestamp']>
 }
 
-/** order by min() on columns of table "crop_commodity" */
-export type Crop_Commodity_Min_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  ha_assigned?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  name_type?: InputMaybe<Order_By>
-  no_of_heads?: InputMaybe<Order_By>
-}
-
-/** response of any mutation on the table "crop_commodity" */
-export type Crop_Commodity_Mutation_Response = {
-  __typename?: 'crop_commodity_mutation_response'
+/** response of any mutation on the table "commodity" */
+export type CommodityMutationResponse = {
+  __typename?: 'CommodityMutationResponse'
   /** number of rows affected by the mutation */
   affected_rows: Scalars['Int']
   /** data from the rows affected by the mutation */
-  returning: Array<Crop_Commodity>
+  returning: Array<Commodity>
 }
 
-/** on_conflict condition type for table "crop_commodity" */
-export type Crop_Commodity_On_Conflict = {
-  constraint: Crop_Commodity_Constraint
-  update_columns?: Array<Crop_Commodity_Update_Column>
-  where?: InputMaybe<Crop_Commodity_Bool_Exp>
+/** on_conflict condition type for table "commodity" */
+export type CommodityOnConflict = {
+  constraint: CommodityConstraint
+  update_columns?: Array<CommodityUpdateColumn>
+  where?: InputMaybe<CommodityBoolExp>
 }
 
-/** Ordering options when selecting data from "crop_commodity". */
-export type Crop_Commodity_Order_By = {
-  farm?: InputMaybe<Farm_Order_By>
-  farm_id?: InputMaybe<Order_By>
-  ha_assigned?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  is_organic?: InputMaybe<Order_By>
-  name_type?: InputMaybe<Order_By>
-  no_of_heads?: InputMaybe<Order_By>
+/** Ordering options when selecting data from "commodity". */
+export type CommodityOrderBy = {
+  commodity?: InputMaybe<OrderBy>
+  commodityType?: InputMaybe<OrderBy>
+  createdAt?: InputMaybe<OrderBy>
+  farm?: InputMaybe<FarmOrderBy>
+  farmId?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  updatedAt?: InputMaybe<OrderBy>
 }
 
-/** primary key columns input for table: crop_commodity */
-export type Crop_Commodity_Pk_Columns_Input = {
-  id: Scalars['Int']
+/** primary key columns input for table: commodity */
+export type CommodityPkColumnsInput = {
+  id: Scalars['uuid']
 }
 
-/** select columns of table "crop_commodity" */
-export enum Crop_Commodity_Select_Column {
+/** select columns of table "commodity" */
+export enum CommoditySelectColumn {
   /** column name */
-  FarmId = 'farm_id',
+  Commodity = 'commodity',
   /** column name */
-  HaAssigned = 'ha_assigned',
+  CommodityType = 'commodityType',
   /** column name */
-  Id = 'id',
+  CreatedAt = 'createdAt',
   /** column name */
-  IsOrganic = 'is_organic',
-  /** column name */
-  NameType = 'name_type',
-  /** column name */
-  NoOfHeads = 'no_of_heads',
-}
-
-/** input type for updating data in table "crop_commodity" */
-export type Crop_Commodity_Set_Input = {
-  farm_id?: InputMaybe<Scalars['Int']>
-  ha_assigned?: InputMaybe<Scalars['numeric']>
-  id?: InputMaybe<Scalars['Int']>
-  is_organic?: InputMaybe<Scalars['bit']>
-  name_type?: InputMaybe<Scalars['String']>
-  no_of_heads?: InputMaybe<Scalars['Int']>
-}
-
-/** aggregate stddev on columns */
-export type Crop_Commodity_Stddev_Fields = {
-  __typename?: 'crop_commodity_stddev_fields'
-  farm_id?: Maybe<Scalars['Float']>
-  ha_assigned?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  no_of_heads?: Maybe<Scalars['Float']>
-}
-
-/** order by stddev() on columns of table "crop_commodity" */
-export type Crop_Commodity_Stddev_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  ha_assigned?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  no_of_heads?: InputMaybe<Order_By>
-}
-
-/** aggregate stddev_pop on columns */
-export type Crop_Commodity_Stddev_Pop_Fields = {
-  __typename?: 'crop_commodity_stddev_pop_fields'
-  farm_id?: Maybe<Scalars['Float']>
-  ha_assigned?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  no_of_heads?: Maybe<Scalars['Float']>
-}
-
-/** order by stddev_pop() on columns of table "crop_commodity" */
-export type Crop_Commodity_Stddev_Pop_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  ha_assigned?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  no_of_heads?: InputMaybe<Order_By>
-}
-
-/** aggregate stddev_samp on columns */
-export type Crop_Commodity_Stddev_Samp_Fields = {
-  __typename?: 'crop_commodity_stddev_samp_fields'
-  farm_id?: Maybe<Scalars['Float']>
-  ha_assigned?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  no_of_heads?: Maybe<Scalars['Float']>
-}
-
-/** order by stddev_samp() on columns of table "crop_commodity" */
-export type Crop_Commodity_Stddev_Samp_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  ha_assigned?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  no_of_heads?: InputMaybe<Order_By>
-}
-
-/** aggregate sum on columns */
-export type Crop_Commodity_Sum_Fields = {
-  __typename?: 'crop_commodity_sum_fields'
-  farm_id?: Maybe<Scalars['Int']>
-  ha_assigned?: Maybe<Scalars['numeric']>
-  id?: Maybe<Scalars['Int']>
-  no_of_heads?: Maybe<Scalars['Int']>
-}
-
-/** order by sum() on columns of table "crop_commodity" */
-export type Crop_Commodity_Sum_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  ha_assigned?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  no_of_heads?: InputMaybe<Order_By>
-}
-
-/** update columns of table "crop_commodity" */
-export enum Crop_Commodity_Update_Column {
-  /** column name */
-  FarmId = 'farm_id',
-  /** column name */
-  HaAssigned = 'ha_assigned',
+  FarmId = 'farmId',
   /** column name */
   Id = 'id',
   /** column name */
-  IsOrganic = 'is_organic',
+  UpdatedAt = 'updatedAt',
+}
+
+/** input type for updating data in table "commodity" */
+export type CommoditySetInput = {
+  commodity?: InputMaybe<Scalars['String']>
+  commodityType?: InputMaybe<Scalars['String']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  farmId?: InputMaybe<Scalars['uuid']>
+  id?: InputMaybe<Scalars['uuid']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
+/** update columns of table "commodity" */
+export enum CommodityUpdateColumn {
   /** column name */
-  NameType = 'name_type',
+  Commodity = 'commodity',
   /** column name */
-  NoOfHeads = 'no_of_heads',
+  CommodityType = 'commodityType',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  FarmId = 'farmId',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  UpdatedAt = 'updatedAt',
 }
 
-/** aggregate var_pop on columns */
-export type Crop_Commodity_Var_Pop_Fields = {
-  __typename?: 'crop_commodity_var_pop_fields'
-  farm_id?: Maybe<Scalars['Float']>
-  ha_assigned?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  no_of_heads?: Maybe<Scalars['Float']>
+export type CommodityUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<CommoditySetInput>
+  where: CommodityBoolExp
 }
 
-/** order by var_pop() on columns of table "crop_commodity" */
-export type Crop_Commodity_Var_Pop_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  ha_assigned?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  no_of_heads?: InputMaybe<Order_By>
-}
-
-/** aggregate var_samp on columns */
-export type Crop_Commodity_Var_Samp_Fields = {
-  __typename?: 'crop_commodity_var_samp_fields'
-  farm_id?: Maybe<Scalars['Float']>
-  ha_assigned?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  no_of_heads?: Maybe<Scalars['Float']>
-}
-
-/** order by var_samp() on columns of table "crop_commodity" */
-export type Crop_Commodity_Var_Samp_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  ha_assigned?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  no_of_heads?: InputMaybe<Order_By>
-}
-
-/** aggregate variance on columns */
-export type Crop_Commodity_Variance_Fields = {
-  __typename?: 'crop_commodity_variance_fields'
-  farm_id?: Maybe<Scalars['Float']>
-  ha_assigned?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  no_of_heads?: Maybe<Scalars['Float']>
-}
-
-/** order by variance() on columns of table "crop_commodity" */
-export type Crop_Commodity_Variance_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  ha_assigned?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  no_of_heads?: InputMaybe<Order_By>
+/** ordering argument of a cursor */
+export enum CursorOrdering {
+  /** ascending ordering of the cursor */
+  Asc = 'ASC',
+  /** descending ordering of the cursor */
+  Desc = 'DESC',
 }
 
 /** Boolean expression to compare columns of type "date". All fields are combined with logical 'AND'. */
-export type Date_Comparison_Exp = {
+export type DateComparisonExp = {
   _eq?: InputMaybe<Scalars['date']>
   _gt?: InputMaybe<Scalars['date']>
   _gte?: InputMaybe<Scalars['date']>
   _in?: InputMaybe<Array<Scalars['date']>>
-  _is_null?: InputMaybe<Scalars['Boolean']>
+  _isNull?: InputMaybe<Scalars['Boolean']>
   _lt?: InputMaybe<Scalars['date']>
   _lte?: InputMaybe<Scalars['date']>
   _neq?: InputMaybe<Scalars['date']>
@@ -494,1137 +798,187 @@ export type Date_Comparison_Exp = {
 
 /** columns and relationships of "farm" */
 export type Farm = {
-  __typename?: 'farm'
+  __typename?: 'Farm'
+  barangay?: Maybe<Scalars['String']>
   /** An array relationship */
-  crop_commodities: Array<Crop_Commodity>
+  commodities: Array<Commodity>
   /** An aggregate relationship */
-  crop_commodities_aggregate: Crop_Commodity_Aggregate
-  /** An array relationship */
-  farm_household_assignments: Array<Farm_Household_Assignment>
-  /** An aggregate relationship */
-  farm_household_assignments_aggregate: Farm_Household_Assignment_Aggregate
-  farm_type: Scalars['String']
-  id: Scalars['Int']
-  is_arb: Scalars['bit']
-  location: Scalars['_jsonb']
-  owner_name: Scalars['String']
-  ownership_document: Scalars['String']
-  size_ha_total: Scalars['numeric']
+  commoditiesAggregate: CommodityAggregate
+  createdAt: Scalars['timestamp']
+  farmType?: Maybe<Scalars['String']>
+  id: Scalars['uuid']
+  isAgrarianReformBeneficiary: Scalars['Boolean']
+  location?: Maybe<Scalars['jsonb']>
+  municipality?: Maybe<Scalars['String']>
+  ownerName: Scalars['String']
+  ownershipDocument: Scalars['String']
+  ownershipType: Scalars['String']
+  sizeInHaTotal: Scalars['numeric']
+  updatedAt: Scalars['timestamp']
+  withinAncestralDomain: Scalars['Boolean']
 }
 
 /** columns and relationships of "farm" */
-export type FarmCrop_CommoditiesArgs = {
-  distinct_on?: InputMaybe<Array<Crop_Commodity_Select_Column>>
+export type FarmCommoditiesArgs = {
+  distinctOn?: InputMaybe<Array<CommoditySelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Crop_Commodity_Order_By>>
-  where?: InputMaybe<Crop_Commodity_Bool_Exp>
+  orderBy?: InputMaybe<Array<CommodityOrderBy>>
+  where?: InputMaybe<CommodityBoolExp>
 }
 
 /** columns and relationships of "farm" */
-export type FarmCrop_Commodities_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Crop_Commodity_Select_Column>>
+export type FarmCommoditiesAggregateArgs = {
+  distinctOn?: InputMaybe<Array<CommoditySelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Crop_Commodity_Order_By>>
-  where?: InputMaybe<Crop_Commodity_Bool_Exp>
+  orderBy?: InputMaybe<Array<CommodityOrderBy>>
+  where?: InputMaybe<CommodityBoolExp>
 }
 
 /** columns and relationships of "farm" */
-export type FarmFarm_Household_AssignmentsArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Household_Assignment_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Household_Assignment_Order_By>>
-  where?: InputMaybe<Farm_Household_Assignment_Bool_Exp>
-}
-
-/** columns and relationships of "farm" */
-export type FarmFarm_Household_Assignments_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Household_Assignment_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Household_Assignment_Order_By>>
-  where?: InputMaybe<Farm_Household_Assignment_Bool_Exp>
+export type FarmLocationArgs = {
+  path?: InputMaybe<Scalars['String']>
 }
 
 /** aggregated selection of "farm" */
-export type Farm_Aggregate = {
-  __typename?: 'farm_aggregate'
-  aggregate?: Maybe<Farm_Aggregate_Fields>
+export type FarmAggregate = {
+  __typename?: 'FarmAggregate'
+  aggregate?: Maybe<FarmAggregateFields>
   nodes: Array<Farm>
 }
 
 /** aggregate fields of "farm" */
-export type Farm_Aggregate_Fields = {
-  __typename?: 'farm_aggregate_fields'
-  avg?: Maybe<Farm_Avg_Fields>
+export type FarmAggregateFields = {
+  __typename?: 'FarmAggregateFields'
+  avg?: Maybe<FarmAvgFields>
   count: Scalars['Int']
-  max?: Maybe<Farm_Max_Fields>
-  min?: Maybe<Farm_Min_Fields>
-  stddev?: Maybe<Farm_Stddev_Fields>
-  stddev_pop?: Maybe<Farm_Stddev_Pop_Fields>
-  stddev_samp?: Maybe<Farm_Stddev_Samp_Fields>
-  sum?: Maybe<Farm_Sum_Fields>
-  var_pop?: Maybe<Farm_Var_Pop_Fields>
-  var_samp?: Maybe<Farm_Var_Samp_Fields>
-  variance?: Maybe<Farm_Variance_Fields>
+  max?: Maybe<FarmMaxFields>
+  min?: Maybe<FarmMinFields>
+  stddev?: Maybe<FarmStddevFields>
+  stddevPop?: Maybe<FarmStddev_PopFields>
+  stddevSamp?: Maybe<FarmStddev_SampFields>
+  sum?: Maybe<FarmSumFields>
+  varPop?: Maybe<FarmVar_PopFields>
+  varSamp?: Maybe<FarmVar_SampFields>
+  variance?: Maybe<FarmVarianceFields>
 }
 
 /** aggregate fields of "farm" */
-export type Farm_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Farm_Select_Column>>
+export type FarmAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<FarmSelectColumn>>
   distinct?: InputMaybe<Scalars['Boolean']>
 }
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type FarmAppendInput = {
+  location?: InputMaybe<Scalars['jsonb']>
+}
+
 /** aggregate avg on columns */
-export type Farm_Avg_Fields = {
-  __typename?: 'farm_avg_fields'
-  id?: Maybe<Scalars['Float']>
-  size_ha_total?: Maybe<Scalars['Float']>
+export type FarmAvgFields = {
+  __typename?: 'FarmAvgFields'
+  sizeInHaTotal?: Maybe<Scalars['Float']>
 }
 
 /** Boolean expression to filter rows from the table "farm". All fields are combined with a logical 'AND'. */
-export type Farm_Bool_Exp = {
-  _and?: InputMaybe<Array<Farm_Bool_Exp>>
-  _not?: InputMaybe<Farm_Bool_Exp>
-  _or?: InputMaybe<Array<Farm_Bool_Exp>>
-  crop_commodities?: InputMaybe<Crop_Commodity_Bool_Exp>
-  farm_household_assignments?: InputMaybe<Farm_Household_Assignment_Bool_Exp>
-  farm_type?: InputMaybe<String_Comparison_Exp>
-  id?: InputMaybe<Int_Comparison_Exp>
-  is_arb?: InputMaybe<Bit_Comparison_Exp>
-  location?: InputMaybe<_Jsonb_Comparison_Exp>
-  owner_name?: InputMaybe<String_Comparison_Exp>
-  ownership_document?: InputMaybe<String_Comparison_Exp>
-  size_ha_total?: InputMaybe<Numeric_Comparison_Exp>
+export type FarmBoolExp = {
+  _and?: InputMaybe<Array<FarmBoolExp>>
+  _not?: InputMaybe<FarmBoolExp>
+  _or?: InputMaybe<Array<FarmBoolExp>>
+  barangay?: InputMaybe<StringComparisonExp>
+  commodities?: InputMaybe<CommodityBoolExp>
+  createdAt?: InputMaybe<TimestampComparisonExp>
+  farmType?: InputMaybe<StringComparisonExp>
+  id?: InputMaybe<UuidComparisonExp>
+  isAgrarianReformBeneficiary?: InputMaybe<BooleanComparisonExp>
+  location?: InputMaybe<JsonbComparisonExp>
+  municipality?: InputMaybe<StringComparisonExp>
+  ownerName?: InputMaybe<StringComparisonExp>
+  ownershipDocument?: InputMaybe<StringComparisonExp>
+  ownershipType?: InputMaybe<StringComparisonExp>
+  sizeInHaTotal?: InputMaybe<NumericComparisonExp>
+  updatedAt?: InputMaybe<TimestampComparisonExp>
+  withinAncestralDomain?: InputMaybe<BooleanComparisonExp>
 }
 
 /** unique or primary key constraints on table "farm" */
-export enum Farm_Constraint {
-  /** unique or primary key constraint */
+export enum FarmConstraint {
+  /** unique or primary key constraint on columns "id" */
   FarmPk = 'farm_pk',
 }
 
-/** columns and relationships of "farm_household" */
-export type Farm_Household = {
-  __typename?: 'farm_household'
-  barangay?: Maybe<Scalars['String']>
-  civil_status?: Maybe<Scalars['String']>
-  contact_no?: Maybe<Scalars['String']>
-  dob?: Maybe<Scalars['date']>
-  emergency_contact_no?: Maybe<Scalars['String']>
-  emergency_contact_person: Scalars['String']
-  extname?: Maybe<Scalars['String']>
-  /** An array relationship */
-  farm_household_assignments: Array<Farm_Household_Assignment>
-  /** An aggregate relationship */
-  farm_household_assignments_aggregate: Farm_Household_Assignment_Aggregate
-  farmer_association: Scalars['String']
-  farming_activity_type: Scalars['String']
-  fname: Scalars['String']
-  gov_id_no: Scalars['String']
-  gross_ann_farming?: Maybe<Scalars['numeric']>
-  gross_ann_non_farm?: Maybe<Scalars['String']>
-  head_name?: Maybe<Scalars['String']>
-  highest_educ: Scalars['String']
-  highest_education: Scalars['String']
-  house_no: Scalars['String']
-  id: Scalars['Int']
-  ip_membership?: Maybe<Scalars['String']>
-  is_4ps: Scalars['bit']
-  is_head: Scalars['bit']
-  is_pwd: Scalars['bit']
-  kind_of_work?: Maybe<Scalars['String']>
-  lname: Scalars['String']
-  main_livelihood: Scalars['String']
-  member_female: Scalars['Int']
-  member_male: Scalars['Int']
-  mname?: Maybe<Scalars['String']>
-  mothers_maiden?: Maybe<Scalars['String']>
-  municipality?: Maybe<Scalars['String']>
-  pob: Scalars['String']
-  /** An array relationship */
-  previous_infos: Array<Previous_Info>
-  /** An aggregate relationship */
-  previous_infos_aggregate: Previous_Info_Aggregate
-  province?: Maybe<Scalars['String']>
-  reference_no: Scalars['String']
-  region?: Maybe<Scalars['String']>
-  relationship_head: Scalars['String']
-  religion: Scalars['String']
-  spouse?: Maybe<Scalars['String']>
-  street?: Maybe<Scalars['String']>
-  update_yr: Scalars['bpchar']
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type FarmDeleteAtPathInput = {
+  location?: InputMaybe<Array<Scalars['String']>>
 }
 
-/** columns and relationships of "farm_household" */
-export type Farm_HouseholdFarm_Household_AssignmentsArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Household_Assignment_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Household_Assignment_Order_By>>
-  where?: InputMaybe<Farm_Household_Assignment_Bool_Exp>
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type FarmDeleteElemInput = {
+  location?: InputMaybe<Scalars['Int']>
 }
 
-/** columns and relationships of "farm_household" */
-export type Farm_HouseholdFarm_Household_Assignments_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Household_Assignment_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Household_Assignment_Order_By>>
-  where?: InputMaybe<Farm_Household_Assignment_Bool_Exp>
-}
-
-/** columns and relationships of "farm_household" */
-export type Farm_HouseholdPrevious_InfosArgs = {
-  distinct_on?: InputMaybe<Array<Previous_Info_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Previous_Info_Order_By>>
-  where?: InputMaybe<Previous_Info_Bool_Exp>
-}
-
-/** columns and relationships of "farm_household" */
-export type Farm_HouseholdPrevious_Infos_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Previous_Info_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Previous_Info_Order_By>>
-  where?: InputMaybe<Previous_Info_Bool_Exp>
-}
-
-/** aggregated selection of "farm_household" */
-export type Farm_Household_Aggregate = {
-  __typename?: 'farm_household_aggregate'
-  aggregate?: Maybe<Farm_Household_Aggregate_Fields>
-  nodes: Array<Farm_Household>
-}
-
-/** aggregate fields of "farm_household" */
-export type Farm_Household_Aggregate_Fields = {
-  __typename?: 'farm_household_aggregate_fields'
-  avg?: Maybe<Farm_Household_Avg_Fields>
-  count: Scalars['Int']
-  max?: Maybe<Farm_Household_Max_Fields>
-  min?: Maybe<Farm_Household_Min_Fields>
-  stddev?: Maybe<Farm_Household_Stddev_Fields>
-  stddev_pop?: Maybe<Farm_Household_Stddev_Pop_Fields>
-  stddev_samp?: Maybe<Farm_Household_Stddev_Samp_Fields>
-  sum?: Maybe<Farm_Household_Sum_Fields>
-  var_pop?: Maybe<Farm_Household_Var_Pop_Fields>
-  var_samp?: Maybe<Farm_Household_Var_Samp_Fields>
-  variance?: Maybe<Farm_Household_Variance_Fields>
-}
-
-/** aggregate fields of "farm_household" */
-export type Farm_Household_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Farm_Household_Select_Column>>
-  distinct?: InputMaybe<Scalars['Boolean']>
-}
-
-/** columns and relationships of "farm_household_assignment" */
-export type Farm_Household_Assignment = {
-  __typename?: 'farm_household_assignment'
-  /** An object relationship */
-  farm: Farm
-  /** An object relationship */
-  farm_household: Farm_Household
-  farm_id: Scalars['Int']
-  household_id: Scalars['Int']
-  id: Scalars['Int']
-  role: Scalars['String']
-}
-
-/** aggregated selection of "farm_household_assignment" */
-export type Farm_Household_Assignment_Aggregate = {
-  __typename?: 'farm_household_assignment_aggregate'
-  aggregate?: Maybe<Farm_Household_Assignment_Aggregate_Fields>
-  nodes: Array<Farm_Household_Assignment>
-}
-
-/** aggregate fields of "farm_household_assignment" */
-export type Farm_Household_Assignment_Aggregate_Fields = {
-  __typename?: 'farm_household_assignment_aggregate_fields'
-  avg?: Maybe<Farm_Household_Assignment_Avg_Fields>
-  count: Scalars['Int']
-  max?: Maybe<Farm_Household_Assignment_Max_Fields>
-  min?: Maybe<Farm_Household_Assignment_Min_Fields>
-  stddev?: Maybe<Farm_Household_Assignment_Stddev_Fields>
-  stddev_pop?: Maybe<Farm_Household_Assignment_Stddev_Pop_Fields>
-  stddev_samp?: Maybe<Farm_Household_Assignment_Stddev_Samp_Fields>
-  sum?: Maybe<Farm_Household_Assignment_Sum_Fields>
-  var_pop?: Maybe<Farm_Household_Assignment_Var_Pop_Fields>
-  var_samp?: Maybe<Farm_Household_Assignment_Var_Samp_Fields>
-  variance?: Maybe<Farm_Household_Assignment_Variance_Fields>
-}
-
-/** aggregate fields of "farm_household_assignment" */
-export type Farm_Household_Assignment_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Farm_Household_Assignment_Select_Column>>
-  distinct?: InputMaybe<Scalars['Boolean']>
-}
-
-/** order by aggregate values of table "farm_household_assignment" */
-export type Farm_Household_Assignment_Aggregate_Order_By = {
-  avg?: InputMaybe<Farm_Household_Assignment_Avg_Order_By>
-  count?: InputMaybe<Order_By>
-  max?: InputMaybe<Farm_Household_Assignment_Max_Order_By>
-  min?: InputMaybe<Farm_Household_Assignment_Min_Order_By>
-  stddev?: InputMaybe<Farm_Household_Assignment_Stddev_Order_By>
-  stddev_pop?: InputMaybe<Farm_Household_Assignment_Stddev_Pop_Order_By>
-  stddev_samp?: InputMaybe<Farm_Household_Assignment_Stddev_Samp_Order_By>
-  sum?: InputMaybe<Farm_Household_Assignment_Sum_Order_By>
-  var_pop?: InputMaybe<Farm_Household_Assignment_Var_Pop_Order_By>
-  var_samp?: InputMaybe<Farm_Household_Assignment_Var_Samp_Order_By>
-  variance?: InputMaybe<Farm_Household_Assignment_Variance_Order_By>
-}
-
-/** input type for inserting array relation for remote table "farm_household_assignment" */
-export type Farm_Household_Assignment_Arr_Rel_Insert_Input = {
-  data: Array<Farm_Household_Assignment_Insert_Input>
-  /** upsert condition */
-  on_conflict?: InputMaybe<Farm_Household_Assignment_On_Conflict>
-}
-
-/** aggregate avg on columns */
-export type Farm_Household_Assignment_Avg_Fields = {
-  __typename?: 'farm_household_assignment_avg_fields'
-  farm_id?: Maybe<Scalars['Float']>
-  household_id?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-}
-
-/** order by avg() on columns of table "farm_household_assignment" */
-export type Farm_Household_Assignment_Avg_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-}
-
-/** Boolean expression to filter rows from the table "farm_household_assignment". All fields are combined with a logical 'AND'. */
-export type Farm_Household_Assignment_Bool_Exp = {
-  _and?: InputMaybe<Array<Farm_Household_Assignment_Bool_Exp>>
-  _not?: InputMaybe<Farm_Household_Assignment_Bool_Exp>
-  _or?: InputMaybe<Array<Farm_Household_Assignment_Bool_Exp>>
-  farm?: InputMaybe<Farm_Bool_Exp>
-  farm_household?: InputMaybe<Farm_Household_Bool_Exp>
-  farm_id?: InputMaybe<Int_Comparison_Exp>
-  household_id?: InputMaybe<Int_Comparison_Exp>
-  id?: InputMaybe<Int_Comparison_Exp>
-  role?: InputMaybe<String_Comparison_Exp>
-}
-
-/** unique or primary key constraints on table "farm_household_assignment" */
-export enum Farm_Household_Assignment_Constraint {
-  /** unique or primary key constraint */
-  FarmHouseholdAssignmentPk = 'farm_household_assignment_pk',
-}
-
-/** input type for incrementing numeric columns in table "farm_household_assignment" */
-export type Farm_Household_Assignment_Inc_Input = {
-  farm_id?: InputMaybe<Scalars['Int']>
-  household_id?: InputMaybe<Scalars['Int']>
-  id?: InputMaybe<Scalars['Int']>
-}
-
-/** input type for inserting data into table "farm_household_assignment" */
-export type Farm_Household_Assignment_Insert_Input = {
-  farm?: InputMaybe<Farm_Obj_Rel_Insert_Input>
-  farm_household?: InputMaybe<Farm_Household_Obj_Rel_Insert_Input>
-  farm_id?: InputMaybe<Scalars['Int']>
-  household_id?: InputMaybe<Scalars['Int']>
-  id?: InputMaybe<Scalars['Int']>
-  role?: InputMaybe<Scalars['String']>
-}
-
-/** aggregate max on columns */
-export type Farm_Household_Assignment_Max_Fields = {
-  __typename?: 'farm_household_assignment_max_fields'
-  farm_id?: Maybe<Scalars['Int']>
-  household_id?: Maybe<Scalars['Int']>
-  id?: Maybe<Scalars['Int']>
-  role?: Maybe<Scalars['String']>
-}
-
-/** order by max() on columns of table "farm_household_assignment" */
-export type Farm_Household_Assignment_Max_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  role?: InputMaybe<Order_By>
-}
-
-/** aggregate min on columns */
-export type Farm_Household_Assignment_Min_Fields = {
-  __typename?: 'farm_household_assignment_min_fields'
-  farm_id?: Maybe<Scalars['Int']>
-  household_id?: Maybe<Scalars['Int']>
-  id?: Maybe<Scalars['Int']>
-  role?: Maybe<Scalars['String']>
-}
-
-/** order by min() on columns of table "farm_household_assignment" */
-export type Farm_Household_Assignment_Min_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  role?: InputMaybe<Order_By>
-}
-
-/** response of any mutation on the table "farm_household_assignment" */
-export type Farm_Household_Assignment_Mutation_Response = {
-  __typename?: 'farm_household_assignment_mutation_response'
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']
-  /** data from the rows affected by the mutation */
-  returning: Array<Farm_Household_Assignment>
-}
-
-/** on_conflict condition type for table "farm_household_assignment" */
-export type Farm_Household_Assignment_On_Conflict = {
-  constraint: Farm_Household_Assignment_Constraint
-  update_columns?: Array<Farm_Household_Assignment_Update_Column>
-  where?: InputMaybe<Farm_Household_Assignment_Bool_Exp>
-}
-
-/** Ordering options when selecting data from "farm_household_assignment". */
-export type Farm_Household_Assignment_Order_By = {
-  farm?: InputMaybe<Farm_Order_By>
-  farm_household?: InputMaybe<Farm_Household_Order_By>
-  farm_id?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  role?: InputMaybe<Order_By>
-}
-
-/** primary key columns input for table: farm_household_assignment */
-export type Farm_Household_Assignment_Pk_Columns_Input = {
-  id: Scalars['Int']
-}
-
-/** select columns of table "farm_household_assignment" */
-export enum Farm_Household_Assignment_Select_Column {
-  /** column name */
-  FarmId = 'farm_id',
-  /** column name */
-  HouseholdId = 'household_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Role = 'role',
-}
-
-/** input type for updating data in table "farm_household_assignment" */
-export type Farm_Household_Assignment_Set_Input = {
-  farm_id?: InputMaybe<Scalars['Int']>
-  household_id?: InputMaybe<Scalars['Int']>
-  id?: InputMaybe<Scalars['Int']>
-  role?: InputMaybe<Scalars['String']>
-}
-
-/** aggregate stddev on columns */
-export type Farm_Household_Assignment_Stddev_Fields = {
-  __typename?: 'farm_household_assignment_stddev_fields'
-  farm_id?: Maybe<Scalars['Float']>
-  household_id?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-}
-
-/** order by stddev() on columns of table "farm_household_assignment" */
-export type Farm_Household_Assignment_Stddev_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-}
-
-/** aggregate stddev_pop on columns */
-export type Farm_Household_Assignment_Stddev_Pop_Fields = {
-  __typename?: 'farm_household_assignment_stddev_pop_fields'
-  farm_id?: Maybe<Scalars['Float']>
-  household_id?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-}
-
-/** order by stddev_pop() on columns of table "farm_household_assignment" */
-export type Farm_Household_Assignment_Stddev_Pop_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-}
-
-/** aggregate stddev_samp on columns */
-export type Farm_Household_Assignment_Stddev_Samp_Fields = {
-  __typename?: 'farm_household_assignment_stddev_samp_fields'
-  farm_id?: Maybe<Scalars['Float']>
-  household_id?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-}
-
-/** order by stddev_samp() on columns of table "farm_household_assignment" */
-export type Farm_Household_Assignment_Stddev_Samp_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-}
-
-/** aggregate sum on columns */
-export type Farm_Household_Assignment_Sum_Fields = {
-  __typename?: 'farm_household_assignment_sum_fields'
-  farm_id?: Maybe<Scalars['Int']>
-  household_id?: Maybe<Scalars['Int']>
-  id?: Maybe<Scalars['Int']>
-}
-
-/** order by sum() on columns of table "farm_household_assignment" */
-export type Farm_Household_Assignment_Sum_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-}
-
-/** update columns of table "farm_household_assignment" */
-export enum Farm_Household_Assignment_Update_Column {
-  /** column name */
-  FarmId = 'farm_id',
-  /** column name */
-  HouseholdId = 'household_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Role = 'role',
-}
-
-/** aggregate var_pop on columns */
-export type Farm_Household_Assignment_Var_Pop_Fields = {
-  __typename?: 'farm_household_assignment_var_pop_fields'
-  farm_id?: Maybe<Scalars['Float']>
-  household_id?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-}
-
-/** order by var_pop() on columns of table "farm_household_assignment" */
-export type Farm_Household_Assignment_Var_Pop_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-}
-
-/** aggregate var_samp on columns */
-export type Farm_Household_Assignment_Var_Samp_Fields = {
-  __typename?: 'farm_household_assignment_var_samp_fields'
-  farm_id?: Maybe<Scalars['Float']>
-  household_id?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-}
-
-/** order by var_samp() on columns of table "farm_household_assignment" */
-export type Farm_Household_Assignment_Var_Samp_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-}
-
-/** aggregate variance on columns */
-export type Farm_Household_Assignment_Variance_Fields = {
-  __typename?: 'farm_household_assignment_variance_fields'
-  farm_id?: Maybe<Scalars['Float']>
-  household_id?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-}
-
-/** order by variance() on columns of table "farm_household_assignment" */
-export type Farm_Household_Assignment_Variance_Order_By = {
-  farm_id?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-}
-
-/** aggregate avg on columns */
-export type Farm_Household_Avg_Fields = {
-  __typename?: 'farm_household_avg_fields'
-  gross_ann_farming?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  member_female?: Maybe<Scalars['Float']>
-  member_male?: Maybe<Scalars['Float']>
-}
-
-/** Boolean expression to filter rows from the table "farm_household". All fields are combined with a logical 'AND'. */
-export type Farm_Household_Bool_Exp = {
-  _and?: InputMaybe<Array<Farm_Household_Bool_Exp>>
-  _not?: InputMaybe<Farm_Household_Bool_Exp>
-  _or?: InputMaybe<Array<Farm_Household_Bool_Exp>>
-  barangay?: InputMaybe<String_Comparison_Exp>
-  civil_status?: InputMaybe<String_Comparison_Exp>
-  contact_no?: InputMaybe<String_Comparison_Exp>
-  dob?: InputMaybe<Date_Comparison_Exp>
-  emergency_contact_no?: InputMaybe<String_Comparison_Exp>
-  emergency_contact_person?: InputMaybe<String_Comparison_Exp>
-  extname?: InputMaybe<String_Comparison_Exp>
-  farm_household_assignments?: InputMaybe<Farm_Household_Assignment_Bool_Exp>
-  farmer_association?: InputMaybe<String_Comparison_Exp>
-  farming_activity_type?: InputMaybe<String_Comparison_Exp>
-  fname?: InputMaybe<String_Comparison_Exp>
-  gov_id_no?: InputMaybe<String_Comparison_Exp>
-  gross_ann_farming?: InputMaybe<Numeric_Comparison_Exp>
-  gross_ann_non_farm?: InputMaybe<String_Comparison_Exp>
-  head_name?: InputMaybe<String_Comparison_Exp>
-  highest_educ?: InputMaybe<String_Comparison_Exp>
-  highest_education?: InputMaybe<String_Comparison_Exp>
-  house_no?: InputMaybe<String_Comparison_Exp>
-  id?: InputMaybe<Int_Comparison_Exp>
-  ip_membership?: InputMaybe<String_Comparison_Exp>
-  is_4ps?: InputMaybe<Bit_Comparison_Exp>
-  is_head?: InputMaybe<Bit_Comparison_Exp>
-  is_pwd?: InputMaybe<Bit_Comparison_Exp>
-  kind_of_work?: InputMaybe<String_Comparison_Exp>
-  lname?: InputMaybe<String_Comparison_Exp>
-  main_livelihood?: InputMaybe<String_Comparison_Exp>
-  member_female?: InputMaybe<Int_Comparison_Exp>
-  member_male?: InputMaybe<Int_Comparison_Exp>
-  mname?: InputMaybe<String_Comparison_Exp>
-  mothers_maiden?: InputMaybe<String_Comparison_Exp>
-  municipality?: InputMaybe<String_Comparison_Exp>
-  pob?: InputMaybe<String_Comparison_Exp>
-  previous_infos?: InputMaybe<Previous_Info_Bool_Exp>
-  province?: InputMaybe<String_Comparison_Exp>
-  reference_no?: InputMaybe<String_Comparison_Exp>
-  region?: InputMaybe<String_Comparison_Exp>
-  relationship_head?: InputMaybe<String_Comparison_Exp>
-  religion?: InputMaybe<String_Comparison_Exp>
-  spouse?: InputMaybe<String_Comparison_Exp>
-  street?: InputMaybe<String_Comparison_Exp>
-  update_yr?: InputMaybe<Bpchar_Comparison_Exp>
-}
-
-/** unique or primary key constraints on table "farm_household" */
-export enum Farm_Household_Constraint {
-  /** unique or primary key constraint */
-  FarmHouseholdPk = 'farm_household_pk',
-  /** unique or primary key constraint */
-  FarmHouseholdUn = 'farm_household_un',
-}
-
-/** input type for incrementing numeric columns in table "farm_household" */
-export type Farm_Household_Inc_Input = {
-  gross_ann_farming?: InputMaybe<Scalars['numeric']>
-  id?: InputMaybe<Scalars['Int']>
-  member_female?: InputMaybe<Scalars['Int']>
-  member_male?: InputMaybe<Scalars['Int']>
-}
-
-/** input type for inserting data into table "farm_household" */
-export type Farm_Household_Insert_Input = {
-  barangay?: InputMaybe<Scalars['String']>
-  civil_status?: InputMaybe<Scalars['String']>
-  contact_no?: InputMaybe<Scalars['String']>
-  dob?: InputMaybe<Scalars['date']>
-  emergency_contact_no?: InputMaybe<Scalars['String']>
-  emergency_contact_person?: InputMaybe<Scalars['String']>
-  extname?: InputMaybe<Scalars['String']>
-  farm_household_assignments?: InputMaybe<Farm_Household_Assignment_Arr_Rel_Insert_Input>
-  farmer_association?: InputMaybe<Scalars['String']>
-  farming_activity_type?: InputMaybe<Scalars['String']>
-  fname?: InputMaybe<Scalars['String']>
-  gov_id_no?: InputMaybe<Scalars['String']>
-  gross_ann_farming?: InputMaybe<Scalars['numeric']>
-  gross_ann_non_farm?: InputMaybe<Scalars['String']>
-  head_name?: InputMaybe<Scalars['String']>
-  highest_educ?: InputMaybe<Scalars['String']>
-  highest_education?: InputMaybe<Scalars['String']>
-  house_no?: InputMaybe<Scalars['String']>
-  id?: InputMaybe<Scalars['Int']>
-  ip_membership?: InputMaybe<Scalars['String']>
-  is_4ps?: InputMaybe<Scalars['bit']>
-  is_head?: InputMaybe<Scalars['bit']>
-  is_pwd?: InputMaybe<Scalars['bit']>
-  kind_of_work?: InputMaybe<Scalars['String']>
-  lname?: InputMaybe<Scalars['String']>
-  main_livelihood?: InputMaybe<Scalars['String']>
-  member_female?: InputMaybe<Scalars['Int']>
-  member_male?: InputMaybe<Scalars['Int']>
-  mname?: InputMaybe<Scalars['String']>
-  mothers_maiden?: InputMaybe<Scalars['String']>
-  municipality?: InputMaybe<Scalars['String']>
-  pob?: InputMaybe<Scalars['String']>
-  previous_infos?: InputMaybe<Previous_Info_Arr_Rel_Insert_Input>
-  province?: InputMaybe<Scalars['String']>
-  reference_no?: InputMaybe<Scalars['String']>
-  region?: InputMaybe<Scalars['String']>
-  relationship_head?: InputMaybe<Scalars['String']>
-  religion?: InputMaybe<Scalars['String']>
-  spouse?: InputMaybe<Scalars['String']>
-  street?: InputMaybe<Scalars['String']>
-  update_yr?: InputMaybe<Scalars['bpchar']>
-}
-
-/** aggregate max on columns */
-export type Farm_Household_Max_Fields = {
-  __typename?: 'farm_household_max_fields'
-  barangay?: Maybe<Scalars['String']>
-  civil_status?: Maybe<Scalars['String']>
-  contact_no?: Maybe<Scalars['String']>
-  dob?: Maybe<Scalars['date']>
-  emergency_contact_no?: Maybe<Scalars['String']>
-  emergency_contact_person?: Maybe<Scalars['String']>
-  extname?: Maybe<Scalars['String']>
-  farmer_association?: Maybe<Scalars['String']>
-  farming_activity_type?: Maybe<Scalars['String']>
-  fname?: Maybe<Scalars['String']>
-  gov_id_no?: Maybe<Scalars['String']>
-  gross_ann_farming?: Maybe<Scalars['numeric']>
-  gross_ann_non_farm?: Maybe<Scalars['String']>
-  head_name?: Maybe<Scalars['String']>
-  highest_educ?: Maybe<Scalars['String']>
-  highest_education?: Maybe<Scalars['String']>
-  house_no?: Maybe<Scalars['String']>
-  id?: Maybe<Scalars['Int']>
-  ip_membership?: Maybe<Scalars['String']>
-  kind_of_work?: Maybe<Scalars['String']>
-  lname?: Maybe<Scalars['String']>
-  main_livelihood?: Maybe<Scalars['String']>
-  member_female?: Maybe<Scalars['Int']>
-  member_male?: Maybe<Scalars['Int']>
-  mname?: Maybe<Scalars['String']>
-  mothers_maiden?: Maybe<Scalars['String']>
-  municipality?: Maybe<Scalars['String']>
-  pob?: Maybe<Scalars['String']>
-  province?: Maybe<Scalars['String']>
-  reference_no?: Maybe<Scalars['String']>
-  region?: Maybe<Scalars['String']>
-  relationship_head?: Maybe<Scalars['String']>
-  religion?: Maybe<Scalars['String']>
-  spouse?: Maybe<Scalars['String']>
-  street?: Maybe<Scalars['String']>
-  update_yr?: Maybe<Scalars['bpchar']>
-}
-
-/** aggregate min on columns */
-export type Farm_Household_Min_Fields = {
-  __typename?: 'farm_household_min_fields'
-  barangay?: Maybe<Scalars['String']>
-  civil_status?: Maybe<Scalars['String']>
-  contact_no?: Maybe<Scalars['String']>
-  dob?: Maybe<Scalars['date']>
-  emergency_contact_no?: Maybe<Scalars['String']>
-  emergency_contact_person?: Maybe<Scalars['String']>
-  extname?: Maybe<Scalars['String']>
-  farmer_association?: Maybe<Scalars['String']>
-  farming_activity_type?: Maybe<Scalars['String']>
-  fname?: Maybe<Scalars['String']>
-  gov_id_no?: Maybe<Scalars['String']>
-  gross_ann_farming?: Maybe<Scalars['numeric']>
-  gross_ann_non_farm?: Maybe<Scalars['String']>
-  head_name?: Maybe<Scalars['String']>
-  highest_educ?: Maybe<Scalars['String']>
-  highest_education?: Maybe<Scalars['String']>
-  house_no?: Maybe<Scalars['String']>
-  id?: Maybe<Scalars['Int']>
-  ip_membership?: Maybe<Scalars['String']>
-  kind_of_work?: Maybe<Scalars['String']>
-  lname?: Maybe<Scalars['String']>
-  main_livelihood?: Maybe<Scalars['String']>
-  member_female?: Maybe<Scalars['Int']>
-  member_male?: Maybe<Scalars['Int']>
-  mname?: Maybe<Scalars['String']>
-  mothers_maiden?: Maybe<Scalars['String']>
-  municipality?: Maybe<Scalars['String']>
-  pob?: Maybe<Scalars['String']>
-  province?: Maybe<Scalars['String']>
-  reference_no?: Maybe<Scalars['String']>
-  region?: Maybe<Scalars['String']>
-  relationship_head?: Maybe<Scalars['String']>
-  religion?: Maybe<Scalars['String']>
-  spouse?: Maybe<Scalars['String']>
-  street?: Maybe<Scalars['String']>
-  update_yr?: Maybe<Scalars['bpchar']>
-}
-
-/** response of any mutation on the table "farm_household" */
-export type Farm_Household_Mutation_Response = {
-  __typename?: 'farm_household_mutation_response'
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']
-  /** data from the rows affected by the mutation */
-  returning: Array<Farm_Household>
-}
-
-/** input type for inserting object relation for remote table "farm_household" */
-export type Farm_Household_Obj_Rel_Insert_Input = {
-  data: Farm_Household_Insert_Input
-  /** upsert condition */
-  on_conflict?: InputMaybe<Farm_Household_On_Conflict>
-}
-
-/** on_conflict condition type for table "farm_household" */
-export type Farm_Household_On_Conflict = {
-  constraint: Farm_Household_Constraint
-  update_columns?: Array<Farm_Household_Update_Column>
-  where?: InputMaybe<Farm_Household_Bool_Exp>
-}
-
-/** Ordering options when selecting data from "farm_household". */
-export type Farm_Household_Order_By = {
-  barangay?: InputMaybe<Order_By>
-  civil_status?: InputMaybe<Order_By>
-  contact_no?: InputMaybe<Order_By>
-  dob?: InputMaybe<Order_By>
-  emergency_contact_no?: InputMaybe<Order_By>
-  emergency_contact_person?: InputMaybe<Order_By>
-  extname?: InputMaybe<Order_By>
-  farm_household_assignments_aggregate?: InputMaybe<Farm_Household_Assignment_Aggregate_Order_By>
-  farmer_association?: InputMaybe<Order_By>
-  farming_activity_type?: InputMaybe<Order_By>
-  fname?: InputMaybe<Order_By>
-  gov_id_no?: InputMaybe<Order_By>
-  gross_ann_farming?: InputMaybe<Order_By>
-  gross_ann_non_farm?: InputMaybe<Order_By>
-  head_name?: InputMaybe<Order_By>
-  highest_educ?: InputMaybe<Order_By>
-  highest_education?: InputMaybe<Order_By>
-  house_no?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  ip_membership?: InputMaybe<Order_By>
-  is_4ps?: InputMaybe<Order_By>
-  is_head?: InputMaybe<Order_By>
-  is_pwd?: InputMaybe<Order_By>
-  kind_of_work?: InputMaybe<Order_By>
-  lname?: InputMaybe<Order_By>
-  main_livelihood?: InputMaybe<Order_By>
-  member_female?: InputMaybe<Order_By>
-  member_male?: InputMaybe<Order_By>
-  mname?: InputMaybe<Order_By>
-  mothers_maiden?: InputMaybe<Order_By>
-  municipality?: InputMaybe<Order_By>
-  pob?: InputMaybe<Order_By>
-  previous_infos_aggregate?: InputMaybe<Previous_Info_Aggregate_Order_By>
-  province?: InputMaybe<Order_By>
-  reference_no?: InputMaybe<Order_By>
-  region?: InputMaybe<Order_By>
-  relationship_head?: InputMaybe<Order_By>
-  religion?: InputMaybe<Order_By>
-  spouse?: InputMaybe<Order_By>
-  street?: InputMaybe<Order_By>
-  update_yr?: InputMaybe<Order_By>
-}
-
-/** primary key columns input for table: farm_household */
-export type Farm_Household_Pk_Columns_Input = {
-  id: Scalars['Int']
-}
-
-/** select columns of table "farm_household" */
-export enum Farm_Household_Select_Column {
-  /** column name */
-  Barangay = 'barangay',
-  /** column name */
-  CivilStatus = 'civil_status',
-  /** column name */
-  ContactNo = 'contact_no',
-  /** column name */
-  Dob = 'dob',
-  /** column name */
-  EmergencyContactNo = 'emergency_contact_no',
-  /** column name */
-  EmergencyContactPerson = 'emergency_contact_person',
-  /** column name */
-  Extname = 'extname',
-  /** column name */
-  FarmerAssociation = 'farmer_association',
-  /** column name */
-  FarmingActivityType = 'farming_activity_type',
-  /** column name */
-  Fname = 'fname',
-  /** column name */
-  GovIdNo = 'gov_id_no',
-  /** column name */
-  GrossAnnFarming = 'gross_ann_farming',
-  /** column name */
-  GrossAnnNonFarm = 'gross_ann_non_farm',
-  /** column name */
-  HeadName = 'head_name',
-  /** column name */
-  HighestEduc = 'highest_educ',
-  /** column name */
-  HighestEducation = 'highest_education',
-  /** column name */
-  HouseNo = 'house_no',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  IpMembership = 'ip_membership',
-  /** column name */
-  Is_4ps = 'is_4ps',
-  /** column name */
-  IsHead = 'is_head',
-  /** column name */
-  IsPwd = 'is_pwd',
-  /** column name */
-  KindOfWork = 'kind_of_work',
-  /** column name */
-  Lname = 'lname',
-  /** column name */
-  MainLivelihood = 'main_livelihood',
-  /** column name */
-  MemberFemale = 'member_female',
-  /** column name */
-  MemberMale = 'member_male',
-  /** column name */
-  Mname = 'mname',
-  /** column name */
-  MothersMaiden = 'mothers_maiden',
-  /** column name */
-  Municipality = 'municipality',
-  /** column name */
-  Pob = 'pob',
-  /** column name */
-  Province = 'province',
-  /** column name */
-  ReferenceNo = 'reference_no',
-  /** column name */
-  Region = 'region',
-  /** column name */
-  RelationshipHead = 'relationship_head',
-  /** column name */
-  Religion = 'religion',
-  /** column name */
-  Spouse = 'spouse',
-  /** column name */
-  Street = 'street',
-  /** column name */
-  UpdateYr = 'update_yr',
-}
-
-/** input type for updating data in table "farm_household" */
-export type Farm_Household_Set_Input = {
-  barangay?: InputMaybe<Scalars['String']>
-  civil_status?: InputMaybe<Scalars['String']>
-  contact_no?: InputMaybe<Scalars['String']>
-  dob?: InputMaybe<Scalars['date']>
-  emergency_contact_no?: InputMaybe<Scalars['String']>
-  emergency_contact_person?: InputMaybe<Scalars['String']>
-  extname?: InputMaybe<Scalars['String']>
-  farmer_association?: InputMaybe<Scalars['String']>
-  farming_activity_type?: InputMaybe<Scalars['String']>
-  fname?: InputMaybe<Scalars['String']>
-  gov_id_no?: InputMaybe<Scalars['String']>
-  gross_ann_farming?: InputMaybe<Scalars['numeric']>
-  gross_ann_non_farm?: InputMaybe<Scalars['String']>
-  head_name?: InputMaybe<Scalars['String']>
-  highest_educ?: InputMaybe<Scalars['String']>
-  highest_education?: InputMaybe<Scalars['String']>
-  house_no?: InputMaybe<Scalars['String']>
-  id?: InputMaybe<Scalars['Int']>
-  ip_membership?: InputMaybe<Scalars['String']>
-  is_4ps?: InputMaybe<Scalars['bit']>
-  is_head?: InputMaybe<Scalars['bit']>
-  is_pwd?: InputMaybe<Scalars['bit']>
-  kind_of_work?: InputMaybe<Scalars['String']>
-  lname?: InputMaybe<Scalars['String']>
-  main_livelihood?: InputMaybe<Scalars['String']>
-  member_female?: InputMaybe<Scalars['Int']>
-  member_male?: InputMaybe<Scalars['Int']>
-  mname?: InputMaybe<Scalars['String']>
-  mothers_maiden?: InputMaybe<Scalars['String']>
-  municipality?: InputMaybe<Scalars['String']>
-  pob?: InputMaybe<Scalars['String']>
-  province?: InputMaybe<Scalars['String']>
-  reference_no?: InputMaybe<Scalars['String']>
-  region?: InputMaybe<Scalars['String']>
-  relationship_head?: InputMaybe<Scalars['String']>
-  religion?: InputMaybe<Scalars['String']>
-  spouse?: InputMaybe<Scalars['String']>
-  street?: InputMaybe<Scalars['String']>
-  update_yr?: InputMaybe<Scalars['bpchar']>
-}
-
-/** aggregate stddev on columns */
-export type Farm_Household_Stddev_Fields = {
-  __typename?: 'farm_household_stddev_fields'
-  gross_ann_farming?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  member_female?: Maybe<Scalars['Float']>
-  member_male?: Maybe<Scalars['Float']>
-}
-
-/** aggregate stddev_pop on columns */
-export type Farm_Household_Stddev_Pop_Fields = {
-  __typename?: 'farm_household_stddev_pop_fields'
-  gross_ann_farming?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  member_female?: Maybe<Scalars['Float']>
-  member_male?: Maybe<Scalars['Float']>
-}
-
-/** aggregate stddev_samp on columns */
-export type Farm_Household_Stddev_Samp_Fields = {
-  __typename?: 'farm_household_stddev_samp_fields'
-  gross_ann_farming?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  member_female?: Maybe<Scalars['Float']>
-  member_male?: Maybe<Scalars['Float']>
-}
-
-/** aggregate sum on columns */
-export type Farm_Household_Sum_Fields = {
-  __typename?: 'farm_household_sum_fields'
-  gross_ann_farming?: Maybe<Scalars['numeric']>
-  id?: Maybe<Scalars['Int']>
-  member_female?: Maybe<Scalars['Int']>
-  member_male?: Maybe<Scalars['Int']>
-}
-
-/** update columns of table "farm_household" */
-export enum Farm_Household_Update_Column {
-  /** column name */
-  Barangay = 'barangay',
-  /** column name */
-  CivilStatus = 'civil_status',
-  /** column name */
-  ContactNo = 'contact_no',
-  /** column name */
-  Dob = 'dob',
-  /** column name */
-  EmergencyContactNo = 'emergency_contact_no',
-  /** column name */
-  EmergencyContactPerson = 'emergency_contact_person',
-  /** column name */
-  Extname = 'extname',
-  /** column name */
-  FarmerAssociation = 'farmer_association',
-  /** column name */
-  FarmingActivityType = 'farming_activity_type',
-  /** column name */
-  Fname = 'fname',
-  /** column name */
-  GovIdNo = 'gov_id_no',
-  /** column name */
-  GrossAnnFarming = 'gross_ann_farming',
-  /** column name */
-  GrossAnnNonFarm = 'gross_ann_non_farm',
-  /** column name */
-  HeadName = 'head_name',
-  /** column name */
-  HighestEduc = 'highest_educ',
-  /** column name */
-  HighestEducation = 'highest_education',
-  /** column name */
-  HouseNo = 'house_no',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  IpMembership = 'ip_membership',
-  /** column name */
-  Is_4ps = 'is_4ps',
-  /** column name */
-  IsHead = 'is_head',
-  /** column name */
-  IsPwd = 'is_pwd',
-  /** column name */
-  KindOfWork = 'kind_of_work',
-  /** column name */
-  Lname = 'lname',
-  /** column name */
-  MainLivelihood = 'main_livelihood',
-  /** column name */
-  MemberFemale = 'member_female',
-  /** column name */
-  MemberMale = 'member_male',
-  /** column name */
-  Mname = 'mname',
-  /** column name */
-  MothersMaiden = 'mothers_maiden',
-  /** column name */
-  Municipality = 'municipality',
-  /** column name */
-  Pob = 'pob',
-  /** column name */
-  Province = 'province',
-  /** column name */
-  ReferenceNo = 'reference_no',
-  /** column name */
-  Region = 'region',
-  /** column name */
-  RelationshipHead = 'relationship_head',
-  /** column name */
-  Religion = 'religion',
-  /** column name */
-  Spouse = 'spouse',
-  /** column name */
-  Street = 'street',
-  /** column name */
-  UpdateYr = 'update_yr',
-}
-
-/** aggregate var_pop on columns */
-export type Farm_Household_Var_Pop_Fields = {
-  __typename?: 'farm_household_var_pop_fields'
-  gross_ann_farming?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  member_female?: Maybe<Scalars['Float']>
-  member_male?: Maybe<Scalars['Float']>
-}
-
-/** aggregate var_samp on columns */
-export type Farm_Household_Var_Samp_Fields = {
-  __typename?: 'farm_household_var_samp_fields'
-  gross_ann_farming?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  member_female?: Maybe<Scalars['Float']>
-  member_male?: Maybe<Scalars['Float']>
-}
-
-/** aggregate variance on columns */
-export type Farm_Household_Variance_Fields = {
-  __typename?: 'farm_household_variance_fields'
-  gross_ann_farming?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  member_female?: Maybe<Scalars['Float']>
-  member_male?: Maybe<Scalars['Float']>
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type FarmDeleteKeyInput = {
+  location?: InputMaybe<Scalars['String']>
 }
 
 /** input type for incrementing numeric columns in table "farm" */
-export type Farm_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']>
-  size_ha_total?: InputMaybe<Scalars['numeric']>
+export type FarmIncInput = {
+  sizeInHaTotal?: InputMaybe<Scalars['numeric']>
 }
 
 /** input type for inserting data into table "farm" */
-export type Farm_Insert_Input = {
-  crop_commodities?: InputMaybe<Crop_Commodity_Arr_Rel_Insert_Input>
-  farm_household_assignments?: InputMaybe<Farm_Household_Assignment_Arr_Rel_Insert_Input>
-  farm_type?: InputMaybe<Scalars['String']>
-  id?: InputMaybe<Scalars['Int']>
-  is_arb?: InputMaybe<Scalars['bit']>
-  location?: InputMaybe<Scalars['_jsonb']>
-  owner_name?: InputMaybe<Scalars['String']>
-  ownership_document?: InputMaybe<Scalars['String']>
-  size_ha_total?: InputMaybe<Scalars['numeric']>
+export type FarmInsertInput = {
+  barangay?: InputMaybe<Scalars['String']>
+  commodities?: InputMaybe<CommodityArrRelInsertInput>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  farmType?: InputMaybe<Scalars['String']>
+  id?: InputMaybe<Scalars['uuid']>
+  isAgrarianReformBeneficiary?: InputMaybe<Scalars['Boolean']>
+  location?: InputMaybe<Scalars['jsonb']>
+  municipality?: InputMaybe<Scalars['String']>
+  ownerName?: InputMaybe<Scalars['String']>
+  ownershipDocument?: InputMaybe<Scalars['String']>
+  ownershipType?: InputMaybe<Scalars['String']>
+  sizeInHaTotal?: InputMaybe<Scalars['numeric']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+  withinAncestralDomain?: InputMaybe<Scalars['Boolean']>
 }
 
 /** aggregate max on columns */
-export type Farm_Max_Fields = {
-  __typename?: 'farm_max_fields'
-  farm_type?: Maybe<Scalars['String']>
-  id?: Maybe<Scalars['Int']>
-  owner_name?: Maybe<Scalars['String']>
-  ownership_document?: Maybe<Scalars['String']>
-  size_ha_total?: Maybe<Scalars['numeric']>
+export type FarmMaxFields = {
+  __typename?: 'FarmMaxFields'
+  barangay?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  farmType?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['uuid']>
+  municipality?: Maybe<Scalars['String']>
+  ownerName?: Maybe<Scalars['String']>
+  ownershipDocument?: Maybe<Scalars['String']>
+  ownershipType?: Maybe<Scalars['String']>
+  sizeInHaTotal?: Maybe<Scalars['numeric']>
+  updatedAt?: Maybe<Scalars['timestamp']>
 }
 
 /** aggregate min on columns */
-export type Farm_Min_Fields = {
-  __typename?: 'farm_min_fields'
-  farm_type?: Maybe<Scalars['String']>
-  id?: Maybe<Scalars['Int']>
-  owner_name?: Maybe<Scalars['String']>
-  ownership_document?: Maybe<Scalars['String']>
-  size_ha_total?: Maybe<Scalars['numeric']>
+export type FarmMinFields = {
+  __typename?: 'FarmMinFields'
+  barangay?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  farmType?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['uuid']>
+  municipality?: Maybe<Scalars['String']>
+  ownerName?: Maybe<Scalars['String']>
+  ownershipDocument?: Maybe<Scalars['String']>
+  ownershipType?: Maybe<Scalars['String']>
+  sizeInHaTotal?: Maybe<Scalars['numeric']>
+  updatedAt?: Maybe<Scalars['timestamp']>
 }
 
 /** response of any mutation on the table "farm" */
-export type Farm_Mutation_Response = {
-  __typename?: 'farm_mutation_response'
+export type FarmMutationResponse = {
+  __typename?: 'FarmMutationResponse'
   /** number of rows affected by the mutation */
   affected_rows: Scalars['Int']
   /** data from the rows affected by the mutation */
@@ -1632,776 +986,829 @@ export type Farm_Mutation_Response = {
 }
 
 /** input type for inserting object relation for remote table "farm" */
-export type Farm_Obj_Rel_Insert_Input = {
-  data: Farm_Insert_Input
+export type FarmObjRelInsertInput = {
+  data: FarmInsertInput
   /** upsert condition */
-  on_conflict?: InputMaybe<Farm_On_Conflict>
+  onConflict?: InputMaybe<FarmOnConflict>
 }
 
 /** on_conflict condition type for table "farm" */
-export type Farm_On_Conflict = {
-  constraint: Farm_Constraint
-  update_columns?: Array<Farm_Update_Column>
-  where?: InputMaybe<Farm_Bool_Exp>
+export type FarmOnConflict = {
+  constraint: FarmConstraint
+  update_columns?: Array<FarmUpdateColumn>
+  where?: InputMaybe<FarmBoolExp>
 }
 
 /** Ordering options when selecting data from "farm". */
-export type Farm_Order_By = {
-  crop_commodities_aggregate?: InputMaybe<Crop_Commodity_Aggregate_Order_By>
-  farm_household_assignments_aggregate?: InputMaybe<Farm_Household_Assignment_Aggregate_Order_By>
-  farm_type?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  is_arb?: InputMaybe<Order_By>
-  location?: InputMaybe<Order_By>
-  owner_name?: InputMaybe<Order_By>
-  ownership_document?: InputMaybe<Order_By>
-  size_ha_total?: InputMaybe<Order_By>
+export type FarmOrderBy = {
+  barangay?: InputMaybe<OrderBy>
+  commoditiesAggregate?: InputMaybe<CommodityAggregateOrderBy>
+  createdAt?: InputMaybe<OrderBy>
+  farmType?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  isAgrarianReformBeneficiary?: InputMaybe<OrderBy>
+  location?: InputMaybe<OrderBy>
+  municipality?: InputMaybe<OrderBy>
+  ownerName?: InputMaybe<OrderBy>
+  ownershipDocument?: InputMaybe<OrderBy>
+  ownershipType?: InputMaybe<OrderBy>
+  sizeInHaTotal?: InputMaybe<OrderBy>
+  updatedAt?: InputMaybe<OrderBy>
+  withinAncestralDomain?: InputMaybe<OrderBy>
 }
 
 /** primary key columns input for table: farm */
-export type Farm_Pk_Columns_Input = {
-  id: Scalars['Int']
+export type FarmPkColumnsInput = {
+  id: Scalars['uuid']
+}
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type FarmPrependInput = {
+  location?: InputMaybe<Scalars['jsonb']>
 }
 
 /** select columns of table "farm" */
-export enum Farm_Select_Column {
+export enum FarmSelectColumn {
   /** column name */
-  FarmType = 'farm_type',
+  Barangay = 'barangay',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  FarmType = 'farmType',
   /** column name */
   Id = 'id',
   /** column name */
-  IsArb = 'is_arb',
+  IsAgrarianReformBeneficiary = 'isAgrarianReformBeneficiary',
   /** column name */
   Location = 'location',
   /** column name */
-  OwnerName = 'owner_name',
+  Municipality = 'municipality',
   /** column name */
-  OwnershipDocument = 'ownership_document',
+  OwnerName = 'ownerName',
   /** column name */
-  SizeHaTotal = 'size_ha_total',
+  OwnershipDocument = 'ownershipDocument',
+  /** column name */
+  OwnershipType = 'ownershipType',
+  /** column name */
+  SizeInHaTotal = 'sizeInHaTotal',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  WithinAncestralDomain = 'withinAncestralDomain',
 }
 
 /** input type for updating data in table "farm" */
-export type Farm_Set_Input = {
-  farm_type?: InputMaybe<Scalars['String']>
-  id?: InputMaybe<Scalars['Int']>
-  is_arb?: InputMaybe<Scalars['bit']>
-  location?: InputMaybe<Scalars['_jsonb']>
-  owner_name?: InputMaybe<Scalars['String']>
-  ownership_document?: InputMaybe<Scalars['String']>
-  size_ha_total?: InputMaybe<Scalars['numeric']>
+export type FarmSetInput = {
+  barangay?: InputMaybe<Scalars['String']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  farmType?: InputMaybe<Scalars['String']>
+  id?: InputMaybe<Scalars['uuid']>
+  isAgrarianReformBeneficiary?: InputMaybe<Scalars['Boolean']>
+  location?: InputMaybe<Scalars['jsonb']>
+  municipality?: InputMaybe<Scalars['String']>
+  ownerName?: InputMaybe<Scalars['String']>
+  ownershipDocument?: InputMaybe<Scalars['String']>
+  ownershipType?: InputMaybe<Scalars['String']>
+  sizeInHaTotal?: InputMaybe<Scalars['numeric']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+  withinAncestralDomain?: InputMaybe<Scalars['Boolean']>
 }
 
 /** aggregate stddev on columns */
-export type Farm_Stddev_Fields = {
-  __typename?: 'farm_stddev_fields'
-  id?: Maybe<Scalars['Float']>
-  size_ha_total?: Maybe<Scalars['Float']>
+export type FarmStddevFields = {
+  __typename?: 'FarmStddevFields'
+  sizeInHaTotal?: Maybe<Scalars['Float']>
 }
 
 /** aggregate stddev_pop on columns */
-export type Farm_Stddev_Pop_Fields = {
-  __typename?: 'farm_stddev_pop_fields'
-  id?: Maybe<Scalars['Float']>
-  size_ha_total?: Maybe<Scalars['Float']>
+export type FarmStddev_PopFields = {
+  __typename?: 'FarmStddev_popFields'
+  sizeInHaTotal?: Maybe<Scalars['Float']>
 }
 
 /** aggregate stddev_samp on columns */
-export type Farm_Stddev_Samp_Fields = {
-  __typename?: 'farm_stddev_samp_fields'
-  id?: Maybe<Scalars['Float']>
-  size_ha_total?: Maybe<Scalars['Float']>
+export type FarmStddev_SampFields = {
+  __typename?: 'FarmStddev_sampFields'
+  sizeInHaTotal?: Maybe<Scalars['Float']>
 }
 
 /** aggregate sum on columns */
-export type Farm_Sum_Fields = {
-  __typename?: 'farm_sum_fields'
-  id?: Maybe<Scalars['Int']>
-  size_ha_total?: Maybe<Scalars['numeric']>
+export type FarmSumFields = {
+  __typename?: 'FarmSumFields'
+  sizeInHaTotal?: Maybe<Scalars['numeric']>
 }
 
 /** update columns of table "farm" */
-export enum Farm_Update_Column {
+export enum FarmUpdateColumn {
   /** column name */
-  FarmType = 'farm_type',
+  Barangay = 'barangay',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  FarmType = 'farmType',
   /** column name */
   Id = 'id',
   /** column name */
-  IsArb = 'is_arb',
+  IsAgrarianReformBeneficiary = 'isAgrarianReformBeneficiary',
   /** column name */
   Location = 'location',
   /** column name */
-  OwnerName = 'owner_name',
+  Municipality = 'municipality',
   /** column name */
-  OwnershipDocument = 'ownership_document',
+  OwnerName = 'ownerName',
   /** column name */
-  SizeHaTotal = 'size_ha_total',
+  OwnershipDocument = 'ownershipDocument',
+  /** column name */
+  OwnershipType = 'ownershipType',
+  /** column name */
+  SizeInHaTotal = 'sizeInHaTotal',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  WithinAncestralDomain = 'withinAncestralDomain',
+}
+
+export type FarmUpdates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<FarmAppendInput>
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _deleteAtPath?: InputMaybe<FarmDeleteAtPathInput>
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _deleteElem?: InputMaybe<FarmDeleteElemInput>
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _deleteKey?: InputMaybe<FarmDeleteKeyInput>
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<FarmIncInput>
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<FarmPrependInput>
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<FarmSetInput>
+  where: FarmBoolExp
 }
 
 /** aggregate var_pop on columns */
-export type Farm_Var_Pop_Fields = {
-  __typename?: 'farm_var_pop_fields'
-  id?: Maybe<Scalars['Float']>
-  size_ha_total?: Maybe<Scalars['Float']>
+export type FarmVar_PopFields = {
+  __typename?: 'FarmVar_popFields'
+  sizeInHaTotal?: Maybe<Scalars['Float']>
 }
 
 /** aggregate var_samp on columns */
-export type Farm_Var_Samp_Fields = {
-  __typename?: 'farm_var_samp_fields'
-  id?: Maybe<Scalars['Float']>
-  size_ha_total?: Maybe<Scalars['Float']>
+export type FarmVar_SampFields = {
+  __typename?: 'FarmVar_sampFields'
+  sizeInHaTotal?: Maybe<Scalars['Float']>
 }
 
 /** aggregate variance on columns */
-export type Farm_Variance_Fields = {
-  __typename?: 'farm_variance_fields'
-  id?: Maybe<Scalars['Float']>
-  size_ha_total?: Maybe<Scalars['Float']>
+export type FarmVarianceFields = {
+  __typename?: 'FarmVarianceFields'
+  sizeInHaTotal?: Maybe<Scalars['Float']>
 }
 
-/** columns and relationships of "household_program_availment" */
-export type Household_Program_Availment = {
-  __typename?: 'household_program_availment'
-  date_availed: Scalars['date']
-  id: Scalars['Int']
-  /** An object relationship */
-  program: Program
-  program_id: Scalars['Int']
-  remarks?: Maybe<Scalars['String']>
+/** columns and relationships of "household" */
+export type Household = {
+  __typename?: 'Household'
+  /** An array relationship */
+  annualInfos: Array<AnnualInfo>
+  /** An aggregate relationship */
+  annualInfosAggregate: AnnualInfoAggregate
+  barangay?: Maybe<Scalars['String']>
+  civilStatus: Scalars['Int']
+  contactNumber: Scalars['bpchar']
+  createdAt: Scalars['timestamp']
+  dateOfBirth: Scalars['date']
+  emergencyContactName?: Maybe<Scalars['String']>
+  emergencyContactNumber?: Maybe<Scalars['bpchar']>
+  extensionName?: Maybe<Scalars['String']>
+  femaleCount: Scalars['Int']
+  firstName: Scalars['String']
+  governmentIdNo?: Maybe<Scalars['String']>
+  governmentIdType?: Maybe<Scalars['String']>
+  highestFormalEducation: Scalars['String']
+  houseLotBldgNo?: Maybe<Scalars['String']>
+  id: Scalars['uuid']
+  ipMembership?: Maybe<Scalars['String']>
+  is4psBeneficiary: Scalars['Boolean']
+  isHouseholdHead: Scalars['Boolean']
+  lastName: Scalars['String']
+  maleCount: Scalars['Int']
+  middleName?: Maybe<Scalars['String']>
+  mothersMaidenName?: Maybe<Scalars['String']>
+  municipality?: Maybe<Scalars['String']>
+  nameOfHouseholdHead: Scalars['String']
+  nameOfSpouse?: Maybe<Scalars['String']>
+  personWithDisability: Scalars['Boolean']
+  placeOfBirth: Scalars['String']
+  province?: Maybe<Scalars['String']>
+  referenceNo: Scalars['String']
+  region?: Maybe<Scalars['String']>
+  relationshipToHouseholdHead?: Maybe<Scalars['String']>
+  religion?: Maybe<Scalars['String']>
+  sex: Scalars['Int']
+  streetSitioSubdv?: Maybe<Scalars['String']>
+  updatedAt: Scalars['timestamp']
 }
 
-/** aggregated selection of "household_program_availment" */
-export type Household_Program_Availment_Aggregate = {
-  __typename?: 'household_program_availment_aggregate'
-  aggregate?: Maybe<Household_Program_Availment_Aggregate_Fields>
-  nodes: Array<Household_Program_Availment>
+/** columns and relationships of "household" */
+export type HouseholdAnnualInfosArgs = {
+  distinctOn?: InputMaybe<Array<AnnualInfoSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AnnualInfoOrderBy>>
+  where?: InputMaybe<AnnualInfoBoolExp>
 }
 
-/** aggregate fields of "household_program_availment" */
-export type Household_Program_Availment_Aggregate_Fields = {
-  __typename?: 'household_program_availment_aggregate_fields'
-  avg?: Maybe<Household_Program_Availment_Avg_Fields>
+/** columns and relationships of "household" */
+export type HouseholdAnnualInfosAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AnnualInfoSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AnnualInfoOrderBy>>
+  where?: InputMaybe<AnnualInfoBoolExp>
+}
+
+/** aggregated selection of "household" */
+export type HouseholdAggregate = {
+  __typename?: 'HouseholdAggregate'
+  aggregate?: Maybe<HouseholdAggregateFields>
+  nodes: Array<Household>
+}
+
+/** aggregate fields of "household" */
+export type HouseholdAggregateFields = {
+  __typename?: 'HouseholdAggregateFields'
+  avg?: Maybe<HouseholdAvgFields>
   count: Scalars['Int']
-  max?: Maybe<Household_Program_Availment_Max_Fields>
-  min?: Maybe<Household_Program_Availment_Min_Fields>
-  stddev?: Maybe<Household_Program_Availment_Stddev_Fields>
-  stddev_pop?: Maybe<Household_Program_Availment_Stddev_Pop_Fields>
-  stddev_samp?: Maybe<Household_Program_Availment_Stddev_Samp_Fields>
-  sum?: Maybe<Household_Program_Availment_Sum_Fields>
-  var_pop?: Maybe<Household_Program_Availment_Var_Pop_Fields>
-  var_samp?: Maybe<Household_Program_Availment_Var_Samp_Fields>
-  variance?: Maybe<Household_Program_Availment_Variance_Fields>
+  max?: Maybe<HouseholdMaxFields>
+  min?: Maybe<HouseholdMinFields>
+  stddev?: Maybe<HouseholdStddevFields>
+  stddevPop?: Maybe<HouseholdStddev_PopFields>
+  stddevSamp?: Maybe<HouseholdStddev_SampFields>
+  sum?: Maybe<HouseholdSumFields>
+  varPop?: Maybe<HouseholdVar_PopFields>
+  varSamp?: Maybe<HouseholdVar_SampFields>
+  variance?: Maybe<HouseholdVarianceFields>
 }
 
-/** aggregate fields of "household_program_availment" */
-export type Household_Program_Availment_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Household_Program_Availment_Select_Column>>
+/** aggregate fields of "household" */
+export type HouseholdAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdSelectColumn>>
   distinct?: InputMaybe<Scalars['Boolean']>
 }
 
-/** order by aggregate values of table "household_program_availment" */
-export type Household_Program_Availment_Aggregate_Order_By = {
-  avg?: InputMaybe<Household_Program_Availment_Avg_Order_By>
-  count?: InputMaybe<Order_By>
-  max?: InputMaybe<Household_Program_Availment_Max_Order_By>
-  min?: InputMaybe<Household_Program_Availment_Min_Order_By>
-  stddev?: InputMaybe<Household_Program_Availment_Stddev_Order_By>
-  stddev_pop?: InputMaybe<Household_Program_Availment_Stddev_Pop_Order_By>
-  stddev_samp?: InputMaybe<Household_Program_Availment_Stddev_Samp_Order_By>
-  sum?: InputMaybe<Household_Program_Availment_Sum_Order_By>
-  var_pop?: InputMaybe<Household_Program_Availment_Var_Pop_Order_By>
-  var_samp?: InputMaybe<Household_Program_Availment_Var_Samp_Order_By>
-  variance?: InputMaybe<Household_Program_Availment_Variance_Order_By>
-}
-
-/** input type for inserting array relation for remote table "household_program_availment" */
-export type Household_Program_Availment_Arr_Rel_Insert_Input = {
-  data: Array<Household_Program_Availment_Insert_Input>
-  /** upsert condition */
-  on_conflict?: InputMaybe<Household_Program_Availment_On_Conflict>
-}
-
 /** aggregate avg on columns */
-export type Household_Program_Availment_Avg_Fields = {
-  __typename?: 'household_program_availment_avg_fields'
-  id?: Maybe<Scalars['Float']>
-  program_id?: Maybe<Scalars['Float']>
+export type HouseholdAvgFields = {
+  __typename?: 'HouseholdAvgFields'
+  civilStatus?: Maybe<Scalars['Float']>
+  femaleCount?: Maybe<Scalars['Float']>
+  maleCount?: Maybe<Scalars['Float']>
+  sex?: Maybe<Scalars['Float']>
 }
 
-/** order by avg() on columns of table "household_program_availment" */
-export type Household_Program_Availment_Avg_Order_By = {
-  id?: InputMaybe<Order_By>
-  program_id?: InputMaybe<Order_By>
+/** Boolean expression to filter rows from the table "household". All fields are combined with a logical 'AND'. */
+export type HouseholdBoolExp = {
+  _and?: InputMaybe<Array<HouseholdBoolExp>>
+  _not?: InputMaybe<HouseholdBoolExp>
+  _or?: InputMaybe<Array<HouseholdBoolExp>>
+  annualInfos?: InputMaybe<AnnualInfoBoolExp>
+  barangay?: InputMaybe<StringComparisonExp>
+  civilStatus?: InputMaybe<IntComparisonExp>
+  contactNumber?: InputMaybe<BpcharComparisonExp>
+  createdAt?: InputMaybe<TimestampComparisonExp>
+  dateOfBirth?: InputMaybe<DateComparisonExp>
+  emergencyContactName?: InputMaybe<StringComparisonExp>
+  emergencyContactNumber?: InputMaybe<BpcharComparisonExp>
+  extensionName?: InputMaybe<StringComparisonExp>
+  femaleCount?: InputMaybe<IntComparisonExp>
+  firstName?: InputMaybe<StringComparisonExp>
+  governmentIdNo?: InputMaybe<StringComparisonExp>
+  governmentIdType?: InputMaybe<StringComparisonExp>
+  highestFormalEducation?: InputMaybe<StringComparisonExp>
+  houseLotBldgNo?: InputMaybe<StringComparisonExp>
+  id?: InputMaybe<UuidComparisonExp>
+  ipMembership?: InputMaybe<StringComparisonExp>
+  is4psBeneficiary?: InputMaybe<BooleanComparisonExp>
+  isHouseholdHead?: InputMaybe<BooleanComparisonExp>
+  lastName?: InputMaybe<StringComparisonExp>
+  maleCount?: InputMaybe<IntComparisonExp>
+  middleName?: InputMaybe<StringComparisonExp>
+  mothersMaidenName?: InputMaybe<StringComparisonExp>
+  municipality?: InputMaybe<StringComparisonExp>
+  nameOfHouseholdHead?: InputMaybe<StringComparisonExp>
+  nameOfSpouse?: InputMaybe<StringComparisonExp>
+  personWithDisability?: InputMaybe<BooleanComparisonExp>
+  placeOfBirth?: InputMaybe<StringComparisonExp>
+  province?: InputMaybe<StringComparisonExp>
+  referenceNo?: InputMaybe<StringComparisonExp>
+  region?: InputMaybe<StringComparisonExp>
+  relationshipToHouseholdHead?: InputMaybe<StringComparisonExp>
+  religion?: InputMaybe<StringComparisonExp>
+  sex?: InputMaybe<IntComparisonExp>
+  streetSitioSubdv?: InputMaybe<StringComparisonExp>
+  updatedAt?: InputMaybe<TimestampComparisonExp>
 }
 
-/** Boolean expression to filter rows from the table "household_program_availment". All fields are combined with a logical 'AND'. */
-export type Household_Program_Availment_Bool_Exp = {
-  _and?: InputMaybe<Array<Household_Program_Availment_Bool_Exp>>
-  _not?: InputMaybe<Household_Program_Availment_Bool_Exp>
-  _or?: InputMaybe<Array<Household_Program_Availment_Bool_Exp>>
-  date_availed?: InputMaybe<Date_Comparison_Exp>
-  id?: InputMaybe<Int_Comparison_Exp>
-  program?: InputMaybe<Program_Bool_Exp>
-  program_id?: InputMaybe<Int_Comparison_Exp>
-  remarks?: InputMaybe<String_Comparison_Exp>
+/** unique or primary key constraints on table "household" */
+export enum HouseholdConstraint {
+  /** unique or primary key constraint on columns "id" */
+  HouseholdPk = 'household_pk',
 }
 
-/** unique or primary key constraints on table "household_program_availment" */
-export enum Household_Program_Availment_Constraint {
-  /** unique or primary key constraint */
-  HouseholdProgramAvailmentPk = 'household_program_availment_pk',
+/** input type for incrementing numeric columns in table "household" */
+export type HouseholdIncInput = {
+  civilStatus?: InputMaybe<Scalars['Int']>
+  femaleCount?: InputMaybe<Scalars['Int']>
+  maleCount?: InputMaybe<Scalars['Int']>
+  sex?: InputMaybe<Scalars['Int']>
 }
 
-/** input type for incrementing numeric columns in table "household_program_availment" */
-export type Household_Program_Availment_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']>
-  program_id?: InputMaybe<Scalars['Int']>
-}
-
-/** input type for inserting data into table "household_program_availment" */
-export type Household_Program_Availment_Insert_Input = {
-  date_availed?: InputMaybe<Scalars['date']>
-  id?: InputMaybe<Scalars['Int']>
-  program?: InputMaybe<Program_Obj_Rel_Insert_Input>
-  program_id?: InputMaybe<Scalars['Int']>
-  remarks?: InputMaybe<Scalars['String']>
+/** input type for inserting data into table "household" */
+export type HouseholdInsertInput = {
+  annualInfos?: InputMaybe<AnnualInfoArrRelInsertInput>
+  barangay?: InputMaybe<Scalars['String']>
+  civilStatus?: InputMaybe<Scalars['Int']>
+  contactNumber?: InputMaybe<Scalars['bpchar']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  dateOfBirth?: InputMaybe<Scalars['date']>
+  emergencyContactName?: InputMaybe<Scalars['String']>
+  emergencyContactNumber?: InputMaybe<Scalars['bpchar']>
+  extensionName?: InputMaybe<Scalars['String']>
+  femaleCount?: InputMaybe<Scalars['Int']>
+  firstName?: InputMaybe<Scalars['String']>
+  governmentIdNo?: InputMaybe<Scalars['String']>
+  governmentIdType?: InputMaybe<Scalars['String']>
+  highestFormalEducation?: InputMaybe<Scalars['String']>
+  houseLotBldgNo?: InputMaybe<Scalars['String']>
+  id?: InputMaybe<Scalars['uuid']>
+  ipMembership?: InputMaybe<Scalars['String']>
+  is4psBeneficiary?: InputMaybe<Scalars['Boolean']>
+  isHouseholdHead?: InputMaybe<Scalars['Boolean']>
+  lastName?: InputMaybe<Scalars['String']>
+  maleCount?: InputMaybe<Scalars['Int']>
+  middleName?: InputMaybe<Scalars['String']>
+  mothersMaidenName?: InputMaybe<Scalars['String']>
+  municipality?: InputMaybe<Scalars['String']>
+  nameOfHouseholdHead?: InputMaybe<Scalars['String']>
+  nameOfSpouse?: InputMaybe<Scalars['String']>
+  personWithDisability?: InputMaybe<Scalars['Boolean']>
+  placeOfBirth?: InputMaybe<Scalars['String']>
+  province?: InputMaybe<Scalars['String']>
+  referenceNo?: InputMaybe<Scalars['String']>
+  region?: InputMaybe<Scalars['String']>
+  relationshipToHouseholdHead?: InputMaybe<Scalars['String']>
+  religion?: InputMaybe<Scalars['String']>
+  sex?: InputMaybe<Scalars['Int']>
+  streetSitioSubdv?: InputMaybe<Scalars['String']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
 }
 
 /** aggregate max on columns */
-export type Household_Program_Availment_Max_Fields = {
-  __typename?: 'household_program_availment_max_fields'
-  date_availed?: Maybe<Scalars['date']>
-  id?: Maybe<Scalars['Int']>
-  program_id?: Maybe<Scalars['Int']>
-  remarks?: Maybe<Scalars['String']>
-}
-
-/** order by max() on columns of table "household_program_availment" */
-export type Household_Program_Availment_Max_Order_By = {
-  date_availed?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  program_id?: InputMaybe<Order_By>
-  remarks?: InputMaybe<Order_By>
+export type HouseholdMaxFields = {
+  __typename?: 'HouseholdMaxFields'
+  barangay?: Maybe<Scalars['String']>
+  civilStatus?: Maybe<Scalars['Int']>
+  contactNumber?: Maybe<Scalars['bpchar']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  dateOfBirth?: Maybe<Scalars['date']>
+  emergencyContactName?: Maybe<Scalars['String']>
+  emergencyContactNumber?: Maybe<Scalars['bpchar']>
+  extensionName?: Maybe<Scalars['String']>
+  femaleCount?: Maybe<Scalars['Int']>
+  firstName?: Maybe<Scalars['String']>
+  governmentIdNo?: Maybe<Scalars['String']>
+  governmentIdType?: Maybe<Scalars['String']>
+  highestFormalEducation?: Maybe<Scalars['String']>
+  houseLotBldgNo?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['uuid']>
+  ipMembership?: Maybe<Scalars['String']>
+  lastName?: Maybe<Scalars['String']>
+  maleCount?: Maybe<Scalars['Int']>
+  middleName?: Maybe<Scalars['String']>
+  mothersMaidenName?: Maybe<Scalars['String']>
+  municipality?: Maybe<Scalars['String']>
+  nameOfHouseholdHead?: Maybe<Scalars['String']>
+  nameOfSpouse?: Maybe<Scalars['String']>
+  placeOfBirth?: Maybe<Scalars['String']>
+  province?: Maybe<Scalars['String']>
+  referenceNo?: Maybe<Scalars['String']>
+  region?: Maybe<Scalars['String']>
+  relationshipToHouseholdHead?: Maybe<Scalars['String']>
+  religion?: Maybe<Scalars['String']>
+  sex?: Maybe<Scalars['Int']>
+  streetSitioSubdv?: Maybe<Scalars['String']>
+  updatedAt?: Maybe<Scalars['timestamp']>
 }
 
 /** aggregate min on columns */
-export type Household_Program_Availment_Min_Fields = {
-  __typename?: 'household_program_availment_min_fields'
-  date_availed?: Maybe<Scalars['date']>
-  id?: Maybe<Scalars['Int']>
-  program_id?: Maybe<Scalars['Int']>
-  remarks?: Maybe<Scalars['String']>
+export type HouseholdMinFields = {
+  __typename?: 'HouseholdMinFields'
+  barangay?: Maybe<Scalars['String']>
+  civilStatus?: Maybe<Scalars['Int']>
+  contactNumber?: Maybe<Scalars['bpchar']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  dateOfBirth?: Maybe<Scalars['date']>
+  emergencyContactName?: Maybe<Scalars['String']>
+  emergencyContactNumber?: Maybe<Scalars['bpchar']>
+  extensionName?: Maybe<Scalars['String']>
+  femaleCount?: Maybe<Scalars['Int']>
+  firstName?: Maybe<Scalars['String']>
+  governmentIdNo?: Maybe<Scalars['String']>
+  governmentIdType?: Maybe<Scalars['String']>
+  highestFormalEducation?: Maybe<Scalars['String']>
+  houseLotBldgNo?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['uuid']>
+  ipMembership?: Maybe<Scalars['String']>
+  lastName?: Maybe<Scalars['String']>
+  maleCount?: Maybe<Scalars['Int']>
+  middleName?: Maybe<Scalars['String']>
+  mothersMaidenName?: Maybe<Scalars['String']>
+  municipality?: Maybe<Scalars['String']>
+  nameOfHouseholdHead?: Maybe<Scalars['String']>
+  nameOfSpouse?: Maybe<Scalars['String']>
+  placeOfBirth?: Maybe<Scalars['String']>
+  province?: Maybe<Scalars['String']>
+  referenceNo?: Maybe<Scalars['String']>
+  region?: Maybe<Scalars['String']>
+  relationshipToHouseholdHead?: Maybe<Scalars['String']>
+  religion?: Maybe<Scalars['String']>
+  sex?: Maybe<Scalars['Int']>
+  streetSitioSubdv?: Maybe<Scalars['String']>
+  updatedAt?: Maybe<Scalars['timestamp']>
 }
 
-/** order by min() on columns of table "household_program_availment" */
-export type Household_Program_Availment_Min_Order_By = {
-  date_availed?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  program_id?: InputMaybe<Order_By>
-  remarks?: InputMaybe<Order_By>
-}
-
-/** response of any mutation on the table "household_program_availment" */
-export type Household_Program_Availment_Mutation_Response = {
-  __typename?: 'household_program_availment_mutation_response'
+/** response of any mutation on the table "household" */
+export type HouseholdMutationResponse = {
+  __typename?: 'HouseholdMutationResponse'
   /** number of rows affected by the mutation */
   affected_rows: Scalars['Int']
   /** data from the rows affected by the mutation */
-  returning: Array<Household_Program_Availment>
+  returning: Array<Household>
 }
 
-/** on_conflict condition type for table "household_program_availment" */
-export type Household_Program_Availment_On_Conflict = {
-  constraint: Household_Program_Availment_Constraint
-  update_columns?: Array<Household_Program_Availment_Update_Column>
-  where?: InputMaybe<Household_Program_Availment_Bool_Exp>
+/** input type for inserting object relation for remote table "household" */
+export type HouseholdObjRelInsertInput = {
+  data: HouseholdInsertInput
+  /** upsert condition */
+  onConflict?: InputMaybe<HouseholdOnConflict>
 }
 
-/** Ordering options when selecting data from "household_program_availment". */
-export type Household_Program_Availment_Order_By = {
-  date_availed?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  program?: InputMaybe<Program_Order_By>
-  program_id?: InputMaybe<Order_By>
-  remarks?: InputMaybe<Order_By>
+/** on_conflict condition type for table "household" */
+export type HouseholdOnConflict = {
+  constraint: HouseholdConstraint
+  update_columns?: Array<HouseholdUpdateColumn>
+  where?: InputMaybe<HouseholdBoolExp>
 }
 
-/** primary key columns input for table: household_program_availment */
-export type Household_Program_Availment_Pk_Columns_Input = {
-  id: Scalars['Int']
+/** Ordering options when selecting data from "household". */
+export type HouseholdOrderBy = {
+  annualInfosAggregate?: InputMaybe<AnnualInfoAggregateOrderBy>
+  barangay?: InputMaybe<OrderBy>
+  civilStatus?: InputMaybe<OrderBy>
+  contactNumber?: InputMaybe<OrderBy>
+  createdAt?: InputMaybe<OrderBy>
+  dateOfBirth?: InputMaybe<OrderBy>
+  emergencyContactName?: InputMaybe<OrderBy>
+  emergencyContactNumber?: InputMaybe<OrderBy>
+  extensionName?: InputMaybe<OrderBy>
+  femaleCount?: InputMaybe<OrderBy>
+  firstName?: InputMaybe<OrderBy>
+  governmentIdNo?: InputMaybe<OrderBy>
+  governmentIdType?: InputMaybe<OrderBy>
+  highestFormalEducation?: InputMaybe<OrderBy>
+  houseLotBldgNo?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  ipMembership?: InputMaybe<OrderBy>
+  is4psBeneficiary?: InputMaybe<OrderBy>
+  isHouseholdHead?: InputMaybe<OrderBy>
+  lastName?: InputMaybe<OrderBy>
+  maleCount?: InputMaybe<OrderBy>
+  middleName?: InputMaybe<OrderBy>
+  mothersMaidenName?: InputMaybe<OrderBy>
+  municipality?: InputMaybe<OrderBy>
+  nameOfHouseholdHead?: InputMaybe<OrderBy>
+  nameOfSpouse?: InputMaybe<OrderBy>
+  personWithDisability?: InputMaybe<OrderBy>
+  placeOfBirth?: InputMaybe<OrderBy>
+  province?: InputMaybe<OrderBy>
+  referenceNo?: InputMaybe<OrderBy>
+  region?: InputMaybe<OrderBy>
+  relationshipToHouseholdHead?: InputMaybe<OrderBy>
+  religion?: InputMaybe<OrderBy>
+  sex?: InputMaybe<OrderBy>
+  streetSitioSubdv?: InputMaybe<OrderBy>
+  updatedAt?: InputMaybe<OrderBy>
 }
 
-/** select columns of table "household_program_availment" */
-export enum Household_Program_Availment_Select_Column {
+/** primary key columns input for table: household */
+export type HouseholdPkColumnsInput = {
+  id: Scalars['uuid']
+}
+
+/** select columns of table "household" */
+export enum HouseholdSelectColumn {
   /** column name */
-  DateAvailed = 'date_availed',
+  Barangay = 'barangay',
+  /** column name */
+  CivilStatus = 'civilStatus',
+  /** column name */
+  ContactNumber = 'contactNumber',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  DateOfBirth = 'dateOfBirth',
+  /** column name */
+  EmergencyContactName = 'emergencyContactName',
+  /** column name */
+  EmergencyContactNumber = 'emergencyContactNumber',
+  /** column name */
+  ExtensionName = 'extensionName',
+  /** column name */
+  FemaleCount = 'femaleCount',
+  /** column name */
+  FirstName = 'firstName',
+  /** column name */
+  GovernmentIdNo = 'governmentIdNo',
+  /** column name */
+  GovernmentIdType = 'governmentIdType',
+  /** column name */
+  HighestFormalEducation = 'highestFormalEducation',
+  /** column name */
+  HouseLotBldgNo = 'houseLotBldgNo',
   /** column name */
   Id = 'id',
   /** column name */
-  ProgramId = 'program_id',
+  IpMembership = 'ipMembership',
   /** column name */
-  Remarks = 'remarks',
+  Is4psBeneficiary = 'is4psBeneficiary',
+  /** column name */
+  IsHouseholdHead = 'isHouseholdHead',
+  /** column name */
+  LastName = 'lastName',
+  /** column name */
+  MaleCount = 'maleCount',
+  /** column name */
+  MiddleName = 'middleName',
+  /** column name */
+  MothersMaidenName = 'mothersMaidenName',
+  /** column name */
+  Municipality = 'municipality',
+  /** column name */
+  NameOfHouseholdHead = 'nameOfHouseholdHead',
+  /** column name */
+  NameOfSpouse = 'nameOfSpouse',
+  /** column name */
+  PersonWithDisability = 'personWithDisability',
+  /** column name */
+  PlaceOfBirth = 'placeOfBirth',
+  /** column name */
+  Province = 'province',
+  /** column name */
+  ReferenceNo = 'referenceNo',
+  /** column name */
+  Region = 'region',
+  /** column name */
+  RelationshipToHouseholdHead = 'relationshipToHouseholdHead',
+  /** column name */
+  Religion = 'religion',
+  /** column name */
+  Sex = 'sex',
+  /** column name */
+  StreetSitioSubdv = 'streetSitioSubdv',
+  /** column name */
+  UpdatedAt = 'updatedAt',
 }
 
-/** input type for updating data in table "household_program_availment" */
-export type Household_Program_Availment_Set_Input = {
-  date_availed?: InputMaybe<Scalars['date']>
-  id?: InputMaybe<Scalars['Int']>
-  program_id?: InputMaybe<Scalars['Int']>
-  remarks?: InputMaybe<Scalars['String']>
+/** input type for updating data in table "household" */
+export type HouseholdSetInput = {
+  barangay?: InputMaybe<Scalars['String']>
+  civilStatus?: InputMaybe<Scalars['Int']>
+  contactNumber?: InputMaybe<Scalars['bpchar']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  dateOfBirth?: InputMaybe<Scalars['date']>
+  emergencyContactName?: InputMaybe<Scalars['String']>
+  emergencyContactNumber?: InputMaybe<Scalars['bpchar']>
+  extensionName?: InputMaybe<Scalars['String']>
+  femaleCount?: InputMaybe<Scalars['Int']>
+  firstName?: InputMaybe<Scalars['String']>
+  governmentIdNo?: InputMaybe<Scalars['String']>
+  governmentIdType?: InputMaybe<Scalars['String']>
+  highestFormalEducation?: InputMaybe<Scalars['String']>
+  houseLotBldgNo?: InputMaybe<Scalars['String']>
+  id?: InputMaybe<Scalars['uuid']>
+  ipMembership?: InputMaybe<Scalars['String']>
+  is4psBeneficiary?: InputMaybe<Scalars['Boolean']>
+  isHouseholdHead?: InputMaybe<Scalars['Boolean']>
+  lastName?: InputMaybe<Scalars['String']>
+  maleCount?: InputMaybe<Scalars['Int']>
+  middleName?: InputMaybe<Scalars['String']>
+  mothersMaidenName?: InputMaybe<Scalars['String']>
+  municipality?: InputMaybe<Scalars['String']>
+  nameOfHouseholdHead?: InputMaybe<Scalars['String']>
+  nameOfSpouse?: InputMaybe<Scalars['String']>
+  personWithDisability?: InputMaybe<Scalars['Boolean']>
+  placeOfBirth?: InputMaybe<Scalars['String']>
+  province?: InputMaybe<Scalars['String']>
+  referenceNo?: InputMaybe<Scalars['String']>
+  region?: InputMaybe<Scalars['String']>
+  relationshipToHouseholdHead?: InputMaybe<Scalars['String']>
+  religion?: InputMaybe<Scalars['String']>
+  sex?: InputMaybe<Scalars['Int']>
+  streetSitioSubdv?: InputMaybe<Scalars['String']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
 }
 
 /** aggregate stddev on columns */
-export type Household_Program_Availment_Stddev_Fields = {
-  __typename?: 'household_program_availment_stddev_fields'
-  id?: Maybe<Scalars['Float']>
-  program_id?: Maybe<Scalars['Float']>
-}
-
-/** order by stddev() on columns of table "household_program_availment" */
-export type Household_Program_Availment_Stddev_Order_By = {
-  id?: InputMaybe<Order_By>
-  program_id?: InputMaybe<Order_By>
+export type HouseholdStddevFields = {
+  __typename?: 'HouseholdStddevFields'
+  civilStatus?: Maybe<Scalars['Float']>
+  femaleCount?: Maybe<Scalars['Float']>
+  maleCount?: Maybe<Scalars['Float']>
+  sex?: Maybe<Scalars['Float']>
 }
 
 /** aggregate stddev_pop on columns */
-export type Household_Program_Availment_Stddev_Pop_Fields = {
-  __typename?: 'household_program_availment_stddev_pop_fields'
-  id?: Maybe<Scalars['Float']>
-  program_id?: Maybe<Scalars['Float']>
-}
-
-/** order by stddev_pop() on columns of table "household_program_availment" */
-export type Household_Program_Availment_Stddev_Pop_Order_By = {
-  id?: InputMaybe<Order_By>
-  program_id?: InputMaybe<Order_By>
+export type HouseholdStddev_PopFields = {
+  __typename?: 'HouseholdStddev_popFields'
+  civilStatus?: Maybe<Scalars['Float']>
+  femaleCount?: Maybe<Scalars['Float']>
+  maleCount?: Maybe<Scalars['Float']>
+  sex?: Maybe<Scalars['Float']>
 }
 
 /** aggregate stddev_samp on columns */
-export type Household_Program_Availment_Stddev_Samp_Fields = {
-  __typename?: 'household_program_availment_stddev_samp_fields'
-  id?: Maybe<Scalars['Float']>
-  program_id?: Maybe<Scalars['Float']>
-}
-
-/** order by stddev_samp() on columns of table "household_program_availment" */
-export type Household_Program_Availment_Stddev_Samp_Order_By = {
-  id?: InputMaybe<Order_By>
-  program_id?: InputMaybe<Order_By>
+export type HouseholdStddev_SampFields = {
+  __typename?: 'HouseholdStddev_sampFields'
+  civilStatus?: Maybe<Scalars['Float']>
+  femaleCount?: Maybe<Scalars['Float']>
+  maleCount?: Maybe<Scalars['Float']>
+  sex?: Maybe<Scalars['Float']>
 }
 
 /** aggregate sum on columns */
-export type Household_Program_Availment_Sum_Fields = {
-  __typename?: 'household_program_availment_sum_fields'
-  id?: Maybe<Scalars['Int']>
-  program_id?: Maybe<Scalars['Int']>
+export type HouseholdSumFields = {
+  __typename?: 'HouseholdSumFields'
+  civilStatus?: Maybe<Scalars['Int']>
+  femaleCount?: Maybe<Scalars['Int']>
+  maleCount?: Maybe<Scalars['Int']>
+  sex?: Maybe<Scalars['Int']>
 }
 
-/** order by sum() on columns of table "household_program_availment" */
-export type Household_Program_Availment_Sum_Order_By = {
-  id?: InputMaybe<Order_By>
-  program_id?: InputMaybe<Order_By>
-}
-
-/** update columns of table "household_program_availment" */
-export enum Household_Program_Availment_Update_Column {
+/** update columns of table "household" */
+export enum HouseholdUpdateColumn {
   /** column name */
-  DateAvailed = 'date_availed',
+  Barangay = 'barangay',
+  /** column name */
+  CivilStatus = 'civilStatus',
+  /** column name */
+  ContactNumber = 'contactNumber',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  DateOfBirth = 'dateOfBirth',
+  /** column name */
+  EmergencyContactName = 'emergencyContactName',
+  /** column name */
+  EmergencyContactNumber = 'emergencyContactNumber',
+  /** column name */
+  ExtensionName = 'extensionName',
+  /** column name */
+  FemaleCount = 'femaleCount',
+  /** column name */
+  FirstName = 'firstName',
+  /** column name */
+  GovernmentIdNo = 'governmentIdNo',
+  /** column name */
+  GovernmentIdType = 'governmentIdType',
+  /** column name */
+  HighestFormalEducation = 'highestFormalEducation',
+  /** column name */
+  HouseLotBldgNo = 'houseLotBldgNo',
   /** column name */
   Id = 'id',
   /** column name */
-  ProgramId = 'program_id',
+  IpMembership = 'ipMembership',
   /** column name */
-  Remarks = 'remarks',
+  Is4psBeneficiary = 'is4psBeneficiary',
+  /** column name */
+  IsHouseholdHead = 'isHouseholdHead',
+  /** column name */
+  LastName = 'lastName',
+  /** column name */
+  MaleCount = 'maleCount',
+  /** column name */
+  MiddleName = 'middleName',
+  /** column name */
+  MothersMaidenName = 'mothersMaidenName',
+  /** column name */
+  Municipality = 'municipality',
+  /** column name */
+  NameOfHouseholdHead = 'nameOfHouseholdHead',
+  /** column name */
+  NameOfSpouse = 'nameOfSpouse',
+  /** column name */
+  PersonWithDisability = 'personWithDisability',
+  /** column name */
+  PlaceOfBirth = 'placeOfBirth',
+  /** column name */
+  Province = 'province',
+  /** column name */
+  ReferenceNo = 'referenceNo',
+  /** column name */
+  Region = 'region',
+  /** column name */
+  RelationshipToHouseholdHead = 'relationshipToHouseholdHead',
+  /** column name */
+  Religion = 'religion',
+  /** column name */
+  Sex = 'sex',
+  /** column name */
+  StreetSitioSubdv = 'streetSitioSubdv',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+}
+
+export type HouseholdUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<HouseholdIncInput>
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<HouseholdSetInput>
+  where: HouseholdBoolExp
 }
 
 /** aggregate var_pop on columns */
-export type Household_Program_Availment_Var_Pop_Fields = {
-  __typename?: 'household_program_availment_var_pop_fields'
-  id?: Maybe<Scalars['Float']>
-  program_id?: Maybe<Scalars['Float']>
-}
-
-/** order by var_pop() on columns of table "household_program_availment" */
-export type Household_Program_Availment_Var_Pop_Order_By = {
-  id?: InputMaybe<Order_By>
-  program_id?: InputMaybe<Order_By>
+export type HouseholdVar_PopFields = {
+  __typename?: 'HouseholdVar_popFields'
+  civilStatus?: Maybe<Scalars['Float']>
+  femaleCount?: Maybe<Scalars['Float']>
+  maleCount?: Maybe<Scalars['Float']>
+  sex?: Maybe<Scalars['Float']>
 }
 
 /** aggregate var_samp on columns */
-export type Household_Program_Availment_Var_Samp_Fields = {
-  __typename?: 'household_program_availment_var_samp_fields'
-  id?: Maybe<Scalars['Float']>
-  program_id?: Maybe<Scalars['Float']>
-}
-
-/** order by var_samp() on columns of table "household_program_availment" */
-export type Household_Program_Availment_Var_Samp_Order_By = {
-  id?: InputMaybe<Order_By>
-  program_id?: InputMaybe<Order_By>
+export type HouseholdVar_SampFields = {
+  __typename?: 'HouseholdVar_sampFields'
+  civilStatus?: Maybe<Scalars['Float']>
+  femaleCount?: Maybe<Scalars['Float']>
+  maleCount?: Maybe<Scalars['Float']>
+  sex?: Maybe<Scalars['Float']>
 }
 
 /** aggregate variance on columns */
-export type Household_Program_Availment_Variance_Fields = {
-  __typename?: 'household_program_availment_variance_fields'
-  id?: Maybe<Scalars['Float']>
-  program_id?: Maybe<Scalars['Float']>
+export type HouseholdVarianceFields = {
+  __typename?: 'HouseholdVarianceFields'
+  civilStatus?: Maybe<Scalars['Float']>
+  femaleCount?: Maybe<Scalars['Float']>
+  maleCount?: Maybe<Scalars['Float']>
+  sex?: Maybe<Scalars['Float']>
 }
 
-/** order by variance() on columns of table "household_program_availment" */
-export type Household_Program_Availment_Variance_Order_By = {
-  id?: InputMaybe<Order_By>
-  program_id?: InputMaybe<Order_By>
+/** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
+export type IntComparisonExp = {
+  _eq?: InputMaybe<Scalars['Int']>
+  _gt?: InputMaybe<Scalars['Int']>
+  _gte?: InputMaybe<Scalars['Int']>
+  _in?: InputMaybe<Array<Scalars['Int']>>
+  _isNull?: InputMaybe<Scalars['Boolean']>
+  _lt?: InputMaybe<Scalars['Int']>
+  _lte?: InputMaybe<Scalars['Int']>
+  _neq?: InputMaybe<Scalars['Int']>
+  _nin?: InputMaybe<Array<Scalars['Int']>>
 }
 
-/** mutation root */
-export type Mutation_Root = {
-  __typename?: 'mutation_root'
-  /** delete data from the table: "crop_commodity" */
-  delete_crop_commodity?: Maybe<Crop_Commodity_Mutation_Response>
-  /** delete single row from the table: "crop_commodity" */
-  delete_crop_commodity_by_pk?: Maybe<Crop_Commodity>
-  /** delete data from the table: "farm" */
-  delete_farm?: Maybe<Farm_Mutation_Response>
-  /** delete single row from the table: "farm" */
-  delete_farm_by_pk?: Maybe<Farm>
-  /** delete data from the table: "farm_household" */
-  delete_farm_household?: Maybe<Farm_Household_Mutation_Response>
-  /** delete data from the table: "farm_household_assignment" */
-  delete_farm_household_assignment?: Maybe<Farm_Household_Assignment_Mutation_Response>
-  /** delete single row from the table: "farm_household_assignment" */
-  delete_farm_household_assignment_by_pk?: Maybe<Farm_Household_Assignment>
-  /** delete single row from the table: "farm_household" */
-  delete_farm_household_by_pk?: Maybe<Farm_Household>
-  /** delete data from the table: "household_program_availment" */
-  delete_household_program_availment?: Maybe<Household_Program_Availment_Mutation_Response>
-  /** delete single row from the table: "household_program_availment" */
-  delete_household_program_availment_by_pk?: Maybe<Household_Program_Availment>
-  /** delete data from the table: "previous_info" */
-  delete_previous_info?: Maybe<Previous_Info_Mutation_Response>
-  /** delete single row from the table: "previous_info" */
-  delete_previous_info_by_pk?: Maybe<Previous_Info>
-  /** delete data from the table: "program" */
-  delete_program?: Maybe<Program_Mutation_Response>
-  /** delete single row from the table: "program" */
-  delete_program_by_pk?: Maybe<Program>
-  /** insert data into the table: "crop_commodity" */
-  insert_crop_commodity?: Maybe<Crop_Commodity_Mutation_Response>
-  /** insert a single row into the table: "crop_commodity" */
-  insert_crop_commodity_one?: Maybe<Crop_Commodity>
-  /** insert data into the table: "farm" */
-  insert_farm?: Maybe<Farm_Mutation_Response>
-  /** insert data into the table: "farm_household" */
-  insert_farm_household?: Maybe<Farm_Household_Mutation_Response>
-  /** insert data into the table: "farm_household_assignment" */
-  insert_farm_household_assignment?: Maybe<Farm_Household_Assignment_Mutation_Response>
-  /** insert a single row into the table: "farm_household_assignment" */
-  insert_farm_household_assignment_one?: Maybe<Farm_Household_Assignment>
-  /** insert a single row into the table: "farm_household" */
-  insert_farm_household_one?: Maybe<Farm_Household>
-  /** insert a single row into the table: "farm" */
-  insert_farm_one?: Maybe<Farm>
-  /** insert data into the table: "household_program_availment" */
-  insert_household_program_availment?: Maybe<Household_Program_Availment_Mutation_Response>
-  /** insert a single row into the table: "household_program_availment" */
-  insert_household_program_availment_one?: Maybe<Household_Program_Availment>
-  /** insert data into the table: "previous_info" */
-  insert_previous_info?: Maybe<Previous_Info_Mutation_Response>
-  /** insert a single row into the table: "previous_info" */
-  insert_previous_info_one?: Maybe<Previous_Info>
-  /** insert data into the table: "program" */
-  insert_program?: Maybe<Program_Mutation_Response>
-  /** insert a single row into the table: "program" */
-  insert_program_one?: Maybe<Program>
-  /** update data of the table: "crop_commodity" */
-  update_crop_commodity?: Maybe<Crop_Commodity_Mutation_Response>
-  /** update single row of the table: "crop_commodity" */
-  update_crop_commodity_by_pk?: Maybe<Crop_Commodity>
-  /** update data of the table: "farm" */
-  update_farm?: Maybe<Farm_Mutation_Response>
-  /** update single row of the table: "farm" */
-  update_farm_by_pk?: Maybe<Farm>
-  /** update data of the table: "farm_household" */
-  update_farm_household?: Maybe<Farm_Household_Mutation_Response>
-  /** update data of the table: "farm_household_assignment" */
-  update_farm_household_assignment?: Maybe<Farm_Household_Assignment_Mutation_Response>
-  /** update single row of the table: "farm_household_assignment" */
-  update_farm_household_assignment_by_pk?: Maybe<Farm_Household_Assignment>
-  /** update single row of the table: "farm_household" */
-  update_farm_household_by_pk?: Maybe<Farm_Household>
-  /** update data of the table: "household_program_availment" */
-  update_household_program_availment?: Maybe<Household_Program_Availment_Mutation_Response>
-  /** update single row of the table: "household_program_availment" */
-  update_household_program_availment_by_pk?: Maybe<Household_Program_Availment>
-  /** update data of the table: "previous_info" */
-  update_previous_info?: Maybe<Previous_Info_Mutation_Response>
-  /** update single row of the table: "previous_info" */
-  update_previous_info_by_pk?: Maybe<Previous_Info>
-  /** update data of the table: "program" */
-  update_program?: Maybe<Program_Mutation_Response>
-  /** update single row of the table: "program" */
-  update_program_by_pk?: Maybe<Program>
+export type JsonbCastExp = {
+  String?: InputMaybe<StringComparisonExp>
 }
 
-/** mutation root */
-export type Mutation_RootDelete_Crop_CommodityArgs = {
-  where: Crop_Commodity_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootDelete_Crop_Commodity_By_PkArgs = {
-  id: Scalars['Int']
-}
-
-/** mutation root */
-export type Mutation_RootDelete_FarmArgs = {
-  where: Farm_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootDelete_Farm_By_PkArgs = {
-  id: Scalars['Int']
-}
-
-/** mutation root */
-export type Mutation_RootDelete_Farm_HouseholdArgs = {
-  where: Farm_Household_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootDelete_Farm_Household_AssignmentArgs = {
-  where: Farm_Household_Assignment_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootDelete_Farm_Household_Assignment_By_PkArgs = {
-  id: Scalars['Int']
-}
-
-/** mutation root */
-export type Mutation_RootDelete_Farm_Household_By_PkArgs = {
-  id: Scalars['Int']
-}
-
-/** mutation root */
-export type Mutation_RootDelete_Household_Program_AvailmentArgs = {
-  where: Household_Program_Availment_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootDelete_Household_Program_Availment_By_PkArgs = {
-  id: Scalars['Int']
-}
-
-/** mutation root */
-export type Mutation_RootDelete_Previous_InfoArgs = {
-  where: Previous_Info_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootDelete_Previous_Info_By_PkArgs = {
-  id: Scalars['Int']
-}
-
-/** mutation root */
-export type Mutation_RootDelete_ProgramArgs = {
-  where: Program_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootDelete_Program_By_PkArgs = {
-  id: Scalars['Int']
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Crop_CommodityArgs = {
-  objects: Array<Crop_Commodity_Insert_Input>
-  on_conflict?: InputMaybe<Crop_Commodity_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Crop_Commodity_OneArgs = {
-  object: Crop_Commodity_Insert_Input
-  on_conflict?: InputMaybe<Crop_Commodity_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_FarmArgs = {
-  objects: Array<Farm_Insert_Input>
-  on_conflict?: InputMaybe<Farm_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Farm_HouseholdArgs = {
-  objects: Array<Farm_Household_Insert_Input>
-  on_conflict?: InputMaybe<Farm_Household_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Farm_Household_AssignmentArgs = {
-  objects: Array<Farm_Household_Assignment_Insert_Input>
-  on_conflict?: InputMaybe<Farm_Household_Assignment_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Farm_Household_Assignment_OneArgs = {
-  object: Farm_Household_Assignment_Insert_Input
-  on_conflict?: InputMaybe<Farm_Household_Assignment_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Farm_Household_OneArgs = {
-  object: Farm_Household_Insert_Input
-  on_conflict?: InputMaybe<Farm_Household_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Farm_OneArgs = {
-  object: Farm_Insert_Input
-  on_conflict?: InputMaybe<Farm_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Household_Program_AvailmentArgs = {
-  objects: Array<Household_Program_Availment_Insert_Input>
-  on_conflict?: InputMaybe<Household_Program_Availment_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Household_Program_Availment_OneArgs = {
-  object: Household_Program_Availment_Insert_Input
-  on_conflict?: InputMaybe<Household_Program_Availment_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Previous_InfoArgs = {
-  objects: Array<Previous_Info_Insert_Input>
-  on_conflict?: InputMaybe<Previous_Info_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Previous_Info_OneArgs = {
-  object: Previous_Info_Insert_Input
-  on_conflict?: InputMaybe<Previous_Info_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_ProgramArgs = {
-  objects: Array<Program_Insert_Input>
-  on_conflict?: InputMaybe<Program_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootInsert_Program_OneArgs = {
-  object: Program_Insert_Input
-  on_conflict?: InputMaybe<Program_On_Conflict>
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Crop_CommodityArgs = {
-  _inc?: InputMaybe<Crop_Commodity_Inc_Input>
-  _set?: InputMaybe<Crop_Commodity_Set_Input>
-  where: Crop_Commodity_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Crop_Commodity_By_PkArgs = {
-  _inc?: InputMaybe<Crop_Commodity_Inc_Input>
-  _set?: InputMaybe<Crop_Commodity_Set_Input>
-  pk_columns: Crop_Commodity_Pk_Columns_Input
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_FarmArgs = {
-  _inc?: InputMaybe<Farm_Inc_Input>
-  _set?: InputMaybe<Farm_Set_Input>
-  where: Farm_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Farm_By_PkArgs = {
-  _inc?: InputMaybe<Farm_Inc_Input>
-  _set?: InputMaybe<Farm_Set_Input>
-  pk_columns: Farm_Pk_Columns_Input
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Farm_HouseholdArgs = {
-  _inc?: InputMaybe<Farm_Household_Inc_Input>
-  _set?: InputMaybe<Farm_Household_Set_Input>
-  where: Farm_Household_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Farm_Household_AssignmentArgs = {
-  _inc?: InputMaybe<Farm_Household_Assignment_Inc_Input>
-  _set?: InputMaybe<Farm_Household_Assignment_Set_Input>
-  where: Farm_Household_Assignment_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Farm_Household_Assignment_By_PkArgs = {
-  _inc?: InputMaybe<Farm_Household_Assignment_Inc_Input>
-  _set?: InputMaybe<Farm_Household_Assignment_Set_Input>
-  pk_columns: Farm_Household_Assignment_Pk_Columns_Input
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Farm_Household_By_PkArgs = {
-  _inc?: InputMaybe<Farm_Household_Inc_Input>
-  _set?: InputMaybe<Farm_Household_Set_Input>
-  pk_columns: Farm_Household_Pk_Columns_Input
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Household_Program_AvailmentArgs = {
-  _inc?: InputMaybe<Household_Program_Availment_Inc_Input>
-  _set?: InputMaybe<Household_Program_Availment_Set_Input>
-  where: Household_Program_Availment_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Household_Program_Availment_By_PkArgs = {
-  _inc?: InputMaybe<Household_Program_Availment_Inc_Input>
-  _set?: InputMaybe<Household_Program_Availment_Set_Input>
-  pk_columns: Household_Program_Availment_Pk_Columns_Input
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Previous_InfoArgs = {
-  _inc?: InputMaybe<Previous_Info_Inc_Input>
-  _set?: InputMaybe<Previous_Info_Set_Input>
-  where: Previous_Info_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Previous_Info_By_PkArgs = {
-  _inc?: InputMaybe<Previous_Info_Inc_Input>
-  _set?: InputMaybe<Previous_Info_Set_Input>
-  pk_columns: Previous_Info_Pk_Columns_Input
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_ProgramArgs = {
-  _inc?: InputMaybe<Program_Inc_Input>
-  _set?: InputMaybe<Program_Set_Input>
-  where: Program_Bool_Exp
-}
-
-/** mutation root */
-export type Mutation_RootUpdate_Program_By_PkArgs = {
-  _inc?: InputMaybe<Program_Inc_Input>
-  _set?: InputMaybe<Program_Set_Input>
-  pk_columns: Program_Pk_Columns_Input
+/** Boolean expression to compare columns of type "jsonb". All fields are combined with logical 'AND'. */
+export type JsonbComparisonExp = {
+  _cast?: InputMaybe<JsonbCastExp>
+  /** is the column contained in the given json value */
+  _containedIn?: InputMaybe<Scalars['jsonb']>
+  /** does the column contain the given json value at the top level */
+  _contains?: InputMaybe<Scalars['jsonb']>
+  _eq?: InputMaybe<Scalars['jsonb']>
+  _gt?: InputMaybe<Scalars['jsonb']>
+  _gte?: InputMaybe<Scalars['jsonb']>
+  /** does the string exist as a top-level key in the column */
+  _hasKey?: InputMaybe<Scalars['String']>
+  /** do all of these strings exist as top-level keys in the column */
+  _hasKeysAll?: InputMaybe<Array<Scalars['String']>>
+  /** do any of these strings exist as top-level keys in the column */
+  _hasKeysAny?: InputMaybe<Array<Scalars['String']>>
+  _in?: InputMaybe<Array<Scalars['jsonb']>>
+  _isNull?: InputMaybe<Scalars['Boolean']>
+  _lt?: InputMaybe<Scalars['jsonb']>
+  _lte?: InputMaybe<Scalars['jsonb']>
+  _neq?: InputMaybe<Scalars['jsonb']>
+  _nin?: InputMaybe<Array<Scalars['jsonb']>>
 }
 
 /** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
-export type Numeric_Comparison_Exp = {
+export type NumericComparisonExp = {
   _eq?: InputMaybe<Scalars['numeric']>
   _gt?: InputMaybe<Scalars['numeric']>
   _gte?: InputMaybe<Scalars['numeric']>
   _in?: InputMaybe<Array<Scalars['numeric']>>
-  _is_null?: InputMaybe<Scalars['Boolean']>
+  _isNull?: InputMaybe<Scalars['Boolean']>
   _lt?: InputMaybe<Scalars['numeric']>
   _lte?: InputMaybe<Scalars['numeric']>
   _neq?: InputMaybe<Scalars['numeric']>
@@ -2409,725 +1816,161 @@ export type Numeric_Comparison_Exp = {
 }
 
 /** column ordering options */
-export enum Order_By {
+export enum OrderBy {
   /** in ascending order, nulls last */
-  Asc = 'asc',
+  Asc = 'ASC',
   /** in ascending order, nulls first */
-  AscNullsFirst = 'asc_nulls_first',
+  AscNullsFirst = 'ASC_NULLS_FIRST',
   /** in ascending order, nulls last */
-  AscNullsLast = 'asc_nulls_last',
+  AscNullsLast = 'ASC_NULLS_LAST',
   /** in descending order, nulls first */
-  Desc = 'desc',
+  Desc = 'DESC',
   /** in descending order, nulls first */
-  DescNullsFirst = 'desc_nulls_first',
+  DescNullsFirst = 'DESC_NULLS_FIRST',
   /** in descending order, nulls last */
-  DescNullsLast = 'desc_nulls_last',
-}
-
-/** columns and relationships of "previous_info" */
-export type Previous_Info = {
-  __typename?: 'previous_info'
-  extname?: Maybe<Scalars['String']>
-  /** An object relationship */
-  farm_household: Farm_Household
-  farming_activity_type: Scalars['String']
-  fname: Scalars['String']
-  gross_ann_farm: Scalars['numeric']
-  gross_ann_non_farm: Scalars['numeric']
-  highest_educ: Scalars['String']
-  household_id: Scalars['Int']
-  id: Scalars['Int']
-  ip_membership: Scalars['String']
-  is_4ps: Scalars['bit']
-  is_head: Scalars['bit']
-  is_pwd: Scalars['bit']
-  kind_of_work: Scalars['String']
-  lname: Scalars['String']
-  main_livelihood: Scalars['String']
-  member_female: Scalars['Int']
-  member_male: Scalars['Int']
-  mname?: Maybe<Scalars['String']>
-}
-
-/** aggregated selection of "previous_info" */
-export type Previous_Info_Aggregate = {
-  __typename?: 'previous_info_aggregate'
-  aggregate?: Maybe<Previous_Info_Aggregate_Fields>
-  nodes: Array<Previous_Info>
-}
-
-/** aggregate fields of "previous_info" */
-export type Previous_Info_Aggregate_Fields = {
-  __typename?: 'previous_info_aggregate_fields'
-  avg?: Maybe<Previous_Info_Avg_Fields>
-  count: Scalars['Int']
-  max?: Maybe<Previous_Info_Max_Fields>
-  min?: Maybe<Previous_Info_Min_Fields>
-  stddev?: Maybe<Previous_Info_Stddev_Fields>
-  stddev_pop?: Maybe<Previous_Info_Stddev_Pop_Fields>
-  stddev_samp?: Maybe<Previous_Info_Stddev_Samp_Fields>
-  sum?: Maybe<Previous_Info_Sum_Fields>
-  var_pop?: Maybe<Previous_Info_Var_Pop_Fields>
-  var_samp?: Maybe<Previous_Info_Var_Samp_Fields>
-  variance?: Maybe<Previous_Info_Variance_Fields>
-}
-
-/** aggregate fields of "previous_info" */
-export type Previous_Info_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Previous_Info_Select_Column>>
-  distinct?: InputMaybe<Scalars['Boolean']>
-}
-
-/** order by aggregate values of table "previous_info" */
-export type Previous_Info_Aggregate_Order_By = {
-  avg?: InputMaybe<Previous_Info_Avg_Order_By>
-  count?: InputMaybe<Order_By>
-  max?: InputMaybe<Previous_Info_Max_Order_By>
-  min?: InputMaybe<Previous_Info_Min_Order_By>
-  stddev?: InputMaybe<Previous_Info_Stddev_Order_By>
-  stddev_pop?: InputMaybe<Previous_Info_Stddev_Pop_Order_By>
-  stddev_samp?: InputMaybe<Previous_Info_Stddev_Samp_Order_By>
-  sum?: InputMaybe<Previous_Info_Sum_Order_By>
-  var_pop?: InputMaybe<Previous_Info_Var_Pop_Order_By>
-  var_samp?: InputMaybe<Previous_Info_Var_Samp_Order_By>
-  variance?: InputMaybe<Previous_Info_Variance_Order_By>
-}
-
-/** input type for inserting array relation for remote table "previous_info" */
-export type Previous_Info_Arr_Rel_Insert_Input = {
-  data: Array<Previous_Info_Insert_Input>
-  /** upsert condition */
-  on_conflict?: InputMaybe<Previous_Info_On_Conflict>
-}
-
-/** aggregate avg on columns */
-export type Previous_Info_Avg_Fields = {
-  __typename?: 'previous_info_avg_fields'
-  gross_ann_farm?: Maybe<Scalars['Float']>
-  gross_ann_non_farm?: Maybe<Scalars['Float']>
-  household_id?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  member_female?: Maybe<Scalars['Float']>
-  member_male?: Maybe<Scalars['Float']>
-}
-
-/** order by avg() on columns of table "previous_info" */
-export type Previous_Info_Avg_Order_By = {
-  gross_ann_farm?: InputMaybe<Order_By>
-  gross_ann_non_farm?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  member_female?: InputMaybe<Order_By>
-  member_male?: InputMaybe<Order_By>
-}
-
-/** Boolean expression to filter rows from the table "previous_info". All fields are combined with a logical 'AND'. */
-export type Previous_Info_Bool_Exp = {
-  _and?: InputMaybe<Array<Previous_Info_Bool_Exp>>
-  _not?: InputMaybe<Previous_Info_Bool_Exp>
-  _or?: InputMaybe<Array<Previous_Info_Bool_Exp>>
-  extname?: InputMaybe<String_Comparison_Exp>
-  farm_household?: InputMaybe<Farm_Household_Bool_Exp>
-  farming_activity_type?: InputMaybe<String_Comparison_Exp>
-  fname?: InputMaybe<String_Comparison_Exp>
-  gross_ann_farm?: InputMaybe<Numeric_Comparison_Exp>
-  gross_ann_non_farm?: InputMaybe<Numeric_Comparison_Exp>
-  highest_educ?: InputMaybe<String_Comparison_Exp>
-  household_id?: InputMaybe<Int_Comparison_Exp>
-  id?: InputMaybe<Int_Comparison_Exp>
-  ip_membership?: InputMaybe<String_Comparison_Exp>
-  is_4ps?: InputMaybe<Bit_Comparison_Exp>
-  is_head?: InputMaybe<Bit_Comparison_Exp>
-  is_pwd?: InputMaybe<Bit_Comparison_Exp>
-  kind_of_work?: InputMaybe<String_Comparison_Exp>
-  lname?: InputMaybe<String_Comparison_Exp>
-  main_livelihood?: InputMaybe<String_Comparison_Exp>
-  member_female?: InputMaybe<Int_Comparison_Exp>
-  member_male?: InputMaybe<Int_Comparison_Exp>
-  mname?: InputMaybe<String_Comparison_Exp>
-}
-
-/** unique or primary key constraints on table "previous_info" */
-export enum Previous_Info_Constraint {
-  /** unique or primary key constraint */
-  PreviousInfoPk = 'previous_info_pk',
-}
-
-/** input type for incrementing numeric columns in table "previous_info" */
-export type Previous_Info_Inc_Input = {
-  gross_ann_farm?: InputMaybe<Scalars['numeric']>
-  gross_ann_non_farm?: InputMaybe<Scalars['numeric']>
-  household_id?: InputMaybe<Scalars['Int']>
-  id?: InputMaybe<Scalars['Int']>
-  member_female?: InputMaybe<Scalars['Int']>
-  member_male?: InputMaybe<Scalars['Int']>
-}
-
-/** input type for inserting data into table "previous_info" */
-export type Previous_Info_Insert_Input = {
-  extname?: InputMaybe<Scalars['String']>
-  farm_household?: InputMaybe<Farm_Household_Obj_Rel_Insert_Input>
-  farming_activity_type?: InputMaybe<Scalars['String']>
-  fname?: InputMaybe<Scalars['String']>
-  gross_ann_farm?: InputMaybe<Scalars['numeric']>
-  gross_ann_non_farm?: InputMaybe<Scalars['numeric']>
-  highest_educ?: InputMaybe<Scalars['String']>
-  household_id?: InputMaybe<Scalars['Int']>
-  id?: InputMaybe<Scalars['Int']>
-  ip_membership?: InputMaybe<Scalars['String']>
-  is_4ps?: InputMaybe<Scalars['bit']>
-  is_head?: InputMaybe<Scalars['bit']>
-  is_pwd?: InputMaybe<Scalars['bit']>
-  kind_of_work?: InputMaybe<Scalars['String']>
-  lname?: InputMaybe<Scalars['String']>
-  main_livelihood?: InputMaybe<Scalars['String']>
-  member_female?: InputMaybe<Scalars['Int']>
-  member_male?: InputMaybe<Scalars['Int']>
-  mname?: InputMaybe<Scalars['String']>
-}
-
-/** aggregate max on columns */
-export type Previous_Info_Max_Fields = {
-  __typename?: 'previous_info_max_fields'
-  extname?: Maybe<Scalars['String']>
-  farming_activity_type?: Maybe<Scalars['String']>
-  fname?: Maybe<Scalars['String']>
-  gross_ann_farm?: Maybe<Scalars['numeric']>
-  gross_ann_non_farm?: Maybe<Scalars['numeric']>
-  highest_educ?: Maybe<Scalars['String']>
-  household_id?: Maybe<Scalars['Int']>
-  id?: Maybe<Scalars['Int']>
-  ip_membership?: Maybe<Scalars['String']>
-  kind_of_work?: Maybe<Scalars['String']>
-  lname?: Maybe<Scalars['String']>
-  main_livelihood?: Maybe<Scalars['String']>
-  member_female?: Maybe<Scalars['Int']>
-  member_male?: Maybe<Scalars['Int']>
-  mname?: Maybe<Scalars['String']>
-}
-
-/** order by max() on columns of table "previous_info" */
-export type Previous_Info_Max_Order_By = {
-  extname?: InputMaybe<Order_By>
-  farming_activity_type?: InputMaybe<Order_By>
-  fname?: InputMaybe<Order_By>
-  gross_ann_farm?: InputMaybe<Order_By>
-  gross_ann_non_farm?: InputMaybe<Order_By>
-  highest_educ?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  ip_membership?: InputMaybe<Order_By>
-  kind_of_work?: InputMaybe<Order_By>
-  lname?: InputMaybe<Order_By>
-  main_livelihood?: InputMaybe<Order_By>
-  member_female?: InputMaybe<Order_By>
-  member_male?: InputMaybe<Order_By>
-  mname?: InputMaybe<Order_By>
-}
-
-/** aggregate min on columns */
-export type Previous_Info_Min_Fields = {
-  __typename?: 'previous_info_min_fields'
-  extname?: Maybe<Scalars['String']>
-  farming_activity_type?: Maybe<Scalars['String']>
-  fname?: Maybe<Scalars['String']>
-  gross_ann_farm?: Maybe<Scalars['numeric']>
-  gross_ann_non_farm?: Maybe<Scalars['numeric']>
-  highest_educ?: Maybe<Scalars['String']>
-  household_id?: Maybe<Scalars['Int']>
-  id?: Maybe<Scalars['Int']>
-  ip_membership?: Maybe<Scalars['String']>
-  kind_of_work?: Maybe<Scalars['String']>
-  lname?: Maybe<Scalars['String']>
-  main_livelihood?: Maybe<Scalars['String']>
-  member_female?: Maybe<Scalars['Int']>
-  member_male?: Maybe<Scalars['Int']>
-  mname?: Maybe<Scalars['String']>
-}
-
-/** order by min() on columns of table "previous_info" */
-export type Previous_Info_Min_Order_By = {
-  extname?: InputMaybe<Order_By>
-  farming_activity_type?: InputMaybe<Order_By>
-  fname?: InputMaybe<Order_By>
-  gross_ann_farm?: InputMaybe<Order_By>
-  gross_ann_non_farm?: InputMaybe<Order_By>
-  highest_educ?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  ip_membership?: InputMaybe<Order_By>
-  kind_of_work?: InputMaybe<Order_By>
-  lname?: InputMaybe<Order_By>
-  main_livelihood?: InputMaybe<Order_By>
-  member_female?: InputMaybe<Order_By>
-  member_male?: InputMaybe<Order_By>
-  mname?: InputMaybe<Order_By>
-}
-
-/** response of any mutation on the table "previous_info" */
-export type Previous_Info_Mutation_Response = {
-  __typename?: 'previous_info_mutation_response'
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int']
-  /** data from the rows affected by the mutation */
-  returning: Array<Previous_Info>
-}
-
-/** on_conflict condition type for table "previous_info" */
-export type Previous_Info_On_Conflict = {
-  constraint: Previous_Info_Constraint
-  update_columns?: Array<Previous_Info_Update_Column>
-  where?: InputMaybe<Previous_Info_Bool_Exp>
-}
-
-/** Ordering options when selecting data from "previous_info". */
-export type Previous_Info_Order_By = {
-  extname?: InputMaybe<Order_By>
-  farm_household?: InputMaybe<Farm_Household_Order_By>
-  farming_activity_type?: InputMaybe<Order_By>
-  fname?: InputMaybe<Order_By>
-  gross_ann_farm?: InputMaybe<Order_By>
-  gross_ann_non_farm?: InputMaybe<Order_By>
-  highest_educ?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  ip_membership?: InputMaybe<Order_By>
-  is_4ps?: InputMaybe<Order_By>
-  is_head?: InputMaybe<Order_By>
-  is_pwd?: InputMaybe<Order_By>
-  kind_of_work?: InputMaybe<Order_By>
-  lname?: InputMaybe<Order_By>
-  main_livelihood?: InputMaybe<Order_By>
-  member_female?: InputMaybe<Order_By>
-  member_male?: InputMaybe<Order_By>
-  mname?: InputMaybe<Order_By>
-}
-
-/** primary key columns input for table: previous_info */
-export type Previous_Info_Pk_Columns_Input = {
-  id: Scalars['Int']
-}
-
-/** select columns of table "previous_info" */
-export enum Previous_Info_Select_Column {
-  /** column name */
-  Extname = 'extname',
-  /** column name */
-  FarmingActivityType = 'farming_activity_type',
-  /** column name */
-  Fname = 'fname',
-  /** column name */
-  GrossAnnFarm = 'gross_ann_farm',
-  /** column name */
-  GrossAnnNonFarm = 'gross_ann_non_farm',
-  /** column name */
-  HighestEduc = 'highest_educ',
-  /** column name */
-  HouseholdId = 'household_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  IpMembership = 'ip_membership',
-  /** column name */
-  Is_4ps = 'is_4ps',
-  /** column name */
-  IsHead = 'is_head',
-  /** column name */
-  IsPwd = 'is_pwd',
-  /** column name */
-  KindOfWork = 'kind_of_work',
-  /** column name */
-  Lname = 'lname',
-  /** column name */
-  MainLivelihood = 'main_livelihood',
-  /** column name */
-  MemberFemale = 'member_female',
-  /** column name */
-  MemberMale = 'member_male',
-  /** column name */
-  Mname = 'mname',
-}
-
-/** input type for updating data in table "previous_info" */
-export type Previous_Info_Set_Input = {
-  extname?: InputMaybe<Scalars['String']>
-  farming_activity_type?: InputMaybe<Scalars['String']>
-  fname?: InputMaybe<Scalars['String']>
-  gross_ann_farm?: InputMaybe<Scalars['numeric']>
-  gross_ann_non_farm?: InputMaybe<Scalars['numeric']>
-  highest_educ?: InputMaybe<Scalars['String']>
-  household_id?: InputMaybe<Scalars['Int']>
-  id?: InputMaybe<Scalars['Int']>
-  ip_membership?: InputMaybe<Scalars['String']>
-  is_4ps?: InputMaybe<Scalars['bit']>
-  is_head?: InputMaybe<Scalars['bit']>
-  is_pwd?: InputMaybe<Scalars['bit']>
-  kind_of_work?: InputMaybe<Scalars['String']>
-  lname?: InputMaybe<Scalars['String']>
-  main_livelihood?: InputMaybe<Scalars['String']>
-  member_female?: InputMaybe<Scalars['Int']>
-  member_male?: InputMaybe<Scalars['Int']>
-  mname?: InputMaybe<Scalars['String']>
-}
-
-/** aggregate stddev on columns */
-export type Previous_Info_Stddev_Fields = {
-  __typename?: 'previous_info_stddev_fields'
-  gross_ann_farm?: Maybe<Scalars['Float']>
-  gross_ann_non_farm?: Maybe<Scalars['Float']>
-  household_id?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  member_female?: Maybe<Scalars['Float']>
-  member_male?: Maybe<Scalars['Float']>
-}
-
-/** order by stddev() on columns of table "previous_info" */
-export type Previous_Info_Stddev_Order_By = {
-  gross_ann_farm?: InputMaybe<Order_By>
-  gross_ann_non_farm?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  member_female?: InputMaybe<Order_By>
-  member_male?: InputMaybe<Order_By>
-}
-
-/** aggregate stddev_pop on columns */
-export type Previous_Info_Stddev_Pop_Fields = {
-  __typename?: 'previous_info_stddev_pop_fields'
-  gross_ann_farm?: Maybe<Scalars['Float']>
-  gross_ann_non_farm?: Maybe<Scalars['Float']>
-  household_id?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  member_female?: Maybe<Scalars['Float']>
-  member_male?: Maybe<Scalars['Float']>
-}
-
-/** order by stddev_pop() on columns of table "previous_info" */
-export type Previous_Info_Stddev_Pop_Order_By = {
-  gross_ann_farm?: InputMaybe<Order_By>
-  gross_ann_non_farm?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  member_female?: InputMaybe<Order_By>
-  member_male?: InputMaybe<Order_By>
-}
-
-/** aggregate stddev_samp on columns */
-export type Previous_Info_Stddev_Samp_Fields = {
-  __typename?: 'previous_info_stddev_samp_fields'
-  gross_ann_farm?: Maybe<Scalars['Float']>
-  gross_ann_non_farm?: Maybe<Scalars['Float']>
-  household_id?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  member_female?: Maybe<Scalars['Float']>
-  member_male?: Maybe<Scalars['Float']>
-}
-
-/** order by stddev_samp() on columns of table "previous_info" */
-export type Previous_Info_Stddev_Samp_Order_By = {
-  gross_ann_farm?: InputMaybe<Order_By>
-  gross_ann_non_farm?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  member_female?: InputMaybe<Order_By>
-  member_male?: InputMaybe<Order_By>
-}
-
-/** aggregate sum on columns */
-export type Previous_Info_Sum_Fields = {
-  __typename?: 'previous_info_sum_fields'
-  gross_ann_farm?: Maybe<Scalars['numeric']>
-  gross_ann_non_farm?: Maybe<Scalars['numeric']>
-  household_id?: Maybe<Scalars['Int']>
-  id?: Maybe<Scalars['Int']>
-  member_female?: Maybe<Scalars['Int']>
-  member_male?: Maybe<Scalars['Int']>
-}
-
-/** order by sum() on columns of table "previous_info" */
-export type Previous_Info_Sum_Order_By = {
-  gross_ann_farm?: InputMaybe<Order_By>
-  gross_ann_non_farm?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  member_female?: InputMaybe<Order_By>
-  member_male?: InputMaybe<Order_By>
-}
-
-/** update columns of table "previous_info" */
-export enum Previous_Info_Update_Column {
-  /** column name */
-  Extname = 'extname',
-  /** column name */
-  FarmingActivityType = 'farming_activity_type',
-  /** column name */
-  Fname = 'fname',
-  /** column name */
-  GrossAnnFarm = 'gross_ann_farm',
-  /** column name */
-  GrossAnnNonFarm = 'gross_ann_non_farm',
-  /** column name */
-  HighestEduc = 'highest_educ',
-  /** column name */
-  HouseholdId = 'household_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  IpMembership = 'ip_membership',
-  /** column name */
-  Is_4ps = 'is_4ps',
-  /** column name */
-  IsHead = 'is_head',
-  /** column name */
-  IsPwd = 'is_pwd',
-  /** column name */
-  KindOfWork = 'kind_of_work',
-  /** column name */
-  Lname = 'lname',
-  /** column name */
-  MainLivelihood = 'main_livelihood',
-  /** column name */
-  MemberFemale = 'member_female',
-  /** column name */
-  MemberMale = 'member_male',
-  /** column name */
-  Mname = 'mname',
-}
-
-/** aggregate var_pop on columns */
-export type Previous_Info_Var_Pop_Fields = {
-  __typename?: 'previous_info_var_pop_fields'
-  gross_ann_farm?: Maybe<Scalars['Float']>
-  gross_ann_non_farm?: Maybe<Scalars['Float']>
-  household_id?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  member_female?: Maybe<Scalars['Float']>
-  member_male?: Maybe<Scalars['Float']>
-}
-
-/** order by var_pop() on columns of table "previous_info" */
-export type Previous_Info_Var_Pop_Order_By = {
-  gross_ann_farm?: InputMaybe<Order_By>
-  gross_ann_non_farm?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  member_female?: InputMaybe<Order_By>
-  member_male?: InputMaybe<Order_By>
-}
-
-/** aggregate var_samp on columns */
-export type Previous_Info_Var_Samp_Fields = {
-  __typename?: 'previous_info_var_samp_fields'
-  gross_ann_farm?: Maybe<Scalars['Float']>
-  gross_ann_non_farm?: Maybe<Scalars['Float']>
-  household_id?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  member_female?: Maybe<Scalars['Float']>
-  member_male?: Maybe<Scalars['Float']>
-}
-
-/** order by var_samp() on columns of table "previous_info" */
-export type Previous_Info_Var_Samp_Order_By = {
-  gross_ann_farm?: InputMaybe<Order_By>
-  gross_ann_non_farm?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  member_female?: InputMaybe<Order_By>
-  member_male?: InputMaybe<Order_By>
-}
-
-/** aggregate variance on columns */
-export type Previous_Info_Variance_Fields = {
-  __typename?: 'previous_info_variance_fields'
-  gross_ann_farm?: Maybe<Scalars['Float']>
-  gross_ann_non_farm?: Maybe<Scalars['Float']>
-  household_id?: Maybe<Scalars['Float']>
-  id?: Maybe<Scalars['Float']>
-  member_female?: Maybe<Scalars['Float']>
-  member_male?: Maybe<Scalars['Float']>
-}
-
-/** order by variance() on columns of table "previous_info" */
-export type Previous_Info_Variance_Order_By = {
-  gross_ann_farm?: InputMaybe<Order_By>
-  gross_ann_non_farm?: InputMaybe<Order_By>
-  household_id?: InputMaybe<Order_By>
-  id?: InputMaybe<Order_By>
-  member_female?: InputMaybe<Order_By>
-  member_male?: InputMaybe<Order_By>
+  DescNullsLast = 'DESC_NULLS_LAST',
 }
 
 /** columns and relationships of "program" */
 export type Program = {
-  __typename?: 'program'
-  date_end?: Maybe<Scalars['date']>
-  date_start: Scalars['date']
+  __typename?: 'Program'
+  createdAt: Scalars['timestamp']
+  dateEnd?: Maybe<Scalars['date']>
+  dateStart: Scalars['date']
   description: Scalars['String']
-  /** An array relationship */
-  household_program_availments: Array<Household_Program_Availment>
-  /** An aggregate relationship */
-  household_program_availments_aggregate: Household_Program_Availment_Aggregate
-  id: Scalars['Int']
+  id: Scalars['uuid']
   name: Scalars['String']
-  sponsoring_agency?: Maybe<Scalars['String']>
-}
-
-/** columns and relationships of "program" */
-export type ProgramHousehold_Program_AvailmentsArgs = {
-  distinct_on?: InputMaybe<Array<Household_Program_Availment_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Household_Program_Availment_Order_By>>
-  where?: InputMaybe<Household_Program_Availment_Bool_Exp>
-}
-
-/** columns and relationships of "program" */
-export type ProgramHousehold_Program_Availments_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Household_Program_Availment_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Household_Program_Availment_Order_By>>
-  where?: InputMaybe<Household_Program_Availment_Bool_Exp>
+  sponsoringAgency?: Maybe<Scalars['String']>
+  type?: Maybe<Scalars['String']>
+  updatedAt: Scalars['timestamp']
 }
 
 /** aggregated selection of "program" */
-export type Program_Aggregate = {
-  __typename?: 'program_aggregate'
-  aggregate?: Maybe<Program_Aggregate_Fields>
+export type ProgramAggregate = {
+  __typename?: 'ProgramAggregate'
+  aggregate?: Maybe<ProgramAggregateFields>
   nodes: Array<Program>
 }
 
 /** aggregate fields of "program" */
-export type Program_Aggregate_Fields = {
-  __typename?: 'program_aggregate_fields'
-  avg?: Maybe<Program_Avg_Fields>
+export type ProgramAggregateFields = {
+  __typename?: 'ProgramAggregateFields'
   count: Scalars['Int']
-  max?: Maybe<Program_Max_Fields>
-  min?: Maybe<Program_Min_Fields>
-  stddev?: Maybe<Program_Stddev_Fields>
-  stddev_pop?: Maybe<Program_Stddev_Pop_Fields>
-  stddev_samp?: Maybe<Program_Stddev_Samp_Fields>
-  sum?: Maybe<Program_Sum_Fields>
-  var_pop?: Maybe<Program_Var_Pop_Fields>
-  var_samp?: Maybe<Program_Var_Samp_Fields>
-  variance?: Maybe<Program_Variance_Fields>
+  max?: Maybe<ProgramMaxFields>
+  min?: Maybe<ProgramMinFields>
 }
 
 /** aggregate fields of "program" */
-export type Program_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Program_Select_Column>>
+export type ProgramAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<ProgramSelectColumn>>
   distinct?: InputMaybe<Scalars['Boolean']>
 }
 
-/** aggregate avg on columns */
-export type Program_Avg_Fields = {
-  __typename?: 'program_avg_fields'
-  id?: Maybe<Scalars['Float']>
-}
-
 /** Boolean expression to filter rows from the table "program". All fields are combined with a logical 'AND'. */
-export type Program_Bool_Exp = {
-  _and?: InputMaybe<Array<Program_Bool_Exp>>
-  _not?: InputMaybe<Program_Bool_Exp>
-  _or?: InputMaybe<Array<Program_Bool_Exp>>
-  date_end?: InputMaybe<Date_Comparison_Exp>
-  date_start?: InputMaybe<Date_Comparison_Exp>
-  description?: InputMaybe<String_Comparison_Exp>
-  household_program_availments?: InputMaybe<Household_Program_Availment_Bool_Exp>
-  id?: InputMaybe<Int_Comparison_Exp>
-  name?: InputMaybe<String_Comparison_Exp>
-  sponsoring_agency?: InputMaybe<String_Comparison_Exp>
+export type ProgramBoolExp = {
+  _and?: InputMaybe<Array<ProgramBoolExp>>
+  _not?: InputMaybe<ProgramBoolExp>
+  _or?: InputMaybe<Array<ProgramBoolExp>>
+  createdAt?: InputMaybe<TimestampComparisonExp>
+  dateEnd?: InputMaybe<DateComparisonExp>
+  dateStart?: InputMaybe<DateComparisonExp>
+  description?: InputMaybe<StringComparisonExp>
+  id?: InputMaybe<UuidComparisonExp>
+  name?: InputMaybe<StringComparisonExp>
+  sponsoringAgency?: InputMaybe<StringComparisonExp>
+  type?: InputMaybe<StringComparisonExp>
+  updatedAt?: InputMaybe<TimestampComparisonExp>
 }
 
 /** unique or primary key constraints on table "program" */
-export enum Program_Constraint {
-  /** unique or primary key constraint */
+export enum ProgramConstraint {
+  /** unique or primary key constraint on columns "id" */
   ProgramPk = 'program_pk',
 }
 
-/** input type for incrementing numeric columns in table "program" */
-export type Program_Inc_Input = {
-  id?: InputMaybe<Scalars['Int']>
-}
-
 /** input type for inserting data into table "program" */
-export type Program_Insert_Input = {
-  date_end?: InputMaybe<Scalars['date']>
-  date_start?: InputMaybe<Scalars['date']>
+export type ProgramInsertInput = {
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  dateEnd?: InputMaybe<Scalars['date']>
+  dateStart?: InputMaybe<Scalars['date']>
   description?: InputMaybe<Scalars['String']>
-  household_program_availments?: InputMaybe<Household_Program_Availment_Arr_Rel_Insert_Input>
-  id?: InputMaybe<Scalars['Int']>
+  id?: InputMaybe<Scalars['uuid']>
   name?: InputMaybe<Scalars['String']>
-  sponsoring_agency?: InputMaybe<Scalars['String']>
+  sponsoringAgency?: InputMaybe<Scalars['String']>
+  type?: InputMaybe<Scalars['String']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
 }
 
 /** aggregate max on columns */
-export type Program_Max_Fields = {
-  __typename?: 'program_max_fields'
-  date_end?: Maybe<Scalars['date']>
-  date_start?: Maybe<Scalars['date']>
+export type ProgramMaxFields = {
+  __typename?: 'ProgramMaxFields'
+  createdAt?: Maybe<Scalars['timestamp']>
+  dateEnd?: Maybe<Scalars['date']>
+  dateStart?: Maybe<Scalars['date']>
   description?: Maybe<Scalars['String']>
-  id?: Maybe<Scalars['Int']>
+  id?: Maybe<Scalars['uuid']>
   name?: Maybe<Scalars['String']>
-  sponsoring_agency?: Maybe<Scalars['String']>
+  sponsoringAgency?: Maybe<Scalars['String']>
+  type?: Maybe<Scalars['String']>
+  updatedAt?: Maybe<Scalars['timestamp']>
 }
 
 /** aggregate min on columns */
-export type Program_Min_Fields = {
-  __typename?: 'program_min_fields'
-  date_end?: Maybe<Scalars['date']>
-  date_start?: Maybe<Scalars['date']>
+export type ProgramMinFields = {
+  __typename?: 'ProgramMinFields'
+  createdAt?: Maybe<Scalars['timestamp']>
+  dateEnd?: Maybe<Scalars['date']>
+  dateStart?: Maybe<Scalars['date']>
   description?: Maybe<Scalars['String']>
-  id?: Maybe<Scalars['Int']>
+  id?: Maybe<Scalars['uuid']>
   name?: Maybe<Scalars['String']>
-  sponsoring_agency?: Maybe<Scalars['String']>
+  sponsoringAgency?: Maybe<Scalars['String']>
+  type?: Maybe<Scalars['String']>
+  updatedAt?: Maybe<Scalars['timestamp']>
 }
 
 /** response of any mutation on the table "program" */
-export type Program_Mutation_Response = {
-  __typename?: 'program_mutation_response'
+export type ProgramMutationResponse = {
+  __typename?: 'ProgramMutationResponse'
   /** number of rows affected by the mutation */
   affected_rows: Scalars['Int']
   /** data from the rows affected by the mutation */
   returning: Array<Program>
 }
 
-/** input type for inserting object relation for remote table "program" */
-export type Program_Obj_Rel_Insert_Input = {
-  data: Program_Insert_Input
-  /** upsert condition */
-  on_conflict?: InputMaybe<Program_On_Conflict>
-}
-
 /** on_conflict condition type for table "program" */
-export type Program_On_Conflict = {
-  constraint: Program_Constraint
-  update_columns?: Array<Program_Update_Column>
-  where?: InputMaybe<Program_Bool_Exp>
+export type ProgramOnConflict = {
+  constraint: ProgramConstraint
+  update_columns?: Array<ProgramUpdateColumn>
+  where?: InputMaybe<ProgramBoolExp>
 }
 
 /** Ordering options when selecting data from "program". */
-export type Program_Order_By = {
-  date_end?: InputMaybe<Order_By>
-  date_start?: InputMaybe<Order_By>
-  description?: InputMaybe<Order_By>
-  household_program_availments_aggregate?: InputMaybe<Household_Program_Availment_Aggregate_Order_By>
-  id?: InputMaybe<Order_By>
-  name?: InputMaybe<Order_By>
-  sponsoring_agency?: InputMaybe<Order_By>
+export type ProgramOrderBy = {
+  createdAt?: InputMaybe<OrderBy>
+  dateEnd?: InputMaybe<OrderBy>
+  dateStart?: InputMaybe<OrderBy>
+  description?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  name?: InputMaybe<OrderBy>
+  sponsoringAgency?: InputMaybe<OrderBy>
+  type?: InputMaybe<OrderBy>
+  updatedAt?: InputMaybe<OrderBy>
 }
 
 /** primary key columns input for table: program */
-export type Program_Pk_Columns_Input = {
-  id: Scalars['Int']
+export type ProgramPkColumnsInput = {
+  id: Scalars['uuid']
 }
 
 /** select columns of table "program" */
-export enum Program_Select_Column {
+export enum ProgramSelectColumn {
   /** column name */
-  DateEnd = 'date_end',
+  CreatedAt = 'createdAt',
   /** column name */
-  DateStart = 'date_start',
+  DateEnd = 'dateEnd',
+  /** column name */
+  DateStart = 'dateStart',
   /** column name */
   Description = 'description',
   /** column name */
@@ -3135,49 +1978,34 @@ export enum Program_Select_Column {
   /** column name */
   Name = 'name',
   /** column name */
-  SponsoringAgency = 'sponsoring_agency',
+  SponsoringAgency = 'sponsoringAgency',
+  /** column name */
+  Type = 'type',
+  /** column name */
+  UpdatedAt = 'updatedAt',
 }
 
 /** input type for updating data in table "program" */
-export type Program_Set_Input = {
-  date_end?: InputMaybe<Scalars['date']>
-  date_start?: InputMaybe<Scalars['date']>
+export type ProgramSetInput = {
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  dateEnd?: InputMaybe<Scalars['date']>
+  dateStart?: InputMaybe<Scalars['date']>
   description?: InputMaybe<Scalars['String']>
-  id?: InputMaybe<Scalars['Int']>
+  id?: InputMaybe<Scalars['uuid']>
   name?: InputMaybe<Scalars['String']>
-  sponsoring_agency?: InputMaybe<Scalars['String']>
-}
-
-/** aggregate stddev on columns */
-export type Program_Stddev_Fields = {
-  __typename?: 'program_stddev_fields'
-  id?: Maybe<Scalars['Float']>
-}
-
-/** aggregate stddev_pop on columns */
-export type Program_Stddev_Pop_Fields = {
-  __typename?: 'program_stddev_pop_fields'
-  id?: Maybe<Scalars['Float']>
-}
-
-/** aggregate stddev_samp on columns */
-export type Program_Stddev_Samp_Fields = {
-  __typename?: 'program_stddev_samp_fields'
-  id?: Maybe<Scalars['Float']>
-}
-
-/** aggregate sum on columns */
-export type Program_Sum_Fields = {
-  __typename?: 'program_sum_fields'
-  id?: Maybe<Scalars['Int']>
+  sponsoringAgency?: InputMaybe<Scalars['String']>
+  type?: InputMaybe<Scalars['String']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
 }
 
 /** update columns of table "program" */
-export enum Program_Update_Column {
+export enum ProgramUpdateColumn {
   /** column name */
-  DateEnd = 'date_end',
+  CreatedAt = 'createdAt',
   /** column name */
-  DateStart = 'date_start',
+  DateEnd = 'dateEnd',
+  /** column name */
+  DateStart = 'dateStart',
   /** column name */
   Description = 'description',
   /** column name */
@@ -3185,395 +2013,1056 @@ export enum Program_Update_Column {
   /** column name */
   Name = 'name',
   /** column name */
-  SponsoringAgency = 'sponsoring_agency',
+  SponsoringAgency = 'sponsoringAgency',
+  /** column name */
+  Type = 'type',
+  /** column name */
+  UpdatedAt = 'updatedAt',
 }
 
-/** aggregate var_pop on columns */
-export type Program_Var_Pop_Fields = {
-  __typename?: 'program_var_pop_fields'
-  id?: Maybe<Scalars['Float']>
+export type ProgramUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<ProgramSetInput>
+  where: ProgramBoolExp
 }
 
-/** aggregate var_samp on columns */
-export type Program_Var_Samp_Fields = {
-  __typename?: 'program_var_samp_fields'
-  id?: Maybe<Scalars['Float']>
+/** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
+export type StringComparisonExp = {
+  _eq?: InputMaybe<Scalars['String']>
+  _gt?: InputMaybe<Scalars['String']>
+  _gte?: InputMaybe<Scalars['String']>
+  /** does the column match the given case-insensitive pattern */
+  _ilike?: InputMaybe<Scalars['String']>
+  _in?: InputMaybe<Array<Scalars['String']>>
+  /** does the column match the given POSIX regular expression, case insensitive */
+  _iregex?: InputMaybe<Scalars['String']>
+  _isNull?: InputMaybe<Scalars['Boolean']>
+  /** does the column match the given pattern */
+  _like?: InputMaybe<Scalars['String']>
+  _lt?: InputMaybe<Scalars['String']>
+  _lte?: InputMaybe<Scalars['String']>
+  _neq?: InputMaybe<Scalars['String']>
+  /** does the column NOT match the given case-insensitive pattern */
+  _nilike?: InputMaybe<Scalars['String']>
+  _nin?: InputMaybe<Array<Scalars['String']>>
+  /** does the column NOT match the given POSIX regular expression, case insensitive */
+  _niregex?: InputMaybe<Scalars['String']>
+  /** does the column NOT match the given pattern */
+  _nlike?: InputMaybe<Scalars['String']>
+  /** does the column NOT match the given POSIX regular expression, case sensitive */
+  _nregex?: InputMaybe<Scalars['String']>
+  /** does the column NOT match the given SQL regular expression */
+  _nsimilar?: InputMaybe<Scalars['String']>
+  /** does the column match the given POSIX regular expression, case sensitive */
+  _regex?: InputMaybe<Scalars['String']>
+  /** does the column match the given SQL regular expression */
+  _similar?: InputMaybe<Scalars['String']>
 }
 
-/** aggregate variance on columns */
-export type Program_Variance_Fields = {
-  __typename?: 'program_variance_fields'
-  id?: Maybe<Scalars['Float']>
+/** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
+export type TimestampComparisonExp = {
+  _eq?: InputMaybe<Scalars['timestamp']>
+  _gt?: InputMaybe<Scalars['timestamp']>
+  _gte?: InputMaybe<Scalars['timestamp']>
+  _in?: InputMaybe<Array<Scalars['timestamp']>>
+  _isNull?: InputMaybe<Scalars['Boolean']>
+  _lt?: InputMaybe<Scalars['timestamp']>
+  _lte?: InputMaybe<Scalars['timestamp']>
+  _neq?: InputMaybe<Scalars['timestamp']>
+  _nin?: InputMaybe<Array<Scalars['timestamp']>>
+}
+
+/** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
+export type UuidComparisonExp = {
+  _eq?: InputMaybe<Scalars['uuid']>
+  _gt?: InputMaybe<Scalars['uuid']>
+  _gte?: InputMaybe<Scalars['uuid']>
+  _in?: InputMaybe<Array<Scalars['uuid']>>
+  _isNull?: InputMaybe<Scalars['Boolean']>
+  _lt?: InputMaybe<Scalars['uuid']>
+  _lte?: InputMaybe<Scalars['uuid']>
+  _neq?: InputMaybe<Scalars['uuid']>
+  _nin?: InputMaybe<Array<Scalars['uuid']>>
+}
+
+/** Boolean expression to compare columns of type "_text". All fields are combined with logical 'AND'. */
+export type _TextComparisonExp = {
+  _eq?: InputMaybe<Scalars['_text']>
+  _gt?: InputMaybe<Scalars['_text']>
+  _gte?: InputMaybe<Scalars['_text']>
+  _in?: InputMaybe<Array<Scalars['_text']>>
+  _isNull?: InputMaybe<Scalars['Boolean']>
+  _lt?: InputMaybe<Scalars['_text']>
+  _lte?: InputMaybe<Scalars['_text']>
+  _neq?: InputMaybe<Scalars['_text']>
+  _nin?: InputMaybe<Array<Scalars['_text']>>
+}
+
+/** order by avg() on columns of table "annualInfo" */
+export type AnnualInfo_Avg_Order_By = {
+  grossAnnualIncomeFarming?: InputMaybe<OrderBy>
+  grossAnnualIncomeNonfarming?: InputMaybe<OrderBy>
+  year?: InputMaybe<OrderBy>
+}
+
+/** order by max() on columns of table "annualInfo" */
+export type AnnualInfo_Max_Order_By = {
+  associationMembership?: InputMaybe<OrderBy>
+  createdAt?: InputMaybe<OrderBy>
+  farmworkerActivityType?: InputMaybe<OrderBy>
+  fisherActivityType?: InputMaybe<OrderBy>
+  grossAnnualIncomeFarming?: InputMaybe<OrderBy>
+  grossAnnualIncomeNonfarming?: InputMaybe<OrderBy>
+  highestFormalEducation?: InputMaybe<OrderBy>
+  householdId?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  updatedAt?: InputMaybe<OrderBy>
+  year?: InputMaybe<OrderBy>
+}
+
+/** order by min() on columns of table "annualInfo" */
+export type AnnualInfo_Min_Order_By = {
+  associationMembership?: InputMaybe<OrderBy>
+  createdAt?: InputMaybe<OrderBy>
+  farmworkerActivityType?: InputMaybe<OrderBy>
+  fisherActivityType?: InputMaybe<OrderBy>
+  grossAnnualIncomeFarming?: InputMaybe<OrderBy>
+  grossAnnualIncomeNonfarming?: InputMaybe<OrderBy>
+  highestFormalEducation?: InputMaybe<OrderBy>
+  householdId?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  updatedAt?: InputMaybe<OrderBy>
+  year?: InputMaybe<OrderBy>
+}
+
+/** order by stddev() on columns of table "annualInfo" */
+export type AnnualInfo_Stddev_Order_By = {
+  grossAnnualIncomeFarming?: InputMaybe<OrderBy>
+  grossAnnualIncomeNonfarming?: InputMaybe<OrderBy>
+  year?: InputMaybe<OrderBy>
+}
+
+/** order by stddev_pop() on columns of table "annualInfo" */
+export type AnnualInfo_Stddev_Pop_Order_By = {
+  grossAnnualIncomeFarming?: InputMaybe<OrderBy>
+  grossAnnualIncomeNonfarming?: InputMaybe<OrderBy>
+  year?: InputMaybe<OrderBy>
+}
+
+/** order by stddev_samp() on columns of table "annualInfo" */
+export type AnnualInfo_Stddev_Samp_Order_By = {
+  grossAnnualIncomeFarming?: InputMaybe<OrderBy>
+  grossAnnualIncomeNonfarming?: InputMaybe<OrderBy>
+  year?: InputMaybe<OrderBy>
+}
+
+/** Streaming cursor of the table "annualInfo" */
+export type AnnualInfo_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: AnnualInfo_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type AnnualInfo_StreamCursorValueInput = {
+  associationMembership?: InputMaybe<Scalars['String']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  farmworkerActivityType?: InputMaybe<Scalars['String']>
+  fisherActivityType?: InputMaybe<Scalars['String']>
+  grossAnnualIncomeFarming?: InputMaybe<Scalars['numeric']>
+  grossAnnualIncomeNonfarming?: InputMaybe<Scalars['numeric']>
+  highestFormalEducation?: InputMaybe<Scalars['String']>
+  householdId?: InputMaybe<Scalars['uuid']>
+  id?: InputMaybe<Scalars['uuid']>
+  is4PsBeneficiary?: InputMaybe<Scalars['Boolean']>
+  mainLivelihood?: InputMaybe<Scalars['_text']>
+  personWithDisability?: InputMaybe<Scalars['Boolean']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+  year?: InputMaybe<Scalars['Int']>
+}
+
+/** order by sum() on columns of table "annualInfo" */
+export type AnnualInfo_Sum_Order_By = {
+  grossAnnualIncomeFarming?: InputMaybe<OrderBy>
+  grossAnnualIncomeNonfarming?: InputMaybe<OrderBy>
+  year?: InputMaybe<OrderBy>
+}
+
+/** order by var_pop() on columns of table "annualInfo" */
+export type AnnualInfo_Var_Pop_Order_By = {
+  grossAnnualIncomeFarming?: InputMaybe<OrderBy>
+  grossAnnualIncomeNonfarming?: InputMaybe<OrderBy>
+  year?: InputMaybe<OrderBy>
+}
+
+/** order by var_samp() on columns of table "annualInfo" */
+export type AnnualInfo_Var_Samp_Order_By = {
+  grossAnnualIncomeFarming?: InputMaybe<OrderBy>
+  grossAnnualIncomeNonfarming?: InputMaybe<OrderBy>
+  year?: InputMaybe<OrderBy>
+}
+
+/** order by variance() on columns of table "annualInfo" */
+export type AnnualInfo_Variance_Order_By = {
+  grossAnnualIncomeFarming?: InputMaybe<OrderBy>
+  grossAnnualIncomeNonfarming?: InputMaybe<OrderBy>
+  year?: InputMaybe<OrderBy>
+}
+
+/** Streaming cursor of the table "association" */
+export type Association_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: Association_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type Association_StreamCursorValueInput = {
+  active?: InputMaybe<Scalars['Boolean']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  description?: InputMaybe<Scalars['String']>
+  id?: InputMaybe<Scalars['uuid']>
+  name?: InputMaybe<Scalars['String']>
+  shortName?: InputMaybe<Scalars['String']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
+/** order by max() on columns of table "commodity" */
+export type Commodity_Max_Order_By = {
+  commodity?: InputMaybe<OrderBy>
+  commodityType?: InputMaybe<OrderBy>
+  createdAt?: InputMaybe<OrderBy>
+  farmId?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  updatedAt?: InputMaybe<OrderBy>
+}
+
+/** order by min() on columns of table "commodity" */
+export type Commodity_Min_Order_By = {
+  commodity?: InputMaybe<OrderBy>
+  commodityType?: InputMaybe<OrderBy>
+  createdAt?: InputMaybe<OrderBy>
+  farmId?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  updatedAt?: InputMaybe<OrderBy>
+}
+
+/** Streaming cursor of the table "commodity" */
+export type Commodity_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: Commodity_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type Commodity_StreamCursorValueInput = {
+  commodity?: InputMaybe<Scalars['String']>
+  commodityType?: InputMaybe<Scalars['String']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  farmId?: InputMaybe<Scalars['uuid']>
+  id?: InputMaybe<Scalars['uuid']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
+/** Streaming cursor of the table "farm" */
+export type Farm_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: Farm_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type Farm_StreamCursorValueInput = {
+  barangay?: InputMaybe<Scalars['String']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  farmType?: InputMaybe<Scalars['String']>
+  id?: InputMaybe<Scalars['uuid']>
+  isAgrarianReformBeneficiary?: InputMaybe<Scalars['Boolean']>
+  location?: InputMaybe<Scalars['jsonb']>
+  municipality?: InputMaybe<Scalars['String']>
+  ownerName?: InputMaybe<Scalars['String']>
+  ownershipDocument?: InputMaybe<Scalars['String']>
+  ownershipType?: InputMaybe<Scalars['String']>
+  sizeInHaTotal?: InputMaybe<Scalars['numeric']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+  withinAncestralDomain?: InputMaybe<Scalars['Boolean']>
+}
+
+/** Streaming cursor of the table "household" */
+export type Household_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: Household_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type Household_StreamCursorValueInput = {
+  barangay?: InputMaybe<Scalars['String']>
+  civilStatus?: InputMaybe<Scalars['Int']>
+  contactNumber?: InputMaybe<Scalars['bpchar']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  dateOfBirth?: InputMaybe<Scalars['date']>
+  emergencyContactName?: InputMaybe<Scalars['String']>
+  emergencyContactNumber?: InputMaybe<Scalars['bpchar']>
+  extensionName?: InputMaybe<Scalars['String']>
+  femaleCount?: InputMaybe<Scalars['Int']>
+  firstName?: InputMaybe<Scalars['String']>
+  governmentIdNo?: InputMaybe<Scalars['String']>
+  governmentIdType?: InputMaybe<Scalars['String']>
+  highestFormalEducation?: InputMaybe<Scalars['String']>
+  houseLotBldgNo?: InputMaybe<Scalars['String']>
+  id?: InputMaybe<Scalars['uuid']>
+  ipMembership?: InputMaybe<Scalars['String']>
+  is4psBeneficiary?: InputMaybe<Scalars['Boolean']>
+  isHouseholdHead?: InputMaybe<Scalars['Boolean']>
+  lastName?: InputMaybe<Scalars['String']>
+  maleCount?: InputMaybe<Scalars['Int']>
+  middleName?: InputMaybe<Scalars['String']>
+  mothersMaidenName?: InputMaybe<Scalars['String']>
+  municipality?: InputMaybe<Scalars['String']>
+  nameOfHouseholdHead?: InputMaybe<Scalars['String']>
+  nameOfSpouse?: InputMaybe<Scalars['String']>
+  personWithDisability?: InputMaybe<Scalars['Boolean']>
+  placeOfBirth?: InputMaybe<Scalars['String']>
+  province?: InputMaybe<Scalars['String']>
+  referenceNo?: InputMaybe<Scalars['String']>
+  region?: InputMaybe<Scalars['String']>
+  relationshipToHouseholdHead?: InputMaybe<Scalars['String']>
+  religion?: InputMaybe<Scalars['String']>
+  sex?: InputMaybe<Scalars['Int']>
+  streetSitioSubdv?: InputMaybe<Scalars['String']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
+/** mutation root */
+export type Mutation_Root = {
+  __typename?: 'mutation_root'
+  /** delete data from the table: "annualInfo" */
+  deleteAnnualInfo?: Maybe<AnnualInfoMutationResponse>
+  /** delete single row from the table: "annualInfo" */
+  deleteAnnualInfoByPk?: Maybe<AnnualInfo>
+  /** delete data from the table: "association" */
+  deleteAssociation?: Maybe<AssociationMutationResponse>
+  /** delete single row from the table: "association" */
+  deleteAssociationByPk?: Maybe<Association>
+  /** delete data from the table: "commodity" */
+  deleteCommodity?: Maybe<CommodityMutationResponse>
+  /** delete single row from the table: "commodity" */
+  deleteCommodityByPk?: Maybe<Commodity>
+  /** delete data from the table: "farm" */
+  deleteFarm?: Maybe<FarmMutationResponse>
+  /** delete single row from the table: "farm" */
+  deleteFarmByPk?: Maybe<Farm>
+  /** delete data from the table: "household" */
+  deleteHousehold?: Maybe<HouseholdMutationResponse>
+  /** delete single row from the table: "household" */
+  deleteHouseholdByPk?: Maybe<Household>
+  /** delete data from the table: "program" */
+  deleteProgram?: Maybe<ProgramMutationResponse>
+  /** delete single row from the table: "program" */
+  deleteProgramByPk?: Maybe<Program>
+  /** insert data into the table: "annualInfo" */
+  insertAnnualInfo?: Maybe<AnnualInfoMutationResponse>
+  /** insert a single row into the table: "annualInfo" */
+  insertAnnualInfoOne?: Maybe<AnnualInfo>
+  /** insert data into the table: "association" */
+  insertAssociation?: Maybe<AssociationMutationResponse>
+  /** insert a single row into the table: "association" */
+  insertAssociationOne?: Maybe<Association>
+  /** insert data into the table: "commodity" */
+  insertCommodity?: Maybe<CommodityMutationResponse>
+  /** insert a single row into the table: "commodity" */
+  insertCommodityOne?: Maybe<Commodity>
+  /** insert data into the table: "farm" */
+  insertFarm?: Maybe<FarmMutationResponse>
+  /** insert a single row into the table: "farm" */
+  insertFarmOne?: Maybe<Farm>
+  /** insert data into the table: "household" */
+  insertHousehold?: Maybe<HouseholdMutationResponse>
+  /** insert a single row into the table: "household" */
+  insertHouseholdOne?: Maybe<Household>
+  /** insert data into the table: "program" */
+  insertProgram?: Maybe<ProgramMutationResponse>
+  /** insert a single row into the table: "program" */
+  insertProgramOne?: Maybe<Program>
+  /** update data of the table: "annualInfo" */
+  updateAnnualInfo?: Maybe<AnnualInfoMutationResponse>
+  /** update single row of the table: "annualInfo" */
+  updateAnnualInfoByPk?: Maybe<AnnualInfo>
+  /** update multiples rows of table: "annualInfo" */
+  updateAnnualInfoMany?: Maybe<Array<Maybe<AnnualInfoMutationResponse>>>
+  /** update data of the table: "association" */
+  updateAssociation?: Maybe<AssociationMutationResponse>
+  /** update single row of the table: "association" */
+  updateAssociationByPk?: Maybe<Association>
+  /** update multiples rows of table: "association" */
+  updateAssociationMany?: Maybe<Array<Maybe<AssociationMutationResponse>>>
+  /** update data of the table: "commodity" */
+  updateCommodity?: Maybe<CommodityMutationResponse>
+  /** update single row of the table: "commodity" */
+  updateCommodityByPk?: Maybe<Commodity>
+  /** update multiples rows of table: "commodity" */
+  updateCommodityMany?: Maybe<Array<Maybe<CommodityMutationResponse>>>
+  /** update data of the table: "farm" */
+  updateFarm?: Maybe<FarmMutationResponse>
+  /** update single row of the table: "farm" */
+  updateFarmByPk?: Maybe<Farm>
+  /** update multiples rows of table: "farm" */
+  updateFarmMany?: Maybe<Array<Maybe<FarmMutationResponse>>>
+  /** update data of the table: "household" */
+  updateHousehold?: Maybe<HouseholdMutationResponse>
+  /** update single row of the table: "household" */
+  updateHouseholdByPk?: Maybe<Household>
+  /** update multiples rows of table: "household" */
+  updateHouseholdMany?: Maybe<Array<Maybe<HouseholdMutationResponse>>>
+  /** update data of the table: "program" */
+  updateProgram?: Maybe<ProgramMutationResponse>
+  /** update single row of the table: "program" */
+  updateProgramByPk?: Maybe<Program>
+  /** update multiples rows of table: "program" */
+  updateProgramMany?: Maybe<Array<Maybe<ProgramMutationResponse>>>
+}
+
+/** mutation root */
+export type Mutation_RootDeleteAnnualInfoArgs = {
+  where: AnnualInfoBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootDeleteAnnualInfoByPkArgs = {
+  id: Scalars['uuid']
+}
+
+/** mutation root */
+export type Mutation_RootDeleteAssociationArgs = {
+  where: AssociationBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootDeleteAssociationByPkArgs = {
+  id: Scalars['uuid']
+}
+
+/** mutation root */
+export type Mutation_RootDeleteCommodityArgs = {
+  where: CommodityBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootDeleteCommodityByPkArgs = {
+  id: Scalars['uuid']
+}
+
+/** mutation root */
+export type Mutation_RootDeleteFarmArgs = {
+  where: FarmBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootDeleteFarmByPkArgs = {
+  id: Scalars['uuid']
+}
+
+/** mutation root */
+export type Mutation_RootDeleteHouseholdArgs = {
+  where: HouseholdBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootDeleteHouseholdByPkArgs = {
+  id: Scalars['uuid']
+}
+
+/** mutation root */
+export type Mutation_RootDeleteProgramArgs = {
+  where: ProgramBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootDeleteProgramByPkArgs = {
+  id: Scalars['uuid']
+}
+
+/** mutation root */
+export type Mutation_RootInsertAnnualInfoArgs = {
+  objects: Array<AnnualInfoInsertInput>
+  onConflict?: InputMaybe<AnnualInfoOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertAnnualInfoOneArgs = {
+  object: AnnualInfoInsertInput
+  onConflict?: InputMaybe<AnnualInfoOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertAssociationArgs = {
+  objects: Array<AssociationInsertInput>
+  onConflict?: InputMaybe<AssociationOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertAssociationOneArgs = {
+  object: AssociationInsertInput
+  onConflict?: InputMaybe<AssociationOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertCommodityArgs = {
+  objects: Array<CommodityInsertInput>
+  onConflict?: InputMaybe<CommodityOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertCommodityOneArgs = {
+  object: CommodityInsertInput
+  onConflict?: InputMaybe<CommodityOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertFarmArgs = {
+  objects: Array<FarmInsertInput>
+  onConflict?: InputMaybe<FarmOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertFarmOneArgs = {
+  object: FarmInsertInput
+  onConflict?: InputMaybe<FarmOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertHouseholdArgs = {
+  objects: Array<HouseholdInsertInput>
+  onConflict?: InputMaybe<HouseholdOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertHouseholdOneArgs = {
+  object: HouseholdInsertInput
+  onConflict?: InputMaybe<HouseholdOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertProgramArgs = {
+  objects: Array<ProgramInsertInput>
+  onConflict?: InputMaybe<ProgramOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertProgramOneArgs = {
+  object: ProgramInsertInput
+  onConflict?: InputMaybe<ProgramOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootUpdateAnnualInfoArgs = {
+  _inc?: InputMaybe<AnnualInfoIncInput>
+  _set?: InputMaybe<AnnualInfoSetInput>
+  where: AnnualInfoBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootUpdateAnnualInfoByPkArgs = {
+  _inc?: InputMaybe<AnnualInfoIncInput>
+  _set?: InputMaybe<AnnualInfoSetInput>
+  pk_columns: AnnualInfoPkColumnsInput
+}
+
+/** mutation root */
+export type Mutation_RootUpdateAnnualInfoManyArgs = {
+  updates: Array<AnnualInfoUpdates>
+}
+
+/** mutation root */
+export type Mutation_RootUpdateAssociationArgs = {
+  _set?: InputMaybe<AssociationSetInput>
+  where: AssociationBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootUpdateAssociationByPkArgs = {
+  _set?: InputMaybe<AssociationSetInput>
+  pk_columns: AssociationPkColumnsInput
+}
+
+/** mutation root */
+export type Mutation_RootUpdateAssociationManyArgs = {
+  updates: Array<AssociationUpdates>
+}
+
+/** mutation root */
+export type Mutation_RootUpdateCommodityArgs = {
+  _set?: InputMaybe<CommoditySetInput>
+  where: CommodityBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootUpdateCommodityByPkArgs = {
+  _set?: InputMaybe<CommoditySetInput>
+  pk_columns: CommodityPkColumnsInput
+}
+
+/** mutation root */
+export type Mutation_RootUpdateCommodityManyArgs = {
+  updates: Array<CommodityUpdates>
+}
+
+/** mutation root */
+export type Mutation_RootUpdateFarmArgs = {
+  _append?: InputMaybe<FarmAppendInput>
+  _deleteAtPath?: InputMaybe<FarmDeleteAtPathInput>
+  _deleteElem?: InputMaybe<FarmDeleteElemInput>
+  _deleteKey?: InputMaybe<FarmDeleteKeyInput>
+  _inc?: InputMaybe<FarmIncInput>
+  _prepend?: InputMaybe<FarmPrependInput>
+  _set?: InputMaybe<FarmSetInput>
+  where: FarmBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootUpdateFarmByPkArgs = {
+  _append?: InputMaybe<FarmAppendInput>
+  _deleteAtPath?: InputMaybe<FarmDeleteAtPathInput>
+  _deleteElem?: InputMaybe<FarmDeleteElemInput>
+  _deleteKey?: InputMaybe<FarmDeleteKeyInput>
+  _inc?: InputMaybe<FarmIncInput>
+  _prepend?: InputMaybe<FarmPrependInput>
+  _set?: InputMaybe<FarmSetInput>
+  pk_columns: FarmPkColumnsInput
+}
+
+/** mutation root */
+export type Mutation_RootUpdateFarmManyArgs = {
+  updates: Array<FarmUpdates>
+}
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdArgs = {
+  _inc?: InputMaybe<HouseholdIncInput>
+  _set?: InputMaybe<HouseholdSetInput>
+  where: HouseholdBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdByPkArgs = {
+  _inc?: InputMaybe<HouseholdIncInput>
+  _set?: InputMaybe<HouseholdSetInput>
+  pk_columns: HouseholdPkColumnsInput
+}
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdManyArgs = {
+  updates: Array<HouseholdUpdates>
+}
+
+/** mutation root */
+export type Mutation_RootUpdateProgramArgs = {
+  _set?: InputMaybe<ProgramSetInput>
+  where: ProgramBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootUpdateProgramByPkArgs = {
+  _set?: InputMaybe<ProgramSetInput>
+  pk_columns: ProgramPkColumnsInput
+}
+
+/** mutation root */
+export type Mutation_RootUpdateProgramManyArgs = {
+  updates: Array<ProgramUpdates>
+}
+
+/** Streaming cursor of the table "program" */
+export type Program_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: Program_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type Program_StreamCursorValueInput = {
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  dateEnd?: InputMaybe<Scalars['date']>
+  dateStart?: InputMaybe<Scalars['date']>
+  description?: InputMaybe<Scalars['String']>
+  id?: InputMaybe<Scalars['uuid']>
+  name?: InputMaybe<Scalars['String']>
+  sponsoringAgency?: InputMaybe<Scalars['String']>
+  type?: InputMaybe<Scalars['String']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
 }
 
 export type Query_Root = {
   __typename?: 'query_root'
-  /** fetch data from the table: "crop_commodity" */
-  crop_commodity: Array<Crop_Commodity>
-  /** fetch aggregated fields from the table: "crop_commodity" */
-  crop_commodity_aggregate: Crop_Commodity_Aggregate
-  /** fetch data from the table: "crop_commodity" using primary key columns */
-  crop_commodity_by_pk?: Maybe<Crop_Commodity>
+  /** fetch data from the table: "annualInfo" */
+  annualInfo: Array<AnnualInfo>
+  /** fetch aggregated fields from the table: "annualInfo" */
+  annualInfoAggregate: AnnualInfoAggregate
+  /** fetch data from the table: "annualInfo" using primary key columns */
+  annualInfoByPk?: Maybe<AnnualInfo>
+  /** fetch data from the table: "association" */
+  association: Array<Association>
+  /** fetch aggregated fields from the table: "association" */
+  associationAggregate: AssociationAggregate
+  /** fetch data from the table: "association" using primary key columns */
+  associationByPk?: Maybe<Association>
+  /** fetch data from the table: "commodity" */
+  commodity: Array<Commodity>
+  /** fetch aggregated fields from the table: "commodity" */
+  commodityAggregate: CommodityAggregate
+  /** fetch data from the table: "commodity" using primary key columns */
+  commodityByPk?: Maybe<Commodity>
   /** fetch data from the table: "farm" */
   farm: Array<Farm>
   /** fetch aggregated fields from the table: "farm" */
-  farm_aggregate: Farm_Aggregate
+  farmAggregate: FarmAggregate
   /** fetch data from the table: "farm" using primary key columns */
-  farm_by_pk?: Maybe<Farm>
-  /** fetch data from the table: "farm_household" */
-  farm_household: Array<Farm_Household>
-  /** fetch aggregated fields from the table: "farm_household" */
-  farm_household_aggregate: Farm_Household_Aggregate
-  /** fetch data from the table: "farm_household_assignment" */
-  farm_household_assignment: Array<Farm_Household_Assignment>
-  /** fetch aggregated fields from the table: "farm_household_assignment" */
-  farm_household_assignment_aggregate: Farm_Household_Assignment_Aggregate
-  /** fetch data from the table: "farm_household_assignment" using primary key columns */
-  farm_household_assignment_by_pk?: Maybe<Farm_Household_Assignment>
-  /** fetch data from the table: "farm_household" using primary key columns */
-  farm_household_by_pk?: Maybe<Farm_Household>
-  /** fetch data from the table: "household_program_availment" */
-  household_program_availment: Array<Household_Program_Availment>
-  /** fetch aggregated fields from the table: "household_program_availment" */
-  household_program_availment_aggregate: Household_Program_Availment_Aggregate
-  /** fetch data from the table: "household_program_availment" using primary key columns */
-  household_program_availment_by_pk?: Maybe<Household_Program_Availment>
-  /** fetch data from the table: "previous_info" */
-  previous_info: Array<Previous_Info>
-  /** fetch aggregated fields from the table: "previous_info" */
-  previous_info_aggregate: Previous_Info_Aggregate
-  /** fetch data from the table: "previous_info" using primary key columns */
-  previous_info_by_pk?: Maybe<Previous_Info>
+  farmByPk?: Maybe<Farm>
+  /** fetch data from the table: "household" */
+  household: Array<Household>
+  /** fetch aggregated fields from the table: "household" */
+  householdAggregate: HouseholdAggregate
+  /** fetch data from the table: "household" using primary key columns */
+  householdByPk?: Maybe<Household>
   /** fetch data from the table: "program" */
   program: Array<Program>
   /** fetch aggregated fields from the table: "program" */
-  program_aggregate: Program_Aggregate
+  programAggregate: ProgramAggregate
   /** fetch data from the table: "program" using primary key columns */
-  program_by_pk?: Maybe<Program>
+  programByPk?: Maybe<Program>
 }
 
-export type Query_RootCrop_CommodityArgs = {
-  distinct_on?: InputMaybe<Array<Crop_Commodity_Select_Column>>
+export type Query_RootAnnualInfoArgs = {
+  distinctOn?: InputMaybe<Array<AnnualInfoSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Crop_Commodity_Order_By>>
-  where?: InputMaybe<Crop_Commodity_Bool_Exp>
+  orderBy?: InputMaybe<Array<AnnualInfoOrderBy>>
+  where?: InputMaybe<AnnualInfoBoolExp>
 }
 
-export type Query_RootCrop_Commodity_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Crop_Commodity_Select_Column>>
+export type Query_RootAnnualInfoAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AnnualInfoSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Crop_Commodity_Order_By>>
-  where?: InputMaybe<Crop_Commodity_Bool_Exp>
+  orderBy?: InputMaybe<Array<AnnualInfoOrderBy>>
+  where?: InputMaybe<AnnualInfoBoolExp>
 }
 
-export type Query_RootCrop_Commodity_By_PkArgs = {
-  id: Scalars['Int']
+export type Query_RootAnnualInfoByPkArgs = {
+  id: Scalars['uuid']
+}
+
+export type Query_RootAssociationArgs = {
+  distinctOn?: InputMaybe<Array<AssociationSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationOrderBy>>
+  where?: InputMaybe<AssociationBoolExp>
+}
+
+export type Query_RootAssociationAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AssociationSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationOrderBy>>
+  where?: InputMaybe<AssociationBoolExp>
+}
+
+export type Query_RootAssociationByPkArgs = {
+  id: Scalars['uuid']
+}
+
+export type Query_RootCommodityArgs = {
+  distinctOn?: InputMaybe<Array<CommoditySelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<CommodityOrderBy>>
+  where?: InputMaybe<CommodityBoolExp>
+}
+
+export type Query_RootCommodityAggregateArgs = {
+  distinctOn?: InputMaybe<Array<CommoditySelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<CommodityOrderBy>>
+  where?: InputMaybe<CommodityBoolExp>
+}
+
+export type Query_RootCommodityByPkArgs = {
+  id: Scalars['uuid']
 }
 
 export type Query_RootFarmArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Select_Column>>
+  distinctOn?: InputMaybe<Array<FarmSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Order_By>>
-  where?: InputMaybe<Farm_Bool_Exp>
+  orderBy?: InputMaybe<Array<FarmOrderBy>>
+  where?: InputMaybe<FarmBoolExp>
 }
 
-export type Query_RootFarm_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Select_Column>>
+export type Query_RootFarmAggregateArgs = {
+  distinctOn?: InputMaybe<Array<FarmSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Order_By>>
-  where?: InputMaybe<Farm_Bool_Exp>
+  orderBy?: InputMaybe<Array<FarmOrderBy>>
+  where?: InputMaybe<FarmBoolExp>
 }
 
-export type Query_RootFarm_By_PkArgs = {
-  id: Scalars['Int']
+export type Query_RootFarmByPkArgs = {
+  id: Scalars['uuid']
 }
 
-export type Query_RootFarm_HouseholdArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Household_Select_Column>>
+export type Query_RootHouseholdArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Household_Order_By>>
-  where?: InputMaybe<Farm_Household_Bool_Exp>
+  orderBy?: InputMaybe<Array<HouseholdOrderBy>>
+  where?: InputMaybe<HouseholdBoolExp>
 }
 
-export type Query_RootFarm_Household_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Household_Select_Column>>
+export type Query_RootHouseholdAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Household_Order_By>>
-  where?: InputMaybe<Farm_Household_Bool_Exp>
+  orderBy?: InputMaybe<Array<HouseholdOrderBy>>
+  where?: InputMaybe<HouseholdBoolExp>
 }
 
-export type Query_RootFarm_Household_AssignmentArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Household_Assignment_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Household_Assignment_Order_By>>
-  where?: InputMaybe<Farm_Household_Assignment_Bool_Exp>
-}
-
-export type Query_RootFarm_Household_Assignment_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Household_Assignment_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Household_Assignment_Order_By>>
-  where?: InputMaybe<Farm_Household_Assignment_Bool_Exp>
-}
-
-export type Query_RootFarm_Household_Assignment_By_PkArgs = {
-  id: Scalars['Int']
-}
-
-export type Query_RootFarm_Household_By_PkArgs = {
-  id: Scalars['Int']
-}
-
-export type Query_RootHousehold_Program_AvailmentArgs = {
-  distinct_on?: InputMaybe<Array<Household_Program_Availment_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Household_Program_Availment_Order_By>>
-  where?: InputMaybe<Household_Program_Availment_Bool_Exp>
-}
-
-export type Query_RootHousehold_Program_Availment_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Household_Program_Availment_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Household_Program_Availment_Order_By>>
-  where?: InputMaybe<Household_Program_Availment_Bool_Exp>
-}
-
-export type Query_RootHousehold_Program_Availment_By_PkArgs = {
-  id: Scalars['Int']
-}
-
-export type Query_RootPrevious_InfoArgs = {
-  distinct_on?: InputMaybe<Array<Previous_Info_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Previous_Info_Order_By>>
-  where?: InputMaybe<Previous_Info_Bool_Exp>
-}
-
-export type Query_RootPrevious_Info_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Previous_Info_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Previous_Info_Order_By>>
-  where?: InputMaybe<Previous_Info_Bool_Exp>
-}
-
-export type Query_RootPrevious_Info_By_PkArgs = {
-  id: Scalars['Int']
+export type Query_RootHouseholdByPkArgs = {
+  id: Scalars['uuid']
 }
 
 export type Query_RootProgramArgs = {
-  distinct_on?: InputMaybe<Array<Program_Select_Column>>
+  distinctOn?: InputMaybe<Array<ProgramSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Program_Order_By>>
-  where?: InputMaybe<Program_Bool_Exp>
+  orderBy?: InputMaybe<Array<ProgramOrderBy>>
+  where?: InputMaybe<ProgramBoolExp>
 }
 
-export type Query_RootProgram_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Program_Select_Column>>
+export type Query_RootProgramAggregateArgs = {
+  distinctOn?: InputMaybe<Array<ProgramSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Program_Order_By>>
-  where?: InputMaybe<Program_Bool_Exp>
+  orderBy?: InputMaybe<Array<ProgramOrderBy>>
+  where?: InputMaybe<ProgramBoolExp>
 }
 
-export type Query_RootProgram_By_PkArgs = {
-  id: Scalars['Int']
+export type Query_RootProgramByPkArgs = {
+  id: Scalars['uuid']
 }
 
 export type Subscription_Root = {
   __typename?: 'subscription_root'
-  /** fetch data from the table: "crop_commodity" */
-  crop_commodity: Array<Crop_Commodity>
-  /** fetch aggregated fields from the table: "crop_commodity" */
-  crop_commodity_aggregate: Crop_Commodity_Aggregate
-  /** fetch data from the table: "crop_commodity" using primary key columns */
-  crop_commodity_by_pk?: Maybe<Crop_Commodity>
+  /** fetch data from the table: "annualInfo" */
+  annualInfo: Array<AnnualInfo>
+  /** fetch aggregated fields from the table: "annualInfo" */
+  annualInfoAggregate: AnnualInfoAggregate
+  /** fetch data from the table: "annualInfo" using primary key columns */
+  annualInfoByPk?: Maybe<AnnualInfo>
+  /** fetch data from the table in a streaming manner : "annualInfo" */
+  annualInfoStream: Array<AnnualInfo>
+  /** fetch data from the table: "association" */
+  association: Array<Association>
+  /** fetch aggregated fields from the table: "association" */
+  associationAggregate: AssociationAggregate
+  /** fetch data from the table: "association" using primary key columns */
+  associationByPk?: Maybe<Association>
+  /** fetch data from the table in a streaming manner : "association" */
+  associationStream: Array<Association>
+  /** fetch data from the table: "commodity" */
+  commodity: Array<Commodity>
+  /** fetch aggregated fields from the table: "commodity" */
+  commodityAggregate: CommodityAggregate
+  /** fetch data from the table: "commodity" using primary key columns */
+  commodityByPk?: Maybe<Commodity>
+  /** fetch data from the table in a streaming manner : "commodity" */
+  commodityStream: Array<Commodity>
   /** fetch data from the table: "farm" */
   farm: Array<Farm>
   /** fetch aggregated fields from the table: "farm" */
-  farm_aggregate: Farm_Aggregate
+  farmAggregate: FarmAggregate
   /** fetch data from the table: "farm" using primary key columns */
-  farm_by_pk?: Maybe<Farm>
-  /** fetch data from the table: "farm_household" */
-  farm_household: Array<Farm_Household>
-  /** fetch aggregated fields from the table: "farm_household" */
-  farm_household_aggregate: Farm_Household_Aggregate
-  /** fetch data from the table: "farm_household_assignment" */
-  farm_household_assignment: Array<Farm_Household_Assignment>
-  /** fetch aggregated fields from the table: "farm_household_assignment" */
-  farm_household_assignment_aggregate: Farm_Household_Assignment_Aggregate
-  /** fetch data from the table: "farm_household_assignment" using primary key columns */
-  farm_household_assignment_by_pk?: Maybe<Farm_Household_Assignment>
-  /** fetch data from the table: "farm_household" using primary key columns */
-  farm_household_by_pk?: Maybe<Farm_Household>
-  /** fetch data from the table: "household_program_availment" */
-  household_program_availment: Array<Household_Program_Availment>
-  /** fetch aggregated fields from the table: "household_program_availment" */
-  household_program_availment_aggregate: Household_Program_Availment_Aggregate
-  /** fetch data from the table: "household_program_availment" using primary key columns */
-  household_program_availment_by_pk?: Maybe<Household_Program_Availment>
-  /** fetch data from the table: "previous_info" */
-  previous_info: Array<Previous_Info>
-  /** fetch aggregated fields from the table: "previous_info" */
-  previous_info_aggregate: Previous_Info_Aggregate
-  /** fetch data from the table: "previous_info" using primary key columns */
-  previous_info_by_pk?: Maybe<Previous_Info>
+  farmByPk?: Maybe<Farm>
+  /** fetch data from the table in a streaming manner : "farm" */
+  farmStream: Array<Farm>
+  /** fetch data from the table: "household" */
+  household: Array<Household>
+  /** fetch aggregated fields from the table: "household" */
+  householdAggregate: HouseholdAggregate
+  /** fetch data from the table: "household" using primary key columns */
+  householdByPk?: Maybe<Household>
+  /** fetch data from the table in a streaming manner : "household" */
+  householdStream: Array<Household>
   /** fetch data from the table: "program" */
   program: Array<Program>
   /** fetch aggregated fields from the table: "program" */
-  program_aggregate: Program_Aggregate
+  programAggregate: ProgramAggregate
   /** fetch data from the table: "program" using primary key columns */
-  program_by_pk?: Maybe<Program>
+  programByPk?: Maybe<Program>
+  /** fetch data from the table in a streaming manner : "program" */
+  programStream: Array<Program>
 }
 
-export type Subscription_RootCrop_CommodityArgs = {
-  distinct_on?: InputMaybe<Array<Crop_Commodity_Select_Column>>
+export type Subscription_RootAnnualInfoArgs = {
+  distinctOn?: InputMaybe<Array<AnnualInfoSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Crop_Commodity_Order_By>>
-  where?: InputMaybe<Crop_Commodity_Bool_Exp>
+  orderBy?: InputMaybe<Array<AnnualInfoOrderBy>>
+  where?: InputMaybe<AnnualInfoBoolExp>
 }
 
-export type Subscription_RootCrop_Commodity_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Crop_Commodity_Select_Column>>
+export type Subscription_RootAnnualInfoAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AnnualInfoSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Crop_Commodity_Order_By>>
-  where?: InputMaybe<Crop_Commodity_Bool_Exp>
+  orderBy?: InputMaybe<Array<AnnualInfoOrderBy>>
+  where?: InputMaybe<AnnualInfoBoolExp>
 }
 
-export type Subscription_RootCrop_Commodity_By_PkArgs = {
-  id: Scalars['Int']
+export type Subscription_RootAnnualInfoByPkArgs = {
+  id: Scalars['uuid']
+}
+
+export type Subscription_RootAnnualInfoStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<AnnualInfo_StreamCursorInput>>
+  where?: InputMaybe<AnnualInfoBoolExp>
+}
+
+export type Subscription_RootAssociationArgs = {
+  distinctOn?: InputMaybe<Array<AssociationSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationOrderBy>>
+  where?: InputMaybe<AssociationBoolExp>
+}
+
+export type Subscription_RootAssociationAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AssociationSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationOrderBy>>
+  where?: InputMaybe<AssociationBoolExp>
+}
+
+export type Subscription_RootAssociationByPkArgs = {
+  id: Scalars['uuid']
+}
+
+export type Subscription_RootAssociationStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<Association_StreamCursorInput>>
+  where?: InputMaybe<AssociationBoolExp>
+}
+
+export type Subscription_RootCommodityArgs = {
+  distinctOn?: InputMaybe<Array<CommoditySelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<CommodityOrderBy>>
+  where?: InputMaybe<CommodityBoolExp>
+}
+
+export type Subscription_RootCommodityAggregateArgs = {
+  distinctOn?: InputMaybe<Array<CommoditySelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<CommodityOrderBy>>
+  where?: InputMaybe<CommodityBoolExp>
+}
+
+export type Subscription_RootCommodityByPkArgs = {
+  id: Scalars['uuid']
+}
+
+export type Subscription_RootCommodityStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<Commodity_StreamCursorInput>>
+  where?: InputMaybe<CommodityBoolExp>
 }
 
 export type Subscription_RootFarmArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Select_Column>>
+  distinctOn?: InputMaybe<Array<FarmSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Order_By>>
-  where?: InputMaybe<Farm_Bool_Exp>
+  orderBy?: InputMaybe<Array<FarmOrderBy>>
+  where?: InputMaybe<FarmBoolExp>
 }
 
-export type Subscription_RootFarm_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Select_Column>>
+export type Subscription_RootFarmAggregateArgs = {
+  distinctOn?: InputMaybe<Array<FarmSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Order_By>>
-  where?: InputMaybe<Farm_Bool_Exp>
+  orderBy?: InputMaybe<Array<FarmOrderBy>>
+  where?: InputMaybe<FarmBoolExp>
 }
 
-export type Subscription_RootFarm_By_PkArgs = {
-  id: Scalars['Int']
+export type Subscription_RootFarmByPkArgs = {
+  id: Scalars['uuid']
 }
 
-export type Subscription_RootFarm_HouseholdArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Household_Select_Column>>
+export type Subscription_RootFarmStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<Farm_StreamCursorInput>>
+  where?: InputMaybe<FarmBoolExp>
+}
+
+export type Subscription_RootHouseholdArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Household_Order_By>>
-  where?: InputMaybe<Farm_Household_Bool_Exp>
+  orderBy?: InputMaybe<Array<HouseholdOrderBy>>
+  where?: InputMaybe<HouseholdBoolExp>
 }
 
-export type Subscription_RootFarm_Household_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Household_Select_Column>>
+export type Subscription_RootHouseholdAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Household_Order_By>>
-  where?: InputMaybe<Farm_Household_Bool_Exp>
+  orderBy?: InputMaybe<Array<HouseholdOrderBy>>
+  where?: InputMaybe<HouseholdBoolExp>
 }
 
-export type Subscription_RootFarm_Household_AssignmentArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Household_Assignment_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Household_Assignment_Order_By>>
-  where?: InputMaybe<Farm_Household_Assignment_Bool_Exp>
+export type Subscription_RootHouseholdByPkArgs = {
+  id: Scalars['uuid']
 }
 
-export type Subscription_RootFarm_Household_Assignment_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Farm_Household_Assignment_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Farm_Household_Assignment_Order_By>>
-  where?: InputMaybe<Farm_Household_Assignment_Bool_Exp>
-}
-
-export type Subscription_RootFarm_Household_Assignment_By_PkArgs = {
-  id: Scalars['Int']
-}
-
-export type Subscription_RootFarm_Household_By_PkArgs = {
-  id: Scalars['Int']
-}
-
-export type Subscription_RootHousehold_Program_AvailmentArgs = {
-  distinct_on?: InputMaybe<Array<Household_Program_Availment_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Household_Program_Availment_Order_By>>
-  where?: InputMaybe<Household_Program_Availment_Bool_Exp>
-}
-
-export type Subscription_RootHousehold_Program_Availment_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Household_Program_Availment_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Household_Program_Availment_Order_By>>
-  where?: InputMaybe<Household_Program_Availment_Bool_Exp>
-}
-
-export type Subscription_RootHousehold_Program_Availment_By_PkArgs = {
-  id: Scalars['Int']
-}
-
-export type Subscription_RootPrevious_InfoArgs = {
-  distinct_on?: InputMaybe<Array<Previous_Info_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Previous_Info_Order_By>>
-  where?: InputMaybe<Previous_Info_Bool_Exp>
-}
-
-export type Subscription_RootPrevious_Info_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Previous_Info_Select_Column>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Previous_Info_Order_By>>
-  where?: InputMaybe<Previous_Info_Bool_Exp>
-}
-
-export type Subscription_RootPrevious_Info_By_PkArgs = {
-  id: Scalars['Int']
+export type Subscription_RootHouseholdStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<Household_StreamCursorInput>>
+  where?: InputMaybe<HouseholdBoolExp>
 }
 
 export type Subscription_RootProgramArgs = {
-  distinct_on?: InputMaybe<Array<Program_Select_Column>>
+  distinctOn?: InputMaybe<Array<ProgramSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Program_Order_By>>
-  where?: InputMaybe<Program_Bool_Exp>
+  orderBy?: InputMaybe<Array<ProgramOrderBy>>
+  where?: InputMaybe<ProgramBoolExp>
 }
 
-export type Subscription_RootProgram_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Program_Select_Column>>
+export type Subscription_RootProgramAggregateArgs = {
+  distinctOn?: InputMaybe<Array<ProgramSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
   offset?: InputMaybe<Scalars['Int']>
-  order_by?: InputMaybe<Array<Program_Order_By>>
-  where?: InputMaybe<Program_Bool_Exp>
+  orderBy?: InputMaybe<Array<ProgramOrderBy>>
+  where?: InputMaybe<ProgramBoolExp>
 }
 
-export type Subscription_RootProgram_By_PkArgs = {
-  id: Scalars['Int']
+export type Subscription_RootProgramByPkArgs = {
+  id: Scalars['uuid']
+}
+
+export type Subscription_RootProgramStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<Program_StreamCursorInput>>
+  where?: InputMaybe<ProgramBoolExp>
 }
