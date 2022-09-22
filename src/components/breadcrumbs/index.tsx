@@ -1,5 +1,5 @@
 import MuiBreadcrumbs from '@mui/material/Breadcrumbs'
-import Link from 'next/link'
+import Link from '@/components/link'
 import MuiLink from '@mui/material/Link'
 import { useRouter } from 'next/dist/client/router'
 
@@ -21,13 +21,15 @@ export default function Breadcrumbs(props: IBreadcrumbsProps) {
   return (
     <MuiBreadcrumbs className="text-lg py-4" aria-label="breadcrumb">
       {crumbs.map((crumb, i) => (
-        <Link key={crumb.name} href={crumb.link ?? links[i] ?? ''} passHref>
-          <MuiLink
-            variant="h6"
-            color={i === crumbs.length - 1 ? 'primary' : 'inherit'}
-          >
-            {crumb.name}
-          </MuiLink>
+        <Link
+          key={crumb.name}
+          href={crumb.link ?? links[i] ?? ''}
+          passHref
+          variant="h6"
+          underline="none"
+          color={i === crumbs.length - 1 ? 'primary' : 'inherit'}
+        >
+          {crumb.name}
         </Link>
       ))}
     </MuiBreadcrumbs>
