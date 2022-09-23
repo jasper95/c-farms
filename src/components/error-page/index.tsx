@@ -1,5 +1,5 @@
 import Error, { ErrorProps } from 'next/error'
-import Dashboard from '@/components/layout/dashboard.layout'
+import { Dashboard } from '@/components/layout/dashboard.layout'
 
 function ErrorPage(props: ErrorProps) {
   return (

@@ -1,4 +1,4 @@
-import { UseControllerProps } from 'react-hook-form'
+import { UseControllerProps, FieldValues } from 'react-hook-form'
 import { CreatableProps } from 'react-select/creatable'
 
 export type Option = {
@@ -6,5 +6,5 @@ export type Option = {
   value: string
 }
 
-export type ICreatableSelectFieldProps<T> = UseControllerProps<T> &
-  CreatableProps<Option, any, any>
+export type ICreatableSelectFieldProps<T extends FieldValues> =
+  UseControllerProps<T> & CreatableProps<Option, any, any>

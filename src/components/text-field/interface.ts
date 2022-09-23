@@ -1,4 +1,5 @@
 import { TextFieldProps } from '@mui/material/TextField'
-import { UseControllerProps } from 'react-hook-form'
+import { UseControllerProps, FieldValues } from 'react-hook-form'
 
-export type ITextFieldProps<T> = TextFieldProps & UseControllerProps<T>
+export type ITextFieldProps<T extends FieldValues> = TextFieldProps &
+  UseControllerProps<T>
