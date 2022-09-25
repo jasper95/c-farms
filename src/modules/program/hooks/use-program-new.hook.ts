@@ -12,8 +12,13 @@ export function useProgramNew() {
 
   function onSave() {
     programFormProps.handleSubmit((data) => {
+      const { dateRange, ...restData } = data
       onCreate({
-        object: data,
+        object: {
+          dateEnd: data.dateRange[0],
+          dateStart: data.dateRange[1],
+          ...restData,
+        },
       })
     })()
   }

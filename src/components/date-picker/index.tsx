@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField'
 export default function DatePicker<T extends FieldValues>(
   props: IDatePickerProps<T>
 ) {
-  const { control, name, label } = props
+  const { control, name, label, ...restProps } = props
   const controller = useController({
     control,
     name,
@@ -16,10 +16,7 @@ export default function DatePicker<T extends FieldValues>(
   const { field, formState } = controller
   return (
     <DesktopDatePicker
-      // disableToolbar
-      // variant="inline"
-      // format="MM/dd/yyyy"
-      // margin="normal"
+      {...restProps}
       InputProps={field}
       label={label}
       renderInput={(params) => (
@@ -29,12 +26,6 @@ export default function DatePicker<T extends FieldValues>(
           error={Boolean(formState.errors[name])}
         />
       )}
-      // KeyboardButtonProps={{
-      //   'aria-label': 'change date',
-      // }}
-      // autoOk
-      // error={Boolean(formState.errors[name])}
-      // helperText={formState.errors[name]?.message}
       value={field.value ? new Date(field.value) : field.value}
       onChange={(date) => field.onChange(date)}
     />

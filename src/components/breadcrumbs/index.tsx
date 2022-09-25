@@ -1,6 +1,5 @@
 import MuiBreadcrumbs from '@mui/material/Breadcrumbs'
 import Link from '@/components/link'
-import MuiLink from '@mui/material/Link'
 import { useRouter } from 'next/dist/client/router'
 
 type IBreadcrumbsProps = {

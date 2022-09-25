@@ -22,7 +22,7 @@
     "@mui/lab": "^5.0.0-alpha.100",
     "@mui/material": "^5.10.6",
     "@mui/styles": "^5.10.6",
-    "@mui/x-date-pickers": "^5.0.2",
+    "@mui/x-date-pickers": "5.0.2",
     "@types/leaflet-draw": "^1.0.5",
     "@types/lodash": "^4.14.177",
     "aws-amplify": "^4.3.8",
