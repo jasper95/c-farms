@@ -4,9 +4,11 @@ import SearchBar from '@/components/search-bar'
 import Link from '@/components/link'
 import DataTable from '@/components/data-table'
 import { useHouseholdList } from '@/modules/household/hooks'
-import { Dashboard } from '@/components/layout/dashboard.layout'
+import getDashboardLayout, {
+  Dashboard,
+} from '@/components/layout/dashboard.layout'
 
-export default function HouseholdListPage() {
+export default function HouseholdListView() {
   const {
     columns,
     rows,
