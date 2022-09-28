@@ -6,7 +6,7 @@ import DataTable from '@/components/data-table'
 import useProgramList from '@/modules/program/hooks/use-program-list.hook'
 import getDashboardLayout from '@/components/layout/dashboard.layout'
 
-export function ProgramListPage() {
+export default function ProgramListPage() {
   const {
     columns,
     rows,

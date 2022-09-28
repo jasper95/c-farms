@@ -12,7 +12,7 @@ import { useHouseholdNew } from '@/modules/household/hooks/use-household-new.hoo
 import getDashboardLayout from '@/components/layout/dashboard.layout'
 import { FormToolbar } from '@/components/form-toolbar'
 
-export function HouseholdNewPage() {
+export default function HouseholdNewPage() {
   const {
     activeStep,
     topRef,

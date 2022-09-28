@@ -6,7 +6,7 @@ import DataTable from '@/components/data-table'
 import { useHouseholdList } from '@/modules/household/hooks'
 import getDashboardLayout from '@/components/layout/dashboard.layout'
 
-export function HouseholdListPage() {
+export default function HouseholdListPage() {
   const {
     columns,
     rows,
