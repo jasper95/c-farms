@@ -2,7 +2,6 @@ import React, { ReactElement, ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
-import StylesProvider from '@mui/styles/StylesProvider'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
@@ -65,11 +64,9 @@ export default function MyApp(props: AppPropsWithLayout) {
             <StyledEngineProvider injectFirst>
               <ThemeProvider theme={theme}>
                 <CssBaseline />
-                {/* <StylesProvider injectFirst> */}
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   {getLayout(<Component {...pageProps} />)}
                 </LocalizationProvider>
-                {/* </StylesProvider> */}
                 <DialogContainer />
                 <NotificationContainer />
               </ThemeProvider>
