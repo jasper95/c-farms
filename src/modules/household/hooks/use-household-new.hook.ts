@@ -1,5 +1,5 @@
 import { useCreateHouseholdMutation } from '@/modules/household/api/mutations'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import {
   FARM_PROFILE_SCHEMA,
   OTHER_DETAILS_SCHEMA,
@@ -23,10 +23,27 @@ export function useHouseholdNew() {
     defaultValues: FARM_PROFILE_SCHEMA.cast({}),
     resolver: yupResolver(FARM_PROFILE_SCHEMA, { abortEarly: false }),
   })
+  const { getValues: personalInformationGetValues } =
+    personalInformationFormProps
+  const { setValue: otherDetailsFormSetValue } = otherDetailsFormProps
+  const isHouseholdHead = useWatch({
+    control: otherDetailsFormProps.control,
+    name: 'isHouseholdHead',
+  })
+
   const topRef = useRef<HTMLDivElement | null>(null)
   useEffect(() => {
     topRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }, [activeStep])
+
+  useEffect(() => {
+    otherDetailsFormSetValue(
+      'nameOfHouseholdHead',
+      isHouseholdHead
+        ? personalInformationGetValues(['firstName', 'lastName']).join(' ')
+        : ''
+    )
+  }, [otherDetailsFormSetValue, isHouseholdHead, personalInformationGetValues])
 
   return {
     onCreate,

@@ -14,7 +14,7 @@ export default function CheckboxField<T extends FieldValues>(
     <Controller
       control={control}
       name={name}
-      render={({ field, formState }) => (
+      render={({ field }) => (
         <FormControl>
           <FormLabel component="legend">{label}</FormLabel>
           <FormGroup {...field} row>

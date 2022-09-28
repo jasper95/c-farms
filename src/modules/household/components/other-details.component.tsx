@@ -1,15 +1,14 @@
-import RadioSelect from '@/components/radio-select'
 import SelectField from '@/components/select-field'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import {
-  BOOLEAN_OPTION,
   EDUCATION_BACKGROUND_OPTIONS,
   IOtherDetailsSchema,
 } from '@/modules/household/constants'
-import { UseFormReturn } from 'react-hook-form'
+import { UseFormReturn, useWatch } from 'react-hook-form'
 import TextField from '@/components/text-field'
+import SwitchField from '@/components/switch-field'
 
 interface IOtherDetailsProps {
   formProps: UseFormReturn<IOtherDetailsSchema>
@@ -18,35 +17,39 @@ interface IOtherDetailsProps {
 export function OtherDetails(props: IOtherDetailsProps) {
   const { formProps } = props
   const { control } = formProps
+  const isHouseholdHead = useWatch({ control, name: 'isHouseholdHead' })
   return (
     <Grid container spacing={4}>
       <Grid item md={12} xs={12}>
-        <RadioSelect
+        <SwitchField
           control={control}
-          name="nameOfHouseholdHead"
-          options={BOOLEAN_OPTION}
+          name="isHouseholdHead"
           label="Household head"
         />
       </Grid>
-      <Grid item md={12}>
-        <Typography variant="subtitle1">
-          <b>If not a household head,</b>
-        </Typography>
-      </Grid>
-      <Grid item md={4} xs={12}>
-        <TextField
-          control={control}
-          label="Name of household head"
-          name="nameOfHouseholdHead"
-        />
-      </Grid>
-      <Grid item md={4} xs={12}>
-        <TextField
-          control={control}
-          name="relationshipToHouseholdHead"
-          label="Relationship"
-        />
-      </Grid>
+      {!isHouseholdHead && (
+        <>
+          <Grid item md={12}>
+            <Typography variant="subtitle1">
+              <b>If not a household head,</b>
+            </Typography>
+          </Grid>
+          <Grid item md={4} xs={12}>
+            <TextField
+              control={control}
+              label="Name of household head"
+              name="nameOfHouseholdHead"
+            />
+          </Grid>
+          <Grid item md={4} xs={12}>
+            <TextField
+              control={control}
+              name="relationshipToHouseholdHead"
+              label="Relationship"
+            />
+          </Grid>
+        </>
+      )}
       <Grid item md={12}>
         <Typography variant="subtitle1">
           <b>No of living household members:</b>
@@ -76,22 +79,20 @@ export function OtherDetails(props: IOtherDetailsProps) {
           control={control}
           options={EDUCATION_BACKGROUND_OPTIONS}
           label="Highest formal Education"
-          name="highest_education"
+          name="highestFormalEducation"
         />
       </Grid>
       <Grid item md={4}>
-        <RadioSelect
+        <SwitchField
           control={control}
           name="personWithDisability"
-          options={BOOLEAN_OPTION}
           label="Person with disability"
         />
       </Grid>
       <Grid item md={4}>
-        <RadioSelect
+        <SwitchField
           control={control}
           name="is4psBeneficiary"
-          options={BOOLEAN_OPTION}
           label="4P's benificiary"
         />
       </Grid>
