@@ -19,7 +19,7 @@ import {
 
 export type IDialogForm<T extends FieldValues> = {
   defaultValues: UseFormProps<T>['defaultValues']
-  validationSchema?: any
+  validationSchema?: Yup.AnyObjectSchema | Lazy<any>
   onCancel?(): void
   onContinue?(): void
   onValid: SubmitHandler<T>
