@@ -4,7 +4,7 @@ import SearchBar from '@/components/search-bar'
 import Link from '@/components/link'
 import DataTable from '@/components/data-table'
 import useProgramList from '@/modules/program/hooks/use-program-list.hook'
-import getDashboardLayout from '@/components/layout/dashboard.layout'
+import { Dashboard } from '@/components/layout/dashboard.layout'
 
 export default function ProgramListPage() {
   const {
@@ -17,7 +17,7 @@ export default function ProgramListPage() {
     totalRows,
   } = useProgramList()
   return (
-    <>
+    <Dashboard>
       <Breadcrumbs crumbs={[{ name: 'Program' }]} />
       <div className="grid grid-cols-12 gap-4 pb-4">
         <div className="col-span-full md:col-span-4 flex items-center">
@@ -40,8 +40,6 @@ export default function ProgramListPage() {
         showPagination
         loading={listResponse.fetching}
       />
-    </>
+    </Dashboard>
   )
 }
-
-ProgramListPage.getLayout = getDashboardLayout

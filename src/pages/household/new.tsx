@@ -9,7 +9,7 @@ import {
 } from '@/modules/household/components'
 import { CREATE_HOUSEHOLD_STEPS } from '@/modules/household/constants'
 import { useHouseholdNew } from '@/modules/household/hooks/use-household-new.hook'
-import getDashboardLayout from '@/components/layout/dashboard.layout'
+import { Dashboard } from '@/components/layout/dashboard.layout'
 import { FormToolbar } from '@/components/form-toolbar'
 
 export default function HouseholdNewPage() {
@@ -23,7 +23,7 @@ export default function HouseholdNewPage() {
     validateAndNext,
   } = useHouseholdNew()
   return (
-    <>
+    <Dashboard>
       <Breadcrumbs
         crumbs={[{ name: 'Household' }, { name: 'New Household' }]}
       />
@@ -54,8 +54,6 @@ export default function HouseholdNewPage() {
         cancelLabel="Back"
         confirmLabel="Next"
       />
-    </>
+    </Dashboard>
   )
 }
-
-HouseholdNewPage.getLayout = getDashboardLayout
