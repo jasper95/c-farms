@@ -9,6 +9,7 @@ import getDashboardLayout, {
 } from '@/components/layout/dashboard.layout'
 
 export function HouseholdListView() {
+  return <Dashboard>Test</Dashboard>
   const {
     columns,
     rows,
