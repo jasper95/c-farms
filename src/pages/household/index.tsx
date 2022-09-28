@@ -8,7 +8,7 @@ import getDashboardLayout, {
   Dashboard,
 } from '@/components/layout/dashboard.layout'
 
-export function HouseholdListView() {
+export default function HouseholdListView() {
   const {
     columns,
     rows,
