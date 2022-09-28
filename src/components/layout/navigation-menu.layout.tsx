@@ -12,6 +12,7 @@ import { useSidebarStore } from '@/shared/stores/sidebar'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { Theme } from '@mui/material/styles'
 import { useRouter } from 'next/router'
+import ListItemButton from '@mui/material/ListItemButton'
 
 const menuItems = [
   {
@@ -42,25 +43,27 @@ export default function Menu() {
   const router = useRouter()
 
   return (
-    <List>
+    <List disablePadding>
       {menuItems.map((item) => (
-        <Tooltip title={item.primaryText} key={item.path}>
+        <Tooltip title={item.primaryText} key={item.path} placement="right">
           <ListItem
+            disablePadding
             selected={`${item.path}/`.indexOf(`${router.pathname}/`) === 0}
-            component={Link}
-            naked
-            href={item.path}
-            button
-            onClick={() => {
-              if (isSmall) {
-                toggleSidebar()
-              }
-            }}
           >
-            <ListItemIcon>
-              <item.icon />
-            </ListItemIcon>
-            <ListItemText primary={item.primaryText} />
+            <ListItemButton
+              component={Link}
+              href={item.path}
+              onClick={() => {
+                if (isSmall) {
+                  toggleSidebar()
+                }
+              }}
+            >
+              <ListItemIcon>
+                <item.icon />
+              </ListItemIcon>
+              <ListItemText primary={item.primaryText} />
+            </ListItemButton>
           </ListItem>
         </Tooltip>
       ))}
