@@ -4,11 +4,9 @@ import SearchBar from '@/components/search-bar'
 import Link from '@/components/link'
 import DataTable from '@/components/data-table'
 import { useHouseholdList } from '@/modules/household/hooks'
-import getDashboardLayout, {
-  Dashboard,
-} from '@/components/layout/dashboard.layout'
+import getDashboardLayout from '@/components/layout/dashboard.layout'
 
-export default function HouseholdListView() {
+export function HouseholdListPage() {
   const {
     columns,
     rows,
@@ -19,7 +17,7 @@ export default function HouseholdListView() {
     totalRows,
   } = useHouseholdList()
   return (
-    <Dashboard>
+    <>
       <Breadcrumbs crumbs={[{ name: 'Household' }]} />
       <div className="grid grid-cols-12 gap-4 pb-4">
         <div className="col-span-full md:col-span-4 flex items-center">
@@ -42,6 +40,8 @@ export default function HouseholdListView() {
         showPagination
         loading={listResponse.fetching}
       />
-    </Dashboard>
+    </>
   )
 }
+
+HouseholdListPage.getLayout = getDashboardLayout

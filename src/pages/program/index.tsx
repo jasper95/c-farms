@@ -3,13 +3,10 @@ import Button from '@mui/material/Button'
 import SearchBar from '@/components/search-bar'
 import Link from '@/components/link'
 import DataTable from '@/components/data-table'
-import { useHouseholdList } from '@/modules/household/hooks'
-import getDashboardLayout, {
-  Dashboard,
-} from '@/components/layout/dashboard.layout'
+import useProgramList from '@/modules/program/hooks/use-program-list.hook'
+import getDashboardLayout from '@/components/layout/dashboard.layout'
 
-export function HouseholdListView() {
-  return <Dashboard>Test</Dashboard>
+export function ProgramListPage() {
   const {
     columns,
     rows,
@@ -18,15 +15,15 @@ export function HouseholdListView() {
     onSearchChanged,
     listResponse,
     totalRows,
-  } = useHouseholdList()
+  } = useProgramList()
   return (
-    <Dashboard>
-      <Breadcrumbs crumbs={[{ name: 'Household' }]} />
+    <>
+      <Breadcrumbs crumbs={[{ name: 'Program' }]} />
       <div className="grid grid-cols-12 gap-4 pb-4">
         <div className="col-span-full md:col-span-4 flex items-center">
-          <Link href={'/household/new'}>
+          <Link href={'/program/new'}>
             <Button variant="contained" color="primary">
-              Create Household
+              Create Program
             </Button>
           </Link>
         </div>
@@ -43,6 +40,8 @@ export function HouseholdListView() {
         showPagination
         loading={listResponse.fetching}
       />
-    </Dashboard>
+    </>
   )
 }
+
+ProgramListPage.getLayout = getDashboardLayout
