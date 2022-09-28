@@ -7,15 +7,15 @@ import { useHouseholdList } from '@/modules/household/hooks'
 import getDashboardLayout from '@/components/layout/dashboard.layout'
 
 export function HouseholdListView() {
-  const {
-    columns,
-    rows,
-    tableDispatch,
-    tableState,
-    onSearchChanged,
-    listResponse,
-    totalRows,
-  } = useHouseholdList()
+  // const {
+  //   columns,
+  //   rows,
+  //   tableDispatch,
+  //   tableState,
+  //   onSearchChanged,
+  //   listResponse,
+  //   totalRows,
+  // } = useHouseholdList()
   return (
     <>
       <Breadcrumbs crumbs={[{ name: 'Household' }]} />
@@ -27,11 +27,11 @@ export function HouseholdListView() {
             </Button>
           </Link>
         </div>
-        <div className="col-span-full col-start-0 md:col-span-4 md:col-start-9">
+        {/* <div className="col-span-full col-start-0 md:col-span-4 md:col-start-9">
           <SearchBar onChange={onSearchChanged} />
-        </div>
+        </div> */}
       </div>
-      <DataTable
+      {/* <DataTable
         columns={columns}
         tableDispatch={tableDispatch}
         tableState={tableState}
@@ -39,7 +39,7 @@ export function HouseholdListView() {
         rows={rows}
         showPagination
         loading={listResponse.fetching}
-      />
+      /> */}
     </>
   )
 }

@@ -12,7 +12,6 @@ import { Identifiable, ColumnSort, ColumnType } from './types'
 import Column, { StyledTableCell } from './column'
 import { TableState, TableAction } from './table-reducer'
 import get from 'lodash/get'
-import StyledTableRow from './table-row'
 
 import TablePreloader from './pre-loader'
 import { Typography } from '@mui/material'
@@ -101,13 +100,13 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
         </TableHead>
         <TableBody>
           {isEmpty && (
-            <StyledTableRow>
+            <TableRow>
               <StyledTableCell colSpan={columns.length}>
                 <Typography variant="subtitle2" align="center">
                   No records found
                 </Typography>
               </StyledTableCell>
-            </StyledTableRow>
+            </TableRow>
           )}
           {loading && (
             <TablePreloader
@@ -117,7 +116,7 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
           )}
           {!loading &&
             rows.map((row, rowIndex) => (
-              <StyledTableRow
+              <TableRow
                 selected={checkedItems?.includes(`${row.id}`)}
                 key={row.id}
                 onClick={(e) => {
@@ -134,7 +133,7 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
                     row={row}
                   />
                 ))}
-              </StyledTableRow>
+              </TableRow>
             ))}
         </TableBody>
       </Table>
