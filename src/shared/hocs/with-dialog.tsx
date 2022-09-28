@@ -10,30 +10,31 @@ import type Lazy from 'yup/lib/Lazy'
 import React from 'react'
 import pick from 'lodash/pick'
 import {
+  FieldValues,
   SubmitHandler,
   useForm,
   UseFormProps,
   UseFormReturn,
 } from 'react-hook-form'
 
-export type IDialogForm<T> = {
+export type IDialogForm<T extends FieldValues> = {
   defaultValues: UseFormProps<T>['defaultValues']
-  validationSchema?: Yup.AnyObjectSchema | Lazy<any>
+  validationSchema?: any
   onCancel?(): void
   onContinue?(): void
   onValid: SubmitHandler<T>
 }
-export type IWithDialogProps<T> = Omit<
+export type IWithDialogProps<T extends FieldValues> = Omit<
   DialogLayoutProps,
   'onCancel' | 'onContinue' | 'children'
 > &
   IDialogForm<T>
 
-export type IDialogContentProps<T> = {
+export type IDialogContentProps<T extends FieldValues> = {
   formProps: UseFormReturn<T>
 }
 
-export function withDialog<T>(
+export function withDialog<T extends FieldValues>(
   WrappedComponent: React.FC<IDialogContentProps<T>>
 ) {
   const Dialog: React.FC<IWithDialogProps<T>> = (props) => {

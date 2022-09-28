@@ -14,7 +14,7 @@ function SelectField<T extends FieldValues>(props: ISelectFieldProps<T>) {
     <TextField
       variant="outlined"
       {...restProps}
-      error={formState.errors[name]}
+      error={Boolean(formState.errors[name])}
       helperText={formState.errors[name]}
       inputProps={field}
       fullWidth
