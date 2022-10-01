@@ -3912,6 +3912,11 @@
     undici "^5.8.0"
     web-streams-polyfill "^3.2.0"
 
+Leaflet.Deflate@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/Leaflet.Deflate/-/Leaflet.Deflate-2.1.0.tgz#c98651216ac904f3433ec4b1429e27421df5ca5c"
+  integrity sha512-Sr7oIN8x90f39EdhEcp8cpsZp7zLg366ZexO9HBGoezKrJskr6jFvgjmSpRdq62TAm7aqo+f/SGqxCeGZUD7Lg==
+
 abort-controller@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/abort-controller/-/abort-controller-3.0.0.tgz#eaf54d53b62bae4138e809ca225c8439a6efb392"

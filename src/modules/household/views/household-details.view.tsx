@@ -8,14 +8,14 @@ export function HouseholdDetailsView() {
   const router = useRouter()
   const { tab = 'one', id } = router.query
   const crumbs = useMemo(() => {
-    const initial = [{ name: 'Household' }, { name: `${id}` }]
+    const initial = [{ name: 'Household' }, { name: 'Details' }]
     if (tab !== 'one') {
       initial.push({
         name: `${tab}`,
       })
     }
     return initial
-  }, [tab, id])
+  }, [tab])
   return (
     <Dashboard>
       <Breadcrumbs crumbs={crumbs} />
