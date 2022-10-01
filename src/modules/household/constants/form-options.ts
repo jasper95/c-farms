@@ -12,26 +12,26 @@ export const BOOLEAN_OPTION = [
 export const GENDER_OPTIONS = [
   {
     label: 'Male',
-    value: 'M',
+    value: 1,
   },
   {
     label: 'Female',
-    value: 'F',
+    value: 2,
   },
 ]
 
 export const CIVIL_STATUS_OPTIONS = [
   {
     label: 'Single',
-    value: 'Single',
+    value: 1,
   },
   {
     label: 'Married',
-    value: 'Married',
+    value: 2,
   },
   {
     label: 'Widow',
-    value: 'Widow',
+    value: 3,
   },
 ]
 

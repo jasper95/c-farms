@@ -1,25 +1,26 @@
 import Grid from '@mui/material/Grid'
-import FormControl from '@mui/material/FormControl'
-import FormLabel from '@mui/material/FormLabel'
+import SelectField from '@/components/select-field'
 import {
   LIVELIHOOD_OPTIONS,
   IFarmProfileSchema,
+  EDUCATION_BACKGROUND_OPTIONS,
 } from '@/modules/household/constants'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import { UseFormReturn } from 'react-hook-form/dist/types/form'
 import TextField from '@/components/text-field'
 import CreatableSelectField from '@/components/creatable-select-field'
-import CheckboxField from '@/components/checkbox-field'
 import { useState } from 'react'
 import { Option } from '@/components/creatable-select-field/interface'
+import MultiSelectField from '@/components/multi-select-field'
 
 interface IFarmProfile {
   formProps: UseFormReturn<IFarmProfileSchema>
 }
 export function FarmProfile(props: IFarmProfile) {
   const { formProps } = props
-  const { control } = formProps
+  const { control, getValues } = formProps
+
   const [options, setOptions] = useState<Option[]>([])
   return (
     <Grid container spacing={4}>
@@ -28,47 +29,51 @@ export function FarmProfile(props: IFarmProfile) {
           <b>Gross annual income last year:</b>
         </Typography>
       </Grid>
-      <Grid item md={4}>
-        <TextField control={control} label="Farming" name="gross_ann_farming" />
+      <Grid item md={4} xs={12}>
+        <TextField
+          control={control}
+          label="Farming"
+          name="grossAnnualIncomeFarming"
+        />
       </Grid>
-      <Grid item md={4}>
+      <Grid item md={4} xs={12}>
         <TextField
           control={control}
           label="Non-farming"
-          name="gross_ann_farming_non_farming"
-        />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <CheckboxField
-          control={control}
-          name="livelihoods"
-          options={LIVELIHOOD_OPTIONS}
-          label="Main livelihood:"
+          name="grossAnnualIncomeNonfarming"
         />
       </Grid>
       <Grid item xs={12}>
         <Divider />
       </Grid>
-      <Grid item md={6}>
-        <FormControl>
-          <FormLabel component="legend">Kind of work:</FormLabel>
-        </FormControl>
-        <CreatableSelectField
+      <Grid item xs={12} md={4}>
+        <MultiSelectField
           control={control}
-          name="farmworker_activities"
-          placeholder="Type and enter"
-          options={options}
-          onCreateOption={onCreate}
+          name="mainLivelihood"
+          options={LIVELIHOOD_OPTIONS}
+          label="Main livelihood"
         />
       </Grid>
       <Grid item md={6}>
-        <FormControl>
-          <FormLabel component="legend">Type of fishing activity:</FormLabel>
-        </FormControl>
         <CreatableSelectField
           control={control}
-          name="fisherfolk_activities"
-          placeholder="Type and enter"
+          name="farmworkerActivityType"
+          label="Farmer Activities"
+        />
+      </Grid>
+      <Grid item md={6}>
+        <CreatableSelectField
+          control={control}
+          name="fisherActivityType"
+          label="Fisher Activities"
+        />
+      </Grid>
+      <Grid item md={6}>
+        <SelectField
+          control={control}
+          options={EDUCATION_BACKGROUND_OPTIONS}
+          label="Highest formal Education"
+          name="highestFormalEducation"
         />
       </Grid>
       <Grid item xs={12}>

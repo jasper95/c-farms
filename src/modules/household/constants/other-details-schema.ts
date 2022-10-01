@@ -7,7 +7,6 @@ export const OTHER_DETAILS_SCHEMA = yup.object({
   femaleCount: yup.number().default(0),
   governmentIdType: yup.string().default(''),
   governmentIdNo: yup.string().default(''),
-  highestFormalEducation: yup.string().default(''),
   personWithDisability: yup.boolean().default(false),
   is4psBeneficiary: yup.boolean().default(false),
   isHouseholdHead: yup.boolean().default(false),

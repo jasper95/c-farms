@@ -15,23 +15,23 @@ export const PERSONAL_INFORMATION_SCHEMA = yup.object({
     .default(''),
   middleName: yup.string().default(''),
   extensionName: yup.string().default(''),
-  houseNo: yup.string().default(''),
+  houseLotBldgNo: yup.string().default(''),
   referenceNo: yup.string().default(''),
-  street: yup.string().default(''),
-  barangay: yup.string().required(fieldIsRequired).default(''),
+  streetSitioSubdv: yup.string().default(''),
+  barangay: yup.string().required(fieldIsRequired).default('ABIHILAN'),
   municipality: yup.string().required(fieldIsRequired).default('Candijay'),
   province: yup.string().required(fieldIsRequired).default('Bohol'),
   region: yup.string().required(fieldIsRequired).default('VII'),
   contactNumber: yup.string().required(fieldIsRequired).default(''),
   sex: yup
-    .string()
+    .number()
     .oneOf(GENDER_OPTIONS.map((e) => e.value))
-    .default('M'),
-  civil_status: yup
-    .string()
+    .default(1),
+  civilStatus: yup
+    .number()
     .oneOf(CIVIL_STATUS_OPTIONS.map((e) => e.value))
-    .default('Single'),
-  spouse: yup.string().default(''),
+    .default(2),
+  nameOfSpouse: yup.string().default(''),
   mothersMaidenName: yup.string().default(''),
   religion: yup.string().default(''),
   dateOfBirth: yup

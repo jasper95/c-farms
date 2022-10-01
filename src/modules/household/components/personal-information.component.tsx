@@ -10,14 +10,15 @@ import {
 import RadioSelect from '@/components/radio-select'
 import SelectField from '@/components/select-field'
 import DatePicker from '@/components/date-picker'
-import { UseFormReturn } from 'react-hook-form/dist/types'
+import { UseFormReturn, useWatch } from 'react-hook-form'
 
 interface IPersonalInformation {
   formProps: UseFormReturn<IPersonalInformationSchema>
 }
 export function PersonalInformation(props: IPersonalInformation) {
   const { formProps } = props
-  const { control, formState } = formProps
+  const { control } = formProps
+  const civilStatus = useWatch({ control, name: 'civilStatus' })
   return (
     <Grid container spacing={4}>
       <Grid item xs={12} sm={6} md={3}>
@@ -40,10 +41,18 @@ export function PersonalInformation(props: IPersonalInformation) {
         <Divider />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField control={control} label="House/Lot/Bldg No" name="houseNo" />
+        <TextField
+          control={control}
+          label="House/Lot/Bldg No"
+          name="houseLotBldgNo"
+        />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField control={control} label="Street/Sitio/Subdv" name="street" />
+        <TextField
+          control={control}
+          label="Street/Sitio/Subdv"
+          name="streetSitioSubdv"
+        />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
         <SelectField
@@ -68,7 +77,7 @@ export function PersonalInformation(props: IPersonalInformation) {
       <Grid item xs={12}>
         <Divider />
       </Grid>
-      <Grid item xs={12} sm={6} md={3}>
+      <Grid item xs={12} sm={12} md={12}>
         <RadioSelect
           name="sex"
           control={control}
@@ -79,20 +88,21 @@ export function PersonalInformation(props: IPersonalInformation) {
       <Grid item xs={12} sm={6} md={3}>
         <SelectField
           control={control}
-          name="civil_status"
+          name="civilStatus"
           label="Civil Status"
           options={CIVIL_STATUS_OPTIONS}
         />
       </Grid>
-
-      <Grid item xs={12} sm={6} md={3}>
-        <TextField
-          control={control}
-          label="Name of Spouse"
-          name="spouse"
-          variant="outlined"
-        />
-      </Grid>
+      {civilStatus !== 1 && (
+        <Grid item xs={12} sm={6} md={3}>
+          <TextField
+            control={control}
+            label="Name of Spouse"
+            name="nameOfSpouse"
+            variant="outlined"
+          />
+        </Grid>
+      )}
       <Grid item xs={12} sm={6} md={3}>
         <TextField
           control={control}

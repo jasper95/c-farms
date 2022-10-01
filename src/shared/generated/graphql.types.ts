@@ -16,7 +16,6 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
-  _text: any
   bpchar: any
   date: any
   jsonb: any
@@ -30,8 +29,8 @@ export type AnnualInfo = {
   __typename?: 'AnnualInfo'
   associationMembership?: Maybe<Scalars['String']>
   createdAt: Scalars['timestamp']
-  farmworkerActivityType?: Maybe<Scalars['String']>
-  fisherActivityType?: Maybe<Scalars['String']>
+  farmworkerActivityType: Scalars['jsonb']
+  fisherActivityType: Scalars['jsonb']
   grossAnnualIncomeFarming: Scalars['numeric']
   grossAnnualIncomeNonfarming: Scalars['numeric']
   highestFormalEducation: Scalars['String']
@@ -40,10 +39,25 @@ export type AnnualInfo = {
   householdId: Scalars['uuid']
   id: Scalars['uuid']
   is4PsBeneficiary: Scalars['Boolean']
-  mainLivelihood?: Maybe<Scalars['_text']>
+  mainLivelihood: Scalars['jsonb']
   personWithDisability: Scalars['Boolean']
   updatedAt: Scalars['timestamp']
   year: Scalars['Int']
+}
+
+/** columns and relationships of "annualInfo" */
+export type AnnualInfoFarmworkerActivityTypeArgs = {
+  path?: InputMaybe<Scalars['String']>
+}
+
+/** columns and relationships of "annualInfo" */
+export type AnnualInfoFisherActivityTypeArgs = {
+  path?: InputMaybe<Scalars['String']>
+}
+
+/** columns and relationships of "annualInfo" */
+export type AnnualInfoMainLivelihoodArgs = {
+  path?: InputMaybe<Scalars['String']>
 }
 
 /** aggregated selection of "annualInfo" */
@@ -90,6 +104,13 @@ export type AnnualInfoAggregateOrderBy = {
   variance?: InputMaybe<AnnualInfo_Variance_Order_By>
 }
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type AnnualInfoAppendInput = {
+  farmworkerActivityType?: InputMaybe<Scalars['jsonb']>
+  fisherActivityType?: InputMaybe<Scalars['jsonb']>
+  mainLivelihood?: InputMaybe<Scalars['jsonb']>
+}
+
 /** input type for inserting array relation for remote table "annualInfo" */
 export type AnnualInfoArrRelInsertInput = {
   data: Array<AnnualInfoInsertInput>
@@ -112,8 +133,8 @@ export type AnnualInfoBoolExp = {
   _or?: InputMaybe<Array<AnnualInfoBoolExp>>
   associationMembership?: InputMaybe<StringComparisonExp>
   createdAt?: InputMaybe<TimestampComparisonExp>
-  farmworkerActivityType?: InputMaybe<StringComparisonExp>
-  fisherActivityType?: InputMaybe<StringComparisonExp>
+  farmworkerActivityType?: InputMaybe<JsonbComparisonExp>
+  fisherActivityType?: InputMaybe<JsonbComparisonExp>
   grossAnnualIncomeFarming?: InputMaybe<NumericComparisonExp>
   grossAnnualIncomeNonfarming?: InputMaybe<NumericComparisonExp>
   highestFormalEducation?: InputMaybe<StringComparisonExp>
@@ -121,7 +142,7 @@ export type AnnualInfoBoolExp = {
   householdId?: InputMaybe<UuidComparisonExp>
   id?: InputMaybe<UuidComparisonExp>
   is4PsBeneficiary?: InputMaybe<BooleanComparisonExp>
-  mainLivelihood?: InputMaybe<_TextComparisonExp>
+  mainLivelihood?: InputMaybe<JsonbComparisonExp>
   personWithDisability?: InputMaybe<BooleanComparisonExp>
   updatedAt?: InputMaybe<TimestampComparisonExp>
   year?: InputMaybe<IntComparisonExp>
@@ -131,6 +152,27 @@ export type AnnualInfoBoolExp = {
 export enum AnnualInfoConstraint {
   /** unique or primary key constraint on columns "id" */
   AnnualinfoPk = 'annualinfo_pk',
+}
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type AnnualInfoDeleteAtPathInput = {
+  farmworkerActivityType?: InputMaybe<Array<Scalars['String']>>
+  fisherActivityType?: InputMaybe<Array<Scalars['String']>>
+  mainLivelihood?: InputMaybe<Array<Scalars['String']>>
+}
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type AnnualInfoDeleteElemInput = {
+  farmworkerActivityType?: InputMaybe<Scalars['Int']>
+  fisherActivityType?: InputMaybe<Scalars['Int']>
+  mainLivelihood?: InputMaybe<Scalars['Int']>
+}
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type AnnualInfoDeleteKeyInput = {
+  farmworkerActivityType?: InputMaybe<Scalars['String']>
+  fisherActivityType?: InputMaybe<Scalars['String']>
+  mainLivelihood?: InputMaybe<Scalars['String']>
 }
 
 /** input type for incrementing numeric columns in table "annualInfo" */
@@ -144,8 +186,8 @@ export type AnnualInfoIncInput = {
 export type AnnualInfoInsertInput = {
   associationMembership?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
-  farmworkerActivityType?: InputMaybe<Scalars['String']>
-  fisherActivityType?: InputMaybe<Scalars['String']>
+  farmworkerActivityType?: InputMaybe<Scalars['jsonb']>
+  fisherActivityType?: InputMaybe<Scalars['jsonb']>
   grossAnnualIncomeFarming?: InputMaybe<Scalars['numeric']>
   grossAnnualIncomeNonfarming?: InputMaybe<Scalars['numeric']>
   highestFormalEducation?: InputMaybe<Scalars['String']>
@@ -153,7 +195,7 @@ export type AnnualInfoInsertInput = {
   householdId?: InputMaybe<Scalars['uuid']>
   id?: InputMaybe<Scalars['uuid']>
   is4PsBeneficiary?: InputMaybe<Scalars['Boolean']>
-  mainLivelihood?: InputMaybe<Scalars['_text']>
+  mainLivelihood?: InputMaybe<Scalars['jsonb']>
   personWithDisability?: InputMaybe<Scalars['Boolean']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
   year?: InputMaybe<Scalars['Int']>
@@ -164,8 +206,6 @@ export type AnnualInfoMaxFields = {
   __typename?: 'AnnualInfoMaxFields'
   associationMembership?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
-  farmworkerActivityType?: Maybe<Scalars['String']>
-  fisherActivityType?: Maybe<Scalars['String']>
   grossAnnualIncomeFarming?: Maybe<Scalars['numeric']>
   grossAnnualIncomeNonfarming?: Maybe<Scalars['numeric']>
   highestFormalEducation?: Maybe<Scalars['String']>
@@ -180,8 +220,6 @@ export type AnnualInfoMinFields = {
   __typename?: 'AnnualInfoMinFields'
   associationMembership?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
-  farmworkerActivityType?: Maybe<Scalars['String']>
-  fisherActivityType?: Maybe<Scalars['String']>
   grossAnnualIncomeFarming?: Maybe<Scalars['numeric']>
   grossAnnualIncomeNonfarming?: Maybe<Scalars['numeric']>
   highestFormalEducation?: Maybe<Scalars['String']>
@@ -231,6 +269,13 @@ export type AnnualInfoPkColumnsInput = {
   id: Scalars['uuid']
 }
 
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type AnnualInfoPrependInput = {
+  farmworkerActivityType?: InputMaybe<Scalars['jsonb']>
+  fisherActivityType?: InputMaybe<Scalars['jsonb']>
+  mainLivelihood?: InputMaybe<Scalars['jsonb']>
+}
+
 /** select columns of table "annualInfo" */
 export enum AnnualInfoSelectColumn {
   /** column name */
@@ -267,15 +312,15 @@ export enum AnnualInfoSelectColumn {
 export type AnnualInfoSetInput = {
   associationMembership?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
-  farmworkerActivityType?: InputMaybe<Scalars['String']>
-  fisherActivityType?: InputMaybe<Scalars['String']>
+  farmworkerActivityType?: InputMaybe<Scalars['jsonb']>
+  fisherActivityType?: InputMaybe<Scalars['jsonb']>
   grossAnnualIncomeFarming?: InputMaybe<Scalars['numeric']>
   grossAnnualIncomeNonfarming?: InputMaybe<Scalars['numeric']>
   highestFormalEducation?: InputMaybe<Scalars['String']>
   householdId?: InputMaybe<Scalars['uuid']>
   id?: InputMaybe<Scalars['uuid']>
   is4PsBeneficiary?: InputMaybe<Scalars['Boolean']>
-  mainLivelihood?: InputMaybe<Scalars['_text']>
+  mainLivelihood?: InputMaybe<Scalars['jsonb']>
   personWithDisability?: InputMaybe<Scalars['Boolean']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
   year?: InputMaybe<Scalars['Int']>
@@ -346,8 +391,18 @@ export enum AnnualInfoUpdateColumn {
 }
 
 export type AnnualInfoUpdates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<AnnualInfoAppendInput>
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _deleteAtPath?: InputMaybe<AnnualInfoDeleteAtPathInput>
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _deleteElem?: InputMaybe<AnnualInfoDeleteElemInput>
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _deleteKey?: InputMaybe<AnnualInfoDeleteKeyInput>
   /** increments the numeric columns with given value of the filtered values */
   _inc?: InputMaybe<AnnualInfoIncInput>
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<AnnualInfoPrependInput>
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<AnnualInfoSetInput>
   where: AnnualInfoBoolExp
@@ -2085,19 +2140,6 @@ export type UuidComparisonExp = {
   _nin?: InputMaybe<Array<Scalars['uuid']>>
 }
 
-/** Boolean expression to compare columns of type "_text". All fields are combined with logical 'AND'. */
-export type _TextComparisonExp = {
-  _eq?: InputMaybe<Scalars['_text']>
-  _gt?: InputMaybe<Scalars['_text']>
-  _gte?: InputMaybe<Scalars['_text']>
-  _in?: InputMaybe<Array<Scalars['_text']>>
-  _isNull?: InputMaybe<Scalars['Boolean']>
-  _lt?: InputMaybe<Scalars['_text']>
-  _lte?: InputMaybe<Scalars['_text']>
-  _neq?: InputMaybe<Scalars['_text']>
-  _nin?: InputMaybe<Array<Scalars['_text']>>
-}
-
 /** order by avg() on columns of table "annualInfo" */
 export type AnnualInfo_Avg_Order_By = {
   grossAnnualIncomeFarming?: InputMaybe<OrderBy>
@@ -2109,8 +2151,6 @@ export type AnnualInfo_Avg_Order_By = {
 export type AnnualInfo_Max_Order_By = {
   associationMembership?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
-  farmworkerActivityType?: InputMaybe<OrderBy>
-  fisherActivityType?: InputMaybe<OrderBy>
   grossAnnualIncomeFarming?: InputMaybe<OrderBy>
   grossAnnualIncomeNonfarming?: InputMaybe<OrderBy>
   highestFormalEducation?: InputMaybe<OrderBy>
@@ -2124,8 +2164,6 @@ export type AnnualInfo_Max_Order_By = {
 export type AnnualInfo_Min_Order_By = {
   associationMembership?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
-  farmworkerActivityType?: InputMaybe<OrderBy>
-  fisherActivityType?: InputMaybe<OrderBy>
   grossAnnualIncomeFarming?: InputMaybe<OrderBy>
   grossAnnualIncomeNonfarming?: InputMaybe<OrderBy>
   highestFormalEducation?: InputMaybe<OrderBy>
@@ -2168,15 +2206,15 @@ export type AnnualInfo_StreamCursorInput = {
 export type AnnualInfo_StreamCursorValueInput = {
   associationMembership?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
-  farmworkerActivityType?: InputMaybe<Scalars['String']>
-  fisherActivityType?: InputMaybe<Scalars['String']>
+  farmworkerActivityType?: InputMaybe<Scalars['jsonb']>
+  fisherActivityType?: InputMaybe<Scalars['jsonb']>
   grossAnnualIncomeFarming?: InputMaybe<Scalars['numeric']>
   grossAnnualIncomeNonfarming?: InputMaybe<Scalars['numeric']>
   highestFormalEducation?: InputMaybe<Scalars['String']>
   householdId?: InputMaybe<Scalars['uuid']>
   id?: InputMaybe<Scalars['uuid']>
   is4PsBeneficiary?: InputMaybe<Scalars['Boolean']>
-  mainLivelihood?: InputMaybe<Scalars['_text']>
+  mainLivelihood?: InputMaybe<Scalars['jsonb']>
   personWithDisability?: InputMaybe<Scalars['Boolean']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
   year?: InputMaybe<Scalars['Int']>
@@ -2562,14 +2600,24 @@ export type Mutation_RootInsertProgramOneArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdateAnnualInfoArgs = {
+  _append?: InputMaybe<AnnualInfoAppendInput>
+  _deleteAtPath?: InputMaybe<AnnualInfoDeleteAtPathInput>
+  _deleteElem?: InputMaybe<AnnualInfoDeleteElemInput>
+  _deleteKey?: InputMaybe<AnnualInfoDeleteKeyInput>
   _inc?: InputMaybe<AnnualInfoIncInput>
+  _prepend?: InputMaybe<AnnualInfoPrependInput>
   _set?: InputMaybe<AnnualInfoSetInput>
   where: AnnualInfoBoolExp
 }
 
 /** mutation root */
 export type Mutation_RootUpdateAnnualInfoByPkArgs = {
+  _append?: InputMaybe<AnnualInfoAppendInput>
+  _deleteAtPath?: InputMaybe<AnnualInfoDeleteAtPathInput>
+  _deleteElem?: InputMaybe<AnnualInfoDeleteElemInput>
+  _deleteKey?: InputMaybe<AnnualInfoDeleteKeyInput>
   _inc?: InputMaybe<AnnualInfoIncInput>
+  _prepend?: InputMaybe<AnnualInfoPrependInput>
   _set?: InputMaybe<AnnualInfoSetInput>
   pk_columns: AnnualInfoPkColumnsInput
 }

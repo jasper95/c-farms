@@ -65,15 +65,31 @@ export function useHouseholdNew() {
   }
 
   async function onSave() {
-    // const data = {
-    //   ...personalInformationFormProps.getValues(),
-    //   ...otherDetailsFormProps.getValues(),
-    // }
-    // console.log('data: ', data)
-    // console.log('adfadsf', farmProfileFormProps.getValues())
-    // onCreate({
-    //   object: {},
-    // })
+    const household = {
+      ...personalInformationFormProps.getValues(),
+      ...otherDetailsFormProps.getValues(),
+    }
+    const annualInfo = {
+      ...farmProfileFormProps.getValues(),
+      year: new Date().getFullYear(),
+    }
+    const response = await onCreate({
+      object: {
+        ...household,
+        annualInfos: {
+          data: [
+            {
+              ...annualInfo,
+              farmworkerActivityType: JSON.stringify(
+                annualInfo.farmworkerActivityType
+              ),
+              fisherActivityType: JSON.stringify(annualInfo.fisherActivityType),
+              mainLivelihood: JSON.stringify(annualInfo.mainLivelihood),
+            },
+          ],
+        },
+      },
+    })
   }
 
   function validateAndNext() {

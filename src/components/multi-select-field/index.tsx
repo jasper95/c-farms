@@ -1,12 +1,14 @@
-import TextField from '@mui/material/TextField'
-import Autocomplete from '@mui/material/Autocomplete'
-import { ISelectFieldProps } from './interface'
 import { FieldValues, useController } from 'react-hook-form'
+import { MultiSelectFieldProps } from './interface'
+import Autocomplete from '@mui/material/Autocomplete'
+import TextField from '@mui/material/TextField'
 import { useMemo } from 'react'
 import keyBy from 'lodash/keyBy'
 
-function SelectField<T extends FieldValues>(props: ISelectFieldProps<T>) {
-  const { options, label, placeholder, control, name, ...restProps } = props
+export default function MultiSelectField<T extends FieldValues>(
+  props: MultiSelectFieldProps<T>
+) {
+  const { options, label, control, name } = props
   const controller = useController({
     control,
     name,
@@ -16,17 +18,15 @@ function SelectField<T extends FieldValues>(props: ISelectFieldProps<T>) {
   const optionsMap = useMemo(() => keyBy(options, 'value'), [options])
   return (
     <Autocomplete
-      disableClearable
-      options={options.map((e) => e.value)}
-      getOptionLabel={(e) => optionsMap[`${e}`]?.label ?? ''}
       {...restField}
+      multiple
+      options={options.map((e) => e.value)}
+      value={value}
       onChange={(_, newValue) => {
         onChange(newValue)
       }}
-      value={value}
+      getOptionLabel={(val) => optionsMap[val]?.label ?? ''}
       renderInput={(params) => <TextField label={label} {...params} />}
     />
   )
 }
-
-export default SelectField

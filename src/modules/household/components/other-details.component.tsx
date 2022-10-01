@@ -1,11 +1,7 @@
-import SelectField from '@/components/select-field'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import {
-  EDUCATION_BACKGROUND_OPTIONS,
-  IOtherDetailsSchema,
-} from '@/modules/household/constants'
+import { IOtherDetailsSchema } from '@/modules/household/constants'
 import { UseFormReturn, useWatch } from 'react-hook-form'
 import TextField from '@/components/text-field'
 import SwitchField from '@/components/switch-field'
@@ -75,28 +71,6 @@ export function OtherDetails(props: IOtherDetailsProps) {
         <Divider />
       </Grid>
       <Grid item md={4}>
-        <SelectField
-          control={control}
-          options={EDUCATION_BACKGROUND_OPTIONS}
-          label="Highest formal Education"
-          name="highestFormalEducation"
-        />
-      </Grid>
-      <Grid item md={4}>
-        <SwitchField
-          control={control}
-          name="personWithDisability"
-          label="Person with disability"
-        />
-      </Grid>
-      <Grid item md={4}>
-        <SwitchField
-          control={control}
-          name="is4psBeneficiary"
-          label="4P's benificiary"
-        />
-      </Grid>
-      <Grid item md={4}>
         <TextField
           control={control}
           name="ipMembership"
@@ -116,6 +90,20 @@ export function OtherDetails(props: IOtherDetailsProps) {
           name="governmentIdNo"
           label="Government ID No."
           type="text"
+        />
+      </Grid>
+      <Grid item md={4}>
+        <SwitchField
+          control={control}
+          name="personWithDisability"
+          label="Person with disability"
+        />
+      </Grid>
+      <Grid item md={4}>
+        <SwitchField
+          control={control}
+          name="is4psBeneficiary"
+          label="4P's benificiary"
         />
       </Grid>
       <Grid item xs={12}>
