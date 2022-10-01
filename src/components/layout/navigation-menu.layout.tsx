@@ -13,6 +13,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import { Theme } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import ListItemButton from '@mui/material/ListItemButton'
+import ListAltIcon from '@mui/icons-material/ListAlt'
 
 const menuItems = [
   {
@@ -26,7 +27,7 @@ const menuItems = [
     path: '/household',
   },
   {
-    icon: PeopleIcon,
+    icon: ListAltIcon,
     primaryText: 'Program',
     path: '/program',
   },
