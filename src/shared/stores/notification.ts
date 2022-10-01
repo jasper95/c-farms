@@ -11,6 +11,7 @@ type NotificationsStore = {
   notifications: Notification[]
   addNotification: (notification: Omit<Notification, 'id'>) => void
   dismissNotification: (id: string) => void
+  notifySuccess: (message: string) => void
 }
 
 export const useNotificationStore = create<NotificationsStore>((set) => ({
@@ -20,6 +21,13 @@ export const useNotificationStore = create<NotificationsStore>((set) => ({
       notifications: [
         ...state.notifications,
         { id: nanoid(), ...notification },
+      ],
+    })),
+  notifySuccess: (message: string) =>
+    set((state) => ({
+      notifications: [
+        ...state.notifications,
+        { id: nanoid(), message, type: 'success' },
       ],
     })),
   dismissNotification: (id) =>

@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles'
 import Toolbar from '@mui/material/Toolbar'
 import Button from '@mui/material/Button'
+import LoadingButton from '@mui/lab/LoadingButton'
 import { grey } from '@mui/material/colors'
 
 const PREFIX = 'index'
@@ -24,6 +25,7 @@ export interface FormToolbarProps {
   confirmVisible?: boolean
   cancelLabel?: string
   confirmLabel?: string
+  loading?: boolean
 }
 
 export function FormToolbar(props: FormToolbarProps) {
@@ -36,6 +38,7 @@ export function FormToolbar(props: FormToolbarProps) {
     confirmVisible,
     cancelLabel = 'Cancel',
     confirmLabel = 'Save',
+    loading,
   } = props
   return (
     <StyledToolbar
@@ -49,14 +52,15 @@ export function FormToolbar(props: FormToolbarProps) {
         )}
       </div>
       <div className="justify-self-end">
-        <Button
+        <LoadingButton
           disabled={confirmDisabled}
           variant="contained"
           color="primary"
           onClick={onConfirm}
+          loading={loading}
         >
           {confirmLabel}
-        </Button>
+        </LoadingButton>
       </div>
     </StyledToolbar>
   )

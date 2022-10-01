@@ -12,9 +12,9 @@ interface ProgramFormProps {
 export default function ProgramForm(props: ProgramFormProps) {
   const { control } = props.formProps
   return (
-    <Grid sx={{ my: 0 }} container spacing={4}>
+    <Grid sx={{ my: 0 }} container spacing={3}>
       <Grid item xs={12} md={6}>
-        <Grid container spacing={4}>
+        <Grid container spacing={3}>
           <Grid item xs={12}>
             <TextField control={control} name="name" label="Program Name" />
           </Grid>
@@ -30,7 +30,7 @@ export default function ProgramForm(props: ProgramFormProps) {
         </Grid>
       </Grid>
       <Grid item xs={12} md={6}>
-        <Grid container spacing={4}>
+        <Grid container spacing={3}>
           <Grid item xs={12}>
             <TextField control={control} name="type" label="Type" />
           </Grid>

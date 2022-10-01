@@ -21,6 +21,7 @@ export default function Notification(props: NotificationProps) {
       open
       autoHideDuration={6000}
       onClose={() => onDismiss(notification.id)}
+      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
     >
       <MuiAlert
         onClose={() => onDismiss(notification.id)}

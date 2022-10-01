@@ -10,7 +10,6 @@ import theme from '@/shared/theme'
 import { AppProps } from 'next/dist/shared/lib/router/router'
 import DialogContainer from '@/components/layout/dialog-container.layout'
 import NotificationContainer from '@/components/layout/notification-container.layout'
-import { SnackbarProvider } from 'notistack'
 import { Provider as UrqlProvider } from 'urql'
 
 import Amplify from 'aws-amplify'
@@ -59,20 +58,18 @@ export default function MyApp(props: AppPropsWithLayout) {
             content="minimum-scale=1, initial-scale=1, width=device-width"
           />
         </Head>
-        <SnackbarProvider>
-          <CacheProvider value={emotionCache}>
-            <StyledEngineProvider injectFirst>
-              <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  {getLayout(<Component {...pageProps} />)}
-                </LocalizationProvider>
-                <DialogContainer />
-                <NotificationContainer />
-              </ThemeProvider>
-            </StyledEngineProvider>
-          </CacheProvider>
-        </SnackbarProvider>
+        <CacheProvider value={emotionCache}>
+          <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                {getLayout(<Component {...pageProps} />)}
+              </LocalizationProvider>
+              <DialogContainer />
+              <NotificationContainer />
+            </ThemeProvider>
+          </StyledEngineProvider>
+        </CacheProvider>
       </React.Fragment>
     </UrqlProvider>
   )

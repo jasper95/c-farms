@@ -20,7 +20,7 @@ export function PersonalInformation(props: IPersonalInformation) {
   const { control } = formProps
   const civilStatus = useWatch({ control, name: 'civilStatus' })
   return (
-    <Grid container spacing={4}>
+    <Grid container spacing={3}>
       <Grid item xs={12} sm={6} md={3}>
         <TextField control={control} name="lastName" label="Surname" />
       </Grid>
