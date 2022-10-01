@@ -4,6 +4,7 @@ export {
   CIVIL_STATUS_OPTIONS,
   LIVELIHOOD_OPTIONS,
   EDUCATION_BACKGROUND_OPTIONS,
+  BARANGAY_OPTIONS,
 } from './form-options'
 
 export { CREATE_HOUSEHOLD_STEPS } from './create-household-steps'

@@ -50,6 +50,30 @@ export const LIVELIHOOD_OPTIONS = [
   },
 ]
 
+export const BARANGAY_OPTIONS = [
+  'ABIHILAN',
+  'ANOLING',
+  'BOYOAN',
+  'CADAPDAPAN',
+  'CAMBANE',
+  'CANAWA',
+  'CAN-OLIN',
+  'COGTONG',
+  'LA UNION',
+  'LUAN',
+  'LUNGSODAAN',
+  'MAHANGIN',
+  'PAGAHAT',
+  'PANADTARAN',
+  'PANAS',
+  'POBLACION',
+  'SAN ISIDRO',
+  'TAMBONGAN',
+  'TAWID',
+  'TUBOD',
+  'TUGAS',
+].map((e) => ({ label: e, value: e }))
+
 export const EDUCATION_BACKGROUND_OPTIONS = [
   'Elementary Level',
   'Elementary Graduate',

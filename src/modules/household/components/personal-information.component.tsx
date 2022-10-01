@@ -5,6 +5,7 @@ import {
   CIVIL_STATUS_OPTIONS,
   GENDER_OPTIONS,
   IPersonalInformationSchema,
+  BARANGAY_OPTIONS,
 } from '@/modules/household/constants'
 import RadioSelect from '@/components/radio-select'
 import SelectField from '@/components/select-field'
@@ -45,7 +46,12 @@ export function PersonalInformation(props: IPersonalInformation) {
         <TextField control={control} label="Street/Sitio/Subdv" name="street" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField control={control} label="Barangay" name="barangay" />
+        <SelectField
+          control={control}
+          label="Barangay"
+          name="barangay"
+          options={BARANGAY_OPTIONS}
+        />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
         <TextField control={control} label="Municipality" name="municipality" />

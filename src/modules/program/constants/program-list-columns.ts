@@ -11,6 +11,6 @@ export const PROGRAM_LIST_COLUMNS: ColumnType<
   },
   {
     title: 'Type',
-    accessor: 'name',
+    accessor: 'type',
   },
 ]
