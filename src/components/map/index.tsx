@@ -4,6 +4,7 @@ import EditControl from './edit-control'
 import { osmProviders } from './osm-providers'
 import { Feature } from 'geojson'
 import { LeafletEvent } from 'leaflet'
+import GeoJsonLayer from './geojson-layer'
 
 const MapWrapper = () => {
   const [layers, setLayers] = useState<Feature[]>([
@@ -49,7 +50,7 @@ const MapWrapper = () => {
     <div>
       <MapContainer
         center={[9.818660000000023, 124.4955900000001]}
-        zoom={26}
+        zoom={18}
         scrollWheelZoom={false}
         style={{ height: `calc(100vh - 192px)`, width: '100%' }}
       >
@@ -59,6 +60,8 @@ const MapWrapper = () => {
             position="topright"
             initialLayers={layers}
             draw={{
+              circle: false,
+              rectangle: false,
               polyline: false,
               circlemarker: false,
               marker: false,
@@ -70,10 +73,12 @@ const MapWrapper = () => {
               minSize: 10,
             }}
             onCreated={(e: LeafletEvent) => {
+              setLayers(layers.concat(e.layer.toGeoJSON()))
               // console.log('layer: ', JSON.stringify(e.layer.toGeoJSON()))
             }}
           />
         </FeatureGroup>
+        <GeoJsonLayer initialZoom={18} layers={layers} />
       </MapContainer>
     </div>
   )

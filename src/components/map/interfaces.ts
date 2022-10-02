@@ -13,3 +13,8 @@ export type IEditControlProps = EditControlProps &
       markerCluster?: boolean
     }
   }
+
+export type IGeoJsonLayerProps = {
+  layers: Feature[]
+  initialZoom: number
+}

@@ -15,6 +15,7 @@ import {
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
 import markerIcon from 'leaflet/dist/images/marker-icon.png'
 import markerShadow from 'leaflet/dist/images/marker-shadow.png'
+import { useMapEvents } from 'react-leaflet'
 
 // @ts-ignore
 delete leaflet.Icon.Default.prototype._getIconUrl
@@ -26,14 +27,16 @@ leaflet.Icon.Default.mergeOptions({
 function EditControl(props: IEditControlProps) {
   const context = useLeafletContext()
   const drawRef = useRef<Control.Draw>()
-  const deflateRef = useRef<DeflateLayer>()
+  // const deflateRef = useRef<DeflateLayer>()
   const propsRef = useRef(props)
+
+  // console.log(zoomLevel)
 
   const onDrawCreate = (e: leaflet.LeafletEvent) => {
     const { onCreated } = props
     const container = context.layerContainer || context.map
-    e.layer.addTo(deflateRef.current)
-    container.addLayer(e.layer)
+    // e.layer.addTo(deflateRef.current)
+    // container.addLayer(e.layer)
     onCreated && onCreated(e)
   }
 
@@ -54,8 +57,8 @@ function EditControl(props: IEditControlProps) {
       })
     })
     map.on(leaflet.Draw.Event.CREATED, onDrawCreate)
-    deflateRef.current = leaflet.deflate(props.deflateOptions)
-    drawRef.current = createDrawElement(props, context, deflateRef.current)
+    // deflateRef.current = leaflet.deflate(props.deflateOptions)
+    drawRef.current = createDrawElement(props, context)
     map.addControl(drawRef.current)
     onMounted && onMounted(drawRef.current)
 
@@ -79,9 +82,9 @@ function EditControl(props: IEditControlProps) {
     }
     const { map } = context
     drawRef.current?.remove()
-    deflateRef.current?.remove()
-    deflateRef.current = leaflet.deflate(props.deflateOptions)
-    drawRef.current = createDrawElement(props, context, deflateRef.current)
+    // deflateRef.current?.remove()
+    // deflateRef.current = leaflet.deflate(props.deflateOptions)
+    drawRef.current = createDrawElement(props, context)
     drawRef.current.addTo(map)
 
     const { onMounted } = props
@@ -93,23 +96,22 @@ function EditControl(props: IEditControlProps) {
 
 function createDrawElement(
   props: IEditControlProps,
-  context: LeafletContextInterface,
-  deflateLayer: DeflateLayer
+  context: LeafletContextInterface
+  // deflateLayer: DeflateLayer
 ) {
   const { layerContainer } = context
   const { draw, edit, position, initialLayers } = props
   if (initialLayers) {
-    initialLayers.forEach((json) => {
-      const geoJson = leaflet.geoJSON(json, {
-        onEachFeature: function (feature, layer) {
-          layerContainer?.addLayer(layer)
-        },
-      })
-      geoJson.addTo(deflateLayer)
-    })
+    // initialLayers.forEach((json) => {
+    //   const geoJson = leaflet.geoJSON(json, {
+    //     onEachFeature: function (feature, layer) {
+    //       layerContainer?.addLayer(layer)
+    //     },
+    //   })
+    // })
   }
 
-  layerContainer?.addLayer(deflateLayer)
+  // layerContainer?.addLayer(deflateLayer)
 
   const options: Control.DrawConstructorOptions = {
     edit: {
