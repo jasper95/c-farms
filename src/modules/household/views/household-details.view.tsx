@@ -1,6 +1,9 @@
 import Breadcrumbs from '@/components/breadcrumbs'
 import { Dashboard } from '@/components/layout/dashboard.layout'
-import { HouseholdDetailsLayout } from '@/modules/household/components'
+import {
+  HouseholdDetails,
+  HouseholdDetailsLayout,
+} from '@/modules/household/components'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 
@@ -20,7 +23,7 @@ export function HouseholdDetailsView() {
     <Dashboard>
       <Breadcrumbs crumbs={crumbs} />
       <HouseholdDetailsLayout>
-        {tab === 'one' && 'One'}
+        {tab === 'one' && <HouseholdDetails />}
         {tab === 'two' && 'Two'}
         {tab === 'three' && 'Three'}
       </HouseholdDetailsLayout>

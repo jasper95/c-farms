@@ -8,11 +8,13 @@ import {
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect, useRef, useState } from 'react'
 import { useNotificationStore } from '@/shared/stores/notification'
+import { useRouter } from 'next/router'
 
 export function useHouseholdNew() {
   const [activeStep, setActiveStep] = useState(0)
   const [newHouseholdResponse, onCreate] = useCreateHouseholdMutation()
   const { notifySuccess } = useNotificationStore()
+  const router = useRouter()
   const personalInformationFormProps = useForm({
     defaultValues: PERSONAL_INFORMATION_SCHEMA.cast({}),
     resolver: yupResolver(PERSONAL_INFORMATION_SCHEMA, { abortEarly: false }),
@@ -94,6 +96,7 @@ export function useHouseholdNew() {
       },
     })
     notifySuccess('Household sucessfully created')
+    router.push(`/household/${response.data?.insertHouseholdOne?.id}`)
   }
 
   function validateAndNext() {

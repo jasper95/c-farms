@@ -17,7 +17,12 @@ export default function RadioSelect<T extends FieldValues>(
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend">{label}</FormLabel>
-      <RadioGroup row aria-label={`radio-select-${name}`} {...field}>
+      <RadioGroup
+        row
+        aria-label={`radio-select-${name}`}
+        {...field}
+        value={field.value || ''}
+      >
         {options.map((option) => (
           <FormControlLabel
             key={`${option.value}`}

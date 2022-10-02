@@ -14,7 +14,7 @@ import { TableState, TableAction } from './table-reducer'
 import get from 'lodash/get'
 
 import TablePreloader from './pre-loader'
-import { Typography } from '@mui/material'
+import Typography from '@mui/material/Typography'
 
 type DataTableProps<T extends Identifiable> = {
   rows: T[]

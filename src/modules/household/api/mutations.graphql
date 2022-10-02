@@ -3,3 +3,12 @@ mutation CreateHousehold($object: HouseholdInsertInput!) {
     id
   }
 }
+
+mutation UpdateHousehold(
+  $object: HouseholdSetInput
+  $id: HouseholdPkColumnsInput!
+) {
+  updateHouseholdByPk(_set: $object, pk_columns: $id) {
+    id
+  }
+}

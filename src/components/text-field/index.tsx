@@ -11,14 +11,17 @@ function TextField<T extends FieldValues>(props: ITextFieldProps<T>) {
   const { formState, field } = controller
   return (
     <MuiTextField
-      {...restProps}
+      InputProps={{
+        ...field,
+        value: field.value || '',
+      }}
       error={Boolean(formState.errors[name])}
       helperText={formState.errors[name]?.message}
-      inputProps={field}
       fullWidth
       label={label}
       placeholder={placeholder}
       variant="outlined"
+      {...restProps}
     />
   )
 }

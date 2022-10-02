@@ -17,7 +17,7 @@ const StyledToolbar = styled(Toolbar)(() => ({
 }))
 
 export interface FormToolbarProps {
-  onCancel(): void
+  onCancel?: () => void
   onConfirm(): void
   cancelDisabled?: boolean
   cancelVisible?: boolean

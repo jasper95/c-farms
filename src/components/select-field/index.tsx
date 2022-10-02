@@ -23,7 +23,7 @@ function SelectField<T extends FieldValues>(props: ISelectFieldProps<T>) {
       onChange={(_, newValue) => {
         onChange(newValue)
       }}
-      value={value}
+      value={value || ''}
       renderInput={(params) => <TextField label={label} {...params} />}
     />
   )

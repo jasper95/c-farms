@@ -8,7 +8,7 @@ import {
   FarmProfile,
 } from '@/modules/household/components'
 import { CREATE_HOUSEHOLD_STEPS } from '@/modules/household/constants'
-import { useHouseholdNew } from '@/modules/household/hooks/use-household-new.hook'
+import { useHouseholdNew } from '@/modules/household/hooks'
 import { Dashboard } from '@/components/layout/dashboard.layout'
 import { FormToolbar } from '@/components/form-toolbar'
 import Card from '@mui/material/Card'

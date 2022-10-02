@@ -16,7 +16,6 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
-  bpchar: any
   date: any
   jsonb: any
   numeric: any
@@ -27,7 +26,6 @@ export type Scalars = {
 /** columns and relationships of "annualInfo" */
 export type AnnualInfo = {
   __typename?: 'AnnualInfo'
-  associationMembership?: Maybe<Scalars['String']>
   createdAt: Scalars['timestamp']
   farmworkerActivityType: Scalars['jsonb']
   fisherActivityType: Scalars['jsonb']
@@ -131,7 +129,6 @@ export type AnnualInfoBoolExp = {
   _and?: InputMaybe<Array<AnnualInfoBoolExp>>
   _not?: InputMaybe<AnnualInfoBoolExp>
   _or?: InputMaybe<Array<AnnualInfoBoolExp>>
-  associationMembership?: InputMaybe<StringComparisonExp>
   createdAt?: InputMaybe<TimestampComparisonExp>
   farmworkerActivityType?: InputMaybe<JsonbComparisonExp>
   fisherActivityType?: InputMaybe<JsonbComparisonExp>
@@ -184,7 +181,6 @@ export type AnnualInfoIncInput = {
 
 /** input type for inserting data into table "annualInfo" */
 export type AnnualInfoInsertInput = {
-  associationMembership?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   farmworkerActivityType?: InputMaybe<Scalars['jsonb']>
   fisherActivityType?: InputMaybe<Scalars['jsonb']>
@@ -204,7 +200,6 @@ export type AnnualInfoInsertInput = {
 /** aggregate max on columns */
 export type AnnualInfoMaxFields = {
   __typename?: 'AnnualInfoMaxFields'
-  associationMembership?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
   grossAnnualIncomeFarming?: Maybe<Scalars['numeric']>
   grossAnnualIncomeNonfarming?: Maybe<Scalars['numeric']>
@@ -218,7 +213,6 @@ export type AnnualInfoMaxFields = {
 /** aggregate min on columns */
 export type AnnualInfoMinFields = {
   __typename?: 'AnnualInfoMinFields'
-  associationMembership?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
   grossAnnualIncomeFarming?: Maybe<Scalars['numeric']>
   grossAnnualIncomeNonfarming?: Maybe<Scalars['numeric']>
@@ -247,7 +241,6 @@ export type AnnualInfoOnConflict = {
 
 /** Ordering options when selecting data from "annualInfo". */
 export type AnnualInfoOrderBy = {
-  associationMembership?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
   farmworkerActivityType?: InputMaybe<OrderBy>
   fisherActivityType?: InputMaybe<OrderBy>
@@ -279,8 +272,6 @@ export type AnnualInfoPrependInput = {
 /** select columns of table "annualInfo" */
 export enum AnnualInfoSelectColumn {
   /** column name */
-  AssociationMembership = 'associationMembership',
-  /** column name */
   CreatedAt = 'createdAt',
   /** column name */
   FarmworkerActivityType = 'farmworkerActivityType',
@@ -310,7 +301,6 @@ export enum AnnualInfoSelectColumn {
 
 /** input type for updating data in table "annualInfo" */
 export type AnnualInfoSetInput = {
-  associationMembership?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   farmworkerActivityType?: InputMaybe<Scalars['jsonb']>
   fisherActivityType?: InputMaybe<Scalars['jsonb']>
@@ -360,8 +350,6 @@ export type AnnualInfoSumFields = {
 
 /** update columns of table "annualInfo" */
 export enum AnnualInfoUpdateColumn {
-  /** column name */
-  AssociationMembership = 'associationMembership',
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
@@ -437,10 +425,10 @@ export type Association = {
   __typename?: 'Association'
   active: Scalars['Boolean']
   createdAt: Scalars['timestamp']
-  description?: Maybe<Scalars['String']>
+  description: Scalars['String']
   id: Scalars['uuid']
   name: Scalars['String']
-  shortName?: Maybe<Scalars['String']>
+  shortName: Scalars['String']
   updatedAt: Scalars['timestamp']
 }
 
@@ -614,39 +602,6 @@ export type BooleanComparisonExp = {
   _lte?: InputMaybe<Scalars['Boolean']>
   _neq?: InputMaybe<Scalars['Boolean']>
   _nin?: InputMaybe<Array<Scalars['Boolean']>>
-}
-
-/** Boolean expression to compare columns of type "bpchar". All fields are combined with logical 'AND'. */
-export type BpcharComparisonExp = {
-  _eq?: InputMaybe<Scalars['bpchar']>
-  _gt?: InputMaybe<Scalars['bpchar']>
-  _gte?: InputMaybe<Scalars['bpchar']>
-  /** does the column match the given case-insensitive pattern */
-  _ilike?: InputMaybe<Scalars['bpchar']>
-  _in?: InputMaybe<Array<Scalars['bpchar']>>
-  /** does the column match the given POSIX regular expression, case insensitive */
-  _iregex?: InputMaybe<Scalars['bpchar']>
-  _isNull?: InputMaybe<Scalars['Boolean']>
-  /** does the column match the given pattern */
-  _like?: InputMaybe<Scalars['bpchar']>
-  _lt?: InputMaybe<Scalars['bpchar']>
-  _lte?: InputMaybe<Scalars['bpchar']>
-  _neq?: InputMaybe<Scalars['bpchar']>
-  /** does the column NOT match the given case-insensitive pattern */
-  _nilike?: InputMaybe<Scalars['bpchar']>
-  _nin?: InputMaybe<Array<Scalars['bpchar']>>
-  /** does the column NOT match the given POSIX regular expression, case insensitive */
-  _niregex?: InputMaybe<Scalars['bpchar']>
-  /** does the column NOT match the given pattern */
-  _nlike?: InputMaybe<Scalars['bpchar']>
-  /** does the column NOT match the given POSIX regular expression, case sensitive */
-  _nregex?: InputMaybe<Scalars['bpchar']>
-  /** does the column NOT match the given SQL regular expression */
-  _nsimilar?: InputMaybe<Scalars['bpchar']>
-  /** does the column match the given POSIX regular expression, case sensitive */
-  _regex?: InputMaybe<Scalars['bpchar']>
-  /** does the column match the given SQL regular expression */
-  _similar?: InputMaybe<Scalars['bpchar']>
 }
 
 /** columns and relationships of "commodity" */
@@ -854,17 +809,17 @@ export type DateComparisonExp = {
 /** columns and relationships of "farm" */
 export type Farm = {
   __typename?: 'Farm'
-  barangay?: Maybe<Scalars['String']>
+  barangay: Scalars['String']
   /** An array relationship */
   commodities: Array<Commodity>
   /** An aggregate relationship */
   commoditiesAggregate: CommodityAggregate
   createdAt: Scalars['timestamp']
-  farmType?: Maybe<Scalars['String']>
+  farmType: Scalars['String']
   id: Scalars['uuid']
   isAgrarianReformBeneficiary: Scalars['Boolean']
   location?: Maybe<Scalars['jsonb']>
-  municipality?: Maybe<Scalars['String']>
+  municipality: Scalars['String']
   ownerName: Scalars['String']
   ownershipDocument: Scalars['String']
   ownershipType: Scalars['String']
@@ -1226,40 +1181,39 @@ export type Household = {
   annualInfos: Array<AnnualInfo>
   /** An aggregate relationship */
   annualInfosAggregate: AnnualInfoAggregate
-  barangay?: Maybe<Scalars['String']>
+  barangay: Scalars['String']
   civilStatus: Scalars['Int']
-  contactNumber: Scalars['bpchar']
+  contactNumber: Scalars['String']
   createdAt: Scalars['timestamp']
   dateOfBirth: Scalars['date']
-  emergencyContactName?: Maybe<Scalars['String']>
-  emergencyContactNumber?: Maybe<Scalars['bpchar']>
-  extensionName?: Maybe<Scalars['String']>
+  emergencyContactName: Scalars['String']
+  emergencyContactNumber: Scalars['String']
+  extensionName: Scalars['String']
   femaleCount: Scalars['Int']
   firstName: Scalars['String']
-  governmentIdNo?: Maybe<Scalars['String']>
-  governmentIdType?: Maybe<Scalars['String']>
-  highestFormalEducation: Scalars['String']
-  houseLotBldgNo?: Maybe<Scalars['String']>
+  governmentIdNo: Scalars['String']
+  governmentIdType: Scalars['String']
+  houseLotBldgNo: Scalars['String']
   id: Scalars['uuid']
-  ipMembership?: Maybe<Scalars['String']>
+  ipMembership: Scalars['String']
   is4psBeneficiary: Scalars['Boolean']
   isHouseholdHead: Scalars['Boolean']
   lastName: Scalars['String']
   maleCount: Scalars['Int']
-  middleName?: Maybe<Scalars['String']>
-  mothersMaidenName?: Maybe<Scalars['String']>
-  municipality?: Maybe<Scalars['String']>
+  middleName: Scalars['String']
+  mothersMaidenName: Scalars['String']
+  municipality: Scalars['String']
   nameOfHouseholdHead: Scalars['String']
-  nameOfSpouse?: Maybe<Scalars['String']>
+  nameOfSpouse: Scalars['String']
   personWithDisability: Scalars['Boolean']
   placeOfBirth: Scalars['String']
-  province?: Maybe<Scalars['String']>
+  province: Scalars['String']
   referenceNo: Scalars['String']
-  region?: Maybe<Scalars['String']>
-  relationshipToHouseholdHead?: Maybe<Scalars['String']>
-  religion?: Maybe<Scalars['String']>
+  region: Scalars['String']
+  relationshipToHouseholdHead: Scalars['String']
+  religion: Scalars['String']
   sex: Scalars['Int']
-  streetSitioSubdv?: Maybe<Scalars['String']>
+  streetSitioSubdv: Scalars['String']
   updatedAt: Scalars['timestamp']
 }
 
@@ -1327,17 +1281,16 @@ export type HouseholdBoolExp = {
   annualInfos?: InputMaybe<AnnualInfoBoolExp>
   barangay?: InputMaybe<StringComparisonExp>
   civilStatus?: InputMaybe<IntComparisonExp>
-  contactNumber?: InputMaybe<BpcharComparisonExp>
+  contactNumber?: InputMaybe<StringComparisonExp>
   createdAt?: InputMaybe<TimestampComparisonExp>
   dateOfBirth?: InputMaybe<DateComparisonExp>
   emergencyContactName?: InputMaybe<StringComparisonExp>
-  emergencyContactNumber?: InputMaybe<BpcharComparisonExp>
+  emergencyContactNumber?: InputMaybe<StringComparisonExp>
   extensionName?: InputMaybe<StringComparisonExp>
   femaleCount?: InputMaybe<IntComparisonExp>
   firstName?: InputMaybe<StringComparisonExp>
   governmentIdNo?: InputMaybe<StringComparisonExp>
   governmentIdType?: InputMaybe<StringComparisonExp>
-  highestFormalEducation?: InputMaybe<StringComparisonExp>
   houseLotBldgNo?: InputMaybe<StringComparisonExp>
   id?: InputMaybe<UuidComparisonExp>
   ipMembership?: InputMaybe<StringComparisonExp>
@@ -1381,17 +1334,16 @@ export type HouseholdInsertInput = {
   annualInfos?: InputMaybe<AnnualInfoArrRelInsertInput>
   barangay?: InputMaybe<Scalars['String']>
   civilStatus?: InputMaybe<Scalars['Int']>
-  contactNumber?: InputMaybe<Scalars['bpchar']>
+  contactNumber?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   dateOfBirth?: InputMaybe<Scalars['date']>
   emergencyContactName?: InputMaybe<Scalars['String']>
-  emergencyContactNumber?: InputMaybe<Scalars['bpchar']>
+  emergencyContactNumber?: InputMaybe<Scalars['String']>
   extensionName?: InputMaybe<Scalars['String']>
   femaleCount?: InputMaybe<Scalars['Int']>
   firstName?: InputMaybe<Scalars['String']>
   governmentIdNo?: InputMaybe<Scalars['String']>
   governmentIdType?: InputMaybe<Scalars['String']>
-  highestFormalEducation?: InputMaybe<Scalars['String']>
   houseLotBldgNo?: InputMaybe<Scalars['String']>
   id?: InputMaybe<Scalars['uuid']>
   ipMembership?: InputMaybe<Scalars['String']>
@@ -1421,17 +1373,16 @@ export type HouseholdMaxFields = {
   __typename?: 'HouseholdMaxFields'
   barangay?: Maybe<Scalars['String']>
   civilStatus?: Maybe<Scalars['Int']>
-  contactNumber?: Maybe<Scalars['bpchar']>
+  contactNumber?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
   dateOfBirth?: Maybe<Scalars['date']>
   emergencyContactName?: Maybe<Scalars['String']>
-  emergencyContactNumber?: Maybe<Scalars['bpchar']>
+  emergencyContactNumber?: Maybe<Scalars['String']>
   extensionName?: Maybe<Scalars['String']>
   femaleCount?: Maybe<Scalars['Int']>
   firstName?: Maybe<Scalars['String']>
   governmentIdNo?: Maybe<Scalars['String']>
   governmentIdType?: Maybe<Scalars['String']>
-  highestFormalEducation?: Maybe<Scalars['String']>
   houseLotBldgNo?: Maybe<Scalars['String']>
   id?: Maybe<Scalars['uuid']>
   ipMembership?: Maybe<Scalars['String']>
@@ -1458,17 +1409,16 @@ export type HouseholdMinFields = {
   __typename?: 'HouseholdMinFields'
   barangay?: Maybe<Scalars['String']>
   civilStatus?: Maybe<Scalars['Int']>
-  contactNumber?: Maybe<Scalars['bpchar']>
+  contactNumber?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
   dateOfBirth?: Maybe<Scalars['date']>
   emergencyContactName?: Maybe<Scalars['String']>
-  emergencyContactNumber?: Maybe<Scalars['bpchar']>
+  emergencyContactNumber?: Maybe<Scalars['String']>
   extensionName?: Maybe<Scalars['String']>
   femaleCount?: Maybe<Scalars['Int']>
   firstName?: Maybe<Scalars['String']>
   governmentIdNo?: Maybe<Scalars['String']>
   governmentIdType?: Maybe<Scalars['String']>
-  highestFormalEducation?: Maybe<Scalars['String']>
   houseLotBldgNo?: Maybe<Scalars['String']>
   id?: Maybe<Scalars['uuid']>
   ipMembership?: Maybe<Scalars['String']>
@@ -1528,7 +1478,6 @@ export type HouseholdOrderBy = {
   firstName?: InputMaybe<OrderBy>
   governmentIdNo?: InputMaybe<OrderBy>
   governmentIdType?: InputMaybe<OrderBy>
-  highestFormalEducation?: InputMaybe<OrderBy>
   houseLotBldgNo?: InputMaybe<OrderBy>
   id?: InputMaybe<OrderBy>
   ipMembership?: InputMaybe<OrderBy>
@@ -1585,8 +1534,6 @@ export enum HouseholdSelectColumn {
   /** column name */
   GovernmentIdType = 'governmentIdType',
   /** column name */
-  HighestFormalEducation = 'highestFormalEducation',
-  /** column name */
   HouseLotBldgNo = 'houseLotBldgNo',
   /** column name */
   Id = 'id',
@@ -1636,17 +1583,16 @@ export enum HouseholdSelectColumn {
 export type HouseholdSetInput = {
   barangay?: InputMaybe<Scalars['String']>
   civilStatus?: InputMaybe<Scalars['Int']>
-  contactNumber?: InputMaybe<Scalars['bpchar']>
+  contactNumber?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   dateOfBirth?: InputMaybe<Scalars['date']>
   emergencyContactName?: InputMaybe<Scalars['String']>
-  emergencyContactNumber?: InputMaybe<Scalars['bpchar']>
+  emergencyContactNumber?: InputMaybe<Scalars['String']>
   extensionName?: InputMaybe<Scalars['String']>
   femaleCount?: InputMaybe<Scalars['Int']>
   firstName?: InputMaybe<Scalars['String']>
   governmentIdNo?: InputMaybe<Scalars['String']>
   governmentIdType?: InputMaybe<Scalars['String']>
-  highestFormalEducation?: InputMaybe<Scalars['String']>
   houseLotBldgNo?: InputMaybe<Scalars['String']>
   id?: InputMaybe<Scalars['uuid']>
   ipMembership?: InputMaybe<Scalars['String']>
@@ -1733,8 +1679,6 @@ export enum HouseholdUpdateColumn {
   GovernmentIdNo = 'governmentIdNo',
   /** column name */
   GovernmentIdType = 'governmentIdType',
-  /** column name */
-  HighestFormalEducation = 'highestFormalEducation',
   /** column name */
   HouseLotBldgNo = 'houseLotBldgNo',
   /** column name */
@@ -1895,8 +1839,8 @@ export type Program = {
   description: Scalars['String']
   id: Scalars['uuid']
   name: Scalars['String']
-  sponsoringAgency?: Maybe<Scalars['String']>
-  type?: Maybe<Scalars['String']>
+  sponsoringAgency: Scalars['String']
+  type: Scalars['String']
   updatedAt: Scalars['timestamp']
 }
 
@@ -2149,7 +2093,6 @@ export type AnnualInfo_Avg_Order_By = {
 
 /** order by max() on columns of table "annualInfo" */
 export type AnnualInfo_Max_Order_By = {
-  associationMembership?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
   grossAnnualIncomeFarming?: InputMaybe<OrderBy>
   grossAnnualIncomeNonfarming?: InputMaybe<OrderBy>
@@ -2162,7 +2105,6 @@ export type AnnualInfo_Max_Order_By = {
 
 /** order by min() on columns of table "annualInfo" */
 export type AnnualInfo_Min_Order_By = {
-  associationMembership?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
   grossAnnualIncomeFarming?: InputMaybe<OrderBy>
   grossAnnualIncomeNonfarming?: InputMaybe<OrderBy>
@@ -2204,7 +2146,6 @@ export type AnnualInfo_StreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type AnnualInfo_StreamCursorValueInput = {
-  associationMembership?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   farmworkerActivityType?: InputMaybe<Scalars['jsonb']>
   fisherActivityType?: InputMaybe<Scalars['jsonb']>
@@ -2342,17 +2283,16 @@ export type Household_StreamCursorInput = {
 export type Household_StreamCursorValueInput = {
   barangay?: InputMaybe<Scalars['String']>
   civilStatus?: InputMaybe<Scalars['Int']>
-  contactNumber?: InputMaybe<Scalars['bpchar']>
+  contactNumber?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   dateOfBirth?: InputMaybe<Scalars['date']>
   emergencyContactName?: InputMaybe<Scalars['String']>
-  emergencyContactNumber?: InputMaybe<Scalars['bpchar']>
+  emergencyContactNumber?: InputMaybe<Scalars['String']>
   extensionName?: InputMaybe<Scalars['String']>
   femaleCount?: InputMaybe<Scalars['Int']>
   firstName?: InputMaybe<Scalars['String']>
   governmentIdNo?: InputMaybe<Scalars['String']>
   governmentIdType?: InputMaybe<Scalars['String']>
-  highestFormalEducation?: InputMaybe<Scalars['String']>
   houseLotBldgNo?: InputMaybe<Scalars['String']>
   id?: InputMaybe<Scalars['uuid']>
   ipMembership?: InputMaybe<Scalars['String']>

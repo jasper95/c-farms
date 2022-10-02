@@ -23,3 +23,32 @@ query HouseholdList(
     }
   }
 }
+
+query HouseholdDetails($id: uuid!) {
+  householdByPk(id: $id) {
+    ...HouseholdFragment
+  }
+}
+
+fragment HouseholdFragment on Household {
+  id
+  firstName
+  lastName
+  middleName
+  extensionName
+  houseLotBldgNo
+  referenceNo
+  streetSitioSubdv
+  barangay
+  municipality
+  province
+  region
+  contactNumber
+  sex
+  civilStatus
+  nameOfSpouse
+  mothersMaidenName
+  religion
+  dateOfBirth
+  placeOfBirth
+}

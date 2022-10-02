@@ -3,7 +3,14 @@ import { styled } from '@mui/material/styles'
 import get from 'lodash/get'
 import { RowProp } from './types'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
-import { IconButton, Theme, Tooltip } from '@mui/material'
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
+import IconButton from '@mui/material/IconButton'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import Link from '@/components/link'
+import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state'
 
 export const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -27,52 +34,65 @@ function Column<T>(props: RowProp<T>) {
     title,
   } = column
   let children
+
   if (type === 'actions') {
-    children = (
-      <div className="flex">
-        {actions.map(
-          ({
-            label,
-            className,
-            icon,
-            onClick = () => {},
-            type: actionType = 'button',
-            component: Action = () => null,
-            conditionalRendering = (arg) => true,
-          }) => {
-            if (!conditionalRendering(row)) {
-              return <span key={label} className="column-no-action" />
-            }
-            if (actionType === 'component') {
-              return (
-                <Action
-                  key={label}
-                  row={row}
-                  label={label}
-                  icon={icon}
-                  onClick={onClick}
-                />
-              )
-            }
-            return (
-              <Tooltip key={label} title={label}>
-                <IconButton
-                  className="p-2"
-                  onClick={(e: any) => {
-                    e.stopPropagation()
-                    onClick(row)
-                  }}
-                  key={label}
-                  size="large"
-                >
-                  {icon}
-                </IconButton>
-              </Tooltip>
-            )
-          }
-        )}
-      </div>
-    )
+    const filteredActions = actions.filter((action) => {
+      if (action.conditionalRendering) {
+        return action.conditionalRendering(row)
+      }
+      return true
+    })
+    if (filteredActions.length > 0) {
+      children = (
+        <PopupState variant="popover" popupId="demo-popup-menu">
+          {(popupState) => (
+            <React.Fragment>
+              <IconButton
+                aria-label="more"
+                aria-controls="long-menu"
+                aria-haspopup="true"
+                {...bindTrigger(popupState)}
+              >
+                <MoreHorizIcon />
+              </IconButton>
+              <Menu {...bindMenu(popupState)}>
+                {filteredActions.map(
+                  ({
+                    label,
+                    icon: Icon = () => null,
+                    type,
+                    href = () => '',
+                    onClick = () => {},
+                  }) => (
+                    <MenuItem
+                      key={label}
+                      onClick={(event) => {
+                        event.stopPropagation()
+                        if (onClick) {
+                          onClick(row)
+                        }
+                        popupState.close()
+                      }}
+                      {...(type === 'link' && {
+                        component: Link,
+                        href: href(row),
+                      })}
+                    >
+                      <ListItemIcon>
+                        <Icon />
+                      </ListItemIcon>
+                      <ListItemText primary={label} />
+                    </MenuItem>
+                  )
+                )}
+              </Menu>
+            </React.Fragment>
+          )}
+        </PopupState>
+      )
+    } else {
+      children = null
+    }
   } else if (type === 'component') {
     children = <Cell index={index} row={row} {...componentProps} />
   } else if (type === 'function') {
@@ -81,13 +101,7 @@ function Column<T>(props: RowProp<T>) {
     children = `${get(row, accessor)}`
   }
 
-  return (
-    <StyledTableCell {...bodyProps}>
-      {children}
-      {/* <div className="tableCell" data-header-title={title}>
-      </div> */}
-    </StyledTableCell>
-  )
+  return <StyledTableCell {...bodyProps}>{children}</StyledTableCell>
 }
 
 export default Column

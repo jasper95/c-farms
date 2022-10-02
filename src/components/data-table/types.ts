@@ -25,13 +25,11 @@ export type ColumnType<T = any> = {
 type ActionType<T> = {
   label: string
   className?: string
-  icon?: string | ReactNode
+  icon: React.FC<any>
   onClick?: (row: T) => void
-  type?: 'button' | 'component'
+  type?: 'button' | 'link'
+  href?: (arg: T) => string
   conditionalRendering?: (arg: T) => boolean
-  component?: React.FC<
-    Pick<ActionType<T>, 'icon' | 'label' | 'onClick'> & { row: T }
-  >
 }
 
 export type RowProp<T> = {

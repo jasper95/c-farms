@@ -1,4 +1,5 @@
 import { ColumnType } from '@/components/data-table/types'
+import EditIcon from '@mui/icons-material/Edit'
 import { HouseholdListQuery } from '@/modules/household/api/queries'
 
 export const HOUSE_LIST_COLUMNS: ColumnType<
@@ -18,5 +19,16 @@ export const HOUSE_LIST_COLUMNS: ColumnType<
   {
     title: 'Barangay',
     accessor: 'barangay',
+  },
+  {
+    type: 'actions',
+    actions: [
+      {
+        label: 'Edit',
+        icon: EditIcon,
+        type: 'link',
+        href: (row) => `/household/${row.id}`,
+      },
+    ],
   },
 ]

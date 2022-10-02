@@ -22,6 +22,7 @@ export default function DatePicker<T extends FieldValues>(
       renderInput={(params) => (
         <TextField
           {...params}
+          fullWidth
           helperText={formState.errors[name]?.message}
           error={Boolean(formState.errors[name])}
         />

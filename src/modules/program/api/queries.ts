@@ -18,8 +18,8 @@ export type ProgramListQuery = {
       __typename?: 'Program'
       id: any
       name: string
-      type?: string | null | undefined
-      sponsoringAgency?: string | null | undefined
+      type: string
+      sponsoringAgency: string
       dateStart: any
       dateEnd?: any | null | undefined
     }>
