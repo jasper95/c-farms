@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-export const FARM_PROFILE_SCHEMA = yup.object({
+export const annualInfoSchema = yup.object({
   farmworkerActivityType: yup.array().of(yup.string()).default([]),
   fisherActivityType: yup.array().of(yup.string()).default([]),
   highestFormalEducation: yup.string().default(''),
@@ -9,4 +9,4 @@ export const FARM_PROFILE_SCHEMA = yup.object({
   mainLivelihood: yup.array().of(yup.string()).default([]),
 })
 
-export type IFarmProfileSchema = yup.InferType<typeof FARM_PROFILE_SCHEMA>
+export type IAnnualInfoSchema = yup.InferType<typeof annualInfoSchema>

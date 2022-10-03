@@ -4,22 +4,22 @@ query HouseholdList(
   $offset: Int
   $limit: Int
 ) {
-  list: householdAggregate(
+  list: household(
     where: $where
     orderBy: $orderBy
     offset: $offset
     limit: $limit
   ) {
-    data: nodes {
-      id
-      lastName
-      firstName
-      middleName
-      referenceNo
-      barangay
-    }
-    meta: aggregate {
-      count(columns: id, distinct: true)
+    id
+    lastName
+    firstName
+    middleName
+    referenceNo
+    barangay
+  }
+  meta: householdAggregate(where: $where) {
+    aggregate {
+      count
     }
   }
 }

@@ -2,9 +2,7 @@ import { ColumnType } from '@/components/data-table/types'
 import EditIcon from '@mui/icons-material/Edit'
 import { HouseholdListQuery } from '@/modules/household/api/queries'
 
-export const HOUSE_LIST_COLUMNS: ColumnType<
-  HouseholdListQuery['list']['data'][0]
->[] = [
+export const HOUSE_LIST_COLUMNS: ColumnType<HouseholdListQuery['list'][0]>[] = [
   {
     title: 'Reference No',
     accessor: 'referenceNo',

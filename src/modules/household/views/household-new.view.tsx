@@ -3,9 +3,9 @@ import Step from '@mui/material/Step'
 import StepLabel from '@mui/material/StepLabel'
 import Stepper from '@mui/material/Stepper'
 import {
-  PersonalInformation,
-  OtherDetails,
-  FarmProfile,
+  PersonalInformationForm,
+  OtherDetailsForm,
+  AnnualInfoForm,
 } from '@/modules/household/components'
 import { CREATE_HOUSEHOLD_STEPS } from '@/modules/household/constants'
 import { useHouseholdNew } from '@/modules/household/hooks'
@@ -20,7 +20,7 @@ export function HouseholdNewView() {
     topRef,
     personalInformationFormProps,
     otherDetailsFormProps,
-    farmProfileFormProps,
+    annualInfoFormProps,
     onBack,
     validateAndNext,
     isLoading,
@@ -50,12 +50,14 @@ export function HouseholdNewView() {
             })}
           </Stepper>
           {activeStep === 0 && (
-            <PersonalInformation formProps={personalInformationFormProps} />
+            <PersonalInformationForm formProps={personalInformationFormProps} />
           )}
           {activeStep === 1 && (
-            <OtherDetails formProps={otherDetailsFormProps} />
+            <OtherDetailsForm formProps={otherDetailsFormProps} />
           )}
-          {activeStep === 2 && <FarmProfile formProps={farmProfileFormProps} />}
+          {activeStep === 2 && (
+            <AnnualInfoForm formProps={annualInfoFormProps} />
+          )}
 
           <FormToolbar
             cancelVisible={activeStep !== 0}

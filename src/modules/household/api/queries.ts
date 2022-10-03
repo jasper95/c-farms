@@ -14,18 +14,18 @@ export type HouseholdListQueryVariables = Types.Exact<{
 
 export type HouseholdListQuery = {
   __typename?: 'query_root'
-  list: {
+  list: Array<{
+    __typename?: 'Household'
+    id: any
+    lastName: string
+    firstName: string
+    middleName: string
+    referenceNo: string
+    barangay: string
+  }>
+  meta: {
     __typename?: 'HouseholdAggregate'
-    data: Array<{
-      __typename?: 'Household'
-      id: any
-      lastName: string
-      firstName: string
-      middleName: string
-      referenceNo: string
-      barangay: string
-    }>
-    meta?:
+    aggregate?:
       | { __typename?: 'HouseholdAggregateFields'; count: number }
       | null
       | undefined
@@ -157,22 +157,22 @@ export const HouseholdListDocument = gql`
     $offset: Int
     $limit: Int
   ) {
-    list: householdAggregate(
+    list: household(
       where: $where
       orderBy: $orderBy
       offset: $offset
       limit: $limit
     ) {
-      data: nodes {
-        id
-        lastName
-        firstName
-        middleName
-        referenceNo
-        barangay
-      }
-      meta: aggregate {
-        count(columns: id, distinct: true)
+      id
+      lastName
+      firstName
+      middleName
+      referenceNo
+      barangay
+    }
+    meta: householdAggregate(where: $where) {
+      aggregate {
+        count
       }
     }
   }

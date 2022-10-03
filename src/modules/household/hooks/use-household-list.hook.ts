@@ -19,8 +19,8 @@ export function useHouseholdList() {
     onSearchChanged,
     tableState,
     tableDispatch,
-    rows: listResponse?.data?.list?.data || [],
-    totalRows: listResponse?.data?.list?.meta?.count || 0,
+    rows: listResponse?.data?.list || [],
+    totalRows: listResponse?.data?.meta?.aggregate?.count || 0,
     columns,
     listResponse,
   }

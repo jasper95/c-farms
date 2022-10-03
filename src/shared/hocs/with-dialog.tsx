@@ -4,8 +4,6 @@ import DialogLayout, {
 import { useDialogStore } from '@/shared/stores/dialog'
 
 import { yupResolver } from '@hookform/resolvers/yup'
-import * as Yup from 'yup'
-import type Lazy from 'yup/lib/Lazy'
 
 import React from 'react'
 import pick from 'lodash/pick'
@@ -16,10 +14,11 @@ import {
   UseFormProps,
   UseFormReturn,
 } from 'react-hook-form'
+import ObjectSchema from 'yup/lib/object'
 
 export type IDialogForm<T extends FieldValues> = {
   defaultValues: UseFormProps<T>['defaultValues']
-  validationSchema?: Yup.AnyObjectSchema | Lazy<any>
+  validationSchema?: ObjectSchema<T>
   onCancel?(): void
   onContinue?(): void
   onValid: SubmitHandler<T>

@@ -1,12 +1,11 @@
 import Breadcrumbs from '@/components/breadcrumbs'
 import { Dashboard } from '@/components/layout/dashboard.layout'
+import { AnnualInfoListView } from '@/modules/annual-info/views'
 import {
   EditHouseholdDetails,
   HouseholdDetailsLayout,
   EditOtherDetails,
 } from '@/modules/household/components'
-import { useRouter } from 'next/router'
-import { useMemo } from 'react'
 import { useEditHousehold } from '../hooks'
 
 export function EditHouseholdView() {
@@ -28,7 +27,7 @@ export function EditHouseholdView() {
             updateMutationResponse={updateMutationResponse}
           />
         )}
-        {tab === 'three' && 'Three'}
+        {tab === 'three' && <AnnualInfoListView />}
       </HouseholdDetailsLayout>
     </Dashboard>
   )

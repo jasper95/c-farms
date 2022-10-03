@@ -2,7 +2,7 @@ import { fieldIsRequired } from '@/shared/utils/form-utils'
 import * as yup from 'yup'
 import { CIVIL_STATUS_OPTIONS, GENDER_OPTIONS } from './form-options'
 
-export const PERSONAL_INFORMATION_SCHEMA = yup.object({
+export const personalInfomationSchema = yup.object({
   lastName: yup
     .string()
     .required(fieldIsRequired)
@@ -47,5 +47,5 @@ export const PERSONAL_INFORMATION_SCHEMA = yup.object({
 })
 
 export type IPersonalInformationSchema = yup.InferType<
-  typeof PERSONAL_INFORMATION_SCHEMA
+  typeof personalInfomationSchema
 >

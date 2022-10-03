@@ -6,11 +6,11 @@ import { UseFormReturn, useWatch } from 'react-hook-form'
 import TextField from '@/components/text-field'
 import SwitchField from '@/components/switch-field'
 
-interface IOtherDetailsProps {
+interface IOtherDetailsFormProps {
   formProps: UseFormReturn<IOtherDetailsSchema>
 }
 
-export function OtherDetails(props: IOtherDetailsProps) {
+export function OtherDetailsForm(props: IOtherDetailsFormProps) {
   const { formProps } = props
   const { control } = formProps
   const isHouseholdHead = useWatch({ control, name: 'isHouseholdHead' })

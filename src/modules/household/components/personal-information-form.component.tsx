@@ -12,10 +12,10 @@ import SelectField from '@/components/select-field'
 import DatePicker from '@/components/date-picker'
 import { UseFormReturn, useWatch } from 'react-hook-form'
 
-interface IPersonalInformation {
+interface IPersonalInformationFormProps {
   formProps: UseFormReturn<IPersonalInformationSchema>
 }
-export function PersonalInformation(props: IPersonalInformation) {
+export function PersonalInformationForm(props: IPersonalInformationFormProps) {
   const { formProps } = props
   const { control } = formProps
   const civilStatus = useWatch({ control, name: 'civilStatus' })

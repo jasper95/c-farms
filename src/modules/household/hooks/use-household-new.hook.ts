@@ -1,14 +1,14 @@
 import { useCreateHouseholdMutation } from '@/modules/household/api/mutations'
 import { useForm, useWatch } from 'react-hook-form'
 import {
-  FARM_PROFILE_SCHEMA,
-  OTHER_DETAILS_SCHEMA,
-  PERSONAL_INFORMATION_SCHEMA,
+  otherDetailsSchema,
+  personalInfomationSchema,
 } from '@/modules/household/constants'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect, useRef, useState } from 'react'
 import { useNotificationStore } from '@/shared/stores/notification'
 import { useRouter } from 'next/router'
+import { annualInfoSchema } from '@/modules/annual-info/constants'
 
 export function useHouseholdNew() {
   const [activeStep, setActiveStep] = useState(0)
@@ -16,16 +16,16 @@ export function useHouseholdNew() {
   const { notifySuccess } = useNotificationStore()
   const router = useRouter()
   const personalInformationFormProps = useForm({
-    defaultValues: PERSONAL_INFORMATION_SCHEMA.cast({}),
-    resolver: yupResolver(PERSONAL_INFORMATION_SCHEMA, { abortEarly: false }),
+    defaultValues: personalInfomationSchema.cast({}),
+    resolver: yupResolver(personalInfomationSchema, { abortEarly: false }),
   })
   const otherDetailsFormProps = useForm({
-    defaultValues: OTHER_DETAILS_SCHEMA.cast({}),
-    resolver: yupResolver(OTHER_DETAILS_SCHEMA, { abortEarly: false }),
+    defaultValues: otherDetailsSchema.cast({}),
+    resolver: yupResolver(otherDetailsSchema, { abortEarly: false }),
   })
-  const farmProfileFormProps = useForm({
-    defaultValues: FARM_PROFILE_SCHEMA.cast({}),
-    resolver: yupResolver(FARM_PROFILE_SCHEMA, { abortEarly: false }),
+  const annualInfoFormProps = useForm({
+    defaultValues: annualInfoSchema.cast({}),
+    resolver: yupResolver(annualInfoSchema, { abortEarly: false }),
   })
   const { getValues: personalInformationGetValues } =
     personalInformationFormProps
@@ -53,7 +53,7 @@ export function useHouseholdNew() {
     onCreate,
     personalInformationFormProps,
     otherDetailsFormProps,
-    farmProfileFormProps,
+    annualInfoFormProps,
     activeStep,
     topRef,
     onBack,
@@ -75,7 +75,7 @@ export function useHouseholdNew() {
       ...otherDetailsFormProps.getValues(),
     }
     const annualInfo = {
-      ...farmProfileFormProps.getValues(),
+      ...annualInfoFormProps.getValues(),
       year: new Date().getFullYear(),
     }
     const response = await onCreate({
@@ -110,7 +110,7 @@ export function useHouseholdNew() {
         break
       }
       case 2: {
-        farmProfileFormProps.handleSubmit(onSave)()
+        annualInfoFormProps.handleSubmit(onSave)()
         break
       }
       default: {

@@ -2,7 +2,6 @@ import Grid from '@mui/material/Grid'
 import SelectField from '@/components/select-field'
 import {
   LIVELIHOOD_OPTIONS,
-  IFarmProfileSchema,
   EDUCATION_BACKGROUND_OPTIONS,
 } from '@/modules/household/constants'
 import Typography from '@mui/material/Typography'
@@ -13,13 +12,14 @@ import CreatableSelectField from '@/components/creatable-select-field'
 import { useState } from 'react'
 import { Option } from '@/components/creatable-select-field/interface'
 import MultiSelectField from '@/components/multi-select-field'
+import { IAnnualInfoSchema } from '@/modules/annual-info/constants'
 
-interface IFarmProfile {
-  formProps: UseFormReturn<IFarmProfileSchema>
+interface IAnnualInfoFormProps {
+  formProps: UseFormReturn<IAnnualInfoSchema>
 }
-export function FarmProfile(props: IFarmProfile) {
+export function AnnualInfoForm(props: IAnnualInfoFormProps) {
   const { formProps } = props
-  const { control, getValues } = formProps
+  const { control } = formProps
 
   const [options, setOptions] = useState<Option[]>([])
   return (
@@ -29,24 +29,26 @@ export function FarmProfile(props: IFarmProfile) {
           <b>Gross annual income last year:</b>
         </Typography>
       </Grid>
-      <Grid item md={4} xs={12}>
+      <Grid item md={6} xs={12}>
         <TextField
           control={control}
           label="Farming"
           name="grossAnnualIncomeFarming"
+          type="number"
         />
       </Grid>
-      <Grid item md={4} xs={12}>
+      <Grid item md={6} xs={12}>
         <TextField
           control={control}
           label="Non-farming"
           name="grossAnnualIncomeNonfarming"
+          type="number"
         />
       </Grid>
       <Grid item xs={12}>
         <Divider />
       </Grid>
-      <Grid item xs={12} md={4}>
+      <Grid item xs={12} md={6}>
         <MultiSelectField
           control={control}
           name="mainLivelihood"

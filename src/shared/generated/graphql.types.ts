@@ -17,6 +17,7 @@ export type Scalars = {
   Int: number
   Float: number
   date: any
+  float8: any
   jsonb: any
   numeric: any
   timestamp: any
@@ -610,9 +611,6 @@ export type Commodity = {
   commodity: Scalars['String']
   commodityType: Scalars['String']
   createdAt: Scalars['timestamp']
-  /** An object relationship */
-  farm?: Maybe<Farm>
-  farmId?: Maybe<Scalars['uuid']>
   id: Scalars['uuid']
   updatedAt: Scalars['timestamp']
 }
@@ -638,20 +636,6 @@ export type CommodityAggregateFieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']>
 }
 
-/** order by aggregate values of table "commodity" */
-export type CommodityAggregateOrderBy = {
-  count?: InputMaybe<OrderBy>
-  max?: InputMaybe<Commodity_Max_Order_By>
-  min?: InputMaybe<Commodity_Min_Order_By>
-}
-
-/** input type for inserting array relation for remote table "commodity" */
-export type CommodityArrRelInsertInput = {
-  data: Array<CommodityInsertInput>
-  /** upsert condition */
-  onConflict?: InputMaybe<CommodityOnConflict>
-}
-
 /** Boolean expression to filter rows from the table "commodity". All fields are combined with a logical 'AND'. */
 export type CommodityBoolExp = {
   _and?: InputMaybe<Array<CommodityBoolExp>>
@@ -660,8 +644,6 @@ export type CommodityBoolExp = {
   commodity?: InputMaybe<StringComparisonExp>
   commodityType?: InputMaybe<StringComparisonExp>
   createdAt?: InputMaybe<TimestampComparisonExp>
-  farm?: InputMaybe<FarmBoolExp>
-  farmId?: InputMaybe<UuidComparisonExp>
   id?: InputMaybe<UuidComparisonExp>
   updatedAt?: InputMaybe<TimestampComparisonExp>
 }
@@ -677,8 +659,6 @@ export type CommodityInsertInput = {
   commodity?: InputMaybe<Scalars['String']>
   commodityType?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
-  farm?: InputMaybe<FarmObjRelInsertInput>
-  farmId?: InputMaybe<Scalars['uuid']>
   id?: InputMaybe<Scalars['uuid']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
 }
@@ -689,7 +669,6 @@ export type CommodityMaxFields = {
   commodity?: Maybe<Scalars['String']>
   commodityType?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
-  farmId?: Maybe<Scalars['uuid']>
   id?: Maybe<Scalars['uuid']>
   updatedAt?: Maybe<Scalars['timestamp']>
 }
@@ -700,7 +679,6 @@ export type CommodityMinFields = {
   commodity?: Maybe<Scalars['String']>
   commodityType?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
-  farmId?: Maybe<Scalars['uuid']>
   id?: Maybe<Scalars['uuid']>
   updatedAt?: Maybe<Scalars['timestamp']>
 }
@@ -726,8 +704,6 @@ export type CommodityOrderBy = {
   commodity?: InputMaybe<OrderBy>
   commodityType?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
-  farm?: InputMaybe<FarmOrderBy>
-  farmId?: InputMaybe<OrderBy>
   id?: InputMaybe<OrderBy>
   updatedAt?: InputMaybe<OrderBy>
 }
@@ -735,6 +711,293 @@ export type CommodityOrderBy = {
 /** primary key columns input for table: commodity */
 export type CommodityPkColumnsInput = {
   id: Scalars['uuid']
+}
+
+/** columns and relationships of "commodityProduceInventory" */
+export type CommodityProduceInventory = {
+  __typename?: 'CommodityProduceInventory'
+  areaUsed: Scalars['float8']
+  commodityId: Scalars['uuid']
+  createdAt: Scalars['timestamp']
+  farmId: Scalars['uuid']
+  householdId: Scalars['uuid']
+  id: Scalars['uuid']
+  organicPractitioner: Scalars['Boolean']
+  produce?: Maybe<Scalars['float8']>
+  updatedAt: Scalars['timestamp']
+  year: Scalars['Int']
+}
+
+/** aggregated selection of "commodityProduceInventory" */
+export type CommodityProduceInventoryAggregate = {
+  __typename?: 'CommodityProduceInventoryAggregate'
+  aggregate?: Maybe<CommodityProduceInventoryAggregateFields>
+  nodes: Array<CommodityProduceInventory>
+}
+
+/** aggregate fields of "commodityProduceInventory" */
+export type CommodityProduceInventoryAggregateFields = {
+  __typename?: 'CommodityProduceInventoryAggregateFields'
+  avg?: Maybe<CommodityProduceInventoryAvgFields>
+  count: Scalars['Int']
+  max?: Maybe<CommodityProduceInventoryMaxFields>
+  min?: Maybe<CommodityProduceInventoryMinFields>
+  stddev?: Maybe<CommodityProduceInventoryStddevFields>
+  stddevPop?: Maybe<CommodityProduceInventoryStddev_PopFields>
+  stddevSamp?: Maybe<CommodityProduceInventoryStddev_SampFields>
+  sum?: Maybe<CommodityProduceInventorySumFields>
+  varPop?: Maybe<CommodityProduceInventoryVar_PopFields>
+  varSamp?: Maybe<CommodityProduceInventoryVar_SampFields>
+  variance?: Maybe<CommodityProduceInventoryVarianceFields>
+}
+
+/** aggregate fields of "commodityProduceInventory" */
+export type CommodityProduceInventoryAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<CommodityProduceInventorySelectColumn>>
+  distinct?: InputMaybe<Scalars['Boolean']>
+}
+
+/** aggregate avg on columns */
+export type CommodityProduceInventoryAvgFields = {
+  __typename?: 'CommodityProduceInventoryAvgFields'
+  areaUsed?: Maybe<Scalars['Float']>
+  produce?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** Boolean expression to filter rows from the table "commodityProduceInventory". All fields are combined with a logical 'AND'. */
+export type CommodityProduceInventoryBoolExp = {
+  _and?: InputMaybe<Array<CommodityProduceInventoryBoolExp>>
+  _not?: InputMaybe<CommodityProduceInventoryBoolExp>
+  _or?: InputMaybe<Array<CommodityProduceInventoryBoolExp>>
+  areaUsed?: InputMaybe<Float8ComparisonExp>
+  commodityId?: InputMaybe<UuidComparisonExp>
+  createdAt?: InputMaybe<TimestampComparisonExp>
+  farmId?: InputMaybe<UuidComparisonExp>
+  householdId?: InputMaybe<UuidComparisonExp>
+  id?: InputMaybe<UuidComparisonExp>
+  organicPractitioner?: InputMaybe<BooleanComparisonExp>
+  produce?: InputMaybe<Float8ComparisonExp>
+  updatedAt?: InputMaybe<TimestampComparisonExp>
+  year?: InputMaybe<IntComparisonExp>
+}
+
+/** unique or primary key constraints on table "commodityProduceInventory" */
+export enum CommodityProduceInventoryConstraint {
+  /** unique or primary key constraint on columns "id" */
+  CommodityproduceinventoryPk = 'commodityproduceinventory_pk',
+  /** unique or primary key constraint on columns "year", "commodityId", "farmId" */
+  CommodityproduceinventoryUnique = 'commodityproduceinventory_unique',
+}
+
+/** input type for incrementing numeric columns in table "commodityProduceInventory" */
+export type CommodityProduceInventoryIncInput = {
+  areaUsed?: InputMaybe<Scalars['float8']>
+  produce?: InputMaybe<Scalars['float8']>
+  year?: InputMaybe<Scalars['Int']>
+}
+
+/** input type for inserting data into table "commodityProduceInventory" */
+export type CommodityProduceInventoryInsertInput = {
+  areaUsed?: InputMaybe<Scalars['float8']>
+  commodityId?: InputMaybe<Scalars['uuid']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  farmId?: InputMaybe<Scalars['uuid']>
+  householdId?: InputMaybe<Scalars['uuid']>
+  id?: InputMaybe<Scalars['uuid']>
+  organicPractitioner?: InputMaybe<Scalars['Boolean']>
+  produce?: InputMaybe<Scalars['float8']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+  year?: InputMaybe<Scalars['Int']>
+}
+
+/** aggregate max on columns */
+export type CommodityProduceInventoryMaxFields = {
+  __typename?: 'CommodityProduceInventoryMaxFields'
+  areaUsed?: Maybe<Scalars['float8']>
+  commodityId?: Maybe<Scalars['uuid']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  farmId?: Maybe<Scalars['uuid']>
+  householdId?: Maybe<Scalars['uuid']>
+  id?: Maybe<Scalars['uuid']>
+  produce?: Maybe<Scalars['float8']>
+  updatedAt?: Maybe<Scalars['timestamp']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** aggregate min on columns */
+export type CommodityProduceInventoryMinFields = {
+  __typename?: 'CommodityProduceInventoryMinFields'
+  areaUsed?: Maybe<Scalars['float8']>
+  commodityId?: Maybe<Scalars['uuid']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  farmId?: Maybe<Scalars['uuid']>
+  householdId?: Maybe<Scalars['uuid']>
+  id?: Maybe<Scalars['uuid']>
+  produce?: Maybe<Scalars['float8']>
+  updatedAt?: Maybe<Scalars['timestamp']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** response of any mutation on the table "commodityProduceInventory" */
+export type CommodityProduceInventoryMutationResponse = {
+  __typename?: 'CommodityProduceInventoryMutationResponse'
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']
+  /** data from the rows affected by the mutation */
+  returning: Array<CommodityProduceInventory>
+}
+
+/** on_conflict condition type for table "commodityProduceInventory" */
+export type CommodityProduceInventoryOnConflict = {
+  constraint: CommodityProduceInventoryConstraint
+  update_columns?: Array<CommodityProduceInventoryUpdateColumn>
+  where?: InputMaybe<CommodityProduceInventoryBoolExp>
+}
+
+/** Ordering options when selecting data from "commodityProduceInventory". */
+export type CommodityProduceInventoryOrderBy = {
+  areaUsed?: InputMaybe<OrderBy>
+  commodityId?: InputMaybe<OrderBy>
+  createdAt?: InputMaybe<OrderBy>
+  farmId?: InputMaybe<OrderBy>
+  householdId?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  organicPractitioner?: InputMaybe<OrderBy>
+  produce?: InputMaybe<OrderBy>
+  updatedAt?: InputMaybe<OrderBy>
+  year?: InputMaybe<OrderBy>
+}
+
+/** primary key columns input for table: commodityProduceInventory */
+export type CommodityProduceInventoryPkColumnsInput = {
+  id: Scalars['uuid']
+}
+
+/** select columns of table "commodityProduceInventory" */
+export enum CommodityProduceInventorySelectColumn {
+  /** column name */
+  AreaUsed = 'areaUsed',
+  /** column name */
+  CommodityId = 'commodityId',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  FarmId = 'farmId',
+  /** column name */
+  HouseholdId = 'householdId',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  OrganicPractitioner = 'organicPractitioner',
+  /** column name */
+  Produce = 'produce',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  Year = 'year',
+}
+
+/** input type for updating data in table "commodityProduceInventory" */
+export type CommodityProduceInventorySetInput = {
+  areaUsed?: InputMaybe<Scalars['float8']>
+  commodityId?: InputMaybe<Scalars['uuid']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  farmId?: InputMaybe<Scalars['uuid']>
+  householdId?: InputMaybe<Scalars['uuid']>
+  id?: InputMaybe<Scalars['uuid']>
+  organicPractitioner?: InputMaybe<Scalars['Boolean']>
+  produce?: InputMaybe<Scalars['float8']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+  year?: InputMaybe<Scalars['Int']>
+}
+
+/** aggregate stddev on columns */
+export type CommodityProduceInventoryStddevFields = {
+  __typename?: 'CommodityProduceInventoryStddevFields'
+  areaUsed?: Maybe<Scalars['Float']>
+  produce?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_pop on columns */
+export type CommodityProduceInventoryStddev_PopFields = {
+  __typename?: 'CommodityProduceInventoryStddev_popFields'
+  areaUsed?: Maybe<Scalars['Float']>
+  produce?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_samp on columns */
+export type CommodityProduceInventoryStddev_SampFields = {
+  __typename?: 'CommodityProduceInventoryStddev_sampFields'
+  areaUsed?: Maybe<Scalars['Float']>
+  produce?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate sum on columns */
+export type CommodityProduceInventorySumFields = {
+  __typename?: 'CommodityProduceInventorySumFields'
+  areaUsed?: Maybe<Scalars['float8']>
+  produce?: Maybe<Scalars['float8']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** update columns of table "commodityProduceInventory" */
+export enum CommodityProduceInventoryUpdateColumn {
+  /** column name */
+  AreaUsed = 'areaUsed',
+  /** column name */
+  CommodityId = 'commodityId',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  FarmId = 'farmId',
+  /** column name */
+  HouseholdId = 'householdId',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  OrganicPractitioner = 'organicPractitioner',
+  /** column name */
+  Produce = 'produce',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  Year = 'year',
+}
+
+export type CommodityProduceInventoryUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<CommodityProduceInventoryIncInput>
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<CommodityProduceInventorySetInput>
+  where: CommodityProduceInventoryBoolExp
+}
+
+/** aggregate var_pop on columns */
+export type CommodityProduceInventoryVar_PopFields = {
+  __typename?: 'CommodityProduceInventoryVar_popFields'
+  areaUsed?: Maybe<Scalars['Float']>
+  produce?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate var_samp on columns */
+export type CommodityProduceInventoryVar_SampFields = {
+  __typename?: 'CommodityProduceInventoryVar_sampFields'
+  areaUsed?: Maybe<Scalars['Float']>
+  produce?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate variance on columns */
+export type CommodityProduceInventoryVarianceFields = {
+  __typename?: 'CommodityProduceInventoryVarianceFields'
+  areaUsed?: Maybe<Scalars['Float']>
+  produce?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
 }
 
 /** select columns of table "commodity" */
@@ -746,8 +1009,6 @@ export enum CommoditySelectColumn {
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
-  FarmId = 'farmId',
-  /** column name */
   Id = 'id',
   /** column name */
   UpdatedAt = 'updatedAt',
@@ -758,7 +1019,6 @@ export type CommoditySetInput = {
   commodity?: InputMaybe<Scalars['String']>
   commodityType?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
-  farmId?: InputMaybe<Scalars['uuid']>
   id?: InputMaybe<Scalars['uuid']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
 }
@@ -771,8 +1031,6 @@ export enum CommodityUpdateColumn {
   CommodityType = 'commodityType',
   /** column name */
   CreatedAt = 'createdAt',
-  /** column name */
-  FarmId = 'farmId',
   /** column name */
   Id = 'id',
   /** column name */
@@ -810,40 +1068,22 @@ export type DateComparisonExp = {
 export type Farm = {
   __typename?: 'Farm'
   barangay: Scalars['String']
-  /** An array relationship */
-  commodities: Array<Commodity>
-  /** An aggregate relationship */
-  commoditiesAggregate: CommodityAggregate
   createdAt: Scalars['timestamp']
   farmType: Scalars['String']
+  /** An object relationship */
+  household: Household
+  householdId: Scalars['uuid']
   id: Scalars['uuid']
   isAgrarianReformBeneficiary: Scalars['Boolean']
   location?: Maybe<Scalars['jsonb']>
   municipality: Scalars['String']
+  name: Scalars['String']
   ownerName: Scalars['String']
   ownershipDocument: Scalars['String']
   ownershipType: Scalars['String']
   sizeInHaTotal: Scalars['numeric']
   updatedAt: Scalars['timestamp']
   withinAncestralDomain: Scalars['Boolean']
-}
-
-/** columns and relationships of "farm" */
-export type FarmCommoditiesArgs = {
-  distinctOn?: InputMaybe<Array<CommoditySelectColumn>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  orderBy?: InputMaybe<Array<CommodityOrderBy>>
-  where?: InputMaybe<CommodityBoolExp>
-}
-
-/** columns and relationships of "farm" */
-export type FarmCommoditiesAggregateArgs = {
-  distinctOn?: InputMaybe<Array<CommoditySelectColumn>>
-  limit?: InputMaybe<Scalars['Int']>
-  offset?: InputMaybe<Scalars['Int']>
-  orderBy?: InputMaybe<Array<CommodityOrderBy>>
-  where?: InputMaybe<CommodityBoolExp>
 }
 
 /** columns and relationships of "farm" */
@@ -880,9 +1120,31 @@ export type FarmAggregateFieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']>
 }
 
+/** order by aggregate values of table "farm" */
+export type FarmAggregateOrderBy = {
+  avg?: InputMaybe<Farm_Avg_Order_By>
+  count?: InputMaybe<OrderBy>
+  max?: InputMaybe<Farm_Max_Order_By>
+  min?: InputMaybe<Farm_Min_Order_By>
+  stddev?: InputMaybe<Farm_Stddev_Order_By>
+  stddev_pop?: InputMaybe<Farm_Stddev_Pop_Order_By>
+  stddev_samp?: InputMaybe<Farm_Stddev_Samp_Order_By>
+  sum?: InputMaybe<Farm_Sum_Order_By>
+  var_pop?: InputMaybe<Farm_Var_Pop_Order_By>
+  var_samp?: InputMaybe<Farm_Var_Samp_Order_By>
+  variance?: InputMaybe<Farm_Variance_Order_By>
+}
+
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type FarmAppendInput = {
   location?: InputMaybe<Scalars['jsonb']>
+}
+
+/** input type for inserting array relation for remote table "farm" */
+export type FarmArrRelInsertInput = {
+  data: Array<FarmInsertInput>
+  /** upsert condition */
+  onConflict?: InputMaybe<FarmOnConflict>
 }
 
 /** aggregate avg on columns */
@@ -897,13 +1159,15 @@ export type FarmBoolExp = {
   _not?: InputMaybe<FarmBoolExp>
   _or?: InputMaybe<Array<FarmBoolExp>>
   barangay?: InputMaybe<StringComparisonExp>
-  commodities?: InputMaybe<CommodityBoolExp>
   createdAt?: InputMaybe<TimestampComparisonExp>
   farmType?: InputMaybe<StringComparisonExp>
+  household?: InputMaybe<HouseholdBoolExp>
+  householdId?: InputMaybe<UuidComparisonExp>
   id?: InputMaybe<UuidComparisonExp>
   isAgrarianReformBeneficiary?: InputMaybe<BooleanComparisonExp>
   location?: InputMaybe<JsonbComparisonExp>
   municipality?: InputMaybe<StringComparisonExp>
+  name?: InputMaybe<StringComparisonExp>
   ownerName?: InputMaybe<StringComparisonExp>
   ownershipDocument?: InputMaybe<StringComparisonExp>
   ownershipType?: InputMaybe<StringComparisonExp>
@@ -941,13 +1205,15 @@ export type FarmIncInput = {
 /** input type for inserting data into table "farm" */
 export type FarmInsertInput = {
   barangay?: InputMaybe<Scalars['String']>
-  commodities?: InputMaybe<CommodityArrRelInsertInput>
   createdAt?: InputMaybe<Scalars['timestamp']>
   farmType?: InputMaybe<Scalars['String']>
+  household?: InputMaybe<HouseholdObjRelInsertInput>
+  householdId?: InputMaybe<Scalars['uuid']>
   id?: InputMaybe<Scalars['uuid']>
   isAgrarianReformBeneficiary?: InputMaybe<Scalars['Boolean']>
   location?: InputMaybe<Scalars['jsonb']>
   municipality?: InputMaybe<Scalars['String']>
+  name?: InputMaybe<Scalars['String']>
   ownerName?: InputMaybe<Scalars['String']>
   ownershipDocument?: InputMaybe<Scalars['String']>
   ownershipType?: InputMaybe<Scalars['String']>
@@ -962,8 +1228,10 @@ export type FarmMaxFields = {
   barangay?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
   farmType?: Maybe<Scalars['String']>
+  householdId?: Maybe<Scalars['uuid']>
   id?: Maybe<Scalars['uuid']>
   municipality?: Maybe<Scalars['String']>
+  name?: Maybe<Scalars['String']>
   ownerName?: Maybe<Scalars['String']>
   ownershipDocument?: Maybe<Scalars['String']>
   ownershipType?: Maybe<Scalars['String']>
@@ -977,8 +1245,10 @@ export type FarmMinFields = {
   barangay?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
   farmType?: Maybe<Scalars['String']>
+  householdId?: Maybe<Scalars['uuid']>
   id?: Maybe<Scalars['uuid']>
   municipality?: Maybe<Scalars['String']>
+  name?: Maybe<Scalars['String']>
   ownerName?: Maybe<Scalars['String']>
   ownershipDocument?: Maybe<Scalars['String']>
   ownershipType?: Maybe<Scalars['String']>
@@ -995,13 +1265,6 @@ export type FarmMutationResponse = {
   returning: Array<Farm>
 }
 
-/** input type for inserting object relation for remote table "farm" */
-export type FarmObjRelInsertInput = {
-  data: FarmInsertInput
-  /** upsert condition */
-  onConflict?: InputMaybe<FarmOnConflict>
-}
-
 /** on_conflict condition type for table "farm" */
 export type FarmOnConflict = {
   constraint: FarmConstraint
@@ -1012,13 +1275,15 @@ export type FarmOnConflict = {
 /** Ordering options when selecting data from "farm". */
 export type FarmOrderBy = {
   barangay?: InputMaybe<OrderBy>
-  commoditiesAggregate?: InputMaybe<CommodityAggregateOrderBy>
   createdAt?: InputMaybe<OrderBy>
   farmType?: InputMaybe<OrderBy>
+  household?: InputMaybe<HouseholdOrderBy>
+  householdId?: InputMaybe<OrderBy>
   id?: InputMaybe<OrderBy>
   isAgrarianReformBeneficiary?: InputMaybe<OrderBy>
   location?: InputMaybe<OrderBy>
   municipality?: InputMaybe<OrderBy>
+  name?: InputMaybe<OrderBy>
   ownerName?: InputMaybe<OrderBy>
   ownershipDocument?: InputMaybe<OrderBy>
   ownershipType?: InputMaybe<OrderBy>
@@ -1046,6 +1311,8 @@ export enum FarmSelectColumn {
   /** column name */
   FarmType = 'farmType',
   /** column name */
+  HouseholdId = 'householdId',
+  /** column name */
   Id = 'id',
   /** column name */
   IsAgrarianReformBeneficiary = 'isAgrarianReformBeneficiary',
@@ -1053,6 +1320,8 @@ export enum FarmSelectColumn {
   Location = 'location',
   /** column name */
   Municipality = 'municipality',
+  /** column name */
+  Name = 'name',
   /** column name */
   OwnerName = 'ownerName',
   /** column name */
@@ -1072,10 +1341,12 @@ export type FarmSetInput = {
   barangay?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   farmType?: InputMaybe<Scalars['String']>
+  householdId?: InputMaybe<Scalars['uuid']>
   id?: InputMaybe<Scalars['uuid']>
   isAgrarianReformBeneficiary?: InputMaybe<Scalars['Boolean']>
   location?: InputMaybe<Scalars['jsonb']>
   municipality?: InputMaybe<Scalars['String']>
+  name?: InputMaybe<Scalars['String']>
   ownerName?: InputMaybe<Scalars['String']>
   ownershipDocument?: InputMaybe<Scalars['String']>
   ownershipType?: InputMaybe<Scalars['String']>
@@ -1117,6 +1388,8 @@ export enum FarmUpdateColumn {
   /** column name */
   FarmType = 'farmType',
   /** column name */
+  HouseholdId = 'householdId',
+  /** column name */
   Id = 'id',
   /** column name */
   IsAgrarianReformBeneficiary = 'isAgrarianReformBeneficiary',
@@ -1124,6 +1397,8 @@ export enum FarmUpdateColumn {
   Location = 'location',
   /** column name */
   Municipality = 'municipality',
+  /** column name */
+  Name = 'name',
   /** column name */
   OwnerName = 'ownerName',
   /** column name */
@@ -1174,6 +1449,19 @@ export type FarmVarianceFields = {
   sizeInHaTotal?: Maybe<Scalars['Float']>
 }
 
+/** Boolean expression to compare columns of type "float8". All fields are combined with logical 'AND'. */
+export type Float8ComparisonExp = {
+  _eq?: InputMaybe<Scalars['float8']>
+  _gt?: InputMaybe<Scalars['float8']>
+  _gte?: InputMaybe<Scalars['float8']>
+  _in?: InputMaybe<Array<Scalars['float8']>>
+  _isNull?: InputMaybe<Scalars['Boolean']>
+  _lt?: InputMaybe<Scalars['float8']>
+  _lte?: InputMaybe<Scalars['float8']>
+  _neq?: InputMaybe<Scalars['float8']>
+  _nin?: InputMaybe<Array<Scalars['float8']>>
+}
+
 /** columns and relationships of "household" */
 export type Household = {
   __typename?: 'Household'
@@ -1189,6 +1477,10 @@ export type Household = {
   emergencyContactName: Scalars['String']
   emergencyContactNumber: Scalars['String']
   extensionName: Scalars['String']
+  /** An array relationship */
+  farms: Array<Farm>
+  /** An aggregate relationship */
+  farmsAggregate: FarmAggregate
   femaleCount: Scalars['Int']
   firstName: Scalars['String']
   governmentIdNo: Scalars['String']
@@ -1233,6 +1525,24 @@ export type HouseholdAnnualInfosAggregateArgs = {
   offset?: InputMaybe<Scalars['Int']>
   orderBy?: InputMaybe<Array<AnnualInfoOrderBy>>
   where?: InputMaybe<AnnualInfoBoolExp>
+}
+
+/** columns and relationships of "household" */
+export type HouseholdFarmsArgs = {
+  distinctOn?: InputMaybe<Array<FarmSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<FarmOrderBy>>
+  where?: InputMaybe<FarmBoolExp>
+}
+
+/** columns and relationships of "household" */
+export type HouseholdFarmsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<FarmSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<FarmOrderBy>>
+  where?: InputMaybe<FarmBoolExp>
 }
 
 /** aggregated selection of "household" */
@@ -1287,6 +1597,7 @@ export type HouseholdBoolExp = {
   emergencyContactName?: InputMaybe<StringComparisonExp>
   emergencyContactNumber?: InputMaybe<StringComparisonExp>
   extensionName?: InputMaybe<StringComparisonExp>
+  farms?: InputMaybe<FarmBoolExp>
   femaleCount?: InputMaybe<IntComparisonExp>
   firstName?: InputMaybe<StringComparisonExp>
   governmentIdNo?: InputMaybe<StringComparisonExp>
@@ -1340,6 +1651,7 @@ export type HouseholdInsertInput = {
   emergencyContactName?: InputMaybe<Scalars['String']>
   emergencyContactNumber?: InputMaybe<Scalars['String']>
   extensionName?: InputMaybe<Scalars['String']>
+  farms?: InputMaybe<FarmArrRelInsertInput>
   femaleCount?: InputMaybe<Scalars['Int']>
   firstName?: InputMaybe<Scalars['String']>
   governmentIdNo?: InputMaybe<Scalars['String']>
@@ -1474,6 +1786,7 @@ export type HouseholdOrderBy = {
   emergencyContactName?: InputMaybe<OrderBy>
   emergencyContactNumber?: InputMaybe<OrderBy>
   extensionName?: InputMaybe<OrderBy>
+  farmsAggregate?: InputMaybe<FarmAggregateOrderBy>
   femaleCount?: InputMaybe<OrderBy>
   firstName?: InputMaybe<OrderBy>
   governmentIdNo?: InputMaybe<OrderBy>
@@ -2208,24 +2521,26 @@ export type Association_StreamCursorValueInput = {
   updatedAt?: InputMaybe<Scalars['timestamp']>
 }
 
-/** order by max() on columns of table "commodity" */
-export type Commodity_Max_Order_By = {
-  commodity?: InputMaybe<OrderBy>
-  commodityType?: InputMaybe<OrderBy>
-  createdAt?: InputMaybe<OrderBy>
-  farmId?: InputMaybe<OrderBy>
-  id?: InputMaybe<OrderBy>
-  updatedAt?: InputMaybe<OrderBy>
+/** Streaming cursor of the table "commodityProduceInventory" */
+export type CommodityProduceInventory_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: CommodityProduceInventory_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
 }
 
-/** order by min() on columns of table "commodity" */
-export type Commodity_Min_Order_By = {
-  commodity?: InputMaybe<OrderBy>
-  commodityType?: InputMaybe<OrderBy>
-  createdAt?: InputMaybe<OrderBy>
-  farmId?: InputMaybe<OrderBy>
-  id?: InputMaybe<OrderBy>
-  updatedAt?: InputMaybe<OrderBy>
+/** Initial value of the column from where the streaming should start */
+export type CommodityProduceInventory_StreamCursorValueInput = {
+  areaUsed?: InputMaybe<Scalars['float8']>
+  commodityId?: InputMaybe<Scalars['uuid']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  farmId?: InputMaybe<Scalars['uuid']>
+  householdId?: InputMaybe<Scalars['uuid']>
+  id?: InputMaybe<Scalars['uuid']>
+  organicPractitioner?: InputMaybe<Scalars['Boolean']>
+  produce?: InputMaybe<Scalars['float8']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+  year?: InputMaybe<Scalars['Int']>
 }
 
 /** Streaming cursor of the table "commodity" */
@@ -2241,9 +2556,60 @@ export type Commodity_StreamCursorValueInput = {
   commodity?: InputMaybe<Scalars['String']>
   commodityType?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
-  farmId?: InputMaybe<Scalars['uuid']>
   id?: InputMaybe<Scalars['uuid']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
+/** order by avg() on columns of table "farm" */
+export type Farm_Avg_Order_By = {
+  sizeInHaTotal?: InputMaybe<OrderBy>
+}
+
+/** order by max() on columns of table "farm" */
+export type Farm_Max_Order_By = {
+  barangay?: InputMaybe<OrderBy>
+  createdAt?: InputMaybe<OrderBy>
+  farmType?: InputMaybe<OrderBy>
+  householdId?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  municipality?: InputMaybe<OrderBy>
+  name?: InputMaybe<OrderBy>
+  ownerName?: InputMaybe<OrderBy>
+  ownershipDocument?: InputMaybe<OrderBy>
+  ownershipType?: InputMaybe<OrderBy>
+  sizeInHaTotal?: InputMaybe<OrderBy>
+  updatedAt?: InputMaybe<OrderBy>
+}
+
+/** order by min() on columns of table "farm" */
+export type Farm_Min_Order_By = {
+  barangay?: InputMaybe<OrderBy>
+  createdAt?: InputMaybe<OrderBy>
+  farmType?: InputMaybe<OrderBy>
+  householdId?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  municipality?: InputMaybe<OrderBy>
+  name?: InputMaybe<OrderBy>
+  ownerName?: InputMaybe<OrderBy>
+  ownershipDocument?: InputMaybe<OrderBy>
+  ownershipType?: InputMaybe<OrderBy>
+  sizeInHaTotal?: InputMaybe<OrderBy>
+  updatedAt?: InputMaybe<OrderBy>
+}
+
+/** order by stddev() on columns of table "farm" */
+export type Farm_Stddev_Order_By = {
+  sizeInHaTotal?: InputMaybe<OrderBy>
+}
+
+/** order by stddev_pop() on columns of table "farm" */
+export type Farm_Stddev_Pop_Order_By = {
+  sizeInHaTotal?: InputMaybe<OrderBy>
+}
+
+/** order by stddev_samp() on columns of table "farm" */
+export type Farm_Stddev_Samp_Order_By = {
+  sizeInHaTotal?: InputMaybe<OrderBy>
 }
 
 /** Streaming cursor of the table "farm" */
@@ -2259,16 +2625,38 @@ export type Farm_StreamCursorValueInput = {
   barangay?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   farmType?: InputMaybe<Scalars['String']>
+  householdId?: InputMaybe<Scalars['uuid']>
   id?: InputMaybe<Scalars['uuid']>
   isAgrarianReformBeneficiary?: InputMaybe<Scalars['Boolean']>
   location?: InputMaybe<Scalars['jsonb']>
   municipality?: InputMaybe<Scalars['String']>
+  name?: InputMaybe<Scalars['String']>
   ownerName?: InputMaybe<Scalars['String']>
   ownershipDocument?: InputMaybe<Scalars['String']>
   ownershipType?: InputMaybe<Scalars['String']>
   sizeInHaTotal?: InputMaybe<Scalars['numeric']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
   withinAncestralDomain?: InputMaybe<Scalars['Boolean']>
+}
+
+/** order by sum() on columns of table "farm" */
+export type Farm_Sum_Order_By = {
+  sizeInHaTotal?: InputMaybe<OrderBy>
+}
+
+/** order by var_pop() on columns of table "farm" */
+export type Farm_Var_Pop_Order_By = {
+  sizeInHaTotal?: InputMaybe<OrderBy>
+}
+
+/** order by var_samp() on columns of table "farm" */
+export type Farm_Var_Samp_Order_By = {
+  sizeInHaTotal?: InputMaybe<OrderBy>
+}
+
+/** order by variance() on columns of table "farm" */
+export type Farm_Variance_Order_By = {
+  sizeInHaTotal?: InputMaybe<OrderBy>
 }
 
 /** Streaming cursor of the table "household" */
@@ -2332,6 +2720,10 @@ export type Mutation_Root = {
   deleteCommodity?: Maybe<CommodityMutationResponse>
   /** delete single row from the table: "commodity" */
   deleteCommodityByPk?: Maybe<Commodity>
+  /** delete data from the table: "commodityProduceInventory" */
+  deleteCommodityProduceInventory?: Maybe<CommodityProduceInventoryMutationResponse>
+  /** delete single row from the table: "commodityProduceInventory" */
+  deleteCommodityProduceInventoryByPk?: Maybe<CommodityProduceInventory>
   /** delete data from the table: "farm" */
   deleteFarm?: Maybe<FarmMutationResponse>
   /** delete single row from the table: "farm" */
@@ -2356,6 +2748,10 @@ export type Mutation_Root = {
   insertCommodity?: Maybe<CommodityMutationResponse>
   /** insert a single row into the table: "commodity" */
   insertCommodityOne?: Maybe<Commodity>
+  /** insert data into the table: "commodityProduceInventory" */
+  insertCommodityProduceInventory?: Maybe<CommodityProduceInventoryMutationResponse>
+  /** insert a single row into the table: "commodityProduceInventory" */
+  insertCommodityProduceInventoryOne?: Maybe<CommodityProduceInventory>
   /** insert data into the table: "farm" */
   insertFarm?: Maybe<FarmMutationResponse>
   /** insert a single row into the table: "farm" */
@@ -2386,6 +2782,14 @@ export type Mutation_Root = {
   updateCommodityByPk?: Maybe<Commodity>
   /** update multiples rows of table: "commodity" */
   updateCommodityMany?: Maybe<Array<Maybe<CommodityMutationResponse>>>
+  /** update data of the table: "commodityProduceInventory" */
+  updateCommodityProduceInventory?: Maybe<CommodityProduceInventoryMutationResponse>
+  /** update single row of the table: "commodityProduceInventory" */
+  updateCommodityProduceInventoryByPk?: Maybe<CommodityProduceInventory>
+  /** update multiples rows of table: "commodityProduceInventory" */
+  updateCommodityProduceInventoryMany?: Maybe<
+    Array<Maybe<CommodityProduceInventoryMutationResponse>>
+  >
   /** update data of the table: "farm" */
   updateFarm?: Maybe<FarmMutationResponse>
   /** update single row of the table: "farm" */
@@ -2433,6 +2837,16 @@ export type Mutation_RootDeleteCommodityArgs = {
 
 /** mutation root */
 export type Mutation_RootDeleteCommodityByPkArgs = {
+  id: Scalars['uuid']
+}
+
+/** mutation root */
+export type Mutation_RootDeleteCommodityProduceInventoryArgs = {
+  where: CommodityProduceInventoryBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootDeleteCommodityProduceInventoryByPkArgs = {
   id: Scalars['uuid']
 }
 
@@ -2500,6 +2914,18 @@ export type Mutation_RootInsertCommodityArgs = {
 export type Mutation_RootInsertCommodityOneArgs = {
   object: CommodityInsertInput
   onConflict?: InputMaybe<CommodityOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertCommodityProduceInventoryArgs = {
+  objects: Array<CommodityProduceInventoryInsertInput>
+  onConflict?: InputMaybe<CommodityProduceInventoryOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertCommodityProduceInventoryOneArgs = {
+  object: CommodityProduceInventoryInsertInput
+  onConflict?: InputMaybe<CommodityProduceInventoryOnConflict>
 }
 
 /** mutation root */
@@ -2599,6 +3025,25 @@ export type Mutation_RootUpdateCommodityByPkArgs = {
 /** mutation root */
 export type Mutation_RootUpdateCommodityManyArgs = {
   updates: Array<CommodityUpdates>
+}
+
+/** mutation root */
+export type Mutation_RootUpdateCommodityProduceInventoryArgs = {
+  _inc?: InputMaybe<CommodityProduceInventoryIncInput>
+  _set?: InputMaybe<CommodityProduceInventorySetInput>
+  where: CommodityProduceInventoryBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootUpdateCommodityProduceInventoryByPkArgs = {
+  _inc?: InputMaybe<CommodityProduceInventoryIncInput>
+  _set?: InputMaybe<CommodityProduceInventorySetInput>
+  pk_columns: CommodityProduceInventoryPkColumnsInput
+}
+
+/** mutation root */
+export type Mutation_RootUpdateCommodityProduceInventoryManyArgs = {
+  updates: Array<CommodityProduceInventoryUpdates>
 }
 
 /** mutation root */
@@ -2707,6 +3152,12 @@ export type Query_Root = {
   commodityAggregate: CommodityAggregate
   /** fetch data from the table: "commodity" using primary key columns */
   commodityByPk?: Maybe<Commodity>
+  /** fetch data from the table: "commodityProduceInventory" */
+  commodityProduceInventory: Array<CommodityProduceInventory>
+  /** fetch aggregated fields from the table: "commodityProduceInventory" */
+  commodityProduceInventoryAggregate: CommodityProduceInventoryAggregate
+  /** fetch data from the table: "commodityProduceInventory" using primary key columns */
+  commodityProduceInventoryByPk?: Maybe<CommodityProduceInventory>
   /** fetch data from the table: "farm" */
   farm: Array<Farm>
   /** fetch aggregated fields from the table: "farm" */
@@ -2784,6 +3235,26 @@ export type Query_RootCommodityAggregateArgs = {
 }
 
 export type Query_RootCommodityByPkArgs = {
+  id: Scalars['uuid']
+}
+
+export type Query_RootCommodityProduceInventoryArgs = {
+  distinctOn?: InputMaybe<Array<CommodityProduceInventorySelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<CommodityProduceInventoryOrderBy>>
+  where?: InputMaybe<CommodityProduceInventoryBoolExp>
+}
+
+export type Query_RootCommodityProduceInventoryAggregateArgs = {
+  distinctOn?: InputMaybe<Array<CommodityProduceInventorySelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<CommodityProduceInventoryOrderBy>>
+  where?: InputMaybe<CommodityProduceInventoryBoolExp>
+}
+
+export type Query_RootCommodityProduceInventoryByPkArgs = {
   id: Scalars['uuid']
 }
 
@@ -2871,6 +3342,14 @@ export type Subscription_Root = {
   commodityAggregate: CommodityAggregate
   /** fetch data from the table: "commodity" using primary key columns */
   commodityByPk?: Maybe<Commodity>
+  /** fetch data from the table: "commodityProduceInventory" */
+  commodityProduceInventory: Array<CommodityProduceInventory>
+  /** fetch aggregated fields from the table: "commodityProduceInventory" */
+  commodityProduceInventoryAggregate: CommodityProduceInventoryAggregate
+  /** fetch data from the table: "commodityProduceInventory" using primary key columns */
+  commodityProduceInventoryByPk?: Maybe<CommodityProduceInventory>
+  /** fetch data from the table in a streaming manner : "commodityProduceInventory" */
+  commodityProduceInventoryStream: Array<CommodityProduceInventory>
   /** fetch data from the table in a streaming manner : "commodity" */
   commodityStream: Array<Commodity>
   /** fetch data from the table: "farm" */
@@ -2969,6 +3448,32 @@ export type Subscription_RootCommodityAggregateArgs = {
 
 export type Subscription_RootCommodityByPkArgs = {
   id: Scalars['uuid']
+}
+
+export type Subscription_RootCommodityProduceInventoryArgs = {
+  distinctOn?: InputMaybe<Array<CommodityProduceInventorySelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<CommodityProduceInventoryOrderBy>>
+  where?: InputMaybe<CommodityProduceInventoryBoolExp>
+}
+
+export type Subscription_RootCommodityProduceInventoryAggregateArgs = {
+  distinctOn?: InputMaybe<Array<CommodityProduceInventorySelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<CommodityProduceInventoryOrderBy>>
+  where?: InputMaybe<CommodityProduceInventoryBoolExp>
+}
+
+export type Subscription_RootCommodityProduceInventoryByPkArgs = {
+  id: Scalars['uuid']
+}
+
+export type Subscription_RootCommodityProduceInventoryStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<CommodityProduceInventory_StreamCursorInput>>
+  where?: InputMaybe<CommodityProduceInventoryBoolExp>
 }
 
 export type Subscription_RootCommodityStreamArgs = {

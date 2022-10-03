@@ -21,11 +21,14 @@ export function HouseholdListView() {
       <Breadcrumbs crumbs={[{ name: 'Household' }]} />
       <div className="grid grid-cols-12 gap-4 pb-4">
         <div className="col-span-full md:col-span-4 flex items-center">
-          <Link href={'/household/new'}>
-            <Button variant="contained" color="primary">
-              Create Household
-            </Button>
-          </Link>
+          <Button
+            LinkComponent={Link}
+            href="/household/new"
+            variant="contained"
+            color="primary"
+          >
+            Create Household
+          </Button>
         </div>
         <div className="col-span-full col-start-0 md:col-span-4 md:col-start-9">
           <SearchBar onChange={onSearchChanged} />

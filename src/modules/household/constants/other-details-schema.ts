@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-export const OTHER_DETAILS_SCHEMA = yup.object({
+export const otherDetailsSchema = yup.object({
   nameOfHouseholdHead: yup.string().default(''),
   relationshipToHouseholdHead: yup.string().default(''),
   maleCount: yup.number().default(0),
@@ -15,4 +15,4 @@ export const OTHER_DETAILS_SCHEMA = yup.object({
   emergencyContactNumber: yup.string().default(''),
 })
 
-export type IOtherDetailsSchema = yup.InferType<typeof OTHER_DETAILS_SCHEMA>
+export type IOtherDetailsSchema = yup.InferType<typeof otherDetailsSchema>
