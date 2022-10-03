@@ -64,7 +64,7 @@ export function withDialog<T extends FieldValues>(
     function onClickContinue() {
       formProps.handleSubmit((data) => {
         props.onValid?.(data)
-      })
+      })()
     }
   }
   return Dialog

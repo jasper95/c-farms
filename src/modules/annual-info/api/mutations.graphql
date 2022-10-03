@@ -1,0 +1,5 @@
+mutation CreateAnnualInfo($object: AnnualInfoInsertInput!) {
+  data: insertAnnualInfoOne(object: $object) {
+    id
+  }
+}

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { annualInfoListColumns } from '@/modules/annual-info/constants'
 import { useDialogStore } from '@/shared/stores/dialog'
 import dynamic from 'next/dynamic'
+import { useCreateAnnualInfoMutation } from '@/modules/annual-info/api/mutations'
 
 const AddAnnualInfoDialog = dynamic(
   () => import('@/modules/annual-info/components/annual-info-dialog.component')
@@ -12,6 +13,7 @@ export function useAnnualInfoList() {
   const router = useRouter()
   const { showDialog } = useDialogStore()
   const [tableState, tableDispatch] = useTableState()
+  const [, onCreate] = useCreateAnnualInfoMutation()
   const [listResponse] = useAnnualInfoListQuery({
     variables: {
       where: {
@@ -37,7 +39,10 @@ export function useAnnualInfoList() {
       props: {
         title: 'New Annual Info',
         defaultValues: {},
-        onValid: () => {},
+        onValid: (data) =>
+          onCreate({
+            object: data,
+          }),
       },
     })
   }
