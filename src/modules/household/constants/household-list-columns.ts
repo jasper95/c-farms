@@ -3,7 +3,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import { HouseholdListQuery } from '@/modules/household/api/queries'
 
 export const HOUSE_LIST_COLUMNS: ColumnType<
-  HouseholdListQuery['householdList']['data'][0]
+  HouseholdListQuery['list']['data'][0]
 >[] = [
   {
     title: 'Reference No',

@@ -1,5 +1,5 @@
 mutation CreateProgram($object: ProgramInsertInput!) {
-  insertProgramOne(object: $object) {
+  data: insertProgramOne(object: $object) {
     id
   }
 }

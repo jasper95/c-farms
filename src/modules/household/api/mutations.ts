@@ -9,7 +9,7 @@ export type CreateHouseholdMutationVariables = Types.Exact<{
 
 export type CreateHouseholdMutation = {
   __typename?: 'mutation_root'
-  insertHouseholdOne?: { __typename?: 'Household'; id: any } | null | undefined
+  data?: { __typename?: 'Household'; id: any } | null | undefined
 }
 
 export type UpdateHouseholdMutationVariables = Types.Exact<{
@@ -19,12 +19,12 @@ export type UpdateHouseholdMutationVariables = Types.Exact<{
 
 export type UpdateHouseholdMutation = {
   __typename?: 'mutation_root'
-  updateHouseholdByPk?: { __typename?: 'Household'; id: any } | null | undefined
+  data?: { __typename?: 'Household'; id: any } | null | undefined
 }
 
 export const CreateHouseholdDocument = gql`
   mutation CreateHousehold($object: HouseholdInsertInput!) {
-    insertHouseholdOne(object: $object) {
+    data: insertHouseholdOne(object: $object) {
       id
     }
   }
@@ -41,7 +41,7 @@ export const UpdateHouseholdDocument = gql`
     $object: HouseholdSetInput
     $id: HouseholdPkColumnsInput!
   ) {
-    updateHouseholdByPk(_set: $object, pk_columns: $id) {
+    data: updateHouseholdByPk(_set: $object, pk_columns: $id) {
       id
     }
   }

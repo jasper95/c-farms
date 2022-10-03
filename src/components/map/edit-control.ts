@@ -1,9 +1,8 @@
 import 'leaflet-draw'
-import 'Leaflet.Deflate'
 import isEqual from 'fast-deep-equal'
 import React, { useRef } from 'react'
 import { useLeafletContext, LeafletContextInterface } from '@react-leaflet/core'
-import leaflet, { Control, FeatureGroup, DeflateLayer } from 'leaflet'
+import leaflet, { Control, FeatureGroup } from 'leaflet'
 import { IEditControlProps } from './interfaces'
 import {
   controlsEventHandlers,
@@ -26,7 +25,6 @@ leaflet.Icon.Default.mergeOptions({
 function EditControl(props: IEditControlProps) {
   const context = useLeafletContext()
   const drawRef = useRef<Control.Draw>()
-  // const deflateRef = useRef<DeflateLayer>()
   const propsRef = useRef(props)
 
   // console.log(zoomLevel)
@@ -34,7 +32,6 @@ function EditControl(props: IEditControlProps) {
   const onDrawCreate = (e: leaflet.LeafletEvent) => {
     const { onCreated } = props
     const container = context.layerContainer || context.map
-    // e.layer.addTo(deflateRef.current)
     // container.addLayer(e.layer)
     onCreated && onCreated(e)
   }
@@ -56,7 +53,6 @@ function EditControl(props: IEditControlProps) {
       })
     })
     map.on(leaflet.Draw.Event.CREATED, onDrawCreate)
-    // deflateRef.current = leaflet.deflate(props.deflateOptions)
     drawRef.current = createDrawElement(props, context)
     map.addControl(drawRef.current)
     onMounted && onMounted(drawRef.current)
@@ -81,8 +77,6 @@ function EditControl(props: IEditControlProps) {
     }
     const { map } = context
     drawRef.current?.remove()
-    // deflateRef.current?.remove()
-    // deflateRef.current = leaflet.deflate(props.deflateOptions)
     drawRef.current = createDrawElement(props, context)
     drawRef.current.addTo(map)
 
@@ -96,7 +90,6 @@ function EditControl(props: IEditControlProps) {
 function createDrawElement(
   props: IEditControlProps,
   context: LeafletContextInterface
-  // deflateLayer: DeflateLayer
 ) {
   const { layerContainer } = context
   const { draw, edit, position, initialLayers } = props
@@ -109,8 +102,6 @@ function createDrawElement(
     //   })
     // })
   }
-
-  // layerContainer?.addLayer(deflateLayer)
 
   const options: Control.DrawConstructorOptions = {
     edit: {

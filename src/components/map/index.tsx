@@ -40,12 +40,6 @@ const MapWrapper = () => {
       },
     },
   ])
-  const featGroupRef = useRef()
-  useEffect(() => {
-    if (featGroupRef.current) {
-      console.log('featGroupRef: ', featGroupRef)
-    }
-  }, [])
   return (
     <div>
       <MapContainer
@@ -68,9 +62,6 @@ const MapWrapper = () => {
               polygon: {
                 allowIntersection: false,
               },
-            }}
-            deflateOptions={{
-              minSize: 10,
             }}
             onCreated={(e: LeafletEvent) => {
               setLayers(layers.concat(e.layer.toGeoJSON()))

@@ -1,6 +1,6 @@
 import { useTableState } from '@/components/data-table/use-table-state'
 import { useHouseholdListQuery } from '@/modules/household/api/queries'
-import { HOUSE_LIST_COLUMNS } from '@/modules/household/constants'
+import { HOUSE_LIST_COLUMNS as columns } from '@/modules/household/constants'
 import { useSearch } from '@/shared/hooks/use-search.hook'
 
 export function useHouseholdList() {
@@ -19,9 +19,9 @@ export function useHouseholdList() {
     onSearchChanged,
     tableState,
     tableDispatch,
-    rows: listResponse?.data?.householdList?.data || [],
-    totalRows: listResponse?.data?.householdList?.meta?.count || 0,
-    columns: HOUSE_LIST_COLUMNS,
+    rows: listResponse?.data?.list?.data || [],
+    totalRows: listResponse?.data?.list?.meta?.count || 0,
+    columns,
     listResponse,
   }
 }

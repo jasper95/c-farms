@@ -1,7 +1,7 @@
 import { useTableState } from '@/components/data-table/use-table-state'
 import { useProgramListQuery } from '@/modules/program/api/queries'
 import { useSearch } from '@/shared/hooks/use-search.hook'
-import { PROGRAM_LIST_COLUMNS } from '@/modules/program/constants'
+import { PROGRAM_LIST_COLUMNS as columns } from '@/modules/program/constants'
 
 export default function useProgramList() {
   const [tableState, tableDispatch] = useTableState()
@@ -19,9 +19,9 @@ export default function useProgramList() {
     onSearchChanged,
     tableState,
     tableDispatch,
-    rows: listResponse?.data?.programList?.data || [],
-    totalRows: listResponse?.data?.programList?.meta?.count || 0,
-    columns: PROGRAM_LIST_COLUMNS,
+    rows: listResponse?.data?.list?.data || [],
+    totalRows: listResponse?.data?.list?.meta?.count || 0,
+    columns,
     listResponse,
   }
 }

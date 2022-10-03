@@ -1,5 +1,5 @@
 mutation CreateHousehold($object: HouseholdInsertInput!) {
-  insertHouseholdOne(object: $object) {
+  data: insertHouseholdOne(object: $object) {
     id
   }
 }
@@ -8,7 +8,7 @@ mutation UpdateHousehold(
   $object: HouseholdSetInput
   $id: HouseholdPkColumnsInput!
 ) {
-  updateHouseholdByPk(_set: $object, pk_columns: $id) {
+  data: updateHouseholdByPk(_set: $object, pk_columns: $id) {
     id
   }
 }

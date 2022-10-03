@@ -9,12 +9,12 @@ export type CreateProgramMutationVariables = Types.Exact<{
 
 export type CreateProgramMutation = {
   __typename?: 'mutation_root'
-  insertProgramOne?: { __typename?: 'Program'; id: any } | null | undefined
+  data?: { __typename?: 'Program'; id: any } | null | undefined
 }
 
 export const CreateProgramDocument = gql`
   mutation CreateProgram($object: ProgramInsertInput!) {
-    insertProgramOne(object: $object) {
+    data: insertProgramOne(object: $object) {
       id
     }
   }

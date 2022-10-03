@@ -4,7 +4,7 @@ query HouseholdList(
   $offset: Int
   $limit: Int
 ) {
-  householdList: householdAggregate(
+  list: householdAggregate(
     where: $where
     orderBy: $orderBy
     offset: $offset
@@ -25,7 +25,7 @@ query HouseholdList(
 }
 
 query HouseholdDetails($id: uuid!) {
-  householdByPk(id: $id) {
+  details: householdByPk(id: $id) {
     ...HouseholdFragment
   }
 }
@@ -51,4 +51,16 @@ fragment HouseholdFragment on Household {
   religion
   dateOfBirth
   placeOfBirth
+  nameOfHouseholdHead
+  relationshipToHouseholdHead
+  maleCount
+  femaleCount
+  governmentIdType
+  governmentIdNo
+  personWithDisability
+  is4psBeneficiary
+  isHouseholdHead
+  ipMembership
+  emergencyContactName
+  emergencyContactNumber
 }

@@ -26,7 +26,6 @@
     "@mui/x-date-pickers": "5.0.2",
     "@types/leaflet-draw": "^1.0.5",
     "@types/lodash": "^4.14.177",
-    "Leaflet.Deflate": "2.1.0",
     "aws-amplify": "^4.3.8",
     "aws-sdk": "^2.1033.0",
     "axios": "^0.24.0",
@@ -46,7 +45,6 @@
     "react-hook-form": "^7.36.1",
     "react-leaflet": "^4.1.0",
     "react-leaflet-draw": "^0.19.8",
-    "react-select": "^5.2.2",
     "urql": "^2.2.0",
     "yup": "^0.32.11",
     "zustand": "^3.6.5"

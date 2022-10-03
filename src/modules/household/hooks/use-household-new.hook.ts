@@ -12,7 +12,7 @@ import { useRouter } from 'next/router'
 
 export function useHouseholdNew() {
   const [activeStep, setActiveStep] = useState(0)
-  const [newHouseholdResponse, onCreate] = useCreateHouseholdMutation()
+  const [createMutationState, onCreate] = useCreateHouseholdMutation()
   const { notifySuccess } = useNotificationStore()
   const router = useRouter()
   const personalInformationFormProps = useForm({
@@ -58,7 +58,7 @@ export function useHouseholdNew() {
     topRef,
     onBack,
     validateAndNext,
-    isLoading: newHouseholdResponse.fetching,
+    isLoading: createMutationState.fetching,
   }
 
   function onBack() {
@@ -96,7 +96,7 @@ export function useHouseholdNew() {
       },
     })
     notifySuccess('Household sucessfully created')
-    router.push(`/household/${response.data?.insertHouseholdOne?.id}`)
+    router.push(`/household/${response.data?.data?.id}`)
   }
 
   function validateAndNext() {

@@ -12,7 +12,7 @@ export type ProgramListQueryVariables = Types.Exact<{
 
 export type ProgramListQuery = {
   __typename?: 'query_root'
-  programList: {
+  list: {
     __typename?: 'ProgramAggregate'
     data: Array<{
       __typename?: 'Program'
@@ -37,7 +37,7 @@ export const ProgramListDocument = gql`
     $offset: Int
     $limit: Int
   ) {
-    programList: programAggregate(
+    list: programAggregate(
       where: $where
       orderBy: $orderBy
       offset: $offset

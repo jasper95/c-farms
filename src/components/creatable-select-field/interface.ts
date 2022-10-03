@@ -1,5 +1,4 @@
 import { UseControllerProps, FieldValues } from 'react-hook-form'
-import { CreatableProps } from 'react-select/creatable'
 
 export type Option = {
   label: string

@@ -14,7 +14,7 @@ export type HouseholdListQueryVariables = Types.Exact<{
 
 export type HouseholdListQuery = {
   __typename?: 'query_root'
-  householdList: {
+  list: {
     __typename?: 'HouseholdAggregate'
     data: Array<{
       __typename?: 'Household'
@@ -38,7 +38,7 @@ export type HouseholdDetailsQueryVariables = Types.Exact<{
 
 export type HouseholdDetailsQuery = {
   __typename?: 'query_root'
-  householdByPk?:
+  details?:
     | {
         __typename?: 'Household'
         id: any
@@ -61,6 +61,18 @@ export type HouseholdDetailsQuery = {
         religion: string
         dateOfBirth: any
         placeOfBirth: string
+        nameOfHouseholdHead: string
+        relationshipToHouseholdHead: string
+        maleCount: number
+        femaleCount: number
+        governmentIdType: string
+        governmentIdNo: string
+        personWithDisability: boolean
+        is4psBeneficiary: boolean
+        isHouseholdHead: boolean
+        ipMembership: string
+        emergencyContactName: string
+        emergencyContactNumber: string
       }
     | null
     | undefined
@@ -88,6 +100,18 @@ export type HouseholdFragmentFragment = {
   religion: string
   dateOfBirth: any
   placeOfBirth: string
+  nameOfHouseholdHead: string
+  relationshipToHouseholdHead: string
+  maleCount: number
+  femaleCount: number
+  governmentIdType: string
+  governmentIdNo: string
+  personWithDisability: boolean
+  is4psBeneficiary: boolean
+  isHouseholdHead: boolean
+  ipMembership: string
+  emergencyContactName: string
+  emergencyContactNumber: string
 }
 
 export const HouseholdFragmentFragmentDoc = gql`
@@ -112,6 +136,18 @@ export const HouseholdFragmentFragmentDoc = gql`
     religion
     dateOfBirth
     placeOfBirth
+    nameOfHouseholdHead
+    relationshipToHouseholdHead
+    maleCount
+    femaleCount
+    governmentIdType
+    governmentIdNo
+    personWithDisability
+    is4psBeneficiary
+    isHouseholdHead
+    ipMembership
+    emergencyContactName
+    emergencyContactNumber
   }
 `
 export const HouseholdListDocument = gql`
@@ -121,7 +157,7 @@ export const HouseholdListDocument = gql`
     $offset: Int
     $limit: Int
   ) {
-    householdList: householdAggregate(
+    list: householdAggregate(
       where: $where
       orderBy: $orderBy
       offset: $offset
@@ -152,7 +188,7 @@ export function useHouseholdListQuery(
 }
 export const HouseholdDetailsDocument = gql`
   query HouseholdDetails($id: uuid!) {
-    householdByPk(id: $id) {
+    details: householdByPk(id: $id) {
       ...HouseholdFragment
     }
   }

@@ -4,7 +4,7 @@ query ProgramList(
   $offset: Int
   $limit: Int
 ) {
-  programList: programAggregate(
+  list: programAggregate(
     where: $where
     orderBy: $orderBy
     offset: $offset
