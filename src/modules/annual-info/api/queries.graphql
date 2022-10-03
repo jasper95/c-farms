@@ -1,0 +1,24 @@
+query AnnualInfoList(
+  $where: AnnualInfoBoolExp
+  $orderBy: [AnnualInfoOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: annualInfo(
+    where: $where
+    orderBy: $orderBy
+    offset: $offset
+    limit: $limit
+  ) {
+    id
+    year
+    grossAnnualIncomeNonfarming
+    grossAnnualIncomeFarming
+    mainLivelihood
+  }
+  meta: annualInfoAggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
