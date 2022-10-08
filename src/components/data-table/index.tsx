@@ -28,7 +28,7 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
     showPagination,
     tableState,
     tableDispatch,
-    loading,
+    isLoading,
     rowClassName = () => '',
     checkedItems,
     actions = [],
@@ -47,7 +47,7 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
   }, [columnsProps, actions])
   const sort = get(tableState, 'sort', [])
   const additionalColumns: DataTableColumn<T>[] = []
-  const isEmpty = !loading && rows.length === 0
+  const isEmpty = !isLoading && rows.length === 0
   return (
     <TableContainer component={Paper}>
       <Table stickyHeader>
@@ -98,13 +98,13 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
               </StyledTableCell>
             </TableRow>
           )}
-          {loading && (
+          {isLoading && (
             <TablePreloader
               rows={tableState?.size ?? 10}
               columns={columns.length}
             />
           )}
-          {!loading &&
+          {!isLoading &&
             rows.map((row, rowIndex) => (
               <TableRow
                 selected={checkedItems?.includes(`${row.id}`)}

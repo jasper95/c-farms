@@ -1,16 +1,17 @@
-import {
-  useEditHouseholdDetails,
-  UseEditHouseholdDetailsProps,
-} from '@/modules/household/hooks'
+import { UseEditHouseholdDetailsProps } from '@/modules/household/hooks'
 import { PersonalInformationForm } from '@/modules/household/components'
 import Box from '@mui/material/Box'
 import { FormToolbar } from '@/components/form-toolbar'
 import { personalInfomationSchema } from '@/modules/household/constants'
+import { useEditViewHook } from '@/lib/hooks/use-edit-view.hook'
+import { useHouseholdDetailsQuery } from '../api/queries'
+import { useUpdateHouseholdMutation } from '../api/mutations'
 
-type EditHouseholdDetailsProps = Omit<UseEditHouseholdDetailsProps, 'schema'>
-export function EditHouseholdDetails(props: EditHouseholdDetailsProps) {
-  const { formProps, onSubmit, isUpdating } = useEditHouseholdDetails({
-    ...props,
+export function EditHouseholdDetails() {
+  const { formProps, onSave, isMutating } = useEditViewHook({
+    useDetailsQueryHook: useHouseholdDetailsQuery,
+    useMutationHook: useUpdateHouseholdMutation,
+    name: 'Household',
     schema: personalInfomationSchema,
   })
 
@@ -20,8 +21,8 @@ export function EditHouseholdDetails(props: EditHouseholdDetailsProps) {
       <FormToolbar
         confirmDisabled={!formProps.formState.isDirty}
         cancelVisible={false}
-        onConfirm={onSubmit}
-        loading={isUpdating}
+        onConfirm={onSave}
+        isLoading={isMutating}
       />
     </Box>
   )

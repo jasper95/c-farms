@@ -1,8 +1,8 @@
-import { styled } from '@mui/material/styles'
+import styled from '@mui/material/styles/styled'
 import Toolbar from '@mui/material/Toolbar'
 import Button from '@mui/material/Button'
 import LoadingButton from '@mui/lab/LoadingButton'
-import { grey } from '@mui/material/colors'
+import grey from '@mui/material/colors/grey'
 
 const PREFIX = 'index'
 
@@ -25,7 +25,7 @@ export interface FormToolbarProps {
   confirmVisible?: boolean
   cancelLabel?: string
   confirmLabel?: string
-  loading?: boolean
+  isLoading?: boolean
 }
 
 export function FormToolbar(props: FormToolbarProps) {
@@ -38,7 +38,7 @@ export function FormToolbar(props: FormToolbarProps) {
     confirmVisible,
     cancelLabel = 'Cancel',
     confirmLabel = 'Save',
-    loading,
+    isLoading,
   } = props
   return (
     <StyledToolbar
@@ -57,7 +57,7 @@ export function FormToolbar(props: FormToolbarProps) {
           variant="contained"
           color="primary"
           onClick={onConfirm}
-          loading={loading}
+          loading={isLoading}
         >
           {confirmLabel}
         </LoadingButton>

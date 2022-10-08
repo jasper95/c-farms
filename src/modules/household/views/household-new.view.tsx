@@ -65,7 +65,7 @@ export function HouseholdNewView() {
             onConfirm={validateAndNext}
             cancelLabel="Back"
             confirmLabel="Next"
-            loading={isLoading}
+            isLoading={isLoading}
           />
         </CardContent>
       </Card>

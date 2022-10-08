@@ -9,24 +9,13 @@ import {
 import { useEditHousehold } from '../hooks'
 
 export function EditHouseholdView() {
-  const { crumbs, tab, detailsQueryResponse, updateMutationResponse } =
-    useEditHousehold()
+  const { crumbs, tab } = useEditHousehold()
   return (
     <Dashboard>
       <Breadcrumbs crumbs={crumbs} />
       <HouseholdDetailsLayout>
-        {tab === 'one' && (
-          <EditHouseholdDetails
-            detailsQueryResponse={detailsQueryResponse}
-            updateMutationResponse={updateMutationResponse}
-          />
-        )}
-        {tab === 'two' && (
-          <EditOtherDetails
-            detailsQueryResponse={detailsQueryResponse}
-            updateMutationResponse={updateMutationResponse}
-          />
-        )}
+        {tab === 'one' && <EditHouseholdDetails />}
+        {tab === 'two' && <EditOtherDetails />}
         {tab === 'three' && <AnnualInfoListView />}
       </HouseholdDetailsLayout>
     </Dashboard>

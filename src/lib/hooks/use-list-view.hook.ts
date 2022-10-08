@@ -49,7 +49,7 @@ export function useListViewHook<
       tableDispatch,
       rows: listResponse?.data?.list || [],
       totalRows: listResponse?.data?.meta?.aggregate?.count || 0,
-      loading: listResponse.fetching,
+      isLoading: listResponse.fetching,
       columns,
     },
     baseUrl: router.asPath,
