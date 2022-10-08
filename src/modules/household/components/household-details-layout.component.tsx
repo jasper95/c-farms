@@ -5,33 +5,26 @@ import Tab from '@mui/material/Tab'
 import Link from '@/components/link'
 import { useRouter } from 'next/router'
 import { PropsWithChildren } from 'react'
+import { HouseholdDetailsRoutesEnum } from '../enums'
+import { householdDetailsTab } from '../constants'
 
 export function HouseholdDetailsLayout(props: PropsWithChildren<{}>) {
   const { children } = props
   const router = useRouter()
-  const { id, tab = 'one' } = router.query
+  const { id, tab = HouseholdDetailsRoutesEnum.Primary } = router.query
   return (
     <Card>
       <CardContent>
         <Tabs sx={{ mb: 3 }} value={tab}>
-          <Tab
-            LinkComponent={Link}
-            href={`/household/${id}`}
-            value="one"
-            label="Details"
-          />
-          <Tab
-            LinkComponent={Link}
-            href={`/household/${id}/two`}
-            value="two"
-            label="Two"
-          />
-          <Tab
-            LinkComponent={Link}
-            href={`/household/${id}/three`}
-            value="three"
-            label="Three"
-          />
+          {householdDetailsTab.map((tab) => (
+            <Tab
+              key={tab.label}
+              LinkComponent={Link}
+              href={`/household/${id}/${tab.value}`}
+              value={tab.value}
+              label={tab.label}
+            />
+          ))}
         </Tabs>
         {children}
       </CardContent>

@@ -6,7 +6,8 @@ import {
   HouseholdDetailsLayout,
   EditOtherDetails,
 } from '@/modules/household/components'
-import { useEditHousehold } from '../hooks'
+import { HouseholdDetailsRoutesEnum } from '@/modules/household/enums'
+import { useEditHousehold } from '@/modules/household/hooks'
 
 export function EditHouseholdView() {
   const { crumbs, tab } = useEditHousehold()
@@ -14,9 +15,11 @@ export function EditHouseholdView() {
     <Dashboard>
       <Breadcrumbs crumbs={crumbs} />
       <HouseholdDetailsLayout>
-        {tab === 'one' && <EditHouseholdDetails />}
-        {tab === 'two' && <EditOtherDetails />}
-        {tab === 'three' && <AnnualInfoListView />}
+        {tab === HouseholdDetailsRoutesEnum.Primary && <EditHouseholdDetails />}
+        {tab === HouseholdDetailsRoutesEnum.Secondary && <EditOtherDetails />}
+        {tab === HouseholdDetailsRoutesEnum.AnnualInfo && (
+          <AnnualInfoListView />
+        )}
       </HouseholdDetailsLayout>
     </Dashboard>
   )

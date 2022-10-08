@@ -19,3 +19,4 @@ export type { IPersonalInformationSchema } from './personal-information-schema'
 
 export { otherDetailsSchema } from './other-details-schema'
 export type { IOtherDetailsSchema } from './other-details-schema'
+export { householdDetailsTab } from './household-details-tabs'

@@ -18,7 +18,9 @@ export type DetailsQueryVariable = Types.Exact<{
 }>
 export type EditMutationVariables<T> = Types.Exact<{
   object?: Types.InputMaybe<T>
-  id: Types.Scalars['uuid']
+  id: Types.Exact<{
+    id: Types.Scalars['uuid']
+  }>
 }>
 export interface ListPagination {
   limit: number
@@ -91,7 +93,9 @@ export function useEditViewHook<
   async function onValid(data: AssertsShape<T>) {
     const payload = transform(data) as MutationPayload
     await onUpdate({
-      id,
+      id: {
+        id,
+      },
       object: payload,
     })
     notifySuccess(`${name} successfully updated`)

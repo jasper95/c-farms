@@ -1,6 +1,7 @@
 import React from 'react'
 import MuiDialogActions from '@mui/material/DialogActions'
 import Button from '@mui/material/Button'
+import LoadingButton from '@mui/lab/LoadingButton'
 import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 
@@ -25,19 +26,14 @@ export default function DialogActions(props: DialogActionsProps) {
       <Button onClick={onCancel} color="primary">
         {cancelLabel}
       </Button>
-      <Button
-        disabled={isProcessing}
+      <LoadingButton
         onClick={onContinue}
         color="primary"
         autoFocus
+        loading={isProcessing}
       >
-        {isProcessing && (
-          <Box pr={1} display="flex" alignItems="center">
-            <CircularProgress size={25} />
-          </Box>
-        )}
         {continueLabel}
-      </Button>
+      </LoadingButton>
     </MuiDialogActions>
   )
 }

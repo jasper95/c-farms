@@ -22,6 +22,7 @@ export type IDialogForm<T extends FieldValues> = {
   onCancel?(): void
   onContinue?(): void
   onValid: SubmitHandler<T>
+  hideOnValid?: boolean
 }
 export type IWithDialogProps<T extends FieldValues> = Omit<
   DialogLayoutProps,
@@ -37,9 +38,15 @@ export function withDialog<T extends FieldValues>(
   WrappedComponent: React.FC<IDialogContentProps<T>>
 ) {
   const Dialog: React.FC<IWithDialogProps<T>> = (props) => {
-    const { hideDialog } = useDialogStore()
-    const { title, onContinue, onCancel, defaultValues, validationSchema } =
-      props
+    const { hideDialog, toggleDialogLoading } = useDialogStore()
+    const {
+      title,
+      onContinue,
+      onCancel,
+      defaultValues,
+      validationSchema,
+      hideOnValid = true,
+    } = props
     const formProps = useForm<T>({
       defaultValues,
       ...(validationSchema && {
@@ -62,8 +69,15 @@ export function withDialog<T extends FieldValues>(
     }
 
     function onClickContinue() {
-      formProps.handleSubmit((data) => {
-        props.onValid?.(data)
+      formProps.handleSubmit(async (data) => {
+        if (props.onValid) {
+          toggleDialogLoading()
+          await props.onValid(data)
+          toggleDialogLoading()
+        }
+        if (hideOnValid) {
+          hideDialog()
+        }
       })()
     }
   }
