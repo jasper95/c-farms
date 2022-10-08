@@ -27,6 +27,9 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
       <Grid item md={12} xs={12}>
         <YearPicker control={control} label="Year" name="year" />
       </Grid>
+      <Grid item md={12} xs={12}>
+        Gross Annual Income
+      </Grid>
       <Grid item md={6} xs={12}>
         <TextField
           control={control}

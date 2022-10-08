@@ -19,8 +19,15 @@ export function PersonalInformationForm(props: IPersonalInformationFormProps) {
   const { formProps } = props
   const { control } = formProps
   const civilStatus = useWatch({ control, name: 'civilStatus' })
+  const sex = useWatch({ control, name: 'sex' })
   return (
     <Grid container spacing={3}>
+      <Grid item xs={12} sm={6} md={3}>
+        <TextField control={control} name="referenceNo" label="Reference No." />
+      </Grid>
+      <Grid item xs={12}>
+        <Divider />
+      </Grid>
       <Grid item xs={12} sm={6} md={3}>
         <TextField control={control} name="lastName" label="Surname" />
       </Grid>
@@ -93,7 +100,7 @@ export function PersonalInformationForm(props: IPersonalInformationFormProps) {
           options={civilStatusOptions}
         />
       </Grid>
-      {civilStatus !== 1 && (
+      {civilStatus === 2 && (
         <Grid item xs={12} sm={6} md={3}>
           <TextField
             control={control}
@@ -103,13 +110,15 @@ export function PersonalInformationForm(props: IPersonalInformationFormProps) {
           />
         </Grid>
       )}
-      <Grid item xs={12} sm={6} md={3}>
-        <TextField
-          control={control}
-          label="Mother's Maiden Name"
-          name="mothersMaidenName"
-        />
-      </Grid>
+      {civilStatus !== 1 && sex == 2 && (
+        <Grid item xs={12} sm={6} md={3}>
+          <TextField
+            control={control}
+            label="Mother's Maiden Name"
+            name="mothersMaidenName"
+          />
+        </Grid>
+      )}
       <Grid item xs={12} sm={6} md={3}>
         <TextField
           control={control}

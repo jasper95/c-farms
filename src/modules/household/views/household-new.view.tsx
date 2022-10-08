@@ -64,7 +64,7 @@ export function HouseholdNewView() {
             onCancel={onBack}
             onConfirm={validateAndNext}
             cancelLabel="Back"
-            confirmLabel="Next"
+            confirmLabel={activeStep !== 2 ? 'Next' : 'Save'}
             isLoading={isMutating}
           />
         </CardContent>

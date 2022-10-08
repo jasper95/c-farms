@@ -5,6 +5,9 @@ import { osmProviders } from './osm-providers'
 import { LeafletEvent } from 'leaflet'
 import GeoJsonLayer from './geojson-layer'
 import { IMapProps } from './interfaces'
+import 'leaflet/dist/leaflet.css'
+import 'leaflet-draw/dist/leaflet.draw.css'
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 
 export default function Map<T>(props: IMapProps<T>) {
   const {
