@@ -1,7 +1,7 @@
 import { fieldIsRequired } from '@/lib/utils/form-utils'
 import * as yup from 'yup'
 
-export const PROGRAM_SCHEMA = yup.object({
+export const programSchema = yup.object({
   name: yup.string().required(fieldIsRequired).default(''),
   description: yup.string().required(fieldIsRequired).default(''),
   type: yup.string().required(fieldIsRequired).default(''),
@@ -12,4 +12,4 @@ export const PROGRAM_SCHEMA = yup.object({
     .default([null, null]),
 })
 
-export type IProgramSchema = yup.InferType<typeof PROGRAM_SCHEMA>
+export type IProgramSchema = yup.InferType<typeof programSchema>

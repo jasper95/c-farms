@@ -15,7 +15,7 @@ export function HouseholdListView() {
       <Breadcrumbs crumbs={[{ name: 'Household' }]} />
       <DatatableListView
         listQueryVariables={{}}
-        uselistQueryHook={useHouseholdListQuery}
+        useListQueryHook={useHouseholdListQuery}
         columns={householdListColumns}
         name="Household"
       />

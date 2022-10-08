@@ -16,7 +16,7 @@ export function AnnualInfoListView() {
           },
         },
       }}
-      uselistQueryHook={useAnnualInfoListQuery}
+      useListQueryHook={useAnnualInfoListQuery}
       columns={annualInfoListColumns}
     />
   )

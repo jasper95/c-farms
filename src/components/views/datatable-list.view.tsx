@@ -24,7 +24,7 @@ export default function DatatableListView<
   QueryVariables
 >(props: DatatableListViewProps<QueryResponse, QueryVariables>) {
   const { tableProps, onSearchChanged, baseUrl } = useListViewHook(
-    pick(props, 'listQueryVariables', 'uselistQueryHook', 'columns')
+    pick(props, 'listQueryVariables', 'useListQueryHook', 'columns')
   )
   const { name, onCreate, readOnly } = props
   const buttonProps = onCreate

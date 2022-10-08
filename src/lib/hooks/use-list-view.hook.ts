@@ -19,7 +19,7 @@ export interface UseListViewProps<
   QueryVariables
 > {
   listQueryVariables: QueryVariables
-  uselistQueryHook(
+  useListQueryHook(
     options?: Omit<Urql.UseQueryArgs<QueryVariables & ListPagination>, 'query'>
   ): Urql.UseQueryResponse<BaseListQuery<QueryResponse>, object>
   columns: DataTableColumn<QueryResponse>[]
@@ -29,13 +29,13 @@ export function useListViewHook<
   QueryResponse extends Identifiable,
   QueryVariables
 >(props: UseListViewProps<QueryResponse, QueryVariables>) {
-  const { uselistQueryHook, listQueryVariables, columns } = props
+  const { useListQueryHook, listQueryVariables, columns } = props
   const [tableState, tableDispatch] = useTableState()
   const router = useRouter()
   const { onSearchChanged } = useSearch({
     initialSearch: (router.query?.search || '') as string,
   })
-  const [listResponse] = uselistQueryHook({
+  const [listResponse] = useListQueryHook({
     variables: {
       ...listQueryVariables,
       limit: tableState.size,
