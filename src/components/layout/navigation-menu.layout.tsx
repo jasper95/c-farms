@@ -14,6 +14,7 @@ import { Theme } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListAltIcon from '@mui/icons-material/ListAlt'
+import GrassIcon from '@mui/icons-material/Grass'
 
 const menuItems = [
   {
@@ -30,6 +31,11 @@ const menuItems = [
     icon: ListAltIcon,
     primaryText: 'Program',
     path: '/program',
+  },
+  {
+    icon: GrassIcon,
+    primaryText: 'Commodity',
+    path: '/commodity',
   },
   {
     icon: MapIcon,
