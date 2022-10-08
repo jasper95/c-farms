@@ -1,7 +1,7 @@
 import React from 'react'
 import { styled } from '@mui/material/styles'
 import get from 'lodash/get'
-import { RowProp } from './types'
+import { Identifiable, RowProp } from './types'
 import TableCell, { tableCellClasses } from '@mui/material/TableCell'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import IconButton from '@mui/material/IconButton'
@@ -21,7 +21,7 @@ export const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 14,
   },
 }))
-function Column<T>(props: RowProp<T>) {
+function Column<T extends Identifiable>(props: RowProp<T>) {
   const { row, column, index } = props
   const {
     type = 'default',

@@ -1,4 +1,3 @@
-import { UseEditHouseholdDetailsProps } from '@/modules/household/hooks'
 import { PersonalInformationForm } from '@/modules/household/components'
 import Box from '@mui/material/Box'
 import { FormToolbar } from '@/components/form-toolbar'
