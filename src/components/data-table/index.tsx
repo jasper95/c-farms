@@ -1,4 +1,4 @@
-import React, { Dispatch } from 'react'
+import React, { Dispatch, useMemo } from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
@@ -8,55 +8,45 @@ import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
 import Paper from '@mui/material/Paper'
-import { Identifiable, ColumnSort, ColumnType } from './types'
+import {
+  Identifiable,
+  ColumnSort,
+  DataTableColumn,
+  DataTableProps,
+} from './types'
 import Column, { StyledTableCell } from './column'
-import { TableState, TableAction } from './table-reducer'
 import get from 'lodash/get'
-
 import TablePreloader from './pre-loader'
 import Typography from '@mui/material/Typography'
-
-type DataTableProps<T extends Identifiable> = {
-  rows: T[]
-  totalRows: number
-  columns: ColumnType<T>[]
-  onRowClick: (row: T) => void
-  className: string
-  isSelectable: boolean
-  onSort: (column: string) => void
-  sort: ColumnSort[]
-  onRowToggle: () => void
-  pageSizes: number[]
-  showPagination?: boolean
-  tableState?: TableState
-  tableDispatch?: Dispatch<TableAction<T>>
-  loading?: boolean
-  rowClassName?: (row: T) => string
-  checkedItems?: string[]
-  rowCheckboxEnabled?: (row: T) => boolean
-  stickyHeader?: boolean
-}
 
 function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
   const {
     rows,
     totalRows,
-    columns,
+    columns: columnsProps,
     onRowClick,
-    // className,
-    // isSelectable,
     showPagination,
     tableState,
     tableDispatch,
-    // pageSizes,
     loading,
     rowClassName = () => '',
     checkedItems,
-    // rowCheckboxEnabled = () => true,
-    // stickyHeader,
+    actions = [],
   } = props
+  const columns: DataTableColumn<T>[] = useMemo(() => {
+    if (actions.length) {
+      return [
+        ...columnsProps,
+        {
+          type: 'actions',
+          actions,
+        },
+      ]
+    }
+    return columnsProps
+  }, [columnsProps, actions])
   const sort = get(tableState, 'sort', [])
-  const additionalColumns: ColumnType<T>[] = []
+  const additionalColumns: DataTableColumn<T>[] = []
   const isEmpty = !loading && rows.length === 0
   return (
     <TableContainer component={Paper}>

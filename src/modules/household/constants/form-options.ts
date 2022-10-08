@@ -1,15 +1,4 @@
-export const BOOLEAN_OPTION = [
-  {
-    label: 'Yes',
-    value: true,
-  },
-  {
-    label: 'No',
-    value: false,
-  },
-]
-
-export const GENDER_OPTIONS = [
+export const genderOptions = [
   {
     label: 'Male',
     value: 1,
@@ -20,7 +9,7 @@ export const GENDER_OPTIONS = [
   },
 ]
 
-export const CIVIL_STATUS_OPTIONS = [
+export const civilStatusOptions = [
   {
     label: 'Single',
     value: 1,
@@ -35,22 +24,13 @@ export const CIVIL_STATUS_OPTIONS = [
   },
 ]
 
-export const LIVELIHOOD_OPTIONS = [
-  {
-    label: 'Farmer',
-    value: 'Farmer',
-  },
-  {
-    label: 'Farmworker/Laborer',
-    value: 'Farmworker/Laborer',
-  },
-  {
-    label: 'Fisherfolk',
-    value: 'Fisherfolk',
-  },
-]
+export const livelihoodOptions = [
+  'Farmer',
+  'Farmworker/Laborer',
+  'Fisherfolk',
+].map((e) => ({ label: e, value: e }))
 
-export const BARANGAY_OPTIONS = [
+export const barangayOptions = [
   'ABIHILAN',
   'ANOLING',
   'BOYOAN',
@@ -74,7 +54,7 @@ export const BARANGAY_OPTIONS = [
   'TUGAS',
 ].map((e) => ({ label: e, value: e }))
 
-export const EDUCATION_BACKGROUND_OPTIONS = [
+export const educationBackgroundOptions = [
   'Elementary Level',
   'Elementary Graduate',
   'High School Level',

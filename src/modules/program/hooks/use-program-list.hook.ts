@@ -1,7 +1,7 @@
 import { useTableState } from '@/components/data-table/use-table-state'
 import { useProgramListQuery } from '@/modules/program/api/queries'
 import { useSearch } from '@/shared/hooks/use-search.hook'
-import { PROGRAM_LIST_COLUMNS as columns } from '@/modules/program/constants'
+import { programListColumns as columns } from '@/modules/program/constants'
 
 export default function useProgramList() {
   const [tableState, tableDispatch] = useTableState()

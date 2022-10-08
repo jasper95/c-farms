@@ -1,8 +1,17 @@
-import { ColumnType } from '@/components/data-table/types'
+import { DataTableAction, DataTableColumn } from '@/components/data-table/types'
 import EditIcon from '@mui/icons-material/Edit'
 import { HouseholdListQuery } from '@/modules/household/api/queries'
 
-export const HOUSE_LIST_COLUMNS: ColumnType<HouseholdListQuery['list'][0]>[] = [
+export type HouseholdListRow = HouseholdListQuery['list'][0]
+export const houseListActions: DataTableAction<HouseholdListRow>[] = [
+  {
+    label: 'Edit',
+    icon: EditIcon,
+    type: 'link',
+    href: (row) => `/household/${row.id}`,
+  },
+]
+export const householdListColumns: DataTableColumn<HouseholdListRow>[] = [
   {
     title: 'Reference No',
     accessor: 'referenceNo',
@@ -17,16 +26,5 @@ export const HOUSE_LIST_COLUMNS: ColumnType<HouseholdListQuery['list'][0]>[] = [
   {
     title: 'Barangay',
     accessor: 'barangay',
-  },
-  {
-    type: 'actions',
-    actions: [
-      {
-        label: 'Edit',
-        icon: EditIcon,
-        type: 'link',
-        href: (row) => `/household/${row.id}`,
-      },
-    ],
   },
 ]

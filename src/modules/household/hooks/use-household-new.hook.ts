@@ -82,16 +82,7 @@ export function useHouseholdNew() {
       object: {
         ...household,
         annualInfos: {
-          data: [
-            {
-              ...annualInfo,
-              farmworkerActivityType: JSON.stringify(
-                annualInfo.farmworkerActivityType
-              ),
-              fisherActivityType: JSON.stringify(annualInfo.fisherActivityType),
-              mainLivelihood: JSON.stringify(annualInfo.mainLivelihood),
-            },
-          ],
+          data: [annualInfo],
         },
       },
     })

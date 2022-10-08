@@ -7,7 +7,7 @@ import {
   OtherDetailsForm,
   AnnualInfoForm,
 } from '@/modules/household/components'
-import { CREATE_HOUSEHOLD_STEPS } from '@/modules/household/constants'
+import { createHouseholdSteps } from '@/modules/household/constants'
 import { useHouseholdNew } from '@/modules/household/hooks'
 import { Dashboard } from '@/components/layout/dashboard.layout'
 import { FormToolbar } from '@/components/form-toolbar'
@@ -39,7 +39,7 @@ export function HouseholdNewView() {
             nonLinear
             activeStep={activeStep}
           >
-            {CREATE_HOUSEHOLD_STEPS.map((label) => {
+            {createHouseholdSteps.map((label) => {
               const stepProps = {}
               const labelProps = {}
               return (

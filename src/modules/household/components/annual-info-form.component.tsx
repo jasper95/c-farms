@@ -1,10 +1,9 @@
 import Grid from '@mui/material/Grid'
 import SelectField from '@/components/select-field'
 import {
-  LIVELIHOOD_OPTIONS,
-  EDUCATION_BACKGROUND_OPTIONS,
+  livelihoodOptions,
+  educationBackgroundOptions,
 } from '@/modules/household/constants'
-import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import { UseFormReturn } from 'react-hook-form/dist/types/form'
 import TextField from '@/components/text-field'
@@ -13,6 +12,7 @@ import { useState } from 'react'
 import { Option } from '@/components/creatable-select-field/interface'
 import MultiSelectField from '@/components/multi-select-field'
 import { IAnnualInfoSchema } from '@/modules/annual-info/constants'
+import YearPicker from '@/components/year-picker'
 
 interface IAnnualInfoFormProps {
   formProps: UseFormReturn<IAnnualInfoSchema>
@@ -24,10 +24,8 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
   const [options, setOptions] = useState<Option[]>([])
   return (
     <Grid container spacing={3}>
-      <Grid item xs={12}>
-        <Typography variant="subtitle1">
-          <b>Gross annual income last year:</b>
-        </Typography>
+      <Grid item md={12} xs={12}>
+        <YearPicker control={control} label="Year" name="year" />
       </Grid>
       <Grid item md={6} xs={12}>
         <TextField
@@ -52,7 +50,7 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
         <MultiSelectField
           control={control}
           name="mainLivelihood"
-          options={LIVELIHOOD_OPTIONS}
+          options={livelihoodOptions}
           label="Main livelihood"
         />
       </Grid>
@@ -73,13 +71,10 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
       <Grid item md={6}>
         <SelectField
           control={control}
-          options={EDUCATION_BACKGROUND_OPTIONS}
+          options={educationBackgroundOptions}
           label="Highest formal Education"
           name="highestFormalEducation"
         />
-      </Grid>
-      <Grid item xs={12}>
-        <Divider />
       </Grid>
     </Grid>
   )

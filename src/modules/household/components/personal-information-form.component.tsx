@@ -2,10 +2,10 @@ import Grid from '@mui/material/Grid'
 import TextField from '@/components/text-field'
 import Divider from '@mui/material/Divider'
 import {
-  CIVIL_STATUS_OPTIONS,
-  GENDER_OPTIONS,
+  civilStatusOptions,
+  genderOptions,
   IPersonalInformationSchema,
-  BARANGAY_OPTIONS,
+  barangayOptions,
 } from '@/modules/household/constants'
 import RadioSelect from '@/components/radio-select'
 import SelectField from '@/components/select-field'
@@ -59,7 +59,7 @@ export function PersonalInformationForm(props: IPersonalInformationFormProps) {
           control={control}
           label="Barangay"
           name="barangay"
-          options={BARANGAY_OPTIONS}
+          options={barangayOptions}
         />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
@@ -81,7 +81,7 @@ export function PersonalInformationForm(props: IPersonalInformationFormProps) {
         <RadioSelect
           name="sex"
           control={control}
-          options={GENDER_OPTIONS}
+          options={genderOptions}
           label="Gender"
         />
       </Grid>
@@ -90,7 +90,7 @@ export function PersonalInformationForm(props: IPersonalInformationFormProps) {
           control={control}
           name="civilStatus"
           label="Civil Status"
-          options={CIVIL_STATUS_OPTIONS}
+          options={civilStatusOptions}
         />
       </Grid>
       {civilStatus !== 1 && (

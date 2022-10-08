@@ -1,6 +1,6 @@
 import MuiSwitch from '@mui/material/Switch'
 import { ISwitchProps } from './interface'
-import { Controller, FieldValues } from 'react-hook-form'
+import { FieldValues, useController } from 'react-hook-form'
 import FormControl from '@mui/material/FormControl'
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -8,21 +8,20 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 export default function SwitchField<T extends FieldValues>(
   props: ISwitchProps<T>
 ) {
-  const { label, control, name } = props
+  const { label, name, control } = props
+  const controller = useController({
+    control,
+    name,
+  })
+  const { field } = controller
   return (
-    <Controller
-      control={control}
-      name={name}
-      render={({ field }) => (
-        <FormControl>
-          <FormGroup {...field} row>
-            <FormControlLabel
-              control={<MuiSwitch name={name} />}
-              label={label}
-            />
-          </FormGroup>
-        </FormControl>
-      )}
-    />
+    <FormControl>
+      <FormGroup row>
+        <FormControlLabel
+          control={<MuiSwitch {...field} checked={field.value || false} />}
+          label={label}
+        />
+      </FormGroup>
+    </FormControl>
   )
 }

@@ -60,16 +60,16 @@ export default function MyApp(props: AppPropsWithLayout) {
           />
         </Head>
         <CacheProvider value={emotionCache}>
-          <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <StyledEngineProvider injectFirst>
+              <ThemeProvider theme={theme}>
+                <CssBaseline />
                 {getLayout(<Component {...pageProps} />)}
-              </LocalizationProvider>
-              <DialogContainer />
-              <NotificationContainer />
-            </ThemeProvider>
-          </StyledEngineProvider>
+                <DialogContainer />
+                <NotificationContainer />
+              </ThemeProvider>
+            </StyledEngineProvider>
+          </LocalizationProvider>
         </CacheProvider>
       </React.Fragment>
     </UrqlProvider>

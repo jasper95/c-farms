@@ -12,7 +12,7 @@ function SelectField<T extends FieldValues>(props: ISelectFieldProps<T>) {
     name,
   })
   const { field } = controller
-  const { value, onChange, ...restField } = field
+  const { value = '', onChange, ...restField } = field
   const optionsMap = useMemo(() => keyBy(options, 'value'), [options])
   return (
     <Autocomplete
@@ -23,7 +23,7 @@ function SelectField<T extends FieldValues>(props: ISelectFieldProps<T>) {
       onChange={(_, newValue) => {
         onChange(newValue)
       }}
-      value={value || ''}
+      value={value}
       renderInput={(params) => <TextField label={label} {...params} />}
     />
   )

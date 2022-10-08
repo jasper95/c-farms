@@ -14,7 +14,7 @@ export default function MultiSelectField<T extends FieldValues>(
     name,
   })
   const { field } = controller
-  const { value, onChange, ...restField } = field
+  const { value = [], onChange, ...restField } = field
   const optionsMap = useMemo(() => keyBy(options, 'value'), [options])
   return (
     <Autocomplete

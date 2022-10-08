@@ -1,7 +1,7 @@
-import { ColumnType } from '@/components/data-table/types'
+import { DataTableColumn } from '@/components/data-table/types'
 import { AnnualInfoListQuery } from '../api/queries'
 
-export const annualInfoListColumns: ColumnType<
+export const annualInfoListColumns: DataTableColumn<
   AnnualInfoListQuery['list'][0]
 >[] = [
   {
@@ -16,6 +16,7 @@ export const annualInfoListColumns: ColumnType<
   },
   {
     title: 'Livelihood',
-    accessor: 'mainLivelihood',
+    type: 'function',
+    fn: (row) => row.mainLivelihood.join(', '),
   },
 ]

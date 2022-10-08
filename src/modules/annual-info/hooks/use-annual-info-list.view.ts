@@ -1,7 +1,10 @@
 import { useTableState } from '@/components/data-table/use-table-state'
 import { useAnnualInfoListQuery } from '@/modules/annual-info/api/queries'
 import { useRouter } from 'next/router'
-import { annualInfoListColumns } from '@/modules/annual-info/constants'
+import {
+  annualInfoListColumns,
+  annualInfoSchema,
+} from '@/modules/annual-info/constants'
 import { useDialogStore } from '@/shared/stores/dialog'
 import dynamic from 'next/dynamic'
 import { useCreateAnnualInfoMutation } from '@/modules/annual-info/api/mutations'
@@ -14,11 +17,12 @@ export function useAnnualInfoList() {
   const { showDialog } = useDialogStore()
   const [tableState, tableDispatch] = useTableState()
   const [, onCreate] = useCreateAnnualInfoMutation()
+  const householdId = router.query.id
   const [listResponse] = useAnnualInfoListQuery({
     variables: {
       where: {
         householdId: {
-          _eq: router.query.id,
+          _eq: householdId,
         },
       },
     },
@@ -38,10 +42,13 @@ export function useAnnualInfoList() {
       component: AddAnnualInfoDialog,
       props: {
         title: 'New Annual Info',
-        defaultValues: {},
+        defaultValues: annualInfoSchema.noUnknown().cast({}),
         onValid: (data) =>
           onCreate({
-            object: data,
+            object: {
+              ...data,
+              householdId,
+            },
           }),
       },
     })

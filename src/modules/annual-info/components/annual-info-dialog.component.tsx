@@ -6,9 +6,8 @@ import { IAnnualInfoSchema } from '@/modules/annual-info/constants'
 type AnnualInfoDialogPayload = IAnnualInfoSchema
 type IAnnualInfoDialogProps = IDialogContentProps<AnnualInfoDialogPayload>
 function AnnualInfoDialogBody(props: IAnnualInfoDialogProps) {
-  console.log('props', props.formProps.formState.errors)
   return (
-    <Box>
+    <Box sx={{ py: 3 }}>
       <AnnualInfoForm formProps={props.formProps} />
     </Box>
   )

@@ -1,4 +1,5 @@
-import { ReactNode } from 'react'
+import { Dispatch, ReactNode } from 'react'
+import { TableAction, TableState } from './table-reducer'
 
 export type ColumnSort = {
   column: string
@@ -9,7 +10,7 @@ export interface Identifiable {
   id: any
 }
 
-export type ColumnType<T = any> = {
+export type DataTableColumn<T extends Identifiable> = {
   title?: string
   accessor?: keyof T
   type?: 'function' | 'actions' | 'component' | 'value'
@@ -18,11 +19,11 @@ export type ColumnType<T = any> = {
   componentProps?: object
   bodyProps?: object
   fn?: (row: T, index: number) => React.ReactNode
-  actions?: ActionType<T>[]
+  actions?: DataTableAction<T>[]
   sortable?: boolean
 }
 
-type ActionType<T> = {
+export type DataTableAction<T extends Identifiable> = {
   label: string
   className?: string
   icon: React.FC<any>
@@ -32,8 +33,29 @@ type ActionType<T> = {
   conditionalRendering?: (arg: T) => boolean
 }
 
-export type RowProp<T> = {
+export type RowProp<T extends Identifiable> = {
   row: T
   index: number
-  column: ColumnType<T>
+  column: DataTableColumn<T>
+}
+
+export type DataTableProps<T extends Identifiable> = {
+  rows: T[]
+  totalRows: number
+  columns: DataTableColumn<T>[]
+  onRowClick: (row: T) => void
+  className: string
+  isSelectable: boolean
+  onSort: (column: string) => void
+  sort: ColumnSort[]
+  onRowToggle: () => void
+  pageSizes: number[]
+  showPagination?: boolean
+  tableState?: TableState
+  tableDispatch?: Dispatch<TableAction<T>>
+  loading?: boolean
+  rowClassName?: (row: T) => string
+  checkedItems?: string[]
+  rowCheckboxEnabled?: (row: T) => boolean
+  actions?: DataTableAction<T>[]
 }

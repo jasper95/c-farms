@@ -6,6 +6,7 @@ export const annualInfoSchema = yup.object({
   highestFormalEducation: yup.string().default(''),
   grossAnnualIncomeFarming: yup.number().default(0),
   grossAnnualIncomeNonfarming: yup.number().default(0),
+  year: yup.number().default(new Date().getFullYear()),
   mainLivelihood: yup.array().of(yup.string()).default([]),
 })
 

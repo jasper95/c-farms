@@ -15,6 +15,7 @@ export function HouseholdListView() {
     onSearchChanged,
     listResponse,
     totalRows,
+    actions,
   } = useHouseholdList()
   return (
     <Dashboard>

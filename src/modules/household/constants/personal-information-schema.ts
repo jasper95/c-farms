@@ -1,6 +1,6 @@
 import { fieldIsRequired } from '@/shared/utils/form-utils'
 import * as yup from 'yup'
-import { CIVIL_STATUS_OPTIONS, GENDER_OPTIONS } from './form-options'
+import { civilStatusOptions, genderOptions } from './form-options'
 
 export const personalInfomationSchema = yup.object({
   lastName: yup
@@ -25,11 +25,11 @@ export const personalInfomationSchema = yup.object({
   contactNumber: yup.string().required(fieldIsRequired).default(''),
   sex: yup
     .number()
-    .oneOf(GENDER_OPTIONS.map((e) => e.value))
+    .oneOf(genderOptions.map((e) => e.value))
     .default(1),
   civilStatus: yup
     .number()
-    .oneOf(CIVIL_STATUS_OPTIONS.map((e) => e.value))
+    .oneOf(civilStatusOptions.map((e) => e.value))
     .default(2),
   nameOfSpouse: yup.string().default(''),
   mothersMaidenName: yup.string().default(''),

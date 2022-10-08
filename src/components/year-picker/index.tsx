@@ -3,7 +3,7 @@ import { IDatePickerProps } from './interface'
 import { FieldValues, useController } from 'react-hook-form'
 import TextField from '@mui/material/TextField'
 
-export default function DatePicker<T extends FieldValues>(
+export default function YearPicker<T extends FieldValues>(
   props: IDatePickerProps<T>
 ) {
   const { control, name, ...restProps } = props
@@ -12,10 +12,16 @@ export default function DatePicker<T extends FieldValues>(
     name,
   })
   const { field, formState } = controller
+  const { value } = field
+  const parsedValue = value ? new Date(field?.value, 0) : field.value
   return (
     <DesktopDatePicker
       {...restProps}
-      InputProps={field}
+      views={['year']}
+      InputProps={{
+        ...field,
+        value: parsedValue,
+      }}
       renderInput={(params) => (
         <TextField
           {...params}
@@ -24,8 +30,8 @@ export default function DatePicker<T extends FieldValues>(
           error={Boolean(formState.errors[name])}
         />
       )}
-      value={field.value ? new Date(field.value) : field.value}
-      onChange={(date) => field.onChange(date)}
+      value={parsedValue}
+      onChange={(date) => field.onChange(date?.getFullYear())}
     />
   )
 }

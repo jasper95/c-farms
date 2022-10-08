@@ -1,4 +1,4 @@
-export const CREATE_HOUSEHOLD_STEPS = [
+export const createHouseholdSteps = [
   'Personal Information',
   'Other Personal Details',
   'Annual Info',

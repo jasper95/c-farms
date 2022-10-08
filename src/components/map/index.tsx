@@ -65,7 +65,6 @@ const MapWrapper = () => {
             }}
             onCreated={(e: LeafletEvent) => {
               setLayers(layers.concat(e.layer.toGeoJSON()))
-              // console.log('layer: ', JSON.stringify(e.layer.toGeoJSON()))
             }}
           />
         </FeatureGroup>
