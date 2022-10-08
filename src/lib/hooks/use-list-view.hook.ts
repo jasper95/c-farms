@@ -14,6 +14,15 @@ export type BaseListQuery<ListRow> = {
 export interface ListPagination {
   limit: number
   offset: number
+  orderBy: {
+    [key in string]:
+      | 'ASC'
+      | 'ASC_NULLS_FIRST'
+      | 'ASC_NULLS_LAST'
+      | 'DESC'
+      | 'DESC_NULLS_FIRST'
+      | 'DESC_NULLS_LAST'
+  }
 }
 export interface UseListViewProps<
   QueryResponse extends Identifiable,
@@ -38,9 +47,12 @@ export function useListViewHook<
   })
   const [listResponse] = useListQueryHook({
     variables: {
-      ...listQueryVariables,
       limit: tableState.size,
       offset: tableState.page * tableState.size,
+      orderBy: {
+        createdAt: 'DESC',
+      },
+      ...listQueryVariables,
     },
   })
 

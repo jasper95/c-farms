@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { DeepPartial, useForm } from 'react-hook-form'
+import { DeepPartial, FieldValues, useForm } from 'react-hook-form'
 import * as Urql from 'urql'
-import ObjectSchema, { AssertsShape, ObjectShape } from 'yup/lib/object'
+import ObjectSchema, { AssertsShape } from 'yup/lib/object'
 import * as Types from '@/lib/generated/graphql.types'
 import { useNotificationStore } from '@/lib/stores/notification'
 import { useRouter } from 'next/router'
@@ -14,12 +14,8 @@ export type CreateMutationVariables<T> = Types.Exact<{
   object: T
 }>
 
-export interface ListPagination {
-  limit: number
-  offset: number
-}
 export interface UseNewViewProps<
-  T extends ObjectShape,
+  T extends FieldValues,
   MutationPayload,
   MutationResponse extends MutationResponseType
 > {
@@ -31,10 +27,11 @@ export interface UseNewViewProps<
   >
   schema: ObjectSchema<T>
   transform?: (arg: AssertsShape<T>) => MutationPayload
+  params?: Partial<MutationPayload>
 }
 
 export function useNewViewHook<
-  T extends ObjectShape,
+  T extends FieldValues,
   MutationPayload,
   MutationResponse extends MutationResponseType
 >(props: UseNewViewProps<T, MutationPayload, MutationResponse>) {
@@ -45,6 +42,7 @@ export function useNewViewHook<
     transform = (a) => a,
     name,
     redirectBaseUrl,
+    params,
   } = props
   const [createMutationResponse, onCreate] = useMutationHook()
   const router = useRouter()
@@ -60,11 +58,14 @@ export function useNewViewHook<
   async function onValid(data: AssertsShape<T>) {
     const payload = transform(data) as MutationPayload
     const response = await onCreate({
-      object: payload,
+      object: {
+        ...payload,
+        ...(params || {}),
+      },
     })
     notifySuccess(`${name} successfully created`)
     if (redirectBaseUrl) {
-      router.replace(`${redirectBaseUrl}/${response.data?.data?.id}`)
+      router.push(`${redirectBaseUrl}/${response.data?.data?.id}`)
     }
   }
 

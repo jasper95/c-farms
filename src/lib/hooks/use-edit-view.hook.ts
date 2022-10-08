@@ -22,10 +22,6 @@ export type EditMutationVariables<T> = Types.Exact<{
     id: Types.Scalars['uuid']
   }>
 }>
-export interface ListPagination {
-  limit: number
-  offset: number
-}
 
 export interface UseEditViewProps<
   T extends ObjectShape,
@@ -34,7 +30,6 @@ export interface UseEditViewProps<
   MutationResponse extends MutationResponseType
 > {
   name: string
-  id?: string
   redirectBaseUrl?: string
   useMutationHook(): Urql.UseMutationResponse<
     MutationResponse,
@@ -66,7 +61,7 @@ export function useEditViewHook<
   } = props
 
   const router = useRouter()
-  const id = props.id || router.query.id
+  const id = router.query.id
   const [detailsQueryResponse] = useDetailsQueryHook({
     variables: {
       id,
@@ -100,7 +95,7 @@ export function useEditViewHook<
     })
     notifySuccess(`${name} successfully updated`)
     if (redirectBaseUrl) {
-      router.replace(redirectBaseUrl)
+      router.push(redirectBaseUrl)
     }
   }
 
