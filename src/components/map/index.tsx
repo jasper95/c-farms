@@ -7,8 +7,14 @@ import GeoJsonLayer from './geojson-layer'
 import { IMapProps } from './interfaces'
 
 export default function Map<T>(props: IMapProps<T>) {
-  const { layers, onCreateFeature, isEditable, popupComponent, popupData } =
-    props
+  const {
+    layers,
+    onCreateFeature,
+    isEditable,
+    popupComponent,
+    popupData,
+    height = 'calc(100vh - 220px)',
+  } = props
 
   const [geoJsonKey, setGeoJsonKey] = useState(1)
   useEffect(() => {
@@ -21,7 +27,7 @@ export default function Map<T>(props: IMapProps<T>) {
         center={[9.818660000000023, 124.4955900000001]}
         zoom={18}
         scrollWheelZoom={false}
-        style={{ height: `calc(100vh - 192px)`, width: '100%' }}
+        style={{ height, width: '100%' }}
       >
         <TileLayer {...osmProviders} />
         {isEditable && (

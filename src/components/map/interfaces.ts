@@ -11,6 +11,7 @@ export interface IMapProps<T> {
   isEditable?: boolean
   popupData?: T[]
   popupComponent?: ComponentType<{ data: any }>
+  height?: string
 }
 
 export type IEditControlProps = EditControlProps &

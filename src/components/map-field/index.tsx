@@ -27,6 +27,7 @@ export default function MapField<T extends FieldValues>(
         field.onChange(layer)
       }}
       layers={layers}
+      height="calc(100vh - 260px)"
     />
   )
 }
