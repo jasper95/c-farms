@@ -1,4 +1,4 @@
-import { FarmListQuery } from '../api/queries'
+import { FarmListQuery } from '@/modules/farm/api/queries'
 
 interface IFarmPopupProps {
   data: FarmListQuery['list'][0]

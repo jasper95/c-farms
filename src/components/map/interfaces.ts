@@ -5,12 +5,12 @@ import { IControlHandlerProps } from './consts'
 import { Control } from 'leaflet'
 import { ComponentType } from 'react'
 
-export interface IMapProps<T = any> {
+export interface IMapProps<T> {
   layers: Feature[]
   onCreateFeature?: (arg: any) => void
   isEditable?: boolean
   popupData?: T[]
-  popupComponent?: ComponentType<{ data: T }>
+  popupComponent?: ComponentType<{ data: any }>
 }
 
 export type IEditControlProps = EditControlProps &
@@ -24,5 +24,5 @@ export type IGeoJsonLayerProps<T> = {
   layers: Feature[]
   initialZoom: number
   popupData?: T[]
-  popupComponent?: ComponentType<{ data: T }>
+  popupComponent?: ComponentType<{ data: any }>
 }

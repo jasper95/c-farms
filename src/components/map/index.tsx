@@ -6,7 +6,7 @@ import { LeafletEvent } from 'leaflet'
 import GeoJsonLayer from './geojson-layer'
 import { IMapProps } from './interfaces'
 
-export default function Map<T = any>(props: IMapProps<T>) {
+export default function Map<T>(props: IMapProps<T>) {
   const { layers, onCreateFeature, isEditable, popupComponent, popupData } =
     props
 
