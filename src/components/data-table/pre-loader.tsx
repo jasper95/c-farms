@@ -2,7 +2,7 @@ import React from 'react'
 import Skeleton from '@mui/material/Skeleton'
 import Grid from '@mui/material/Grid'
 import range from 'lodash/range'
-import { getRandomInt } from '@/shared/utils/general'
+import { getRandomInt } from '@/lib/utils/general'
 import TableRow from '@mui/material/TableRow'
 import { StyledTableCell } from './column'
 

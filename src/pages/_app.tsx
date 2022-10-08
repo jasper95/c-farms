@@ -6,7 +6,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
 import CssBaseline from '@mui/material/CssBaseline'
-import theme from '@/shared/theme'
+import theme from '@/lib/theme'
 import { AppProps } from 'next/dist/shared/lib/router/router'
 import DialogContainer from '@/components/layout/dialog-container.layout'
 import NotificationContainer from '@/components/layout/notification-container.layout'
@@ -18,10 +18,10 @@ import 'tailwindcss/tailwind.css'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-draw/dist/leaflet.draw.css'
 import '@/components/map/styles/marker-clusterer.style.css'
-import { urqlClient } from '@/shared/urql/client'
+import { urqlClient } from '@/lib/urql/client'
 import { NextPage } from 'next'
 import { CacheProvider, EmotionCache } from '@emotion/react'
-import createEmotionCache from '@/shared/utils/create-emotion-cache'
+import createEmotionCache from '@/lib/utils/create-emotion-cache'
 
 Amplify.configure({
   ...config,

@@ -1,4 +1,4 @@
-import { useDialogStore } from '@/shared/stores/dialog'
+import { useDialogStore } from '@/lib/stores/dialog'
 import { createElement } from 'react'
 
 export default function DialogContainer() {

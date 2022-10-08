@@ -3,7 +3,7 @@ import {
   AdminGetUserResponse,
 } from 'aws-sdk/clients/cognitoidentityserviceprovider'
 import * as yup from 'yup'
-import { fieldIsInvalid, fieldIsRequired } from '@/shared/utils/form-utils'
+import { fieldIsInvalid, fieldIsRequired } from '@/lib/utils/form-utils'
 
 export const createUserSchema = yup.object({
   email: yup.string().required(fieldIsRequired).email(fieldIsInvalid),

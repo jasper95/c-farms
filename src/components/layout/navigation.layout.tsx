@@ -1,4 +1,4 @@
-import { useSidebarStore } from '@/shared/stores/sidebar'
+import { useSidebarStore } from '@/lib/stores/sidebar'
 import { CSSObject, styled, useTheme } from '@mui/material/styles'
 import MuiDrawer from '@mui/material/Drawer'
 import IconButton from '@mui/material/IconButton'

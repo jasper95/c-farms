@@ -1,4 +1,4 @@
-import { fieldIsRequired } from '@/shared/utils/form-utils'
+import { fieldIsRequired } from '@/lib/utils/form-utils'
 import * as yup from 'yup'
 import { civilStatusOptions, genderOptions } from './form-options'
 

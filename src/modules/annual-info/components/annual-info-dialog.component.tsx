@@ -1,5 +1,5 @@
 import { AnnualInfoForm } from '@/modules/household/components/annual-info-form.component'
-import { IDialogContentProps, withDialog } from '@/shared/hocs'
+import { IDialogContentProps, withDialog } from '@/lib/hocs'
 import Box from '@mui/material/Box'
 import { IAnnualInfoSchema } from '@/modules/annual-info/constants'
 

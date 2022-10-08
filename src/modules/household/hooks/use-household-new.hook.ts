@@ -6,7 +6,7 @@ import {
 } from '@/modules/household/constants'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect, useRef, useState } from 'react'
-import { useNotificationStore } from '@/shared/stores/notification'
+import { useNotificationStore } from '@/lib/stores/notification'
 import { useRouter } from 'next/router'
 import { annualInfoSchema } from '@/modules/annual-info/constants'
 

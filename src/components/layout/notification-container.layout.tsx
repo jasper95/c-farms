@@ -1,4 +1,4 @@
-import { useNotificationStore } from '@/shared/stores/notification'
+import { useNotificationStore } from '@/lib/stores/notification'
 import Notification from '@/components/notification'
 
 function NotificationContainer() {

@@ -1,7 +1,7 @@
 import { DeepPartial, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useEffect } from 'react'
-import { useNotificationStore } from '@/shared/stores/notification'
+import { useNotificationStore } from '@/lib/stores/notification'
 import { useRouter } from 'next/router'
 import { useEditHousehold } from './use-edit-household.hook'
 import ObjectSchema, { AssertsShape, ObjectShape } from 'yup/lib/object'

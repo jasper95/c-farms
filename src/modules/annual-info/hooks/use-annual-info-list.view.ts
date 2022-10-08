@@ -5,7 +5,7 @@ import {
   annualInfoListColumns,
   annualInfoSchema,
 } from '@/modules/annual-info/constants'
-import { useDialogStore } from '@/shared/stores/dialog'
+import { useDialogStore } from '@/lib/stores/dialog'
 import dynamic from 'next/dynamic'
 import { useCreateAnnualInfoMutation } from '@/modules/annual-info/api/mutations'
 

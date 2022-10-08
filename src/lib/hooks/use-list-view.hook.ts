@@ -10,13 +10,17 @@ export type BaseListQuery<ListRow> = {
     aggregate?: { count: number } | null | undefined
   }
 }
+export interface ListPagination {
+  limit: number
+  offset: number
+}
 export interface UseListViewProps<
   QueryResponse extends Identifiable,
   QueryVariables
 > {
-  listQueryOptions: Omit<Urql.UseQueryArgs<QueryVariables>, 'query'>
+  listQueryVariables: QueryVariables
   uselistQueryHook(
-    options?: Omit<Urql.UseQueryArgs<QueryVariables>, 'query'>
+    options?: Omit<Urql.UseQueryArgs<QueryVariables & ListPagination>, 'query'>
   ): Urql.UseQueryResponse<BaseListQuery<QueryResponse>, object>
   columns: DataTableColumn<QueryResponse>[]
 }
@@ -25,22 +29,30 @@ export function useListViewHook<
   QueryResponse extends Identifiable,
   QueryVariables
 >(props: UseListViewProps<QueryResponse, QueryVariables>) {
-  const { uselistQueryHook, listQueryOptions, columns } = props
+  const { uselistQueryHook, listQueryVariables, columns } = props
   const [tableState, tableDispatch] = useTableState()
   const router = useRouter()
   const { onSearchChanged } = useSearch({
     initialSearch: (router.query?.search || '') as string,
   })
-
-  const [listResponse] = uselistQueryHook(listQueryOptions)
+  const [listResponse] = uselistQueryHook({
+    variables: {
+      ...listQueryVariables,
+      limit: tableState.size,
+      offset: tableState.page * tableState.size,
+    },
+  })
 
   return {
+    tableProps: {
+      tableState,
+      tableDispatch,
+      rows: listResponse?.data?.list || [],
+      totalRows: listResponse?.data?.meta?.aggregate?.count || 0,
+      loading: listResponse.fetching,
+      columns,
+    },
+    baseUrl: router.asPath,
     onSearchChanged,
-    tableState,
-    tableDispatch,
-    rows: listResponse?.data?.list || [],
-    totalRows: listResponse?.data?.meta?.aggregate?.count || 0,
-    columns,
-    listResponse,
   }
 }

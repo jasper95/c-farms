@@ -2,7 +2,7 @@ import Snackbar from '@mui/material/Snackbar'
 import Slide from '@mui/material/Slide'
 import MuiAlert, { AlertProps } from '@mui/material/Alert'
 // import { TransitionProps } from '@mui/material/transitions/transition'
-import { Notification as INotification } from '@/shared/stores/notification'
+import { Notification as INotification } from '@/lib/stores/notification'
 
 export type NotificationProps = {
   notification: INotification

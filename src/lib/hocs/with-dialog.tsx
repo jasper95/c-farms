@@ -1,7 +1,7 @@
 import DialogLayout, {
   DialogLayoutProps,
 } from '@/components/dialog/dialog-layout'
-import { useDialogStore } from '@/shared/stores/dialog'
+import { useDialogStore } from '@/lib/stores/dialog'
 
 import { yupResolver } from '@hookform/resolvers/yup'
 

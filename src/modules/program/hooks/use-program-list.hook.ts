@@ -1,6 +1,6 @@
 import { useTableState } from '@/components/data-table/use-table-state'
 import { useProgramListQuery } from '@/modules/program/api/queries'
-import { useSearch } from '@/shared/hooks/use-search.hook'
+import { useSearch } from '@/lib/hooks/use-search.hook'
 import { programListColumns as columns } from '@/modules/program/constants'
 
 export default function useProgramList() {

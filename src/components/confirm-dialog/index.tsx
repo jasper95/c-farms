@@ -1,4 +1,4 @@
-import { withDialog, IDialogContentProps } from '@/shared/hocs'
+import { withDialog, IDialogContentProps } from '@/lib/hocs'
 import Typography from '@mui/material/Typography'
 import { useWatch } from 'react-hook-form'
 
