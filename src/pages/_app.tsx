@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
-import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
+import { ThemeProvider } from '@mui/material/styles'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
@@ -31,12 +31,6 @@ const clientSideEmotionCache = createEmotionCache()
 export default function MyApp(props: AppPropsWithLayout) {
   const { Component, pageProps, emotionCache = clientSideEmotionCache } = props
 
-  React.useEffect(() => {
-    const jssStyles = document.querySelector('#jss-server-side')
-    if (jssStyles) {
-      jssStyles?.parentElement?.removeChild(jssStyles)
-    }
-  }, [])
   const getLayout = Component.getLayout ?? ((page) => page)
 
   return (
@@ -51,14 +45,12 @@ export default function MyApp(props: AppPropsWithLayout) {
         </Head>
         <CacheProvider value={emotionCache}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <StyledEngineProvider injectFirst>
-              <ThemeProvider theme={theme}>
-                <CssBaseline />
-                {getLayout(<Component {...pageProps} />)}
-                <DialogContainer />
-                <NotificationContainer />
-              </ThemeProvider>
-            </StyledEngineProvider>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              {getLayout(<Component {...pageProps} />)}
+              <DialogContainer />
+              <NotificationContainer />
+            </ThemeProvider>
           </LocalizationProvider>
         </CacheProvider>
       </React.Fragment>
