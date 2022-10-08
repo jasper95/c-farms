@@ -11,10 +11,7 @@ import { AppProps } from 'next/dist/shared/lib/router/router'
 import DialogContainer from '@/components/layout/dialog-container.layout'
 import NotificationContainer from '@/components/layout/notification-container.layout'
 import { Provider as UrqlProvider } from 'urql'
-
 import 'tailwindcss/tailwind.css'
-import '@/components/map/styles/marker-clusterer.style.css'
-
 import { urqlClient } from '@/lib/urql/client'
 import { NextPage } from 'next'
 import { CacheProvider, EmotionCache } from '@emotion/react'
