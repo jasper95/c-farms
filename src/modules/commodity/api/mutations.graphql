@@ -1,0 +1,5 @@
+mutation CreateCommodity($object: CommodityInsertInput!) {
+  data: insertCommodityOne(object: $object) {
+    id
+  }
+}
