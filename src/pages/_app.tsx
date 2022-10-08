@@ -13,9 +13,8 @@ import NotificationContainer from '@/components/layout/notification-container.la
 import { Provider as UrqlProvider } from 'urql'
 
 import 'tailwindcss/tailwind.css'
-import 'leaflet/dist/leaflet.css'
-import 'leaflet-draw/dist/leaflet.draw.css'
 import '@/components/map/styles/marker-clusterer.style.css'
+
 import { urqlClient } from '@/lib/urql/client'
 import { NextPage } from 'next'
 import { CacheProvider, EmotionCache } from '@emotion/react'

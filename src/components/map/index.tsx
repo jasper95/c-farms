@@ -5,6 +5,8 @@ import { osmProviders } from './osm-providers'
 import { LeafletEvent } from 'leaflet'
 import GeoJsonLayer from './geojson-layer'
 import { IMapProps } from './interfaces'
+import 'leaflet/dist/leaflet.css'
+import 'leaflet-draw/dist/leaflet.draw.css'
 
 export default function Map<T>(props: IMapProps<T>) {
   const { layers, onCreateFeature, isEditable, popupComponent, popupData } =
