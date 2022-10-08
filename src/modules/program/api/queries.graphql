@@ -4,22 +4,22 @@ query ProgramList(
   $offset: Int
   $limit: Int
 ) {
-  list: programAggregate(
+  list: program(
     where: $where
     orderBy: $orderBy
     offset: $offset
     limit: $limit
   ) {
-    data: nodes {
-      id
-      name
-      type
-      sponsoringAgency
-      dateStart
-      dateEnd
-    }
-    meta: aggregate {
-      count(columns: id, distinct: true)
+    id
+    name
+    type
+    sponsoringAgency
+    dateStart
+    dateEnd
+  }
+  meta: programAggregate(where: $where) {
+    aggregate {
+      count
     }
   }
 }

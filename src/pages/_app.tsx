@@ -12,8 +12,6 @@ import DialogContainer from '@/components/layout/dialog-container.layout'
 import NotificationContainer from '@/components/layout/notification-container.layout'
 import { Provider as UrqlProvider } from 'urql'
 
-import Amplify from 'aws-amplify'
-import config from '@/aws-exports'
 import 'tailwindcss/tailwind.css'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet-draw/dist/leaflet.draw.css'
@@ -22,10 +20,6 @@ import { urqlClient } from '@/lib/urql/client'
 import { NextPage } from 'next'
 import { CacheProvider, EmotionCache } from '@emotion/react'
 import createEmotionCache from '@/lib/utils/create-emotion-cache'
-
-Amplify.configure({
-  ...config,
-})
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode

@@ -8,6 +8,7 @@ import {
 } from '@/lib/hooks/use-list-view.hook'
 import { Identifiable } from '@/components/data-table/types'
 import pick from 'lodash/pick'
+import Box from '@mui/material/Box'
 
 interface DatatableListViewProps<
   QueryResponse extends Identifiable,
@@ -35,7 +36,7 @@ export default function DatatableListView<
         href: `${baseUrl}/new`,
       }
   return (
-    <>
+    <Box>
       <div className="grid grid-cols-12 gap-4 pb-4">
         {!readOnly && (
           <div className="col-span-full md:col-span-4 flex items-center">
@@ -49,6 +50,6 @@ export default function DatatableListView<
         </div>
       </div>
       <DataTable {...tableProps} showPagination />
-    </>
+    </Box>
   )
 }

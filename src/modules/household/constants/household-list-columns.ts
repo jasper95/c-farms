@@ -27,4 +27,8 @@ export const householdListColumns: DataTableColumn<HouseholdListRow>[] = [
     title: 'Barangay',
     accessor: 'barangay',
   },
+  {
+    type: 'actions',
+    actions: houseListActions,
+  },
 ]

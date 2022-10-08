@@ -13,20 +13,20 @@ const config: CodegenConfig = {
   documents: 'src/**/*.graphql',
   overwrite: true,
   generates: {
-    'src/shared/generated/graphql.types.ts': {
+    'src/lib/generated/graphql.types.ts': {
       plugins: ['typescript'],
       hooks: {
         afterOneFileWrite: ['eslint --fix'],
       },
     },
-    'src/shared/generated/graphql.schema.json': {
+    'src/lib/generated/graphql.schema.json': {
       plugins: ['introspection'],
     },
     'src/': {
       preset: 'near-operation-file',
       presetConfig: {
         extension: '.ts',
-        baseTypesPath: '~@/shared/generated/graphql.types',
+        baseTypesPath: '~@/lib/generated/graphql.types',
       },
       plugins: ['typescript-operations', 'typescript-urql'],
       hooks: {

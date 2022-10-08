@@ -12,18 +12,18 @@ export type ProgramListQueryVariables = Types.Exact<{
 
 export type ProgramListQuery = {
   __typename?: 'query_root'
-  list: {
+  list: Array<{
+    __typename?: 'Program'
+    id: any
+    name: string
+    type: string
+    sponsoringAgency: string
+    dateStart: any
+    dateEnd?: any | null | undefined
+  }>
+  meta: {
     __typename?: 'ProgramAggregate'
-    data: Array<{
-      __typename?: 'Program'
-      id: any
-      name: string
-      type: string
-      sponsoringAgency: string
-      dateStart: any
-      dateEnd?: any | null | undefined
-    }>
-    meta?:
+    aggregate?:
       | { __typename?: 'ProgramAggregateFields'; count: number }
       | null
       | undefined
@@ -37,22 +37,22 @@ export const ProgramListDocument = gql`
     $offset: Int
     $limit: Int
   ) {
-    list: programAggregate(
+    list: program(
       where: $where
       orderBy: $orderBy
       offset: $offset
       limit: $limit
     ) {
-      data: nodes {
-        id
-        name
-        type
-        sponsoringAgency
-        dateStart
-        dateEnd
-      }
-      meta: aggregate {
-        count(columns: id, distinct: true)
+      id
+      name
+      type
+      sponsoringAgency
+      dateStart
+      dateEnd
+    }
+    meta: programAggregate(where: $where) {
+      aggregate {
+        count
       }
     }
   }

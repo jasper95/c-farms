@@ -17,7 +17,7 @@ export default function ProgramListPage() {
         listQueryVariables={{}}
         uselistQueryHook={useProgramListQuery}
         columns={programListColumns}
-        name="Household"
+        name="Program"
       />
     </Dashboard>
   )
