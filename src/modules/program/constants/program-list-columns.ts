@@ -2,7 +2,7 @@ import { DataTableColumn } from '@/components/data-table/types'
 import { ProgramListQuery } from '@/modules/program/api/queries'
 
 export const programListColumns: DataTableColumn<
-  ProgramListQuery['list']['data'][0]
+  ProgramListQuery['list'][0]
 >[] = [
   {
     title: 'Name',

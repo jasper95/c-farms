@@ -70,7 +70,7 @@ export function useNewViewHook<
 
   return {
     formProps,
-    createMutationResponse,
+    isMutating: createMutationResponse.fetching,
     onSave,
   }
 }

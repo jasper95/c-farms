@@ -1,0 +1,5 @@
+mutation CreateFarm($object: FarmInsertInput!) {
+  data: insertFarmOne(object: $object) {
+    id
+  }
+}

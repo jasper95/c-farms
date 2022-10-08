@@ -33,8 +33,8 @@ const menuItems = [
   },
   {
     icon: MapIcon,
-    primaryText: 'Map',
-    path: '/map',
+    primaryText: 'Farm',
+    path: '/farm',
   },
 ] as const
 

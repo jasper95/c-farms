@@ -7,7 +7,7 @@ import { programSchema } from '@/modules/program/constants'
 import { useCreateProgramMutation } from '@/modules/program/api/mutations'
 
 export default function ProgramNewPage() {
-  const { formProps, onSave } = useNewViewHook({
+  const { formProps, onSave, isMutating } = useNewViewHook({
     schema: programSchema,
     useMutationHook: useCreateProgramMutation,
     name: 'Program',
@@ -21,7 +21,11 @@ export default function ProgramNewPage() {
     <Dashboard>
       <Breadcrumbs crumbs={[{ name: 'Program' }, { name: 'New Program' }]} />
       <ProgramForm formProps={formProps} />
-      <FormToolbar onCancel={() => {}} onConfirm={onSave} />
+      <FormToolbar
+        onCancel={() => {}}
+        onConfirm={onSave}
+        isLoading={isMutating}
+      />
     </Dashboard>
   )
 }

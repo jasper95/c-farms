@@ -1,11 +1,16 @@
 import { IGeoJsonLayerProps } from './interfaces'
-import { useMapEvents, GeoJSON, Marker } from 'react-leaflet'
+import { useMapEvents, GeoJSON, Marker, Popup } from 'react-leaflet'
 import { useMemo, useState } from 'react'
 import L from 'leaflet'
 import MarkerClusterGroup from './marker-clusterer'
 
-export default function GeoJsonLayer(props: IGeoJsonLayerProps) {
-  const { layers, initialZoom } = props
+export default function GeoJsonLayer<T = any>(props: IGeoJsonLayerProps<T>) {
+  const {
+    layers,
+    initialZoom,
+    popupData = [],
+    popupComponent: PopupComponent,
+  } = props
   const [zoom, setZoom] = useState(initialZoom)
   const mapEvents = useMapEvents({
     zoomend: () => {
@@ -20,7 +25,13 @@ export default function GeoJsonLayer(props: IGeoJsonLayerProps) {
     return (
       <MarkerClusterGroup>
         {layersCenter.map((position, key) => (
-          <Marker key={key} position={position} />
+          <Marker key={key} position={position}>
+            {popupData && PopupComponent && (
+              <Popup>
+                <PopupComponent data={popupData[key] as T} />
+              </Popup>
+            )}
+          </Marker>
         ))}
       </MarkerClusterGroup>
     )
@@ -30,13 +41,17 @@ export default function GeoJsonLayer(props: IGeoJsonLayerProps) {
       {layers.map((layer, key) => (
         <GeoJSON
           pointToLayer={(feature, latlng) => {
-            console.log('feature: ', feature)
-            console.log('latlng: ', latlng)
             return L.circleMarker(latlng)
           }}
           key={key}
           data={layer}
-        />
+        >
+          {popupData && PopupComponent && (
+            <Popup>
+              <PopupComponent data={popupData[key] as T} />
+            </Popup>
+          )}
+        </GeoJSON>
       ))}
     </>
   )

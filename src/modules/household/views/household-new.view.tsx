@@ -23,7 +23,7 @@ export function HouseholdNewView() {
     annualInfoFormProps,
     onBack,
     validateAndNext,
-    isLoading,
+    isMutating,
   } = useHouseholdNew()
   return (
     <Dashboard>
@@ -65,7 +65,7 @@ export function HouseholdNewView() {
             onConfirm={validateAndNext}
             cancelLabel="Back"
             confirmLabel="Next"
-            isLoading={isLoading}
+            isLoading={isMutating}
           />
         </CardContent>
       </Card>

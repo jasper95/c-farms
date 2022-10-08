@@ -1,0 +1,40 @@
+query HouseholdOptions(
+  $where: HouseholdBoolExp
+  $orderBy: [HouseholdOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: household(
+    where: $where
+    orderBy: $orderBy
+    offset: $offset
+    limit: $limit
+  ) {
+    id
+    firstName
+    lastName
+  }
+}
+
+query FarmList(
+  $where: FarmBoolExp
+  $orderBy: [FarmOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: farm(where: $where, orderBy: $orderBy, offset: $offset, limit: $limit) {
+    id
+    location
+    name
+    household {
+      id
+      firstName
+      lastName
+    }
+  }
+  meta: farmAggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}

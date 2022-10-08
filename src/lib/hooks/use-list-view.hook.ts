@@ -1,6 +1,7 @@
 import { DataTableColumn, Identifiable } from '@/components/data-table/types'
 import { useTableState } from '@/components/data-table/use-table-state'
 import { useRouter } from 'next/router'
+import { useMemo } from 'react'
 import * as Urql from 'urql'
 import { useSearch } from './use-search.hook'
 
@@ -43,11 +44,16 @@ export function useListViewHook<
     },
   })
 
+  const rows = useMemo(
+    () => listResponse?.data?.list || [],
+    [listResponse?.data]
+  )
+
   return {
     tableProps: {
       tableState,
       tableDispatch,
-      rows: listResponse?.data?.list || [],
+      rows,
       totalRows: listResponse?.data?.meta?.aggregate?.count || 0,
       isLoading: listResponse.fetching,
       columns,

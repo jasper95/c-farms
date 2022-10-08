@@ -58,7 +58,7 @@ export function useHouseholdNew() {
     topRef,
     onBack,
     validateAndNext,
-    isLoading: createMutationState.fetching,
+    isMutating: createMutationState.fetching,
   }
 
   function onBack() {

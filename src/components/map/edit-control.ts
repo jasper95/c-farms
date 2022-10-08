@@ -27,8 +27,6 @@ function EditControl(props: IEditControlProps) {
   const drawRef = useRef<Control.Draw>()
   const propsRef = useRef(props)
 
-  // console.log(zoomLevel)
-
   const onDrawCreate = (e: leaflet.LeafletEvent) => {
     const { onCreated } = props
     const container = context.layerContainer || context.map
@@ -95,7 +93,7 @@ function createDrawElement(
   const { draw, edit, position, initialLayers } = props
   if (initialLayers) {
     // initialLayers.forEach((json) => {
-    //   const geoJson = leaflet.geoJSON(json, {
+    //   leaflet.geoJSON(json, {
     //     onEachFeature: function (feature, layer) {
     //       layerContainer?.addLayer(layer)
     //     },
@@ -106,6 +104,8 @@ function createDrawElement(
   const options: Control.DrawConstructorOptions = {
     edit: {
       ...(edit && { edit }),
+      edit: false,
+      remove: false,
       featureGroup: layerContainer as FeatureGroup,
     },
   }
