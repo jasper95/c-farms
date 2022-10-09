@@ -8,10 +8,7 @@ export {
 
 export { createHouseholdSteps } from './create-household-steps'
 
-export {
-  householdListColumns,
-  houseListActions,
-} from './household-list-columns'
+export { householdListColumns } from './household-list-columns'
 
 export { personalInfomationSchema } from './personal-information-schema'
 

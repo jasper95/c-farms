@@ -38,6 +38,7 @@ export interface UseEditViewProps<
     options?: Omit<Urql.UseQueryArgs<DetailsQueryVariable>, 'query'>
   ): Urql.UseQueryResponse<BaseDetailsQuery<DetailsResponse>, object>
   transform?: (arg: AssertsShape<T>) => MutationPayload
+  transformResponse?: (arg: DetailsResponse) => T
 }
 
 export function useEditViewHook<
@@ -56,6 +57,7 @@ export function useEditViewHook<
     name,
     redirectBaseUrl,
     useDetailsQueryHook,
+    transformResponse = (arg) => schema.noUnknown().cast(arg),
   } = props
 
   const router = useRouter()
@@ -75,8 +77,9 @@ export function useEditViewHook<
 
   useEffect(() => {
     if (detailsQueryResponse.data?.details) {
-      reset(schema.noUnknown().cast(detailsQueryResponse.data?.details))
+      reset(transformResponse(detailsQueryResponse.data?.details))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [detailsQueryResponse.data, reset, schema])
 
   function onSave() {

@@ -10,12 +10,14 @@ import {
   BaseDetailsQuery,
   DetailsQueryVariable,
 } from '@/lib/hooks/use-edit-view.hook'
+import ObjectSchema from 'yup/lib/object'
 
 export type IWithEditDialogProps<T extends FieldValues, DetailsResponse> = Omit<
   IWithDialogProps<T>,
   'defaultValues'
 > & {
   id: string
+  validationSchema: ObjectSchema<T>
   transform?: (arg: DetailsResponse) => T
   useDetailsQueryHook(
     options?: Omit<Urql.UseQueryArgs<DetailsQueryVariable>, 'query'>
@@ -36,7 +38,7 @@ export function withEditDialog<T extends FieldValues, DetailsResponse>(
       hideOnValid = true,
       useDetailsQueryHook,
       id,
-      transform = (a) => a,
+      transform = (a) => validationSchema.noUnknown().cast(a),
     } = props
     const formProps = useForm<T>({
       ...(validationSchema && {
@@ -51,7 +53,8 @@ export function withEditDialog<T extends FieldValues, DetailsResponse>(
     const { reset } = formProps
     useEffect(() => {
       if (detailsQueryResponse?.data?.details) {
-        reset(transform(detailsQueryResponse?.data?.details) as T)
+        const payload = transform(detailsQueryResponse?.data?.details) as T
+        reset(payload)
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [detailsQueryResponse?.data?.details, reset])

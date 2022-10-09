@@ -19,7 +19,6 @@ export interface UseEditDialogProps<
     MutationPayload,
     MutationResponse
   > {
-  transformResponse?: (arg: DetailsResponse) => T
   component: FC<IFormContentProps<AssertsShape<T>>>
 }
 
