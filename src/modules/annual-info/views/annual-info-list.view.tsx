@@ -8,23 +8,20 @@ import {
   annualInfoListColumns,
   annualInfoSchema,
 } from '@/modules/annual-info/constants'
-import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import {
   useCreateAnnualInfoMutation,
   useUpdateAnnualInfoMutation,
 } from '@/modules/annual-info/api/mutations'
 import { useEditDialogHook } from '@/lib/hooks/use-edit-dialog.hook'
+import { AnnualInfoForm } from '@/modules/household/components'
 
-const AddAnnualInfoDialog = dynamic(
-  () => import('@/modules/annual-info/components/annual-info-dialog.component')
-)
 const name = 'Annual Info'
 export function AnnualInfoListView() {
   const router = useRouter()
   const householdId = router.query.id
   const { onClickCreate } = useNewDialogHook({
-    component: AddAnnualInfoDialog,
+    component: AnnualInfoForm,
     name,
     useMutationHook: useCreateAnnualInfoMutation,
     schema: annualInfoSchema,
@@ -37,7 +34,7 @@ export function AnnualInfoListView() {
     useDetailsQueryHook: useAnnualInfoDetailsQuery,
     useMutationHook: useUpdateAnnualInfoMutation,
     name,
-    component: AddAnnualInfoDialog,
+    component: AnnualInfoForm,
   })
   return (
     <DatatableListView

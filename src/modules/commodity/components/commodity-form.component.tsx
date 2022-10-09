@@ -1,9 +1,7 @@
 import Grid from '@mui/material/Grid'
-import Box from '@mui/material/Box'
 import { UseFormReturn } from 'react-hook-form'
 import { ICommoditySchema } from '@/modules/commodity/constants'
 import TextField from '@/components/text-field'
-import DateRangePicker from '@/components/date-range-picker'
 import { typeOptions } from '../constants/form-options'
 import SelectField from '@/components/select-field'
 
@@ -11,7 +9,7 @@ interface CommodityFormProps {
   formProps: UseFormReturn<ICommoditySchema>
 }
 
-export default function CommodityForm(props: CommodityFormProps) {
+export function CommodityForm(props: CommodityFormProps) {
   const { control } = props.formProps
   return (
     <Grid sx={{ my: 0 }} container>

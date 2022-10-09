@@ -4,6 +4,7 @@ import DefaultActions, { DialogActionsProps } from './dialog-actions'
 import Dialog from '@mui/material/Dialog'
 import pick from 'lodash/pick'
 import DialogContent from '@mui/material/DialogContent'
+import Box from '@mui/material/Box'
 
 export type DialogLayoutProps = DialogTitleProps &
   DialogActionsProps & {
@@ -22,7 +23,9 @@ export default function DialogLayout(props: DialogLayoutProps) {
   return (
     <Dialog fullWidth open onClose={onCancel}>
       <DialogTitle {...pick(props, ['onCancel', 'title'])} />
-      <DialogContent>{children}</DialogContent>
+      <DialogContent>
+        <Box sx={{ py: 3 }}>{children}</Box>
+      </DialogContent>
       <DialogActions
         {...pick(props, [
           'onContinue',

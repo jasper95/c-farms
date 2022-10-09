@@ -1,11 +1,11 @@
-import { withDialog, IDialogContentProps } from '@/lib/hocs'
+import { withDialog, IFormContentProps } from '@/lib/hocs'
 import Typography from '@mui/material/Typography'
 import { useWatch } from 'react-hook-form'
 
 type IConfirmPaylaod = {
   message: string
 }
-type IConfirmDialogProps = IDialogContentProps<IConfirmPaylaod>
+type IConfirmDialogProps = IFormContentProps<IConfirmPaylaod>
 
 function ConfirmDialog(props: IConfirmDialogProps) {
   const { formProps } = props

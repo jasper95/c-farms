@@ -30,12 +30,12 @@ export type IWithDialogProps<T extends FieldValues> = Omit<
 > &
   IDialogForm<T>
 
-export type IDialogContentProps<T extends FieldValues> = {
+export type IFormContentProps<T extends FieldValues> = {
   formProps: UseFormReturn<T>
 }
 
 export function withDialog<T extends FieldValues>(
-  WrappedComponent: React.FC<IDialogContentProps<T>>
+  WrappedComponent: React.FC<IFormContentProps<T>>
 ) {
   const Dialog: React.FC<IWithDialogProps<T>> = (props) => {
     const { hideDialog, toggleDialogLoading } = useDialogStore()

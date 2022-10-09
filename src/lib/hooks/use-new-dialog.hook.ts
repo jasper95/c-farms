@@ -1,7 +1,7 @@
 import { useNotificationStore } from '@/lib/stores/notification'
 import { MutationResponseType, UseNewViewProps } from './use-new-view.hook'
-import { ComponentType } from 'react'
-import { IWithDialogProps } from '@/lib/hocs'
+import { FC } from 'react'
+import { IFormContentProps, withDialog } from '@/lib/hocs'
 import { useDialogStore } from '@/lib/stores/dialog'
 import { DeepPartial, FieldValues } from 'react-hook-form'
 import { useRouter } from 'next/router'
@@ -12,7 +12,7 @@ export interface UseNewDialogProps<
   MutationPayload,
   MutationResponse extends MutationResponseType
 > extends UseNewViewProps<T, MutationPayload, MutationResponse> {
-  component: ComponentType<IWithDialogProps<AssertsShape<T>>>
+  component: FC<IFormContentProps<AssertsShape<T>>>
 }
 
 export function useNewDialogHook<
@@ -41,12 +41,12 @@ export function useNewDialogHook<
 
   function onClickCreate() {
     showDialog({
-      component,
+      component: withDialog(component),
       props: {
         title: `New ${name}`,
         validationSchema: schema,
         defaultValues: schema.cast({}) as DeepPartial<T>,
-        onValid: async (data) => {
+        onValid: async (data: AssertsShape<T>) => {
           const payload = transform(data) as MutationPayload
           const response = await onCreate({
             object: {
