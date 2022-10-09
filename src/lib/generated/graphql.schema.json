@@ -4728,6 +4728,45 @@
       },
       {
         "kind": "INPUT_OBJECT",
+        "name": "CommodityObjRelInsertInput",
+        "description": "input type for inserting object relation for remote table \"commodity\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "data",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "CommodityInsertInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "onConflict",
+            "description": "upsert condition",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CommodityOnConflict",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
         "name": "CommodityOnConflict",
         "description": "on_conflict condition type for table \"commodity\"",
         "fields": null,
@@ -4909,6 +4948,22 @@
             "deprecationReason": null
           },
           {
+            "name": "commodity",
+            "description": "An object relationship",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Commodity",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "commodityId",
             "description": null,
             "args": [],
@@ -4941,6 +4996,22 @@
             "deprecationReason": null
           },
           {
+            "name": "farm",
+            "description": "An object relationship",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Farm",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "farmId",
             "description": null,
             "args": [],
@@ -4950,6 +5021,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "uuid",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "household",
+            "description": "An object relationship",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Household",
                 "ofType": null
               }
             },
@@ -5399,6 +5486,18 @@
             "deprecationReason": null
           },
           {
+            "name": "commodity",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CommodityBoolExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "commodityId",
             "description": null,
             "type": {
@@ -5423,11 +5522,35 @@
             "deprecationReason": null
           },
           {
+            "name": "farm",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "FarmBoolExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "farmId",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "UuidComparisonExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "household",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "HouseholdBoolExp",
               "ofType": null
             },
             "defaultValue": null,
@@ -5600,6 +5723,18 @@
             "deprecationReason": null
           },
           {
+            "name": "commodity",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CommodityObjRelInsertInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "commodityId",
             "description": null,
             "type": {
@@ -5624,11 +5759,35 @@
             "deprecationReason": null
           },
           {
+            "name": "farm",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "FarmObjRelInsertInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "farmId",
             "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "uuid",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "household",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "HouseholdObjRelInsertInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -6083,6 +6242,18 @@
             "deprecationReason": null
           },
           {
+            "name": "commodity",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CommodityOrderBy",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "commodityId",
             "description": null,
             "type": {
@@ -6107,11 +6278,35 @@
             "deprecationReason": null
           },
           {
+            "name": "farm",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "FarmOrderBy",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "farmId",
             "description": null,
             "type": {
               "kind": "ENUM",
               "name": "OrderBy",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "household",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "HouseholdOrderBy",
               "ofType": null
             },
             "defaultValue": null,
@@ -8897,6 +9092,45 @@
         ],
         "inputFields": null,
         "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "FarmObjRelInsertInput",
+        "description": "input type for inserting object relation for remote table \"farm\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "data",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "FarmInsertInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "onConflict",
+            "description": "upsert condition",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "FarmOnConflict",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },

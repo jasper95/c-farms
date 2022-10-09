@@ -1,0 +1,45 @@
+query CommodityOptions(
+  $where: CommodityBoolExp
+  $orderBy: [CommodityOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: commodity(
+    where: $where
+    orderBy: $orderBy
+    offset: $offset
+    limit: $limit
+  ) {
+    id
+    name
+    commodityType
+  }
+}
+
+query CommodityProduceList(
+  $where: CommodityProduceBoolExp
+  $orderBy: [CommodityProduceOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: commodityProduce(
+    where: $where
+    orderBy: $orderBy
+    offset: $offset
+    limit: $limit
+  ) {
+    id
+    areaUsed
+    commodity {
+      name
+      commodityType
+    }
+    produce
+    year
+  }
+  meta: commodityProduceAggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
