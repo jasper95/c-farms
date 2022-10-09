@@ -1,15 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { DeepPartial, useForm } from 'react-hook-form'
+import { DeepPartial, FieldValues, useForm } from 'react-hook-form'
 import * as Urql from 'urql'
-import ObjectSchema, { AssertsShape, ObjectShape } from 'yup/lib/object'
+import ObjectSchema, { AssertsShape } from 'yup/lib/object'
 import * as Types from '@/lib/generated/graphql.types'
 import { useNotificationStore } from '@/lib/stores/notification'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+import { MutationResponseType } from './use-new-view.hook'
 
-export type MutationResponseType = {
-  data?: { id: any } | null | undefined
-}
 export type BaseDetailsQuery<Details> = {
   details?: Details | null | undefined
 }
@@ -24,7 +22,7 @@ export type EditMutationVariables<T> = Types.Exact<{
 }>
 
 export interface UseEditViewProps<
-  T extends ObjectShape,
+  T extends FieldValues,
   DetailsResponse,
   MutationPayload,
   MutationResponse extends MutationResponseType
@@ -43,7 +41,7 @@ export interface UseEditViewProps<
 }
 
 export function useEditViewHook<
-  T extends ObjectShape,
+  T extends FieldValues,
   DetailsResponse,
   MutationPayload,
   MutationResponse extends MutationResponseType

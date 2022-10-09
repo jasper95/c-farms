@@ -22,3 +22,22 @@ query AnnualInfoList(
     }
   }
 }
+
+query AnnualInfoDetails($id: uuid!) {
+  details: annualInfoByPk(id: $id) {
+    ...AnnualInfoFragment
+  }
+}
+
+fragment AnnualInfoFragment on AnnualInfo {
+  id
+  mainLivelihood
+  farmworkerActivityType
+  grossAnnualIncomeFarming
+  grossAnnualIncomeNonfarming
+  highestFormalEducation
+  fisherActivityType
+  is4PsBeneficiary
+  personWithDisability
+  year
+}

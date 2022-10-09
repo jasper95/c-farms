@@ -57,7 +57,7 @@ export function withDialog<T extends FieldValues>(
       <DialogLayout
         {...pick(props, 'isProcessing')}
         title={title}
-        onCancel={onClickCancel ?? onCancel}
+        onCancel={onClickCancel}
         onContinue={onContinue ?? onClickContinue}
       >
         <WrappedComponent formProps={formProps} />
@@ -65,6 +65,7 @@ export function withDialog<T extends FieldValues>(
     )
 
     function onClickCancel() {
+      onCancel?.()
       hideDialog()
     }
 

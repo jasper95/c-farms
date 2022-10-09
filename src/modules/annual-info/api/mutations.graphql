@@ -3,3 +3,12 @@ mutation CreateAnnualInfo($object: AnnualInfoInsertInput!) {
     id
   }
 }
+
+mutation UpdateAnnualInfo(
+  $object: AnnualInfoSetInput
+  $id: AnnualInfoPkColumnsInput!
+) {
+  data: updateAnnualInfoByPk(_set: $object, pk_columns: $id) {
+    id
+  }
+}

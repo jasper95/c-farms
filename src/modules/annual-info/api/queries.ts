@@ -31,6 +31,58 @@ export type AnnualInfoListQuery = {
   }
 }
 
+export type AnnualInfoDetailsQueryVariables = Types.Exact<{
+  id: Types.Scalars['uuid']
+}>
+
+export type AnnualInfoDetailsQuery = {
+  __typename?: 'query_root'
+  details?:
+    | {
+        __typename?: 'AnnualInfo'
+        id: any
+        mainLivelihood: any
+        farmworkerActivityType: any
+        grossAnnualIncomeFarming: any
+        grossAnnualIncomeNonfarming: any
+        highestFormalEducation: string
+        fisherActivityType: any
+        is4PsBeneficiary: boolean
+        personWithDisability: boolean
+        year: number
+      }
+    | null
+    | undefined
+}
+
+export type AnnualInfoFragmentFragment = {
+  __typename?: 'AnnualInfo'
+  id: any
+  mainLivelihood: any
+  farmworkerActivityType: any
+  grossAnnualIncomeFarming: any
+  grossAnnualIncomeNonfarming: any
+  highestFormalEducation: string
+  fisherActivityType: any
+  is4PsBeneficiary: boolean
+  personWithDisability: boolean
+  year: number
+}
+
+export const AnnualInfoFragmentFragmentDoc = gql`
+  fragment AnnualInfoFragment on AnnualInfo {
+    id
+    mainLivelihood
+    farmworkerActivityType
+    grossAnnualIncomeFarming
+    grossAnnualIncomeNonfarming
+    highestFormalEducation
+    fisherActivityType
+    is4PsBeneficiary
+    personWithDisability
+    year
+  }
+`
 export const AnnualInfoListDocument = gql`
   query AnnualInfoList(
     $where: AnnualInfoBoolExp
@@ -63,6 +115,23 @@ export function useAnnualInfoListQuery(
 ) {
   return Urql.useQuery<AnnualInfoListQuery>({
     query: AnnualInfoListDocument,
+    ...options,
+  })
+}
+export const AnnualInfoDetailsDocument = gql`
+  query AnnualInfoDetails($id: uuid!) {
+    details: annualInfoByPk(id: $id) {
+      ...AnnualInfoFragment
+    }
+  }
+  ${AnnualInfoFragmentFragmentDoc}
+`
+
+export function useAnnualInfoDetailsQuery(
+  options: Omit<Urql.UseQueryArgs<AnnualInfoDetailsQueryVariables>, 'query'>
+) {
+  return Urql.useQuery<AnnualInfoDetailsQuery>({
+    query: AnnualInfoDetailsDocument,
     ...options,
   })
 }

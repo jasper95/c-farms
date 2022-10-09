@@ -12,6 +12,16 @@ export type CreateAnnualInfoMutation = {
   data?: { __typename?: 'AnnualInfo'; id: any } | null | undefined
 }
 
+export type UpdateAnnualInfoMutationVariables = Types.Exact<{
+  object?: Types.InputMaybe<Types.AnnualInfoSetInput>
+  id: Types.AnnualInfoPkColumnsInput
+}>
+
+export type UpdateAnnualInfoMutation = {
+  __typename?: 'mutation_root'
+  data?: { __typename?: 'AnnualInfo'; id: any } | null | undefined
+}
+
 export const CreateAnnualInfoDocument = gql`
   mutation CreateAnnualInfo($object: AnnualInfoInsertInput!) {
     data: insertAnnualInfoOne(object: $object) {
@@ -25,4 +35,21 @@ export function useCreateAnnualInfoMutation() {
     CreateAnnualInfoMutation,
     CreateAnnualInfoMutationVariables
   >(CreateAnnualInfoDocument)
+}
+export const UpdateAnnualInfoDocument = gql`
+  mutation UpdateAnnualInfo(
+    $object: AnnualInfoSetInput
+    $id: AnnualInfoPkColumnsInput!
+  ) {
+    data: updateAnnualInfoByPk(_set: $object, pk_columns: $id) {
+      id
+    }
+  }
+`
+
+export function useUpdateAnnualInfoMutation() {
+  return Urql.useMutation<
+    UpdateAnnualInfoMutation,
+    UpdateAnnualInfoMutationVariables
+  >(UpdateAnnualInfoDocument)
 }
