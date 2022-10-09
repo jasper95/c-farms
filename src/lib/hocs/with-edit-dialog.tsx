@@ -3,7 +3,7 @@ import { useDialogStore } from '@/lib/stores/dialog'
 import { yupResolver } from '@hookform/resolvers/yup'
 import React, { useEffect } from 'react'
 import pick from 'lodash/pick'
-import { FieldValues, useForm } from 'react-hook-form'
+import { DeepPartial, FieldValues, useForm } from 'react-hook-form'
 import { IFormContentProps, IWithDialogProps } from './with-dialog'
 import * as Urql from 'urql'
 import {
@@ -44,6 +44,7 @@ export function withEditDialog<T extends FieldValues, DetailsResponse>(
       ...(validationSchema && {
         resolver: yupResolver(validationSchema),
       }),
+      defaultValues: validationSchema.noUnknown().cast({}) as DeepPartial<T>,
     })
     const [detailsQueryResponse] = useDetailsQueryHook({
       variables: {

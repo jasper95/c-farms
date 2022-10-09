@@ -13,13 +13,22 @@ query ProgramList(
     id
     name
     type
-    sponsoringAgency
-    dateStart
-    dateEnd
   }
   meta: programAggregate(where: $where) {
     aggregate {
       count
     }
+  }
+}
+
+query ProgramDetails($id: uuid!) {
+  details: programByPk(id: $id) {
+    id
+    name
+    type
+    sponsoringAgency
+    description
+    dateStart
+    dateEnd
   }
 }

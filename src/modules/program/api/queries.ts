@@ -12,15 +12,7 @@ export type ProgramListQueryVariables = Types.Exact<{
 
 export type ProgramListQuery = {
   __typename?: 'query_root'
-  list: Array<{
-    __typename?: 'Program'
-    id: any
-    name: string
-    type: string
-    sponsoringAgency: string
-    dateStart: any
-    dateEnd?: any | null | undefined
-  }>
+  list: Array<{ __typename?: 'Program'; id: any; name: string; type: string }>
   meta: {
     __typename?: 'ProgramAggregate'
     aggregate?:
@@ -28,6 +20,27 @@ export type ProgramListQuery = {
       | null
       | undefined
   }
+}
+
+export type ProgramDetailsQueryVariables = Types.Exact<{
+  id: Types.Scalars['uuid']
+}>
+
+export type ProgramDetailsQuery = {
+  __typename?: 'query_root'
+  details?:
+    | {
+        __typename?: 'Program'
+        id: any
+        name: string
+        type: string
+        sponsoringAgency: string
+        description: string
+        dateStart: any
+        dateEnd?: any | null | undefined
+      }
+    | null
+    | undefined
 }
 
 export const ProgramListDocument = gql`
@@ -46,9 +59,6 @@ export const ProgramListDocument = gql`
       id
       name
       type
-      sponsoringAgency
-      dateStart
-      dateEnd
     }
     meta: programAggregate(where: $where) {
       aggregate {
@@ -63,6 +73,28 @@ export function useProgramListQuery(
 ) {
   return Urql.useQuery<ProgramListQuery>({
     query: ProgramListDocument,
+    ...options,
+  })
+}
+export const ProgramDetailsDocument = gql`
+  query ProgramDetails($id: uuid!) {
+    details: programByPk(id: $id) {
+      id
+      name
+      type
+      sponsoringAgency
+      description
+      dateStart
+      dateEnd
+    }
+  }
+`
+
+export function useProgramDetailsQuery(
+  options: Omit<Urql.UseQueryArgs<ProgramDetailsQueryVariables>, 'query'>
+) {
+  return Urql.useQuery<ProgramDetailsQuery>({
+    query: ProgramDetailsDocument,
     ...options,
   })
 }

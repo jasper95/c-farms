@@ -3,3 +3,9 @@ mutation CreateProgram($object: ProgramInsertInput!) {
     id
   }
 }
+
+mutation UpdateProgram($object: ProgramSetInput, $id: ProgramPkColumnsInput!) {
+  data: updateProgramByPk(_set: $object, pk_columns: $id) {
+    id
+  }
+}

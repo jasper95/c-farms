@@ -12,6 +12,16 @@ export type CreateProgramMutation = {
   data?: { __typename?: 'Program'; id: any } | null | undefined
 }
 
+export type UpdateProgramMutationVariables = Types.Exact<{
+  object?: Types.InputMaybe<Types.ProgramSetInput>
+  id: Types.ProgramPkColumnsInput
+}>
+
+export type UpdateProgramMutation = {
+  __typename?: 'mutation_root'
+  data?: { __typename?: 'Program'; id: any } | null | undefined
+}
+
 export const CreateProgramDocument = gql`
   mutation CreateProgram($object: ProgramInsertInput!) {
     data: insertProgramOne(object: $object) {
@@ -25,4 +35,21 @@ export function useCreateProgramMutation() {
     CreateProgramMutation,
     CreateProgramMutationVariables
   >(CreateProgramDocument)
+}
+export const UpdateProgramDocument = gql`
+  mutation UpdateProgram(
+    $object: ProgramSetInput
+    $id: ProgramPkColumnsInput!
+  ) {
+    data: updateProgramByPk(_set: $object, pk_columns: $id) {
+      id
+    }
+  }
+`
+
+export function useUpdateProgramMutation() {
+  return Urql.useMutation<
+    UpdateProgramMutation,
+    UpdateProgramMutationVariables
+  >(UpdateProgramDocument)
 }

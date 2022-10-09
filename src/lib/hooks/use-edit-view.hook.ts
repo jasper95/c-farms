@@ -38,7 +38,7 @@ export interface UseEditViewProps<
     options?: Omit<Urql.UseQueryArgs<DetailsQueryVariable>, 'query'>
   ): Urql.UseQueryResponse<BaseDetailsQuery<DetailsResponse>, object>
   transform?: (arg: AssertsShape<T>) => MutationPayload
-  transformResponse?: (arg: DetailsResponse) => T
+  transformResponse?: (arg: DetailsResponse) => AssertsShape<T>
 }
 
 export function useEditViewHook<
