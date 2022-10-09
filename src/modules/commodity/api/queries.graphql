@@ -20,3 +20,11 @@ query CommodityList(
     }
   }
 }
+
+query CommodityDetails($id: uuid!) {
+  details: commodityByPk(id: $id) {
+     id
+     commodity
+     commodityType
+  }
+}

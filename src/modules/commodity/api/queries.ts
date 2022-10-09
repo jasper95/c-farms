@@ -29,6 +29,23 @@ export type CommodityListQuery = {
   }
 }
 
+export type CommodityDetailsQueryVariables = Types.Exact<{
+  id: Types.Scalars['uuid']
+}>
+
+export type CommodityDetailsQuery = {
+  __typename?: 'query_root'
+  details?:
+    | {
+        __typename?: 'Commodity'
+        id: any
+        commodity: string
+        commodityType: string
+      }
+    | null
+    | undefined
+}
+
 export const CommodityListDocument = gql`
   query CommodityList(
     $where: CommodityBoolExp
@@ -59,6 +76,24 @@ export function useCommodityListQuery(
 ) {
   return Urql.useQuery<CommodityListQuery>({
     query: CommodityListDocument,
+    ...options,
+  })
+}
+export const CommodityDetailsDocument = gql`
+  query CommodityDetails($id: uuid!) {
+    details: commodityByPk(id: $id) {
+      id
+      commodity
+      commodityType
+    }
+  }
+`
+
+export function useCommodityDetailsQuery(
+  options: Omit<Urql.UseQueryArgs<CommodityDetailsQueryVariables>, 'query'>
+) {
+  return Urql.useQuery<CommodityDetailsQuery>({
+    query: CommodityDetailsDocument,
     ...options,
   })
 }

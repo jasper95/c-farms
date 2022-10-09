@@ -3,3 +3,12 @@ mutation CreateCommodity($object: CommodityInsertInput!) {
     id
   }
 }
+
+mutation UpdateCommodity(
+  $object: CommoditySetInput
+  $id: CommodityPkColumnsInput!
+) {
+  data: updateCommodityByPk(_set: $object, pk_columns: $id) {
+    id
+  }
+}
