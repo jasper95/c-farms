@@ -12,6 +12,16 @@ export type CreateCommodityMutation = {
   data?: { __typename?: 'Commodity'; id: any } | null | undefined
 }
 
+export type UpdateCommodityMutationVariables = Types.Exact<{
+  object?: Types.InputMaybe<Types.CommoditySetInput>
+  id: Types.CommodityPkColumnsInput
+}>
+
+export type UpdateCommodityMutation = {
+  __typename?: 'mutation_root'
+  data?: { __typename?: 'Commodity'; id: any } | null | undefined
+}
+
 export const CreateCommodityDocument = gql`
   mutation CreateCommodity($object: CommodityInsertInput!) {
     data: insertCommodityOne(object: $object) {
@@ -25,4 +35,21 @@ export function useCreateCommodityMutation() {
     CreateCommodityMutation,
     CreateCommodityMutationVariables
   >(CreateCommodityDocument)
+}
+export const UpdateCommodityDocument = gql`
+  mutation UpdateCommodity(
+    $object: CommoditySetInput
+    $id: CommodityPkColumnsInput!
+  ) {
+    data: updateCommodityByPk(_set: $object, pk_columns: $id) {
+      id
+    }
+  }
+`
+
+export function useUpdateCommodityMutation() {
+  return Urql.useMutation<
+    UpdateCommodityMutation,
+    UpdateCommodityMutationVariables
+  >(UpdateCommodityDocument)
 }
