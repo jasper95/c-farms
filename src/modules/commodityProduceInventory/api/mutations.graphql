@@ -1,7 +1,0 @@
-mutation CreateCommodityProduceInventory(
-  $object: CommodityProduceInsertInput!
-) {
-  data: insertCommodityProduceOne(object: $object) {
-    id
-  }
-}

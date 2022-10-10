@@ -38,6 +38,7 @@ export type CommodityProduceInventoryListQuery = {
     __typename?: 'CommodityProduceInventory'
     id: any
     areaUsed: any
+    organicPractitioner: boolean
     produce?: any | null | undefined
     year: number
     commodity: {
@@ -45,6 +46,7 @@ export type CommodityProduceInventoryListQuery = {
       commodity: string
       commodityType: string
     }
+    farm: { __typename?: 'Farm'; name: string }
   }>
   meta: {
     __typename?: 'CommodityProduceInventoryAggregate'
@@ -105,6 +107,10 @@ export const CommodityProduceInventoryListDocument = gql`
         commodity
         commodityType
       }
+      farm {
+        name
+      }
+      organicPractitioner
       produce
       year
     }

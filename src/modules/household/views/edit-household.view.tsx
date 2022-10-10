@@ -1,6 +1,7 @@
 import Breadcrumbs from '@/components/breadcrumbs'
 import { Dashboard } from '@/components/layout/dashboard.layout'
 import { AnnualInfoListView } from '@/modules/annual-info/views'
+import { CommodityProduceInventoryListView } from '@/modules/commodity-produce-inventory/views/commodity-produce-inventory-list.view'
 import {
   EditHouseholdDetails,
   HouseholdDetailsLayout,
@@ -19,6 +20,9 @@ export function EditHouseholdView() {
         {tab === HouseholdDetailsRoutesEnum.Secondary && <EditOtherDetails />}
         {tab === HouseholdDetailsRoutesEnum.AnnualInfo && (
           <AnnualInfoListView />
+        )}
+        {tab === HouseholdDetailsRoutesEnum.CommodityProduce && (
+          <CommodityProduceInventoryListView />
         )}
       </HouseholdDetailsLayout>
     </Dashboard>

@@ -1,0 +1,14 @@
+mutation CreateCommodityProduceInventory($object: CommodityProduceInventoryInsertInput!) {
+  data: insertCommodityProduceInventoryOne(object: $object) {
+    id
+  }
+}
+
+mutation UpdateCommodityProduceInventory(
+  $object: CommodityProduceInventorySetInput
+  $id: CommodityProduceInventoryPkColumnsInput!
+) {
+  data: updateCommodityProduceInventoryByPk(_set: $object, pk_columns: $id) {
+    id
+  }
+}
