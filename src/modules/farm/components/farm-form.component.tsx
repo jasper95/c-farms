@@ -25,12 +25,12 @@ export function FarmForm(props: FarmFormProps) {
   const { control } = formProps
   const { householdOptions } = useFarmFormHook()
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={2}>
       <Grid item sm={12} md={6}>
         <MapField label="" control={control} name="location" />
       </Grid>
       <Grid item sm={12} md={6}>
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           <Grid item sm={12} md={6}>
             <TextField label="Name" control={control} name="name" />
           </Grid>

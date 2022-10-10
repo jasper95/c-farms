@@ -23,7 +23,7 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
 
   const [options, setOptions] = useState<Option[]>([])
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={2}>
       <Grid item md={12} xs={12}>
         <YearPicker control={control} label="Year" name="year" />
       </Grid>

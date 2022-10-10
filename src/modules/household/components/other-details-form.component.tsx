@@ -15,7 +15,7 @@ export function OtherDetailsForm(props: IOtherDetailsFormProps) {
   const { control } = formProps
   const isHouseholdHead = useWatch({ control, name: 'isHouseholdHead' })
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={2}>
       <Grid item md={12} xs={12}>
         <SwitchField
           control={control}

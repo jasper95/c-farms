@@ -14,7 +14,7 @@ export function CommodityForm(props: CommodityFormProps) {
   return (
     <Grid sx={{ my: 0 }} container>
       <Grid item xs={6} md={12}>
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField control={control} name="commodity" label="Commodity" />
           </Grid>
