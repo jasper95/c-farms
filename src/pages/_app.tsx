@@ -1,12 +1,10 @@
 import React, { ReactElement, ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
-import { ThemeProvider } from '@mui/material/styles'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
-import CssBaseline from '@mui/material/CssBaseline'
-import theme from '@/lib/theme'
+import ThemeProvider from '@/lib/theme'
 import { AppProps } from 'next/dist/shared/lib/router/router'
 import DialogContainer from '@/components/layout/dialog-container.layout'
 import NotificationContainer from '@/components/layout/notification-container.layout'
@@ -45,8 +43,7 @@ export default function MyApp(props: AppPropsWithLayout) {
         </Head>
         <CacheProvider value={emotionCache}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
+            <ThemeProvider>
               {getLayout(<Component {...pageProps} />)}
               <DialogContainer />
               <NotificationContainer />

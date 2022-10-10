@@ -12,43 +12,31 @@ interface ProgramFormProps {
 export default function ProgramForm(props: ProgramFormProps) {
   const { control } = props.formProps
   return (
-    <Grid sx={{ my: 0 }} container spacing={3}>
-      <Grid item xs={12} md={6}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <TextField control={control} name="name" label="Program Name" />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              control={control}
-              rows={7}
-              name="description"
-              label="Description"
-              multiline
-            />
-          </Grid>
-        </Grid>
+    <Grid container spacing={3}>
+      <Grid item md={6} xs={12}>
+        <TextField control={control} name="name" label="Program Name" />
       </Grid>
-      <Grid item xs={12} md={6}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <TextField control={control} name="type" label="Type" />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              control={control}
-              name="sponsoringAgency"
-              label="Sponsoring Agency"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <DateRangePicker
-              label="Duration"
-              control={control}
-              name="dateRange"
-            />
-          </Grid>
-        </Grid>
+      <Grid item md={6} xs={12}>
+        <TextField control={control} name="type" label="Type" />
+      </Grid>
+      <Grid item md={12} xs={12}>
+        <DateRangePicker label="Duration" control={control} name="dateRange" />
+      </Grid>
+      <Grid item md={12} xs={12}>
+        <TextField
+          control={control}
+          rows={7}
+          name="description"
+          label="Description"
+          multiline
+        />
+      </Grid>
+      <Grid item md={12} xs={12}>
+        <TextField
+          control={control}
+          name="sponsoringAgency"
+          label="Sponsoring Agency"
+        />
       </Grid>
     </Grid>
   )

@@ -19,7 +19,7 @@ export default function TablePreloader(props: ITablePreloaderProps) {
           <TableRow key={row}>
             {range(0, columns).map((col) => (
               <StyledTableCell key={col}>
-                <Skeleton variant="text" width={`${getRandomInt(80, 100)}%`} />
+                <Skeleton variant="text" width={`100%`} />
               </StyledTableCell>
             ))}
           </TableRow>
