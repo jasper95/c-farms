@@ -49,8 +49,8 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
   const additionalColumns: DataTableColumn<T>[] = []
   const isEmpty = !isLoading && rows.length === 0
   return (
-    <TableContainer sx={{ overflowX: 'initial' }} component={Card}>
-      <Table stickyHeader>
+    <TableContainer component={Card}>
+      <Table>
         <TableHead>
           <TableRow>
             {columns

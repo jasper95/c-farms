@@ -1,8 +1,7 @@
 import MuiBreadcrumbs from '@mui/material/Breadcrumbs'
 import Link from '@/components/link'
 import { useRouter } from 'next/dist/client/router'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
+import Box from '@mui/material/Box'
 
 type IBreadcrumbsProps = {
   crumbs: {
@@ -20,23 +19,21 @@ export default function Breadcrumbs(props: IBreadcrumbsProps) {
     return `/${paths.slice(0, i + 1).join('/')}`
   })
   return (
-    <Card sx={{ mb: 3 }}>
-      <CardContent>
-        <MuiBreadcrumbs className="text-lg" aria-label="breadcrumb">
-          {crumbs.map((crumb, i) => (
-            <Link
-              key={crumb.name}
-              href={crumb.link ?? links[i] ?? ''}
-              passHref
-              variant="h6"
-              underline="none"
-              color={i === crumbs.length - 1 ? 'primary' : 'inherit'}
-            >
-              {crumb.name}
-            </Link>
-          ))}
-        </MuiBreadcrumbs>
-      </CardContent>
-    </Card>
+    <Box sx={{ mb: 2 }}>
+      <MuiBreadcrumbs className="text-lg" aria-label="breadcrumb">
+        {crumbs.map((crumb, i) => (
+          <Link
+            key={crumb.name}
+            href={crumb.link ?? links[i] ?? ''}
+            passHref
+            variant="h6"
+            underline="none"
+            color={i === crumbs.length - 1 ? 'primary' : 'inherit'}
+          >
+            {crumb.name}
+          </Link>
+        ))}
+      </MuiBreadcrumbs>
+    </Box>
   )
 }

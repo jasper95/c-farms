@@ -1,5 +1,6 @@
 import { PersonalInformationForm } from '@/modules/household/components'
-import Box from '@mui/material/Box'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
 import { FormToolbar } from '@/components/form-toolbar'
 import { personalInfomationSchema } from '@/modules/household/constants'
 import { useEditViewHook } from '@/lib/hooks/use-edit-view.hook'
@@ -15,14 +16,16 @@ export function EditHouseholdDetails() {
   })
 
   return (
-    <Box>
-      <PersonalInformationForm formProps={formProps} />
-      <FormToolbar
-        confirmDisabled={!formProps.formState.isDirty}
-        cancelVisible={false}
-        onConfirm={onSave}
-        isLoading={isMutating}
-      />
-    </Box>
+    <Card>
+      <CardContent>
+        <PersonalInformationForm formProps={formProps} />
+        <FormToolbar
+          confirmDisabled={!formProps.formState.isDirty}
+          cancelVisible={false}
+          onConfirm={onSave}
+          isLoading={isMutating}
+        />
+      </CardContent>
+    </Card>
   )
 }
