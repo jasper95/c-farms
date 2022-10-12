@@ -30,13 +30,13 @@ query CommodityProduceList(
   ) {
     id
     areaUsed
-    commodity {
-      name
-      commodityType
-    }
-    farm {
-      name
-    }
+    # commodity {
+    #   name
+    #   commodityType
+    # }
+    # farm {
+    #   name
+    # }
     organicPractitioner
     produce
     year

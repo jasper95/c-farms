@@ -692,13 +692,6 @@ export type CommodityMutationResponse = {
   returning: Array<Commodity>
 }
 
-/** input type for inserting object relation for remote table "commodity" */
-export type CommodityObjRelInsertInput = {
-  data: CommodityInsertInput
-  /** upsert condition */
-  onConflict?: InputMaybe<CommodityOnConflict>
-}
-
 /** on_conflict condition type for table "commodity" */
 export type CommodityOnConflict = {
   constraint: CommodityConstraint
@@ -724,15 +717,9 @@ export type CommodityPkColumnsInput = {
 export type CommodityProduce = {
   __typename?: 'CommodityProduce'
   areaUsed: Scalars['float8']
-  /** An object relationship */
-  commodity: Commodity
   commodityId: Scalars['uuid']
   createdAt: Scalars['timestamp']
-  /** An object relationship */
-  farm: Farm
   farmId: Scalars['uuid']
-  /** An object relationship */
-  household: Household
   householdId: Scalars['uuid']
   id: Scalars['uuid']
   organicPractitioner: Scalars['Boolean']
@@ -784,12 +771,9 @@ export type CommodityProduceBoolExp = {
   _not?: InputMaybe<CommodityProduceBoolExp>
   _or?: InputMaybe<Array<CommodityProduceBoolExp>>
   areaUsed?: InputMaybe<Float8ComparisonExp>
-  commodity?: InputMaybe<CommodityBoolExp>
   commodityId?: InputMaybe<UuidComparisonExp>
   createdAt?: InputMaybe<TimestampComparisonExp>
-  farm?: InputMaybe<FarmBoolExp>
   farmId?: InputMaybe<UuidComparisonExp>
-  household?: InputMaybe<HouseholdBoolExp>
   householdId?: InputMaybe<UuidComparisonExp>
   id?: InputMaybe<UuidComparisonExp>
   organicPractitioner?: InputMaybe<BooleanComparisonExp>
@@ -802,7 +786,7 @@ export type CommodityProduceBoolExp = {
 export enum CommodityProduceConstraint {
   /** unique or primary key constraint on columns "id" */
   CommodityproducePk = 'commodityproduce_pk',
-  /** unique or primary key constraint on columns "year", "householdId", "commodityId", "farmId" */
+  /** unique or primary key constraint on columns "year", "commodityId", "farmId" */
   CommodityproduceUnique = 'commodityproduce_unique',
 }
 
@@ -816,12 +800,9 @@ export type CommodityProduceIncInput = {
 /** input type for inserting data into table "commodityProduce" */
 export type CommodityProduceInsertInput = {
   areaUsed?: InputMaybe<Scalars['float8']>
-  commodity?: InputMaybe<CommodityObjRelInsertInput>
   commodityId?: InputMaybe<Scalars['uuid']>
   createdAt?: InputMaybe<Scalars['timestamp']>
-  farm?: InputMaybe<FarmObjRelInsertInput>
   farmId?: InputMaybe<Scalars['uuid']>
-  household?: InputMaybe<HouseholdObjRelInsertInput>
   householdId?: InputMaybe<Scalars['uuid']>
   id?: InputMaybe<Scalars['uuid']>
   organicPractitioner?: InputMaybe<Scalars['Boolean']>
@@ -877,12 +858,9 @@ export type CommodityProduceOnConflict = {
 /** Ordering options when selecting data from "commodityProduce". */
 export type CommodityProduceOrderBy = {
   areaUsed?: InputMaybe<OrderBy>
-  commodity?: InputMaybe<CommodityOrderBy>
   commodityId?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
-  farm?: InputMaybe<FarmOrderBy>
   farmId?: InputMaybe<OrderBy>
-  household?: InputMaybe<HouseholdOrderBy>
   householdId?: InputMaybe<OrderBy>
   id?: InputMaybe<OrderBy>
   organicPractitioner?: InputMaybe<OrderBy>
@@ -1285,13 +1263,6 @@ export type FarmMutationResponse = {
   affected_rows: Scalars['Int']
   /** data from the rows affected by the mutation */
   returning: Array<Farm>
-}
-
-/** input type for inserting object relation for remote table "farm" */
-export type FarmObjRelInsertInput = {
-  data: FarmInsertInput
-  /** upsert condition */
-  onConflict?: InputMaybe<FarmOnConflict>
 }
 
 /** on_conflict condition type for table "farm" */

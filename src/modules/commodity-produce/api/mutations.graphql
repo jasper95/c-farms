@@ -1,4 +1,4 @@
-mutation CreateCommodityProduce=($object: CommodityProduceInsertInput!) {
+mutation CreateCommodityProduce($object: CommodityProduceInsertInput!) {
   data: insertCommodityProduceOne(object: $object) {
     id
   }
