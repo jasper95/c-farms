@@ -1,7 +1,7 @@
 import Breadcrumbs from '@/components/breadcrumbs'
 import { Dashboard } from '@/components/layout/dashboard.layout'
 import { AnnualInfoListView } from '@/modules/annual-info/views'
-import { CommodityProduceInventoryListView } from '@/modules/commodity-produce-inventory/views/commodity-produce-inventory-list.view'
+import { CommodityProduceInventoryListView } from '@/modules/commodity-produce/views/commodity-produce-list.view'
 import {
   EditHouseholdDetails,
   HouseholdDetailsLayout,

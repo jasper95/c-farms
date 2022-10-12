@@ -1,18 +1,18 @@
 import DatatableListView from '@/components/views/datatable-list.view'
 import { useNewDialogHook } from '@/lib/hooks/use-new-dialog.hook'
 import { useRouter } from 'next/router'
-import { CommodityProduceInventoryForm } from '@/modules/household/components/commodity-produce-inventory-form.component'
+import { CommodityProduceForm } from '@/modules/household/components/commodity-produce-inventory-form.component'
 import { useCreateCommodityProduceInventoryMutation } from '../api/mutations'
 import { commodityProduceInventorySchema } from '../constants/commodity-produce-inventory-schema'
-import { useCommodityProduceInventoryListQuery } from '../api/queries'
+import { useCommodityProduceListQuery } from '../api/queries'
 import { commodityProduceInventoryListColumns } from '../constants/commodity-produce-inventory-list-columns'
 
-const name = 'Commodity Produce/Inventory'
+const name = 'Commodity Produce'
 export function CommodityProduceInventoryListView() {
   const router = useRouter()
   const householdId = router.query.id
   const { onClickCreate } = useNewDialogHook({
-    component: CommodityProduceInventoryForm,
+    component: CommodityProduceForm,
     name,
     useMutationHook: useCreateCommodityProduceInventoryMutation,
     schema: commodityProduceInventorySchema,
@@ -22,7 +22,7 @@ export function CommodityProduceInventoryListView() {
   })
   return (
     <DatatableListView
-      name="Commodity Produce/Inventory"
+      name="Commodity Produce"
       onCreate={onClickCreate}
       listQueryVariables={{
         where: {
@@ -31,7 +31,7 @@ export function CommodityProduceInventoryListView() {
           },
         },
       }}
-      useListQueryHook={useCommodityProduceInventoryListQuery}
+      useListQueryHook={useCommodityProduceListQuery}
       columns={commodityProduceInventoryListColumns}
     />
   )

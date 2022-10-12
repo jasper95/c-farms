@@ -14,7 +14,7 @@ export const householdDetailsTab = [
     value: HouseholdDetailsRoutesEnum.AnnualInfo,
   },
   {
-    label: 'Commodity Produce/Inventory',
+    label: 'Commodity Produce',
     value: HouseholdDetailsRoutesEnum.CommodityProduce,
   },
 ]
