@@ -7,7 +7,7 @@ import TableSortLabel from '@mui/material/TableSortLabel'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
-import Paper from '@mui/material/Paper'
+import Card from '@mui/material/Card'
 import {
   Identifiable,
   ColumnSort,
@@ -49,7 +49,7 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
   const additionalColumns: DataTableColumn<T>[] = []
   const isEmpty = !isLoading && rows.length === 0
   return (
-    <TableContainer component={Paper}>
+    <TableContainer sx={{ overflowX: 'initial' }} component={Card}>
       <Table stickyHeader>
         <TableHead>
           <TableRow>

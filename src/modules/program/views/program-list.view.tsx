@@ -33,8 +33,13 @@ export function ProgramListView() {
     useMutationHook: useUpdateProgramMutation,
     name,
     component: ProgramForm,
+    transform: ({ dateRange, ...a }) => ({
+      ...a,
+      dateStart: dateRange[0],
+      dateEnd: dateRange[1],
+    }),
     transformResponse: ({ dateStart, dateEnd, ...restProps }) =>
-      programSchema.unknown().cast({
+      programSchema.noUnknown().cast({
         dateRange: [new Date(dateStart), new Date(dateEnd)],
         ...restProps,
       }),
