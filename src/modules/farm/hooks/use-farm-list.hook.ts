@@ -1,6 +1,6 @@
 import { useListViewHook } from '@/lib/hooks/use-list-view.hook'
 import { useMemo } from 'react'
-import { useFarmListQuery } from '../api/queries'
+import { useFarmListQuery } from '@/modules/farm/api/queries'
 
 export function useFarmListHook() {
   const listHookResponse = useListViewHook({

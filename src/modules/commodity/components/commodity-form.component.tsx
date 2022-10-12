@@ -2,7 +2,7 @@ import Grid from '@mui/material/Grid'
 import { UseFormReturn } from 'react-hook-form'
 import { ICommoditySchema } from '@/modules/commodity/constants'
 import TextField from '@/components/text-field'
-import { typeOptions } from '../constants/form-options'
+import { typeOptions } from '@/modules/commodity/constants/form-options'
 import SelectField from '@/components/select-field'
 
 interface CommodityFormProps {
@@ -16,7 +16,7 @@ export function CommodityForm(props: CommodityFormProps) {
       <Grid item xs={6} md={12}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <TextField control={control} name="commodity" label="Commodity" />
+            <TextField control={control} name="name" label="Commodity" />
           </Grid>
           <Grid item xs={12}>
             <SelectField

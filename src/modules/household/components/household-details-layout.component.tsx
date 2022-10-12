@@ -5,8 +5,8 @@ import Tab from '@mui/material/Tab'
 import Link from '@/components/link'
 import { useRouter } from 'next/router'
 import { PropsWithChildren } from 'react'
-import { HouseholdDetailsRoutesEnum } from '../enums'
-import { householdDetailsTab } from '../constants'
+import { HouseholdDetailsRoutesEnum } from '@/modules/household/enums'
+import { householdDetailsTab } from '@/modules/household/constants'
 
 export function HouseholdDetailsLayout(props: PropsWithChildren<{}>) {
   const { children } = props

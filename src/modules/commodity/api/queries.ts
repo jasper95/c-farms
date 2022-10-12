@@ -17,7 +17,7 @@ export type CommodityListQuery = {
   list: Array<{
     __typename?: 'Commodity'
     id: any
-    commodity: string
+    name: string
     commodityType: string
   }>
   meta: {
@@ -36,12 +36,7 @@ export type CommodityDetailsQueryVariables = Types.Exact<{
 export type CommodityDetailsQuery = {
   __typename?: 'query_root'
   details?:
-    | {
-        __typename?: 'Commodity'
-        id: any
-        commodity: string
-        commodityType: string
-      }
+    | { __typename?: 'Commodity'; id: any; name: string; commodityType: string }
     | null
     | undefined
 }
@@ -60,7 +55,7 @@ export const CommodityListDocument = gql`
       limit: $limit
     ) {
       id
-      commodity
+      name
       commodityType
     }
     meta: commodityAggregate(where: $where) {
@@ -83,7 +78,7 @@ export const CommodityDetailsDocument = gql`
   query CommodityDetails($id: uuid!) {
     details: commodityByPk(id: $id) {
       id
-      commodity
+      name
       commodityType
     }
   }

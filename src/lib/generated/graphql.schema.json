@@ -4106,22 +4106,6 @@
         "description": "columns and relationships of \"commodity\"",
         "fields": [
           {
-            "name": "commodity",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "commodityType",
             "description": null,
             "args": [],
@@ -4163,6 +4147,22 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "uuid",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -4381,18 +4381,6 @@
             "deprecationReason": null
           },
           {
-            "name": "commodity",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringComparisonExp",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "commodityType",
             "description": null,
             "type": {
@@ -4422,6 +4410,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "UuidComparisonExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringComparisonExp",
               "ofType": null
             },
             "defaultValue": null,
@@ -4469,18 +4469,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "commodity",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "commodityType",
             "description": null,
             "type": {
@@ -4510,6 +4498,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "uuid",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -4539,18 +4539,6 @@
         "description": "aggregate max on columns",
         "fields": [
           {
-            "name": "commodity",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "commodityType",
             "description": null,
             "args": [],
@@ -4581,6 +4569,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4610,18 +4610,6 @@
         "description": "aggregate min on columns",
         "fields": [
           {
-            "name": "commodity",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "commodityType",
             "description": null,
             "args": [],
@@ -4652,6 +4640,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4796,18 +4796,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "commodity",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "OrderBy",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "commodityType",
             "description": null,
             "type": {
@@ -4833,6 +4821,18 @@
           },
           {
             "name": "id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "OrderBy",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -4889,8 +4889,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CommodityProduceInventory",
-        "description": "columns and relationships of \"commodityProduceInventory\"",
+        "name": "CommodityProduce",
+        "description": "columns and relationships of \"commodityProduce\"",
         "fields": [
           {
             "name": "areaUsed",
@@ -5056,8 +5056,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CommodityProduceInventoryAggregate",
-        "description": "aggregated selection of \"commodityProduceInventory\"",
+        "name": "CommodityProduceAggregate",
+        "description": "aggregated selection of \"commodityProduce\"",
         "fields": [
           {
             "name": "aggregate",
@@ -5065,7 +5065,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventoryAggregateFields",
+              "name": "CommodityProduceAggregateFields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5086,7 +5086,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "CommodityProduceInventory",
+                    "name": "CommodityProduce",
                     "ofType": null
                   }
                 }
@@ -5103,8 +5103,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CommodityProduceInventoryAggregateFields",
-        "description": "aggregate fields of \"commodityProduceInventory\"",
+        "name": "CommodityProduceAggregateFields",
+        "description": "aggregate fields of \"commodityProduce\"",
         "fields": [
           {
             "name": "avg",
@@ -5112,7 +5112,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventoryAvgFields",
+              "name": "CommodityProduceAvgFields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5133,7 +5133,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "CommodityProduceInventorySelectColumn",
+                      "name": "CommodityProduceSelectColumn",
                       "ofType": null
                     }
                   }
@@ -5173,7 +5173,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventoryMaxFields",
+              "name": "CommodityProduceMaxFields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5185,7 +5185,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventoryMinFields",
+              "name": "CommodityProduceMinFields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5197,7 +5197,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventoryStddevFields",
+              "name": "CommodityProduceStddevFields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5209,7 +5209,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventoryStddev_popFields",
+              "name": "CommodityProduceStddev_popFields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5221,7 +5221,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventoryStddev_sampFields",
+              "name": "CommodityProduceStddev_sampFields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5233,7 +5233,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventorySumFields",
+              "name": "CommodityProduceSumFields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5245,7 +5245,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventoryVar_popFields",
+              "name": "CommodityProduceVar_popFields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5257,7 +5257,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventoryVar_sampFields",
+              "name": "CommodityProduceVar_sampFields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5269,7 +5269,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventoryVarianceFields",
+              "name": "CommodityProduceVarianceFields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5283,7 +5283,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CommodityProduceInventoryAvgFields",
+        "name": "CommodityProduceAvgFields",
         "description": "aggregate avg on columns",
         "fields": [
           {
@@ -5330,8 +5330,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CommodityProduceInventoryBoolExp",
-        "description": "Boolean expression to filter rows from the table \"commodityProduceInventory\". All fields are combined with a logical 'AND'.",
+        "name": "CommodityProduceBoolExp",
+        "description": "Boolean expression to filter rows from the table \"commodityProduce\". All fields are combined with a logical 'AND'.",
         "fields": null,
         "inputFields": [
           {
@@ -5345,7 +5345,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CommodityProduceInventoryBoolExp",
+                  "name": "CommodityProduceBoolExp",
                   "ofType": null
                 }
               }
@@ -5359,7 +5359,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "CommodityProduceInventoryBoolExp",
+              "name": "CommodityProduceBoolExp",
               "ofType": null
             },
             "defaultValue": null,
@@ -5377,7 +5377,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CommodityProduceInventoryBoolExp",
+                  "name": "CommodityProduceBoolExp",
                   "ofType": null
                 }
               }
@@ -5513,21 +5513,21 @@
       },
       {
         "kind": "ENUM",
-        "name": "CommodityProduceInventoryConstraint",
-        "description": "unique or primary key constraints on table \"commodityProduceInventory\"",
+        "name": "CommodityProduceConstraint",
+        "description": "unique or primary key constraints on table \"commodityProduce\"",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
-            "name": "commodityproduceinventory_pk",
+            "name": "commodityproduce_pk",
             "description": "unique or primary key constraint on columns \"id\"",
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "commodityproduceinventory_unique",
-            "description": "unique or primary key constraint on columns \"year\", \"commodityId\", \"farmId\"",
+            "name": "commodityproduce_unique",
+            "description": "unique or primary key constraint on columns \"year\", \"householdId\", \"commodityId\", \"farmId\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -5536,8 +5536,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CommodityProduceInventoryIncInput",
-        "description": "input type for incrementing numeric columns in table \"commodityProduceInventory\"",
+        "name": "CommodityProduceIncInput",
+        "description": "input type for incrementing numeric columns in table \"commodityProduce\"",
         "fields": null,
         "inputFields": [
           {
@@ -5583,8 +5583,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CommodityProduceInventoryInsertInput",
-        "description": "input type for inserting data into table \"commodityProduceInventory\"",
+        "name": "CommodityProduceInsertInput",
+        "description": "input type for inserting data into table \"commodityProduce\"",
         "fields": null,
         "inputFields": [
           {
@@ -5714,7 +5714,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CommodityProduceInventoryMaxFields",
+        "name": "CommodityProduceMaxFields",
         "description": "aggregate max on columns",
         "fields": [
           {
@@ -5833,7 +5833,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CommodityProduceInventoryMinFields",
+        "name": "CommodityProduceMinFields",
         "description": "aggregate min on columns",
         "fields": [
           {
@@ -5952,8 +5952,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CommodityProduceInventoryMutationResponse",
-        "description": "response of any mutation on the table \"commodityProduceInventory\"",
+        "name": "CommodityProduceMutationResponse",
+        "description": "response of any mutation on the table \"commodityProduce\"",
         "fields": [
           {
             "name": "affected_rows",
@@ -5986,7 +5986,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "CommodityProduceInventory",
+                    "name": "CommodityProduce",
                     "ofType": null
                   }
                 }
@@ -6003,8 +6003,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CommodityProduceInventoryOnConflict",
-        "description": "on_conflict condition type for table \"commodityProduceInventory\"",
+        "name": "CommodityProduceOnConflict",
+        "description": "on_conflict condition type for table \"commodityProduce\"",
         "fields": null,
         "inputFields": [
           {
@@ -6015,7 +6015,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "CommodityProduceInventoryConstraint",
+                "name": "CommodityProduceConstraint",
                 "ofType": null
               }
             },
@@ -6037,7 +6037,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "ENUM",
-                    "name": "CommodityProduceInventoryUpdateColumn",
+                    "name": "CommodityProduceUpdateColumn",
                     "ofType": null
                   }
                 }
@@ -6052,7 +6052,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "CommodityProduceInventoryBoolExp",
+              "name": "CommodityProduceBoolExp",
               "ofType": null
             },
             "defaultValue": null,
@@ -6066,8 +6066,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CommodityProduceInventoryOrderBy",
-        "description": "Ordering options when selecting data from \"commodityProduceInventory\".",
+        "name": "CommodityProduceOrderBy",
+        "description": "Ordering options when selecting data from \"commodityProduce\".",
         "fields": null,
         "inputFields": [
           {
@@ -6197,8 +6197,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CommodityProduceInventoryPkColumnsInput",
-        "description": "primary key columns input for table: commodityProduceInventory",
+        "name": "CommodityProducePkColumnsInput",
+        "description": "primary key columns input for table: commodityProduce",
         "fields": null,
         "inputFields": [
           {
@@ -6224,8 +6224,8 @@
       },
       {
         "kind": "ENUM",
-        "name": "CommodityProduceInventorySelectColumn",
-        "description": "select columns of table \"commodityProduceInventory\"",
+        "name": "CommodityProduceSelectColumn",
+        "description": "select columns of table \"commodityProduce\"",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -6295,8 +6295,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CommodityProduceInventorySetInput",
-        "description": "input type for updating data in table \"commodityProduceInventory\"",
+        "name": "CommodityProduceSetInput",
+        "description": "input type for updating data in table \"commodityProduce\"",
         "fields": null,
         "inputFields": [
           {
@@ -6426,7 +6426,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CommodityProduceInventoryStddevFields",
+        "name": "CommodityProduceStddevFields",
         "description": "aggregate stddev on columns",
         "fields": [
           {
@@ -6473,7 +6473,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CommodityProduceInventoryStddev_popFields",
+        "name": "CommodityProduceStddev_popFields",
         "description": "aggregate stddev_pop on columns",
         "fields": [
           {
@@ -6520,7 +6520,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CommodityProduceInventoryStddev_sampFields",
+        "name": "CommodityProduceStddev_sampFields",
         "description": "aggregate stddev_samp on columns",
         "fields": [
           {
@@ -6567,7 +6567,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CommodityProduceInventorySumFields",
+        "name": "CommodityProduceSumFields",
         "description": "aggregate sum on columns",
         "fields": [
           {
@@ -6614,8 +6614,8 @@
       },
       {
         "kind": "ENUM",
-        "name": "CommodityProduceInventoryUpdateColumn",
-        "description": "update columns of table \"commodityProduceInventory\"",
+        "name": "CommodityProduceUpdateColumn",
+        "description": "update columns of table \"commodityProduce\"",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -6685,7 +6685,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "CommodityProduceInventoryUpdates",
+        "name": "CommodityProduceUpdates",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -6694,7 +6694,7 @@
             "description": "increments the numeric columns with given value of the filtered values",
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "CommodityProduceInventoryIncInput",
+              "name": "CommodityProduceIncInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -6706,7 +6706,7 @@
             "description": "sets the columns of the filtered rows to the given values",
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "CommodityProduceInventorySetInput",
+              "name": "CommodityProduceSetInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -6721,7 +6721,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "CommodityProduceInventoryBoolExp",
+                "name": "CommodityProduceBoolExp",
                 "ofType": null
               }
             },
@@ -6736,7 +6736,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CommodityProduceInventoryVar_popFields",
+        "name": "CommodityProduceVar_popFields",
         "description": "aggregate var_pop on columns",
         "fields": [
           {
@@ -6783,7 +6783,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CommodityProduceInventoryVar_sampFields",
+        "name": "CommodityProduceVar_sampFields",
         "description": "aggregate var_samp on columns",
         "fields": [
           {
@@ -6830,7 +6830,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CommodityProduceInventoryVarianceFields",
+        "name": "CommodityProduceVarianceFields",
         "description": "aggregate variance on columns",
         "fields": [
           {
@@ -6884,12 +6884,6 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "commodity",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "commodityType",
             "description": "column name",
             "isDeprecated": false,
@@ -6903,6 +6897,12 @@
           },
           {
             "name": "id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -6922,18 +6922,6 @@
         "description": "input type for updating data in table \"commodity\"",
         "fields": null,
         "inputFields": [
-          {
-            "name": "commodity",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "commodityType",
             "description": null,
@@ -6971,6 +6959,18 @@
             "deprecationReason": null
           },
           {
+            "name": "name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "updatedAt",
             "description": null,
             "type": {
@@ -6996,12 +6996,6 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "commodity",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "commodityType",
             "description": "column name",
             "isDeprecated": false,
@@ -7015,6 +7009,12 @@
           },
           {
             "name": "id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -15546,6 +15546,1363 @@
       },
       {
         "kind": "OBJECT",
+        "name": "Produce",
+        "description": "columns and relationships of \"produce\"",
+        "fields": [
+          {
+            "name": "areaUsed",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "float8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityName",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "farmId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "farmName",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "householdId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "organicPractitioner",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "float8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ProduceAggregate",
+        "description": "aggregated selection of \"produce\"",
+        "fields": [
+          {
+            "name": "aggregate",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ProduceAggregateFields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nodes",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Produce",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ProduceAggregateFields",
+        "description": "aggregate fields of \"produce\"",
+        "fields": [
+          {
+            "name": "avg",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ProduceAvgFields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "count",
+            "description": null,
+            "args": [
+              {
+                "name": "columns",
+                "description": null,
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ProduceSelectColumn",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "distinct",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "max",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ProduceMaxFields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "min",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ProduceMinFields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stddev",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ProduceStddevFields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stddevPop",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ProduceStddev_popFields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stddevSamp",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ProduceStddev_sampFields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sum",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ProduceSumFields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "varPop",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ProduceVar_popFields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "varSamp",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ProduceVar_sampFields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "variance",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ProduceVarianceFields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ProduceAvgFields",
+        "description": "aggregate avg on columns",
+        "fields": [
+          {
+            "name": "areaUsed",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ProduceBoolExp",
+        "description": "Boolean expression to filter rows from the table \"produce\". All fields are combined with a logical 'AND'.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "_and",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ProduceBoolExp",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_not",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ProduceBoolExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "_or",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ProduceBoolExp",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "areaUsed",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "Float8ComparisonExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityId",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UuidComparisonExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityName",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringComparisonExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "farmId",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UuidComparisonExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "farmName",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringComparisonExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "householdId",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UuidComparisonExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UuidComparisonExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "organicPractitioner",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanComparisonExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "Float8ComparisonExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IntComparisonExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ProduceMaxFields",
+        "description": "aggregate max on columns",
+        "fields": [
+          {
+            "name": "areaUsed",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "float8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityName",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "farmId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "farmName",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "householdId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "float8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ProduceMinFields",
+        "description": "aggregate min on columns",
+        "fields": [
+          {
+            "name": "areaUsed",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "float8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityName",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "farmId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "farmName",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "householdId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "float8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ProduceOrderBy",
+        "description": "Ordering options when selecting data from \"produce\".",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "areaUsed",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "OrderBy",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityId",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "OrderBy",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityName",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "OrderBy",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "farmId",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "OrderBy",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "farmName",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "OrderBy",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "householdId",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "OrderBy",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "OrderBy",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "organicPractitioner",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "OrderBy",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "OrderBy",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "OrderBy",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "ProduceSelectColumn",
+        "description": "select columns of table \"produce\"",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "areaUsed",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityId",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityName",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "farmId",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "farmName",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "householdId",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "organicPractitioner",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ProduceStddevFields",
+        "description": "aggregate stddev on columns",
+        "fields": [
+          {
+            "name": "areaUsed",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ProduceStddev_popFields",
+        "description": "aggregate stddev_pop on columns",
+        "fields": [
+          {
+            "name": "areaUsed",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ProduceStddev_sampFields",
+        "description": "aggregate stddev_samp on columns",
+        "fields": [
+          {
+            "name": "areaUsed",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ProduceSumFields",
+        "description": "aggregate sum on columns",
+        "fields": [
+          {
+            "name": "areaUsed",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "float8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "float8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ProduceVar_popFields",
+        "description": "aggregate var_pop on columns",
+        "fields": [
+          {
+            "name": "areaUsed",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ProduceVar_sampFields",
+        "description": "aggregate var_samp on columns",
+        "fields": [
+          {
+            "name": "areaUsed",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ProduceVarianceFields",
+        "description": "aggregate variance on columns",
+        "fields": [
+          {
+            "name": "areaUsed",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "Program",
         "description": "columns and relationships of \"program\"",
         "fields": [
@@ -19293,8 +20650,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "commodityProduceInventory_streamCursorInput",
-        "description": "Streaming cursor of the table \"commodityProduceInventory\"",
+        "name": "commodityProduce_streamCursorInput",
+        "description": "Streaming cursor of the table \"commodityProduce\"",
         "fields": null,
         "inputFields": [
           {
@@ -19305,7 +20662,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "commodityProduceInventory_streamCursorValueInput",
+                "name": "commodityProduce_streamCursorValueInput",
                 "ofType": null
               }
             },
@@ -19332,7 +20689,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "commodityProduceInventory_streamCursorValueInput",
+        "name": "commodityProduce_streamCursorValueInput",
         "description": "Initial value of the column from where the streaming should start",
         "fields": null,
         "inputFields": [
@@ -19507,18 +20864,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "commodity",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "commodityType",
             "description": null,
             "type": {
@@ -19548,6 +20893,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "uuid",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -20963,8 +22320,8 @@
             "deprecationReason": null
           },
           {
-            "name": "deleteCommodityProduceInventory",
-            "description": "delete data from the table: \"commodityProduceInventory\"",
+            "name": "deleteCommodityProduce",
+            "description": "delete data from the table: \"commodityProduce\"",
             "args": [
               {
                 "name": "where",
@@ -20974,7 +22331,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "CommodityProduceInventoryBoolExp",
+                    "name": "CommodityProduceBoolExp",
                     "ofType": null
                   }
                 },
@@ -20985,15 +22342,15 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventoryMutationResponse",
+              "name": "CommodityProduceMutationResponse",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "deleteCommodityProduceInventoryByPk",
-            "description": "delete single row from the table: \"commodityProduceInventory\"",
+            "name": "deleteCommodityProduceByPk",
+            "description": "delete single row from the table: \"commodityProduce\"",
             "args": [
               {
                 "name": "id",
@@ -21014,7 +22371,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventory",
+              "name": "CommodityProduce",
               "ofType": null
             },
             "isDeprecated": false,
@@ -21465,8 +22822,8 @@
             "deprecationReason": null
           },
           {
-            "name": "insertCommodityProduceInventory",
-            "description": "insert data into the table: \"commodityProduceInventory\"",
+            "name": "insertCommodityProduce",
+            "description": "insert data into the table: \"commodityProduce\"",
             "args": [
               {
                 "name": "objects",
@@ -21482,7 +22839,7 @@
                       "name": null,
                       "ofType": {
                         "kind": "INPUT_OBJECT",
-                        "name": "CommodityProduceInventoryInsertInput",
+                        "name": "CommodityProduceInsertInput",
                         "ofType": null
                       }
                     }
@@ -21497,7 +22854,7 @@
                 "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CommodityProduceInventoryOnConflict",
+                  "name": "CommodityProduceOnConflict",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -21507,15 +22864,15 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventoryMutationResponse",
+              "name": "CommodityProduceMutationResponse",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "insertCommodityProduceInventoryOne",
-            "description": "insert a single row into the table: \"commodityProduceInventory\"",
+            "name": "insertCommodityProduceOne",
+            "description": "insert a single row into the table: \"commodityProduce\"",
             "args": [
               {
                 "name": "object",
@@ -21525,7 +22882,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "CommodityProduceInventoryInsertInput",
+                    "name": "CommodityProduceInsertInput",
                     "ofType": null
                   }
                 },
@@ -21538,7 +22895,7 @@
                 "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CommodityProduceInventoryOnConflict",
+                  "name": "CommodityProduceOnConflict",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -21548,7 +22905,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventory",
+              "name": "CommodityProduce",
               "ofType": null
             },
             "isDeprecated": false,
@@ -22338,15 +23695,15 @@
             "deprecationReason": null
           },
           {
-            "name": "updateCommodityProduceInventory",
-            "description": "update data of the table: \"commodityProduceInventory\"",
+            "name": "updateCommodityProduce",
+            "description": "update data of the table: \"commodityProduce\"",
             "args": [
               {
                 "name": "_inc",
                 "description": "increments the numeric columns with given value of the filtered values",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CommodityProduceInventoryIncInput",
+                  "name": "CommodityProduceIncInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -22358,7 +23715,7 @@
                 "description": "sets the columns of the filtered rows to the given values",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CommodityProduceInventorySetInput",
+                  "name": "CommodityProduceSetInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -22373,7 +23730,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "CommodityProduceInventoryBoolExp",
+                    "name": "CommodityProduceBoolExp",
                     "ofType": null
                   }
                 },
@@ -22384,22 +23741,22 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventoryMutationResponse",
+              "name": "CommodityProduceMutationResponse",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "updateCommodityProduceInventoryByPk",
-            "description": "update single row of the table: \"commodityProduceInventory\"",
+            "name": "updateCommodityProduceByPk",
+            "description": "update single row of the table: \"commodityProduce\"",
             "args": [
               {
                 "name": "_inc",
                 "description": "increments the numeric columns with given value of the filtered values",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CommodityProduceInventoryIncInput",
+                  "name": "CommodityProduceIncInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -22411,7 +23768,7 @@
                 "description": "sets the columns of the filtered rows to the given values",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CommodityProduceInventorySetInput",
+                  "name": "CommodityProduceSetInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -22426,7 +23783,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "CommodityProduceInventoryPkColumnsInput",
+                    "name": "CommodityProducePkColumnsInput",
                     "ofType": null
                   }
                 },
@@ -22437,15 +23794,15 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventory",
+              "name": "CommodityProduce",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "updateCommodityProduceInventoryMany",
-            "description": "update multiples rows of table: \"commodityProduceInventory\"",
+            "name": "updateCommodityProduceMany",
+            "description": "update multiples rows of table: \"commodityProduce\"",
             "args": [
               {
                 "name": "updates",
@@ -22461,7 +23818,7 @@
                       "name": null,
                       "ofType": {
                         "kind": "INPUT_OBJECT",
-                        "name": "CommodityProduceInventoryUpdates",
+                        "name": "CommodityProduceUpdates",
                         "ofType": null
                       }
                     }
@@ -22477,7 +23834,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "CommodityProduceInventoryMutationResponse",
+                "name": "CommodityProduceMutationResponse",
                 "ofType": null
               }
             },
@@ -23033,6 +24390,176 @@
         "description": null,
         "fields": null,
         "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "produce_streamCursorInput",
+        "description": "Streaming cursor of the table \"produce\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "initialValue",
+            "description": "Stream column input with initial value",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "produce_streamCursorValueInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ordering",
+            "description": "cursor ordering",
+            "type": {
+              "kind": "ENUM",
+              "name": "CursorOrdering",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "produce_streamCursorValueInput",
+        "description": "Initial value of the column from where the streaming should start",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "areaUsed",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "float8",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityName",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "farmId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "farmName",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "householdId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "uuid",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "organicPractitioner",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "float8",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "year",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
@@ -23870,8 +25397,8 @@
             "deprecationReason": null
           },
           {
-            "name": "commodityProduceInventory",
-            "description": "fetch data from the table: \"commodityProduceInventory\"",
+            "name": "commodityProduce",
+            "description": "fetch data from the table: \"commodityProduce\"",
             "args": [
               {
                 "name": "distinctOn",
@@ -23884,7 +25411,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "CommodityProduceInventorySelectColumn",
+                      "name": "CommodityProduceSelectColumn",
                       "ofType": null
                     }
                   }
@@ -23928,7 +25455,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "CommodityProduceInventoryOrderBy",
+                      "name": "CommodityProduceOrderBy",
                       "ofType": null
                     }
                   }
@@ -23942,7 +25469,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CommodityProduceInventoryBoolExp",
+                  "name": "CommodityProduceBoolExp",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -23961,7 +25488,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "CommodityProduceInventory",
+                    "name": "CommodityProduce",
                     "ofType": null
                   }
                 }
@@ -23971,8 +25498,8 @@
             "deprecationReason": null
           },
           {
-            "name": "commodityProduceInventoryAggregate",
-            "description": "fetch aggregated fields from the table: \"commodityProduceInventory\"",
+            "name": "commodityProduceAggregate",
+            "description": "fetch aggregated fields from the table: \"commodityProduce\"",
             "args": [
               {
                 "name": "distinctOn",
@@ -23985,7 +25512,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "CommodityProduceInventorySelectColumn",
+                      "name": "CommodityProduceSelectColumn",
                       "ofType": null
                     }
                   }
@@ -24029,7 +25556,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "CommodityProduceInventoryOrderBy",
+                      "name": "CommodityProduceOrderBy",
                       "ofType": null
                     }
                   }
@@ -24043,7 +25570,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CommodityProduceInventoryBoolExp",
+                  "name": "CommodityProduceBoolExp",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -24056,7 +25583,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "CommodityProduceInventoryAggregate",
+                "name": "CommodityProduceAggregate",
                 "ofType": null
               }
             },
@@ -24064,8 +25591,8 @@
             "deprecationReason": null
           },
           {
-            "name": "commodityProduceInventoryByPk",
-            "description": "fetch data from the table: \"commodityProduceInventory\" using primary key columns",
+            "name": "commodityProduceByPk",
+            "description": "fetch data from the table: \"commodityProduce\" using primary key columns",
             "args": [
               {
                 "name": "id",
@@ -24086,7 +25613,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventory",
+              "name": "CommodityProduce",
               "ofType": null
             },
             "isDeprecated": false,
@@ -24534,6 +26061,200 @@
               "kind": "OBJECT",
               "name": "Household",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": "fetch data from the table: \"produce\"",
+            "args": [
+              {
+                "name": "distinctOn",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ProduceSelectColumn",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "orderBy",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "ProduceOrderBy",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ProduceBoolExp",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Produce",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produceAggregate",
+            "description": "fetch aggregated fields from the table: \"produce\"",
+            "args": [
+              {
+                "name": "distinctOn",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ProduceSelectColumn",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "orderBy",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "ProduceOrderBy",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ProduceBoolExp",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ProduceAggregate",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -25588,8 +27309,8 @@
             "deprecationReason": null
           },
           {
-            "name": "commodityProduceInventory",
-            "description": "fetch data from the table: \"commodityProduceInventory\"",
+            "name": "commodityProduce",
+            "description": "fetch data from the table: \"commodityProduce\"",
             "args": [
               {
                 "name": "distinctOn",
@@ -25602,7 +27323,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "CommodityProduceInventorySelectColumn",
+                      "name": "CommodityProduceSelectColumn",
                       "ofType": null
                     }
                   }
@@ -25646,7 +27367,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "CommodityProduceInventoryOrderBy",
+                      "name": "CommodityProduceOrderBy",
                       "ofType": null
                     }
                   }
@@ -25660,7 +27381,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CommodityProduceInventoryBoolExp",
+                  "name": "CommodityProduceBoolExp",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -25679,7 +27400,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "CommodityProduceInventory",
+                    "name": "CommodityProduce",
                     "ofType": null
                   }
                 }
@@ -25689,8 +27410,8 @@
             "deprecationReason": null
           },
           {
-            "name": "commodityProduceInventoryAggregate",
-            "description": "fetch aggregated fields from the table: \"commodityProduceInventory\"",
+            "name": "commodityProduceAggregate",
+            "description": "fetch aggregated fields from the table: \"commodityProduce\"",
             "args": [
               {
                 "name": "distinctOn",
@@ -25703,7 +27424,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "CommodityProduceInventorySelectColumn",
+                      "name": "CommodityProduceSelectColumn",
                       "ofType": null
                     }
                   }
@@ -25747,7 +27468,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "CommodityProduceInventoryOrderBy",
+                      "name": "CommodityProduceOrderBy",
                       "ofType": null
                     }
                   }
@@ -25761,7 +27482,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CommodityProduceInventoryBoolExp",
+                  "name": "CommodityProduceBoolExp",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -25774,7 +27495,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "CommodityProduceInventoryAggregate",
+                "name": "CommodityProduceAggregate",
                 "ofType": null
               }
             },
@@ -25782,8 +27503,8 @@
             "deprecationReason": null
           },
           {
-            "name": "commodityProduceInventoryByPk",
-            "description": "fetch data from the table: \"commodityProduceInventory\" using primary key columns",
+            "name": "commodityProduceByPk",
+            "description": "fetch data from the table: \"commodityProduce\" using primary key columns",
             "args": [
               {
                 "name": "id",
@@ -25804,15 +27525,15 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "CommodityProduceInventory",
+              "name": "CommodityProduce",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "commodityProduceInventoryStream",
-            "description": "fetch data from the table in a streaming manner : \"commodityProduceInventory\"",
+            "name": "commodityProduceStream",
+            "description": "fetch data from the table in a streaming manner : \"commodityProduce\"",
             "args": [
               {
                 "name": "batchSize",
@@ -25841,7 +27562,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "commodityProduceInventory_streamCursorInput",
+                      "name": "commodityProduce_streamCursorInput",
                       "ofType": null
                     }
                   }
@@ -25855,7 +27576,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "CommodityProduceInventoryBoolExp",
+                  "name": "CommodityProduceBoolExp",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -25874,7 +27595,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "CommodityProduceInventory",
+                    "name": "CommodityProduce",
                     "ofType": null
                   }
                 }
@@ -26540,6 +28261,273 @@
                   "ofType": {
                     "kind": "OBJECT",
                     "name": "Household",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produce",
+            "description": "fetch data from the table: \"produce\"",
+            "args": [
+              {
+                "name": "distinctOn",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ProduceSelectColumn",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "orderBy",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "ProduceOrderBy",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ProduceBoolExp",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Produce",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produceAggregate",
+            "description": "fetch aggregated fields from the table: \"produce\"",
+            "args": [
+              {
+                "name": "distinctOn",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "ProduceSelectColumn",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "orderBy",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "ProduceOrderBy",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ProduceBoolExp",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ProduceAggregate",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "produceStream",
+            "description": "fetch data from the table in a streaming manner : \"produce\"",
+            "args": [
+              {
+                "name": "batchSize",
+                "description": "maximum number of rows returned in a single batch",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "cursor",
+                "description": "cursor to stream the results returned by the query",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "produce_streamCursorInput",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ProduceBoolExp",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Produce",
                     "ofType": null
                   }
                 }

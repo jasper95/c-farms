@@ -11,7 +11,7 @@ query CommodityList(
     limit: $limit
   ) {
     id
-    commodity
+    name
     commodityType
   }
   meta: commodityAggregate(where: $where) {
@@ -23,8 +23,8 @@ query CommodityList(
 
 query CommodityDetails($id: uuid!) {
   details: commodityByPk(id: $id) {
-     id
-     commodity
-     commodityType
+    id
+    name
+    commodityType
   }
 }

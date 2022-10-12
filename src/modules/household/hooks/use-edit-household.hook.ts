@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { HouseholdDetailsRoutesEnum } from '@/modules/household/enums'
-import { householdDetailsTab } from '../constants'
+import { householdDetailsTab } from '@/modules/household/constants'
 
 export function useEditHousehold() {
   const router = useRouter()

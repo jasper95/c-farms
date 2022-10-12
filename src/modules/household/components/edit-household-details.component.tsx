@@ -3,8 +3,8 @@ import Box from '@mui/material/Box'
 import { FormToolbar } from '@/components/form-toolbar'
 import { personalInfomationSchema } from '@/modules/household/constants'
 import { useEditViewHook } from '@/lib/hooks/use-edit-view.hook'
-import { useHouseholdDetailsQuery } from '../api/queries'
-import { useUpdateHouseholdMutation } from '../api/mutations'
+import { useHouseholdDetailsQuery } from '@/modules/household/api/queries'
+import { useUpdateHouseholdMutation } from '@/modules/household/api/mutations'
 
 export function EditHouseholdDetails() {
   const { formProps, onSave, isMutating } = useEditViewHook({

@@ -2,7 +2,7 @@ import Breadcrumbs from '@/components/breadcrumbs'
 import { Dashboard } from '@/components/layout/dashboard.layout'
 import dynamic from 'next/dynamic'
 import { FarmPopup } from '@/modules/farm/components'
-import { useFarmListHook } from '../hooks'
+import { useFarmListHook } from '@/modules/farm/hooks'
 
 const Map = dynamic(() => import('@/components/map'), {
   ssr: false,

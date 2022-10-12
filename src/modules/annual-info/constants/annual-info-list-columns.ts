@@ -1,5 +1,5 @@
 import { DataTableColumn } from '@/components/data-table/types'
-import { AnnualInfoListQuery } from '../api/queries'
+import { AnnualInfoListQuery } from '@/modules/annual-info/api/queries'
 
 export const annualInfoListColumns: DataTableColumn<
   AnnualInfoListQuery['list'][0]
