@@ -22,12 +22,7 @@ query FarmOptions(
   $offset: Int
   $limit: Int
 ) {
-  list: farm(
-    where: $where
-    orderBy: $orderBy
-    offset: $offset
-    limit: $limit
-  ) {
+  list: farm(where: $where, orderBy: $orderBy, offset: $offset, limit: $limit) {
     id
     name
   }

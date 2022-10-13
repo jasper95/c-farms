@@ -45,14 +45,14 @@ export type CommodityProduceListQuery = {
   __typename?: 'query_root'
   list: Array<{
     __typename?: 'Produce'
-    id?: any | null | undefined
-    areaUsed?: any | null | undefined
-    commodityName?: string | null | undefined
-    createdAt?: any | null | undefined
-    farmName?: string | null | undefined
-    organicPractitioner?: boolean | null | undefined
-    produce?: any | null | undefined
-    year?: number | null | undefined
+    id: any
+    areaUsed: any
+    commodityName: string
+    createdAt: any
+    farmName: string
+    organicPractitioner: boolean
+    produce: any
+    year: number
   }>
   meta: {
     __typename?: 'ProduceAggregate'

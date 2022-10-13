@@ -2230,17 +2230,17 @@ export enum OrderBy {
 /** columns and relationships of "produce" */
 export type Produce = {
   __typename?: 'Produce'
-  areaUsed?: Maybe<Scalars['float8']>
-  commodityId?: Maybe<Scalars['uuid']>
-  commodityName?: Maybe<Scalars['String']>
-  createdAt?: Maybe<Scalars['timestamp']>
-  farmId?: Maybe<Scalars['uuid']>
-  farmName?: Maybe<Scalars['String']>
-  householdId?: Maybe<Scalars['uuid']>
-  id?: Maybe<Scalars['uuid']>
-  organicPractitioner?: Maybe<Scalars['Boolean']>
-  produce?: Maybe<Scalars['float8']>
-  year?: Maybe<Scalars['Int']>
+  areaUsed: Scalars['float8']
+  commodityId: Scalars['uuid']
+  commodityName: Scalars['String']
+  createdAt: Scalars['timestamp']
+  farmId: Scalars['uuid']
+  farmName: Scalars['String']
+  householdId: Scalars['uuid']
+  id: Scalars['uuid']
+  organicPractitioner: Scalars['Boolean']
+  produce: Scalars['float8']
+  year: Scalars['Int']
 }
 
 /** aggregated selection of "produce" */

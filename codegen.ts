@@ -2,6 +2,7 @@ import { CodegenConfig } from '@graphql-codegen/cli'
 
 const config: CodegenConfig = {
   schema: [
+    'src/lib/generated/overrides.graphql',
     {
       [process.env.SCHEMA_PATH || '']: {
         headers: {

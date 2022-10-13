@@ -1,0 +1,15 @@
+# override views here
+
+type Produce {
+  areaUsed: float8!
+  commodityId: uuid!
+  commodityName: String!
+  createdAt: timestamp!
+  farmId: uuid!
+  farmName: String!
+  householdId: uuid!
+  id: uuid!
+  organicPractitioner: Boolean!
+  produce: float8!
+  year: Int!
+}

@@ -5,16 +5,14 @@ import { CommodityProduceForm } from '@/modules/household/components/commodity-p
 import {
   useCreateCommodityProduceMutation,
   useUpdateCommodityProduceMutation,
-} from '../api/mutations'
-import { commodityProduceSchema } from '../constants/commodity-produce-schema'
+} from '@/modules/commodity-produce/api/mutations'
+import { commodityProduceSchema } from '@/modules/commodity-produce/constants/commodity-produce-schema'
 import {
   useCommodityProduceDetailsQuery,
   useCommodityProduceListQuery,
-} from '../api/queries'
-import { commodityProduceListColumns } from '../constants/commodity-produce-list-columns'
+} from '@/modules/commodity-produce/api/queries'
+import { commodityProduceListColumns } from '@/modules/commodity-produce/constants/commodity-produce-list-columns'
 import { useEditDialogHook } from '@/lib/hooks/use-edit-dialog.hook'
-import { useCommodityDetailsQuery } from '@/modules/commodity/api/queries'
-import { useUpdateAnnualInfoMutation } from '@/modules/annual-info/api/mutations'
 
 const name = 'Commodity Produce'
 export function CommodityProduceInventoryListView() {
@@ -42,10 +40,8 @@ export function CommodityProduceInventoryListView() {
       onCreate={onClickCreate}
       onEdit={onClickEdit}
       listQueryVariables={{
-        where: {
-          householdId: {
-            _eq: householdId,
-          },
+        householdId: {
+          _eq: householdId,
         },
       }}
       useListQueryHook={useCommodityProduceListQuery}
