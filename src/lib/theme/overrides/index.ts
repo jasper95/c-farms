@@ -8,6 +8,7 @@ import Backdrop from './backdrop'
 import Typography from './typography'
 import CssBaseline from './css-baseline'
 import Autocomplete from './auto-complete'
+import Grid from './grid'
 
 // ----------------------------------------------------------------------
 
@@ -21,6 +22,7 @@ export default function ComponentsOverrides(theme: Theme) {
     Backdrop(theme),
     Typography(theme),
     CssBaseline(),
-    Autocomplete(theme)
+    Autocomplete(theme),
+    Grid(theme)
   )
 }

@@ -9,9 +9,9 @@ import {
 import { Identifiable } from '@/components/data-table/types'
 import pick from 'lodash/pick'
 import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Unstable_Grid2'
 import ListFilter from '@/components/list-filter'
-import { FilterValuesList } from '../list-filter/filter-values-list'
+import { FilterValuesList } from '@/components/list-filter/filter-values-list'
 
 interface DatatableListViewProps<
   QueryResponse extends Identifiable,
@@ -51,34 +51,46 @@ export default function DatatableListView<
       }
   return (
     <Box>
-      <Grid sx={{ mb: 2 }} container alignItems="center" spacing={2}>
-        <Grid item xs={12} md={8} lg={10}>
-          <Grid container>
-            <Grid item xs={12} md={12} lg={6}>
-              <SearchBar onChange={onSearchChanged} />
-            </Grid>
+      <Grid sx={{ mb: 2 }} container spacing={2}>
+        <Grid
+          sx={{ order: { sm: 1, xs: 2 } }}
+          alignItems="center"
+          container
+          xs={12}
+          sm={6}
+          lg={4}
+        >
+          <Grid xs={10}>
+            <SearchBar onChange={onSearchChanged} />
           </Grid>
+          {filters && (
+            <Grid xs={2}>
+              <ListFilter
+                filterValues={tableState.filters}
+                setFilterValues={(filters) =>
+                  tableDispatch({ type: 'SetFilters', payload: filters })
+                }
+                filters={filters}
+              />
+            </Grid>
+          )}
         </Grid>
         {!readOnly && (
-          <Grid item xs={12} md={4} lg={2}>
-            <Grid container justifyContent="flex-end">
+          <Grid
+            sx={{ order: { sm: 2, sx: 1 } }}
+            container
+            alignItems={'center'}
+            xsOffset="auto"
+          >
+            <Grid>
               <Button {...buttonProps} variant="contained" color="primary">
                 Create {name}
               </Button>
             </Grid>
           </Grid>
         )}
-      </Grid>
-      {filters && (
-        <Grid container sx={{ mb: 2 }}>
-          <Grid item xs={12} md={8} lg={10}>
-            <ListFilter
-              filterValues={tableState.filters}
-              setFilterValues={(filters) =>
-                tableDispatch({ type: 'SetFilters', payload: filters })
-              }
-              filters={filters}
-            />
+        {filters && (
+          <Grid xs={12} sx={{ order: { xs: 3 } }}>
             <FilterValuesList
               filterValues={tableState.filters}
               setFilterValues={(filters) =>
@@ -86,8 +98,8 @@ export default function DatatableListView<
               }
             />
           </Grid>
-        </Grid>
-      )}
+        )}
+      </Grid>
       <DataTable {...tableProps} showPagination />
     </Box>
   )
