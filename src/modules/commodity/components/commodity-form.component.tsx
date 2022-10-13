@@ -12,7 +12,7 @@ interface CommodityFormProps {
 export function CommodityForm(props: CommodityFormProps) {
   const { control } = props.formProps
   return (
-    <Grid sx={{ my: 0 }} container>
+    <Grid container spacing={3}>
       <Grid item xs={6} md={12}>
         <Grid container spacing={2}>
           <Grid item xs={12}>

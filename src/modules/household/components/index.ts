@@ -1,3 +1,4 @@
+import { CommodityProduceForm } from './commodity-produce-form.component'
 export { AnnualInfoForm } from './annual-info-form.component'
 export { OtherDetailsForm } from './other-details-form.component'
 export { PersonalInformationForm } from './personal-information-form.component'

@@ -15,6 +15,7 @@ import { useRouter } from 'next/router'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListAltIcon from '@mui/icons-material/ListAlt'
 import GrassIcon from '@mui/icons-material/Grass'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 
 const menuItems = [
   {
@@ -23,9 +24,14 @@ const menuItems = [
     path: '/',
   },
   {
-    icon: PeopleIcon,
+    icon: AccountCircleIcon,
     primaryText: 'Household',
     path: '/household',
+  },
+  {
+    icon: MapIcon,
+    primaryText: 'Farm',
+    path: '/farm',
   },
   {
     icon: ListAltIcon,
@@ -38,9 +44,9 @@ const menuItems = [
     path: '/commodity',
   },
   {
-    icon: MapIcon,
-    primaryText: 'Farm',
-    path: '/farm',
+    icon: PeopleIcon,
+    primaryText: 'Association',
+    path: '/association',
   },
 ] as const
 

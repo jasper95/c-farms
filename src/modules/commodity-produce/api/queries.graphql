@@ -1,0 +1,75 @@
+query CommodityOptions(
+  $where: CommodityBoolExp
+  $orderBy: [CommodityOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: commodity(
+    where: $where
+    orderBy: $orderBy
+    offset: $offset
+    limit: $limit
+  ) {
+    id
+    name
+    commodityType
+  }
+}
+
+query FarmOptions(
+  $where: FarmBoolExp
+  $orderBy: [FarmOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: farm(
+    where: $where
+    orderBy: $orderBy
+    offset: $offset
+    limit: $limit
+  ) {
+    id
+    name
+  }
+}
+
+query CommodityProduceList(
+  $where: ProduceBoolExp
+  $orderBy: [ProduceOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: produce(
+    where: $where
+    orderBy: $orderBy
+    offset: $offset
+    limit: $limit
+  ) {
+    id
+    areaUsed
+    commodityName
+    createdAt
+    farmName
+    organicPractitioner
+    produce
+    year
+  }
+  meta: produceAggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
+
+query CommodityProduceDetails($id: uuid!) {
+  details: commodityProduceByPk(id: $id) {
+    id
+    commodityId
+    farmId
+    produce
+    organicPractitioner
+    householdId
+    year
+    areaUsed
+  }
+}

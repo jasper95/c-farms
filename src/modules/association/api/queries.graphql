@@ -1,0 +1,34 @@
+query AssociationList(
+  $where: AssociationBoolExp
+  $orderBy: [AssociationOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: association(
+    where: $where
+    orderBy: $orderBy
+    offset: $offset
+    limit: $limit
+  ) {
+    id
+    name
+    shortName
+    description
+    active
+  }
+  meta: associationAggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
+
+query AssociationDetails($id: uuid!) {
+  details: associationByPk(id: $id) {
+    id
+    name
+    shortName
+    description
+    active
+  }
+}
