@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-export const commodityProduceInventorySchema = yup.object({
+export const commodityProduceSchema = yup.object({
   year: yup.number().default(new Date().getFullYear()),
   farmId: yup.string().label('Farm').required().default(''),
   commodityId: yup.string().label('Commodity').required().default(''),
@@ -9,6 +9,6 @@ export const commodityProduceInventorySchema = yup.object({
   areaUsed: yup.number().default(0),
 })
 
-export type ICommodityProduceInventorySchema = yup.InferType<
-  typeof commodityProduceInventorySchema
+export type ICommodityProduceSchema = yup.InferType<
+  typeof commodityProduceSchema
 >

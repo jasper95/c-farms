@@ -22,11 +22,21 @@ export type CommodityOptionsQuery = {
   }>
 }
 
+export type FarmOptionsQueryVariables = Types.Exact<{
+  where?: Types.InputMaybe<Types.FarmBoolExp>
+  orderBy?: Types.InputMaybe<Array<Types.FarmOrderBy> | Types.FarmOrderBy>
+  offset?: Types.InputMaybe<Types.Scalars['Int']>
+  limit?: Types.InputMaybe<Types.Scalars['Int']>
+}>
+
+export type FarmOptionsQuery = {
+  __typename?: 'query_root'
+  list: Array<{ __typename?: 'Farm'; id: any; name: string }>
+}
+
 export type CommodityProduceListQueryVariables = Types.Exact<{
-  where?: Types.InputMaybe<Types.CommodityProduceBoolExp>
-  orderBy?: Types.InputMaybe<
-    Array<Types.CommodityProduceOrderBy> | Types.CommodityProduceOrderBy
-  >
+  where?: Types.InputMaybe<Types.ProduceBoolExp>
+  orderBy?: Types.InputMaybe<Array<Types.ProduceOrderBy> | Types.ProduceOrderBy>
   offset?: Types.InputMaybe<Types.Scalars['Int']>
   limit?: Types.InputMaybe<Types.Scalars['Int']>
 }>
@@ -34,20 +44,45 @@ export type CommodityProduceListQueryVariables = Types.Exact<{
 export type CommodityProduceListQuery = {
   __typename?: 'query_root'
   list: Array<{
-    __typename?: 'CommodityProduce'
-    id: any
-    areaUsed: any
-    organicPractitioner: boolean
+    __typename?: 'Produce'
+    id?: any | null | undefined
+    areaUsed?: any | null | undefined
+    commodityName?: string | null | undefined
+    createdAt?: any | null | undefined
+    farmName?: string | null | undefined
+    organicPractitioner?: boolean | null | undefined
     produce?: any | null | undefined
-    year: number
+    year?: number | null | undefined
   }>
   meta: {
-    __typename?: 'CommodityProduceAggregate'
+    __typename?: 'ProduceAggregate'
     aggregate?:
-      | { __typename?: 'CommodityProduceAggregateFields'; count: number }
+      | { __typename?: 'ProduceAggregateFields'; count: number }
       | null
       | undefined
   }
+}
+
+export type CommodityProduceDetailsQueryVariables = Types.Exact<{
+  id: Types.Scalars['uuid']
+}>
+
+export type CommodityProduceDetailsQuery = {
+  __typename?: 'query_root'
+  details?:
+    | {
+        __typename?: 'CommodityProduce'
+        id: any
+        commodityId: any
+        farmId: any
+        produce?: any | null | undefined
+        organicPractitioner: boolean
+        householdId: any
+        year: number
+        areaUsed: any
+      }
+    | null
+    | undefined
 }
 
 export const CommodityOptionsDocument = gql`
@@ -78,14 +113,41 @@ export function useCommodityOptionsQuery(
     ...options,
   })
 }
-export const CommodityProduceListDocument = gql`
-  query CommodityProduceList(
-    $where: CommodityProduceBoolExp
-    $orderBy: [CommodityProduceOrderBy!]
+export const FarmOptionsDocument = gql`
+  query FarmOptions(
+    $where: FarmBoolExp
+    $orderBy: [FarmOrderBy!]
     $offset: Int
     $limit: Int
   ) {
-    list: commodityProduce(
+    list: farm(
+      where: $where
+      orderBy: $orderBy
+      offset: $offset
+      limit: $limit
+    ) {
+      id
+      name
+    }
+  }
+`
+
+export function useFarmOptionsQuery(
+  options?: Omit<Urql.UseQueryArgs<FarmOptionsQueryVariables>, 'query'>
+) {
+  return Urql.useQuery<FarmOptionsQuery>({
+    query: FarmOptionsDocument,
+    ...options,
+  })
+}
+export const CommodityProduceListDocument = gql`
+  query CommodityProduceList(
+    $where: ProduceBoolExp
+    $orderBy: [ProduceOrderBy!]
+    $offset: Int
+    $limit: Int
+  ) {
+    list: produce(
       where: $where
       orderBy: $orderBy
       offset: $offset
@@ -93,11 +155,14 @@ export const CommodityProduceListDocument = gql`
     ) {
       id
       areaUsed
+      commodityName
+      createdAt
+      farmName
       organicPractitioner
       produce
       year
     }
-    meta: commodityProduceAggregate(where: $where) {
+    meta: produceAggregate(where: $where) {
       aggregate {
         count
       }
@@ -110,6 +175,32 @@ export function useCommodityProduceListQuery(
 ) {
   return Urql.useQuery<CommodityProduceListQuery>({
     query: CommodityProduceListDocument,
+    ...options,
+  })
+}
+export const CommodityProduceDetailsDocument = gql`
+  query CommodityProduceDetails($id: uuid!) {
+    details: commodityProduceByPk(id: $id) {
+      id
+      commodityId
+      farmId
+      produce
+      organicPractitioner
+      householdId
+      year
+      areaUsed
+    }
+  }
+`
+
+export function useCommodityProduceDetailsQuery(
+  options: Omit<
+    Urql.UseQueryArgs<CommodityProduceDetailsQueryVariables>,
+    'query'
+  >
+) {
+  return Urql.useQuery<CommodityProduceDetailsQuery>({
+    query: CommodityProduceDetailsDocument,
     ...options,
   })
 }
