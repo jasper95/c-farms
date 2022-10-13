@@ -1,5 +1,5 @@
 import { Dispatch, ReactNode } from 'react'
-import { TableAction, TableState } from './table-reducer'
+import { IFilter, TableAction, TableState } from './table-reducer'
 
 export type ColumnSort = {
   column: string
@@ -8,6 +8,10 @@ export type ColumnSort = {
 
 export interface Identifiable {
   id: any
+}
+
+export interface DataTableFilter<T extends Identifiable> extends IFilter {
+  field: keyof T & string
 }
 
 export type DataTableColumn<T extends Identifiable> = {

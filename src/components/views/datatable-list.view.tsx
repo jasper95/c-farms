@@ -10,12 +10,14 @@ import { Identifiable } from '@/components/data-table/types'
 import pick from 'lodash/pick'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-import FilterListIcon from '@mui/icons-material/FilterList'
+import ListFilter from '@/components/list-filter'
+import { FilterValuesList } from '../list-filter/filter-values-list'
 
 interface DatatableListViewProps<
   QueryResponse extends Identifiable,
-  QueryVariables
-> extends UseListViewProps<QueryResponse, QueryVariables> {
+  QueryVariables extends Record<string, any>,
+  T extends Identifiable
+> extends UseListViewProps<QueryResponse, QueryVariables, T> {
   name: string
   readOnly?: boolean
   onCreate?: () => void
@@ -23,18 +25,21 @@ interface DatatableListViewProps<
 
 export default function DatatableListView<
   QueryResponse extends Identifiable,
-  QueryVariables
->(props: DatatableListViewProps<QueryResponse, QueryVariables>) {
-  const { tableProps, onSearchChanged, baseUrl } = useListViewHook(
+  QueryVariables extends Record<string, any>,
+  T extends Identifiable
+>(props: DatatableListViewProps<QueryResponse, QueryVariables, T>) {
+  const { tableProps, onSearchChanged, baseUrl, filters } = useListViewHook(
     pick(
       props,
       'listQueryVariables',
       'useListQueryHook',
       'columns',
       'onEdit',
-      'baseUrl'
+      'baseUrl',
+      'filters'
     )
   )
+  const { tableState, tableDispatch } = tableProps
   const { name, onCreate, readOnly } = props
   const buttonProps = onCreate
     ? {
@@ -46,44 +51,43 @@ export default function DatatableListView<
       }
   return (
     <Box>
-      <Box sx={{ mb: 2 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={8}>
-            <Grid container>
-              <Grid item xs={6}>
-                <SearchBar onChange={onSearchChanged} />
-              </Grid>
+      <Grid sx={{ mb: 2 }} container alignItems="center" spacing={2}>
+        <Grid item xs={12} md={8} lg={10}>
+          <Grid container>
+            <Grid item xs={12} md={12} lg={6}>
+              <SearchBar onChange={onSearchChanged} />
             </Grid>
           </Grid>
-          <Grid item xs={4}>
-            <Grid
-              container
-              justifyContent="flex-end"
-              alignItems="center"
-              xs={12}
-            >
-              <Button sx={{ mr: 1 }} startIcon={<FilterListIcon />}>
-                Filter
-              </Button>
+        </Grid>
+        {!readOnly && (
+          <Grid item xs={12} md={4} lg={2}>
+            <Grid container justifyContent="flex-end">
               <Button {...buttonProps} variant="contained" color="primary">
                 Create {name}
               </Button>
             </Grid>
           </Grid>
-        </Grid>
-      </Box>
-      {/* <div className="grid grid-cols-12 gap-4 pb-4">
-        <div className="col-span-full md:col-span-4 flex items-center">
-          <SearchBar onChange={onSearchChanged} />
-        </div>
-        {!readOnly && (
-          <div className="col-span-full col-start-0 md:col-span-4 md:col-start-9">
-            <Button {...buttonProps} variant="contained" color="primary">
-              Create {name}
-            </Button>
-          </div>
         )}
-      </div> */}
+      </Grid>
+      {filters && (
+        <Grid container sx={{ mb: 2 }}>
+          <Grid item xs={12} md={8} lg={10}>
+            <ListFilter
+              filterValues={tableState.filters}
+              setFilterValues={(filters) =>
+                tableDispatch({ type: 'SetFilters', payload: filters })
+              }
+              filters={filters}
+            />
+            <FilterValuesList
+              filterValues={tableState.filters}
+              setFilterValues={(filters) =>
+                tableDispatch({ type: 'SetFilters', payload: filters })
+              }
+            />
+          </Grid>
+        </Grid>
+      )}
       <DataTable {...tableProps} showPagination />
     </Box>
   )

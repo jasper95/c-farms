@@ -6,7 +6,7 @@ import { useMemo } from 'react'
 import keyBy from 'lodash/keyBy'
 
 function SelectField<T extends FieldValues>(props: ISelectFieldProps<T>) {
-  const { options, label, placeholder, control, name, ...restProps } = props
+  const { options, label, placeholder, control, name, sx } = props
   const controller = useController({
     control,
     name,
@@ -16,6 +16,7 @@ function SelectField<T extends FieldValues>(props: ISelectFieldProps<T>) {
   const optionsMap = useMemo(() => keyBy(options, 'value'), [options])
   return (
     <Autocomplete
+      sx={sx}
       disableClearable
       options={options.map((e) => e.value)}
       getOptionLabel={(e) => optionsMap[`${e}`]?.label ?? ''}

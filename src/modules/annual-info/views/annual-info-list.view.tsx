@@ -42,10 +42,8 @@ export function AnnualInfoListView() {
       onCreate={onClickCreate}
       onEdit={onClickEdit}
       listQueryVariables={{
-        where: {
-          householdId: {
-            _eq: householdId,
-          },
+        householdId: {
+          _eq: householdId,
         },
       }}
       useListQueryHook={useAnnualInfoListQuery}

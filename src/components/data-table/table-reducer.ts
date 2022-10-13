@@ -1,4 +1,23 @@
+import { FieldTypeEnum } from '../list-filter/field-type.enum'
+import { FilterTypeEnum } from '../list-filter/filter-type.enum'
 import { ColumnSort, Identifiable } from './types'
+
+export interface IFilter {
+  type: FieldTypeEnum
+  field: string
+  label: string
+  options?: { label: string; value: string }[]
+}
+
+export interface IFilterValue {
+  id: string
+  type: FilterTypeEnum
+  value: any
+  typeLabel: string
+  label: string
+  field: string
+  fieldType: FieldTypeEnum
+}
 
 export type TableState = {
   size: number
@@ -7,6 +26,7 @@ export type TableState = {
   sort: ColumnSort[]
   selected: string[]
   search: string
+  filters: IFilterValue[]
 }
 
 export const tableInitialState: TableState = {
@@ -16,6 +36,7 @@ export const tableInitialState: TableState = {
   selected: [],
   search: '',
   total: 0,
+  filters: [],
 }
 
 export type RowSelectionPayload<T extends Identifiable> = {
@@ -45,6 +66,7 @@ export default function tableReducer<T extends Identifiable>(
     SetPage: 'page',
     SetSelected: 'selected',
     SetTotal: 'total',
+    SetFilters: 'filters',
   }
   const key = keyMappings[action.type]
   if (action.type === 'SetSelected') {
@@ -70,3 +92,4 @@ export type TableAction<T extends Identifiable> =
   | { type: 'ResetSelected' }
   | { type: 'SetSearch'; payload: string }
   | { type: 'SetTotal'; payload: number }
+  | { type: 'SetFilters'; payload: IFilterValue[] }

@@ -1,6 +1,9 @@
 import Breadcrumbs from '@/components/breadcrumbs'
 import { Dashboard } from '@/components/layout/dashboard.layout'
-import { householdListColumns } from '@/modules/household/constants'
+import {
+  householdListColumns,
+  householdListFilters,
+} from '@/modules/household/constants'
 import { useHouseholdListQuery } from '@/modules/household/api/queries'
 import DatatableListView from '@/components/views/datatable-list.view'
 
@@ -13,6 +16,7 @@ export function HouseholdListView() {
         useListQueryHook={useHouseholdListQuery}
         columns={householdListColumns}
         name="Household"
+        filters={householdListFilters}
       />
     </Dashboard>
   )
