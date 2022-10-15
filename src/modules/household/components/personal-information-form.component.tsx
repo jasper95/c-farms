@@ -11,6 +11,7 @@ import RadioSelect from '@/components/radio-select'
 import SelectField from '@/components/select-field'
 import DatePicker from '@/components/date-picker'
 import { UseFormReturn, useWatch } from 'react-hook-form'
+import { InputAdornment } from '@mui/material'
 
 interface IPersonalInformationFormProps {
   formProps: UseFormReturn<IPersonalInformationSchema>
@@ -79,7 +80,12 @@ export function PersonalInformationForm(props: IPersonalInformationFormProps) {
         <TextField control={control} label="Region" name="region" />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField control={control} label="Contact No." name="contactNumber" />
+        <TextField
+          control={control}
+          placeholder="09xxxxxxxxx"
+          label="Contact No."
+          name="contactNumber"
+        />
       </Grid>
       <Grid item xs={12}>
         <Divider />

@@ -3,7 +3,7 @@ import { ITextFieldProps } from './interface'
 import { FieldValues, useController } from 'react-hook-form'
 
 function TextField<T extends FieldValues>(props: ITextFieldProps<T>) {
-  const { label, placeholder, control, name, ...restProps } = props
+  const { label, placeholder, control, name, InputProps, ...restProps } = props
   const controller = useController({
     control,
     name,
@@ -12,6 +12,7 @@ function TextField<T extends FieldValues>(props: ITextFieldProps<T>) {
   return (
     <MuiTextField
       InputProps={{
+        ...(InputProps && InputProps),
         ...field,
         value: field.value || '',
       }}

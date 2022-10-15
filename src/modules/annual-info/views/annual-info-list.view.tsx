@@ -15,6 +15,7 @@ import {
 } from '@/modules/annual-info/api/mutations'
 import { useEditDialogHook } from '@/lib/hooks/use-edit-dialog.hook'
 import { AnnualInfoForm } from '@/modules/household/components'
+import { annualInfoListFilters } from '../constants/annual-info-list-filters'
 
 const name = 'Annual Info'
 export function AnnualInfoListView() {
@@ -48,6 +49,7 @@ export function AnnualInfoListView() {
       }}
       useListQueryHook={useAnnualInfoListQuery}
       columns={annualInfoListColumns}
+      filters={annualInfoListFilters}
     />
   )
 }

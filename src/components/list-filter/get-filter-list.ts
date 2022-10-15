@@ -73,7 +73,7 @@ export function getFilterList(type: FieldTypeEnum) {
           value: FilterTypeEnum.LessThan,
         },
         {
-          label: 'is less than or equal to',
+          label: 'is greater than or equal to',
           value: FilterTypeEnum.GreaterThanEqual,
         },
       ]
