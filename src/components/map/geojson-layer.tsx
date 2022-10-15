@@ -69,6 +69,7 @@ export default function GeoJsonLayer<T>(props: IGeoJsonLayerProps<T>) {
               }}
               icon={
                 new L.DivIcon({
+                  className: '',
                   iconAnchor: [0, 24],
                   popupAnchor: [0, -36],
                   html: createCustomMarker(

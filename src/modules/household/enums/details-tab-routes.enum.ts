@@ -3,4 +3,5 @@ export enum HouseholdDetailsRoutesEnum {
   Secondary = 'secondary',
   AnnualInfo = 'annual-info',
   CommodityProduce = 'commodity-produce-inventory',
+  Farm = 'farm',
 }

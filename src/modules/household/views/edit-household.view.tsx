@@ -6,6 +6,7 @@ import { CommodityProduceInventoryListView } from '@/modules/commodity-produce/v
 import {
   EditHouseholdDetails,
   EditOtherDetails,
+  HouseholdFarmList,
 } from '@/modules/household/components'
 import { HouseholdDetailsRoutesEnum } from '@/modules/household/enums'
 import { householdDetailsTab } from '@/modules/household/constants'
@@ -28,6 +29,7 @@ export function EditHouseholdView() {
         {tab === HouseholdDetailsRoutesEnum.CommodityProduce && (
           <CommodityProduceInventoryListView />
         )}
+        {tab === HouseholdDetailsRoutesEnum.Farm && <HouseholdFarmList />}
       </DetailsTabsLayout>
     </Dashboard>
   )

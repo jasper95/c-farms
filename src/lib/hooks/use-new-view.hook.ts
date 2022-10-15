@@ -28,6 +28,7 @@ export interface UseNewViewProps<
   schema: ObjectSchema<T>
   transform?: (arg: AssertsShape<T>) => MutationPayload
   params?: Partial<MutationPayload>
+  initialValues?: Partial<T>
 }
 
 export function useNewViewHook<
@@ -43,11 +44,12 @@ export function useNewViewHook<
     name,
     redirectBaseUrl,
     params,
+    initialValues = {},
   } = props
   const [createMutationResponse, onCreate] = useMutationHook()
   const router = useRouter()
   const formProps = useForm({
-    defaultValues: schema.cast({}) as DeepPartial<AssertsShape<T>>,
+    defaultValues: schema.cast(initialValues) as DeepPartial<AssertsShape<T>>,
     resolver: yupResolver(schema, { abortEarly: false }),
   })
 
