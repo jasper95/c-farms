@@ -1,5 +1,3 @@
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Link from '@/components/link'

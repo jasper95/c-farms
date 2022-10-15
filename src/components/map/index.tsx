@@ -17,6 +17,7 @@ export default function Map<T>(props: IMapProps<T>) {
     popupComponent,
     popupData,
     height = 'calc(100vh - 220px)',
+    zoom = 18,
   } = props
 
   const [geoJsonKey, setGeoJsonKey] = useState(1)
@@ -28,7 +29,7 @@ export default function Map<T>(props: IMapProps<T>) {
     <div>
       <MapContainer
         center={[9.818660000000023, 124.4955900000001]}
-        zoom={18}
+        zoom={zoom}
         scrollWheelZoom={false}
         style={{ height, width: '100%' }}
       >
@@ -59,7 +60,7 @@ export default function Map<T>(props: IMapProps<T>) {
         <GeoJsonLayer
           popupComponent={popupComponent}
           key={geoJsonKey}
-          initialZoom={18}
+          initialZoom={zoom}
           layers={layers}
           popupData={popupData}
         />

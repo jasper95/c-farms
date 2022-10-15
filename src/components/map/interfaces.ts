@@ -1,5 +1,5 @@
 import { Feature } from 'geojson'
-import { DrawOptions } from 'leaflet'
+import { DrawOptions, LatLngExpression } from 'leaflet'
 import { EditControlProps } from 'react-leaflet-draw'
 import { IControlHandlerProps } from './consts'
 import { Control } from 'leaflet'
@@ -12,6 +12,7 @@ export interface IMapProps<T> {
   popupData?: T[]
   popupComponent?: ComponentType<{ data: T }>
   height?: string
+  zoom?: number
 }
 
 export type IEditControlProps = EditControlProps &
@@ -26,4 +27,10 @@ export type IGeoJsonLayerProps<T> = {
   initialZoom: number
   popupData?: T[]
   popupComponent?: ComponentType<{ data: T }>
+  getMarkerColor?: (arg: T) => string
+}
+
+export type PopupState<T> = {
+  data: T
+  position: LatLngExpression
 }

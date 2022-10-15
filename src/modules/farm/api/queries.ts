@@ -36,6 +36,9 @@ export type FarmListQuery = {
     id: any
     location?: any | null | undefined
     name: string
+    sizeInHaTotal: any
+    ownerName: string
+    ownershipType: string
     household: {
       __typename?: 'Household'
       id: any
@@ -128,6 +131,9 @@ export const FarmListDocument = gql`
         firstName
         lastName
       }
+      sizeInHaTotal
+      ownerName
+      ownershipType
     }
     meta: farmAggregate(where: $where) {
       aggregate {

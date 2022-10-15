@@ -12,6 +12,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import { useSearch } from './use-search.hook'
 import transformFilter from '../utils/transform-filter'
 import * as Types from '@/lib/generated/graphql.types'
+import { OrderBy } from '@/lib/generated/graphql.types'
 
 export type BaseListQuery<ListRow> = {
   list: Array<ListRow>
@@ -39,13 +40,7 @@ export interface ListPagination {
   limit: number
   offset: number
   orderBy: {
-    [key in string]:
-      | 'ASC'
-      | 'ASC_NULLS_FIRST'
-      | 'ASC_NULLS_LAST'
-      | 'DESC'
-      | 'DESC_NULLS_FIRST'
-      | 'DESC_NULLS_LAST'
+    [key in string]: OrderBy
   }
 }
 export interface UseListViewProps<
@@ -89,7 +84,7 @@ export function useListViewHook<
       limit: tableState.size,
       offset: tableState.page * tableState.size,
       orderBy: {
-        createdAt: 'DESC',
+        createdAt: OrderBy.Desc,
       },
       where: {
         ...listQueryVariables,

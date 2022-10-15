@@ -31,6 +31,9 @@ query FarmList(
       firstName
       lastName
     }
+    sizeInHaTotal
+    ownerName
+    ownershipType
   }
   meta: farmAggregate(where: $where) {
     aggregate {

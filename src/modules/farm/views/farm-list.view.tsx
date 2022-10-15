@@ -3,10 +3,7 @@ import { Dashboard } from '@/components/layout/dashboard.layout'
 import { useFarmListQuery } from '@/modules/farm/api/queries'
 import DatatableListView from '@/components/views/datatable-list.view'
 import { farmListColumns } from '../constants'
-import {
-  FarmMapTableComponent,
-  FarmMapTableCustomActions,
-} from '../components/farm-map-table.component'
+import { FarmMapTableComponent, FarmMapTableActions } from '../components'
 
 export function FarmListView() {
   return (
@@ -17,7 +14,7 @@ export function FarmListView() {
         useListQueryHook={useFarmListQuery}
         columns={farmListColumns}
         component={FarmMapTableComponent}
-        customActions={FarmMapTableCustomActions}
+        customActions={FarmMapTableActions}
         name="Farm"
       />
     </Dashboard>
