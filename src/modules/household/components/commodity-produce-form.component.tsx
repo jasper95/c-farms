@@ -8,6 +8,7 @@ import YearPicker from '@/components/year-picker'
 import { ICommodityProduceSchema } from '@/modules/commodity-produce/constants'
 import { useCommodityProduceFormHook } from '@/modules/commodity-produce/hooks/commodity-produce-form.hook'
 import SwitchField from '@/components/switch-field'
+import InputAdornment from '@mui/material/InputAdornment'
 
 interface ICommodityProduceFormProps {
   formProps: UseFormReturn<ICommodityProduceSchema>
@@ -60,6 +61,9 @@ export function CommodityProduceForm(props: ICommodityProduceFormProps) {
           control={control}
           name="areaUsed"
           type="number"
+          InputProps={{
+            endAdornment: <InputAdornment position="end">ha</InputAdornment>,
+          }}
         />
       </Grid>
     </Grid>

@@ -13,6 +13,7 @@ import {
 } from '@/modules/program/api/queries'
 import ProgramForm from '@/modules/program/components/program-form.component'
 import { programListColumns, programSchema } from '@/modules/program/constants'
+import { programListFilters } from '../constants/program-list-filters'
 
 const name = 'Program'
 export function ProgramListView() {
@@ -55,6 +56,7 @@ export function ProgramListView() {
         name="Program"
         onCreate={onClickCreate}
         onEdit={onClickEdit}
+        filters={programListFilters}
       />
     </Dashboard>
   )
