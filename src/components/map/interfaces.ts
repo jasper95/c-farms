@@ -10,7 +10,7 @@ export interface IMapProps<T> {
   onCreateFeature?: (arg: any) => void
   isEditable?: boolean
   popupData?: T[]
-  popupComponent?: ComponentType<{ data: any }>
+  popupComponent?: ComponentType<{ data: T }>
   height?: string
 }
 
@@ -25,5 +25,5 @@ export type IGeoJsonLayerProps<T> = {
   layers: Feature[]
   initialZoom: number
   popupData?: T[]
-  popupComponent?: ComponentType<{ data: any }>
+  popupComponent?: ComponentType<{ data: T }>
 }

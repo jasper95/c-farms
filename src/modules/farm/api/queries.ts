@@ -52,6 +52,33 @@ export type FarmListQuery = {
   }
 }
 
+export type FarmDetailsQueryVariables = Types.Exact<{
+  id: Types.Scalars['uuid']
+}>
+
+export type FarmDetailsQuery = {
+  __typename?: 'query_root'
+  details?:
+    | {
+        __typename?: 'Farm'
+        id: any
+        ownerName: string
+        ownershipDocument: string
+        ownershipType: string
+        name: string
+        barangay: string
+        municipality: string
+        farmType: string
+        sizeInHaTotal: any
+        isAgrarianReformBeneficiary: boolean
+        withinAncestralDomain: boolean
+        location?: any | null | undefined
+        householdId: any
+      }
+    | null
+    | undefined
+}
+
 export const HouseholdOptionsDocument = gql`
   query HouseholdOptions(
     $where: HouseholdBoolExp
@@ -114,4 +141,32 @@ export function useFarmListQuery(
   options?: Omit<Urql.UseQueryArgs<FarmListQueryVariables>, 'query'>
 ) {
   return Urql.useQuery<FarmListQuery>({ query: FarmListDocument, ...options })
+}
+export const FarmDetailsDocument = gql`
+  query FarmDetails($id: uuid!) {
+    details: farmByPk(id: $id) {
+      id
+      ownerName
+      ownershipDocument
+      ownershipType
+      name
+      barangay
+      municipality
+      farmType
+      sizeInHaTotal
+      isAgrarianReformBeneficiary
+      withinAncestralDomain
+      location
+      householdId
+    }
+  }
+`
+
+export function useFarmDetailsQuery(
+  options: Omit<Urql.UseQueryArgs<FarmDetailsQueryVariables>, 'query'>
+) {
+  return Urql.useQuery<FarmDetailsQuery>({
+    query: FarmDetailsDocument,
+    ...options,
+  })
 }

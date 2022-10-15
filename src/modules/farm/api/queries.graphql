@@ -38,3 +38,21 @@ query FarmList(
     }
   }
 }
+
+query FarmDetails($id: uuid!) {
+  details: farmByPk(id: $id) {
+    id
+    ownerName
+    ownershipDocument
+    ownershipType
+    name
+    barangay
+    municipality
+    farmType
+    sizeInHaTotal
+    isAgrarianReformBeneficiary
+    withinAncestralDomain
+    location
+    householdId
+  }
+}

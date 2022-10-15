@@ -1,1 +1,1 @@
-export { FarmListView as default } from '@/modules/farm/view'
+export { FarmListView as default } from '@/modules/farm/views'

@@ -6,12 +6,13 @@ import {
   UseListViewProps,
   useListViewHook,
 } from '@/lib/hooks/use-list-view.hook'
-import { Identifiable } from '@/components/data-table/types'
+import { DataTableProps, Identifiable } from '@/components/data-table/types'
 import pick from 'lodash/pick'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Unstable_Grid2'
 import ListFilter from '@/components/list-filter'
 import { FilterValuesList } from '@/components/list-filter/filter-values-list'
+import { ComponentType, ReactNode } from 'react'
 
 interface DatatableListViewProps<
   QueryResponse extends Identifiable,
@@ -21,6 +22,10 @@ interface DatatableListViewProps<
   name: string
   readOnly?: boolean
   onCreate?: () => void
+  component?: ComponentType<DataTableProps<QueryResponse>>
+  customActions?: ComponentType<
+    Pick<DataTableProps<QueryResponse>, 'tableDispatch' | 'tableState'>
+  >
 }
 
 export default function DatatableListView<
@@ -28,6 +33,10 @@ export default function DatatableListView<
   QueryVariables extends Record<string, any>,
   T extends Identifiable
 >(props: DatatableListViewProps<QueryResponse, QueryVariables, T>) {
+  const {
+    component: ListComponent = DataTable,
+    customActions: CustomActions = () => null,
+  } = props
   const { tableProps, onSearchChanged, baseUrl, filters } = useListViewHook(
     pick(
       props,
@@ -41,14 +50,6 @@ export default function DatatableListView<
   )
   const { tableState, tableDispatch } = tableProps
   const { name, onCreate, readOnly } = props
-  const buttonProps = onCreate
-    ? {
-        onClick: onCreate,
-      }
-    : {
-        LinkComponent: Link,
-        href: `${baseUrl}/new`,
-      }
   return (
     <Box>
       <Grid sx={{ mb: 2 }} container spacing={2}>
@@ -83,7 +84,21 @@ export default function DatatableListView<
             xsOffset="auto"
           >
             <Grid>
-              <Button {...buttonProps} variant="contained" color="primary">
+              <CustomActions
+                {...pick(tableProps, 'tableState', 'tableDispatch')}
+              />
+              <Button
+                {...(onCreate
+                  ? {
+                      onClick: onCreate,
+                    }
+                  : {
+                      LinkComponent: Link,
+                      href: `${baseUrl}/new`,
+                    })}
+                variant="contained"
+                color="primary"
+              >
                 Create {name}
               </Button>
             </Grid>
@@ -100,7 +115,7 @@ export default function DatatableListView<
           </Grid>
         )}
       </Grid>
-      <DataTable {...tableProps} showPagination />
+      <ListComponent {...tableProps} showPagination />
     </Box>
   )
 }

@@ -3,3 +3,9 @@ mutation CreateFarm($object: FarmInsertInput!) {
     id
   }
 }
+
+mutation UpdateFarm($object: FarmSetInput, $id: FarmPkColumnsInput!) {
+  data: updateFarmByPk(_set: $object, pk_columns: $id) {
+    id
+  }
+}

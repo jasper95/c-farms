@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react'
 import L from 'leaflet'
 import MarkerClusterGroup from './marker-clusterer'
 
-export default function GeoJsonLayer<T = any>(props: IGeoJsonLayerProps<T>) {
+export default function GeoJsonLayer<T>(props: IGeoJsonLayerProps<T>) {
   const {
     layers,
     initialZoom,
@@ -39,13 +39,7 @@ export default function GeoJsonLayer<T = any>(props: IGeoJsonLayerProps<T>) {
   return (
     <>
       {layers.map((layer, key) => (
-        <GeoJSON
-          pointToLayer={(feature, latlng) => {
-            return L.circleMarker(latlng)
-          }}
-          key={key}
-          data={layer}
-        >
+        <GeoJSON key={key} data={layer}>
           {popupData && PopupComponent && (
             <Popup>
               <PopupComponent data={popupData[key] as T} />

@@ -2,7 +2,7 @@ import { HouseholdDetailsRoutesEnum } from '@/modules/household/enums'
 
 export const householdDetailsTab = [
   {
-    label: 'Primary',
+    label: 'Details',
     value: HouseholdDetailsRoutesEnum.Primary,
   },
   {

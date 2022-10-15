@@ -1,6 +1,6 @@
 import { FieldTypeEnum } from '../list-filter/field-type.enum'
 import { FilterTypeEnum } from '../list-filter/filter-type.enum'
-import { ColumnSort, Identifiable } from './types'
+import { ColumnSort } from './types'
 
 export interface IFilter {
   type: FieldTypeEnum
@@ -27,6 +27,7 @@ export type TableState = {
   selected: string[]
   search: string
   filters: IFilterValue[]
+  metadata: Record<string, any>
 }
 
 export const tableInitialState: TableState = {
@@ -37,17 +38,18 @@ export const tableInitialState: TableState = {
   search: '',
   total: 0,
   filters: [],
+  metadata: {},
 }
 
-export type RowSelectionPayload<T extends Identifiable> = {
+export type RowSelectionPayload = {
   index: number
   checked: boolean
-  rows: T[]
+  rows: string[]
 }
 
-export default function tableReducer<T extends Identifiable>(
+export default function tableReducer(
   state: TableState,
-  action: TableAction<T>
+  action: TableAction
 ): TableState {
   if (action.type === 'SetSearch') {
     return {
@@ -67,6 +69,7 @@ export default function tableReducer<T extends Identifiable>(
     SetSelected: 'selected',
     SetTotal: 'total',
     SetFilters: 'filters',
+    SetMetadata: 'metadata',
   }
   const key = keyMappings[action.type]
   if (action.type === 'SetSelected') {
@@ -74,9 +77,9 @@ export default function tableReducer<T extends Identifiable>(
     const { selected } = state
     let arr = []
     if (index === 0) {
-      arr = checked ? rows.map((e) => e.id) : []
+      arr = checked ? rows : []
     } else {
-      const { id } = rows[index - 1] as T
+      const id = rows[index - 1]
       arr = checked ? [...selected, id] : selected.filter((e) => e !== id)
     }
     return { ...state, [key]: arr }
@@ -84,12 +87,13 @@ export default function tableReducer<T extends Identifiable>(
   return { ...state, [key]: action.payload }
 }
 
-export type TableAction<T extends Identifiable> =
+export type TableAction =
   | { type: 'SetSize'; payload: number }
   | { type: 'SetPage'; payload: number }
   | { type: 'SetSort'; payload: ColumnSort }
-  | { type: 'SetSelected'; payload: RowSelectionPayload<T> }
+  | { type: 'SetSelected'; payload: RowSelectionPayload }
   | { type: 'ResetSelected' }
   | { type: 'SetSearch'; payload: string }
   | { type: 'SetTotal'; payload: number }
   | { type: 'SetFilters'; payload: IFilterValue[] }
+  | { type: 'SetMetadata'; payload: Record<string, any> }

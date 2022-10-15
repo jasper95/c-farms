@@ -3,11 +3,11 @@ import Link from '@/components/link'
 import { useRouter } from 'next/dist/client/router'
 import Box from '@mui/material/Box'
 
+export type BreadCrumb = {
+  name: string
+}
 type IBreadcrumbsProps = {
-  crumbs: {
-    name: string
-    link?: string
-  }[]
+  crumbs: BreadCrumb[]
 }
 export default function Breadcrumbs(props: IBreadcrumbsProps) {
   const { crumbs } = props
@@ -24,7 +24,7 @@ export default function Breadcrumbs(props: IBreadcrumbsProps) {
         {crumbs.map((crumb, i) => (
           <Link
             key={crumb.name}
-            href={crumb.link ?? links[i] ?? ''}
+            href={links[i] ?? ''}
             passHref
             variant="h6"
             underline="none"

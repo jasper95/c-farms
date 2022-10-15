@@ -56,7 +56,7 @@ export type DataTableProps<T extends Identifiable> = {
   pageSizes: number[]
   showPagination?: boolean
   tableState?: TableState
-  tableDispatch?: Dispatch<TableAction<T>>
+  tableDispatch?: Dispatch<TableAction>
   isLoading?: boolean
   rowClassName?: (row: T) => string
   checkedItems?: string[]

@@ -157,7 +157,10 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
 
   function onRowToggle(index: number, checked: boolean) {
     tableDispatch &&
-      tableDispatch({ type: 'SetSelected', payload: { index, checked, rows } })
+      tableDispatch({
+        type: 'SetSelected',
+        payload: { index, checked, rows: rows.map((e) => e.id) },
+      })
   }
 }
 

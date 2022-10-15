@@ -12,6 +12,16 @@ export type CreateFarmMutation = {
   data?: { __typename?: 'Farm'; id: any } | null | undefined
 }
 
+export type UpdateFarmMutationVariables = Types.Exact<{
+  object?: Types.InputMaybe<Types.FarmSetInput>
+  id: Types.FarmPkColumnsInput
+}>
+
+export type UpdateFarmMutation = {
+  __typename?: 'mutation_root'
+  data?: { __typename?: 'Farm'; id: any } | null | undefined
+}
+
 export const CreateFarmDocument = gql`
   mutation CreateFarm($object: FarmInsertInput!) {
     data: insertFarmOne(object: $object) {
@@ -23,5 +33,18 @@ export const CreateFarmDocument = gql`
 export function useCreateFarmMutation() {
   return Urql.useMutation<CreateFarmMutation, CreateFarmMutationVariables>(
     CreateFarmDocument
+  )
+}
+export const UpdateFarmDocument = gql`
+  mutation UpdateFarm($object: FarmSetInput, $id: FarmPkColumnsInput!) {
+    data: updateFarmByPk(_set: $object, pk_columns: $id) {
+      id
+    }
+  }
+`
+
+export function useUpdateFarmMutation() {
+  return Urql.useMutation<UpdateFarmMutation, UpdateFarmMutationVariables>(
+    UpdateFarmDocument
   )
 }
