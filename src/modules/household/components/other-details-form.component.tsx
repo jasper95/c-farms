@@ -119,6 +119,7 @@ export function OtherDetailsForm(props: IOtherDetailsFormProps) {
       <Grid item md={4} xs={12}>
         <TextField
           control={control}
+          placeholder="09xxxxxxxxx"
           label="Emergency Contact No."
           name="emergencyContactNumber"
         />

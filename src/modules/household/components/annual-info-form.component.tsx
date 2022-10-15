@@ -13,6 +13,7 @@ import { Option } from '@/components/creatable-select-field/interface'
 import MultiSelectField from '@/components/multi-select-field'
 import { IAnnualInfoSchema } from '@/modules/annual-info/constants'
 import YearPicker from '@/components/year-picker'
+import InputAdornment from '@mui/material/InputAdornment'
 
 interface IAnnualInfoFormProps {
   formProps: UseFormReturn<IAnnualInfoSchema>
@@ -36,6 +37,9 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
           label="Farming"
           name="grossAnnualIncomeFarming"
           type="number"
+          InputProps={{
+            startAdornment: <InputAdornment position="start">₱</InputAdornment>,
+          }}
         />
       </Grid>
       <Grid item md={6} xs={12}>
@@ -44,6 +48,9 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
           label="Non-farming"
           name="grossAnnualIncomeNonfarming"
           type="number"
+          InputProps={{
+            startAdornment: <InputAdornment position="start">₱</InputAdornment>,
+          }}
         />
       </Grid>
       <Grid item xs={12}>
