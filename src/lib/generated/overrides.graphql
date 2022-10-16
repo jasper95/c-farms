@@ -13,3 +13,15 @@ type Produce {
   produce: float8!
   year: Int!
 }
+
+type HouseholdBeneficiaries {
+  barangay: String!
+  farmSize: numeric!
+  firstName: String!
+  grossAnnualIncomeFarming: numeric!
+  grossAnnualIncomeNonfarming: numeric!
+  id: uuid!
+  lastName: String!
+  programIds(path: String): jsonb!
+  referenceNo: String!
+}

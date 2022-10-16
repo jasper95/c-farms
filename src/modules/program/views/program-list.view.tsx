@@ -28,23 +28,6 @@ export function ProgramListView() {
       dateEnd: dateRange[1],
     }),
   })
-  const { onClickEdit } = useEditDialogHook({
-    schema: programSchema,
-    useDetailsQueryHook: useProgramDetailsQuery,
-    useMutationHook: useUpdateProgramMutation,
-    name,
-    component: ProgramForm,
-    transform: ({ dateRange, ...a }) => ({
-      ...a,
-      dateStart: dateRange[0],
-      dateEnd: dateRange[1],
-    }),
-    transformResponse: ({ dateStart, dateEnd, ...restProps }) =>
-      programSchema.noUnknown().cast({
-        dateRange: [new Date(dateStart), new Date(dateEnd)],
-        ...restProps,
-      }),
-  })
 
   return (
     <Dashboard>
@@ -55,7 +38,6 @@ export function ProgramListView() {
         columns={programListColumns}
         name="Program"
         onCreate={onClickCreate}
-        onEdit={onClickEdit}
         filters={programListFilters}
       />
     </Dashboard>

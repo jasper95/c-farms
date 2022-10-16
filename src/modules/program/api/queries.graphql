@@ -32,3 +32,32 @@ query ProgramDetails($id: uuid!) {
     dateEnd
   }
 }
+
+query HouseholdBenificiariesList(
+  $where: HouseholdBeneficiariesBoolExp
+  $orderBy: [HouseholdBeneficiariesOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: householdBeneficiaries(
+    where: $where
+    orderBy: $orderBy
+    offset: $offset
+    limit: $limit
+  ) {
+    barangay
+    farmSize
+    firstName
+    grossAnnualIncomeFarming
+    grossAnnualIncomeNonfarming
+    id
+    lastName
+    programIds
+    referenceNo
+  }
+  meta: householdBeneficiariesAggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
