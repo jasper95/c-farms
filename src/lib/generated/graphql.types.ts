@@ -457,6 +457,97 @@ export type AssociationAggregateFieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']>
 }
 
+/** columns and relationships of "associationBeneficiaries" */
+export type AssociationBeneficiaries = {
+  __typename?: 'AssociationBeneficiaries'
+  active: Scalars['Boolean']
+  associationId: Scalars['uuid']
+  createdAt: Scalars['timestamp']
+  id: Scalars['uuid']
+  name: Scalars['String']
+  programId?: Maybe<Scalars['uuid']>
+}
+
+/** aggregated selection of "associationBeneficiaries" */
+export type AssociationBeneficiariesAggregate = {
+  __typename?: 'AssociationBeneficiariesAggregate'
+  aggregate?: Maybe<AssociationBeneficiariesAggregateFields>
+  nodes: Array<AssociationBeneficiaries>
+}
+
+/** aggregate fields of "associationBeneficiaries" */
+export type AssociationBeneficiariesAggregateFields = {
+  __typename?: 'AssociationBeneficiariesAggregateFields'
+  count: Scalars['Int']
+  max?: Maybe<AssociationBeneficiariesMaxFields>
+  min?: Maybe<AssociationBeneficiariesMinFields>
+}
+
+/** aggregate fields of "associationBeneficiaries" */
+export type AssociationBeneficiariesAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<AssociationBeneficiariesSelectColumn>>
+  distinct?: InputMaybe<Scalars['Boolean']>
+}
+
+/** Boolean expression to filter rows from the table "associationBeneficiaries". All fields are combined with a logical 'AND'. */
+export type AssociationBeneficiariesBoolExp = {
+  _and?: InputMaybe<Array<AssociationBeneficiariesBoolExp>>
+  _not?: InputMaybe<AssociationBeneficiariesBoolExp>
+  _or?: InputMaybe<Array<AssociationBeneficiariesBoolExp>>
+  active?: InputMaybe<BooleanComparisonExp>
+  associationId?: InputMaybe<UuidComparisonExp>
+  createdAt?: InputMaybe<TimestampComparisonExp>
+  id?: InputMaybe<UuidComparisonExp>
+  name?: InputMaybe<StringComparisonExp>
+  programId?: InputMaybe<UuidComparisonExp>
+}
+
+/** aggregate max on columns */
+export type AssociationBeneficiariesMaxFields = {
+  __typename?: 'AssociationBeneficiariesMaxFields'
+  associationId?: Maybe<Scalars['uuid']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  id?: Maybe<Scalars['uuid']>
+  name?: Maybe<Scalars['String']>
+  programId?: Maybe<Scalars['uuid']>
+}
+
+/** aggregate min on columns */
+export type AssociationBeneficiariesMinFields = {
+  __typename?: 'AssociationBeneficiariesMinFields'
+  associationId?: Maybe<Scalars['uuid']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  id?: Maybe<Scalars['uuid']>
+  name?: Maybe<Scalars['String']>
+  programId?: Maybe<Scalars['uuid']>
+}
+
+/** Ordering options when selecting data from "associationBeneficiaries". */
+export type AssociationBeneficiariesOrderBy = {
+  active?: InputMaybe<OrderBy>
+  associationId?: InputMaybe<OrderBy>
+  createdAt?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  name?: InputMaybe<OrderBy>
+  programId?: InputMaybe<OrderBy>
+}
+
+/** select columns of table "associationBeneficiaries" */
+export enum AssociationBeneficiariesSelectColumn {
+  /** column name */
+  Active = 'active',
+  /** column name */
+  AssociationId = 'associationId',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  ProgramId = 'programId',
+}
+
 /** Boolean expression to filter rows from the table "association". All fields are combined with a logical 'AND'. */
 export type AssociationBoolExp = {
   _and?: InputMaybe<Array<AssociationBoolExp>>
@@ -542,6 +633,87 @@ export type AssociationPkColumnsInput = {
   id: Scalars['uuid']
 }
 
+/** columns and relationships of "associationPrograms" */
+export type AssociationPrograms = {
+  __typename?: 'AssociationPrograms'
+  active: Scalars['Boolean']
+  createdAt: Scalars['timestamp']
+  id: Scalars['uuid']
+  name: Scalars['String']
+  programIds: Scalars['jsonb']
+}
+
+/** columns and relationships of "associationPrograms" */
+export type AssociationProgramsProgramIdsArgs = {
+  path?: InputMaybe<Scalars['String']>
+}
+
+/** aggregated selection of "associationPrograms" */
+export type AssociationProgramsAggregate = {
+  __typename?: 'AssociationProgramsAggregate'
+  aggregate?: Maybe<AssociationProgramsAggregateFields>
+  nodes: Array<AssociationPrograms>
+}
+
+/** aggregate fields of "associationPrograms" */
+export type AssociationProgramsAggregateFields = {
+  __typename?: 'AssociationProgramsAggregateFields'
+  count: Scalars['Int']
+  max?: Maybe<AssociationProgramsMaxFields>
+  min?: Maybe<AssociationProgramsMinFields>
+}
+
+/** aggregate fields of "associationPrograms" */
+export type AssociationProgramsAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<AssociationProgramsSelectColumn>>
+  distinct?: InputMaybe<Scalars['Boolean']>
+}
+
+/** Boolean expression to filter rows from the table "associationPrograms". All fields are combined with a logical 'AND'. */
+export type AssociationProgramsBoolExp = {
+  _and?: InputMaybe<Array<AssociationProgramsBoolExp>>
+  _not?: InputMaybe<AssociationProgramsBoolExp>
+  _or?: InputMaybe<Array<AssociationProgramsBoolExp>>
+  active?: InputMaybe<BooleanComparisonExp>
+  id?: InputMaybe<UuidComparisonExp>
+  name?: InputMaybe<StringComparisonExp>
+  programIds?: InputMaybe<JsonbComparisonExp>
+}
+
+/** aggregate max on columns */
+export type AssociationProgramsMaxFields = {
+  __typename?: 'AssociationProgramsMaxFields'
+  id?: Maybe<Scalars['uuid']>
+  name?: Maybe<Scalars['String']>
+}
+
+/** aggregate min on columns */
+export type AssociationProgramsMinFields = {
+  __typename?: 'AssociationProgramsMinFields'
+  id?: Maybe<Scalars['uuid']>
+  name?: Maybe<Scalars['String']>
+}
+
+/** Ordering options when selecting data from "associationPrograms". */
+export type AssociationProgramsOrderBy = {
+  active?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  name?: InputMaybe<OrderBy>
+  programIds?: InputMaybe<OrderBy>
+}
+
+/** select columns of table "associationPrograms" */
+export enum AssociationProgramsSelectColumn {
+  /** column name */
+  Active = 'active',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  ProgramIds = 'programIds',
+}
+
 /** select columns of table "association" */
 export enum AssociationSelectColumn {
   /** column name */
@@ -569,6 +741,134 @@ export type AssociationSetInput = {
   name?: InputMaybe<Scalars['String']>
   shortName?: InputMaybe<Scalars['String']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
+/** columns and relationships of "associationToProgram" */
+export type AssociationToProgram = {
+  __typename?: 'AssociationToProgram'
+  associationId: Scalars['uuid']
+  createdAt: Scalars['timestamp']
+  id: Scalars['uuid']
+  programId: Scalars['uuid']
+  remarks: Scalars['String']
+  updatedAt: Scalars['timestamp']
+}
+
+/** aggregated selection of "associationToProgram" */
+export type AssociationToProgramAggregate = {
+  __typename?: 'AssociationToProgramAggregate'
+  aggregate?: Maybe<AssociationToProgramAggregateFields>
+  nodes: Array<AssociationToProgram>
+}
+
+/** aggregate fields of "associationToProgram" */
+export type AssociationToProgramAggregateFields = {
+  __typename?: 'AssociationToProgramAggregateFields'
+  count: Scalars['Int']
+  max?: Maybe<AssociationToProgramMaxFields>
+  min?: Maybe<AssociationToProgramMinFields>
+}
+
+/** aggregate fields of "associationToProgram" */
+export type AssociationToProgramAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<AssociationToProgramSelectColumn>>
+  distinct?: InputMaybe<Scalars['Boolean']>
+}
+
+/** Boolean expression to filter rows from the table "associationToProgram". All fields are combined with a logical 'AND'. */
+export type AssociationToProgramBoolExp = {
+  _and?: InputMaybe<Array<AssociationToProgramBoolExp>>
+  _not?: InputMaybe<AssociationToProgramBoolExp>
+  _or?: InputMaybe<Array<AssociationToProgramBoolExp>>
+  associationId?: InputMaybe<UuidComparisonExp>
+  createdAt?: InputMaybe<TimestampComparisonExp>
+  id?: InputMaybe<UuidComparisonExp>
+  programId?: InputMaybe<UuidComparisonExp>
+  remarks?: InputMaybe<StringComparisonExp>
+  updatedAt?: InputMaybe<TimestampComparisonExp>
+}
+
+/** input type for inserting data into table "associationToProgram" */
+export type AssociationToProgramInsertInput = {
+  associationId?: InputMaybe<Scalars['uuid']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  id?: InputMaybe<Scalars['uuid']>
+  programId?: InputMaybe<Scalars['uuid']>
+  remarks?: InputMaybe<Scalars['String']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
+/** aggregate max on columns */
+export type AssociationToProgramMaxFields = {
+  __typename?: 'AssociationToProgramMaxFields'
+  associationId?: Maybe<Scalars['uuid']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  id?: Maybe<Scalars['uuid']>
+  programId?: Maybe<Scalars['uuid']>
+  remarks?: Maybe<Scalars['String']>
+  updatedAt?: Maybe<Scalars['timestamp']>
+}
+
+/** aggregate min on columns */
+export type AssociationToProgramMinFields = {
+  __typename?: 'AssociationToProgramMinFields'
+  associationId?: Maybe<Scalars['uuid']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  id?: Maybe<Scalars['uuid']>
+  programId?: Maybe<Scalars['uuid']>
+  remarks?: Maybe<Scalars['String']>
+  updatedAt?: Maybe<Scalars['timestamp']>
+}
+
+/** response of any mutation on the table "associationToProgram" */
+export type AssociationToProgramMutationResponse = {
+  __typename?: 'AssociationToProgramMutationResponse'
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']
+  /** data from the rows affected by the mutation */
+  returning: Array<AssociationToProgram>
+}
+
+/** Ordering options when selecting data from "associationToProgram". */
+export type AssociationToProgramOrderBy = {
+  associationId?: InputMaybe<OrderBy>
+  createdAt?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  programId?: InputMaybe<OrderBy>
+  remarks?: InputMaybe<OrderBy>
+  updatedAt?: InputMaybe<OrderBy>
+}
+
+/** select columns of table "associationToProgram" */
+export enum AssociationToProgramSelectColumn {
+  /** column name */
+  AssociationId = 'associationId',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  ProgramId = 'programId',
+  /** column name */
+  Remarks = 'remarks',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+}
+
+/** input type for updating data in table "associationToProgram" */
+export type AssociationToProgramSetInput = {
+  associationId?: InputMaybe<Scalars['uuid']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  id?: InputMaybe<Scalars['uuid']>
+  programId?: InputMaybe<Scalars['uuid']>
+  remarks?: InputMaybe<Scalars['String']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
+export type AssociationToProgramUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<AssociationToProgramSetInput>
+  where: AssociationToProgramBoolExp
 }
 
 /** update columns of table "association" */
@@ -3711,6 +4011,58 @@ export type AnnualInfo_Variance_Order_By = {
   year?: InputMaybe<OrderBy>
 }
 
+/** Streaming cursor of the table "associationBeneficiaries" */
+export type AssociationBeneficiaries_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: AssociationBeneficiaries_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type AssociationBeneficiaries_StreamCursorValueInput = {
+  active?: InputMaybe<Scalars['Boolean']>
+  associationId?: InputMaybe<Scalars['uuid']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  id?: InputMaybe<Scalars['uuid']>
+  name?: InputMaybe<Scalars['String']>
+  programId?: InputMaybe<Scalars['uuid']>
+}
+
+/** Streaming cursor of the table "associationPrograms" */
+export type AssociationPrograms_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: AssociationPrograms_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type AssociationPrograms_StreamCursorValueInput = {
+  active?: InputMaybe<Scalars['Boolean']>
+  id?: InputMaybe<Scalars['uuid']>
+  name?: InputMaybe<Scalars['String']>
+  programIds?: InputMaybe<Scalars['jsonb']>
+}
+
+/** Streaming cursor of the table "associationToProgram" */
+export type AssociationToProgram_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: AssociationToProgram_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type AssociationToProgram_StreamCursorValueInput = {
+  associationId?: InputMaybe<Scalars['uuid']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  id?: InputMaybe<Scalars['uuid']>
+  programId?: InputMaybe<Scalars['uuid']>
+  remarks?: InputMaybe<Scalars['String']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
 /** Streaming cursor of the table "association" */
 export type Association_StreamCursorInput = {
   /** Stream column input with initial value */
@@ -4075,6 +4427,8 @@ export type Mutation_Root = {
   deleteAssociation?: Maybe<AssociationMutationResponse>
   /** delete single row from the table: "association" */
   deleteAssociationByPk?: Maybe<Association>
+  /** delete data from the table: "associationToProgram" */
+  deleteAssociationToProgram?: Maybe<AssociationToProgramMutationResponse>
   /** delete data from the table: "commodity" */
   deleteCommodity?: Maybe<CommodityMutationResponse>
   /** delete single row from the table: "commodity" */
@@ -4105,6 +4459,10 @@ export type Mutation_Root = {
   insertAssociation?: Maybe<AssociationMutationResponse>
   /** insert a single row into the table: "association" */
   insertAssociationOne?: Maybe<Association>
+  /** insert data into the table: "associationToProgram" */
+  insertAssociationToProgram?: Maybe<AssociationToProgramMutationResponse>
+  /** insert a single row into the table: "associationToProgram" */
+  insertAssociationToProgramOne?: Maybe<AssociationToProgram>
   /** insert data into the table: "commodity" */
   insertCommodity?: Maybe<CommodityMutationResponse>
   /** insert a single row into the table: "commodity" */
@@ -4141,6 +4499,12 @@ export type Mutation_Root = {
   updateAssociationByPk?: Maybe<Association>
   /** update multiples rows of table: "association" */
   updateAssociationMany?: Maybe<Array<Maybe<AssociationMutationResponse>>>
+  /** update data of the table: "associationToProgram" */
+  updateAssociationToProgram?: Maybe<AssociationToProgramMutationResponse>
+  /** update multiples rows of table: "associationToProgram" */
+  updateAssociationToProgramMany?: Maybe<
+    Array<Maybe<AssociationToProgramMutationResponse>>
+  >
   /** update data of the table: "commodity" */
   updateCommodity?: Maybe<CommodityMutationResponse>
   /** update single row of the table: "commodity" */
@@ -4199,6 +4563,11 @@ export type Mutation_RootDeleteAssociationArgs = {
 /** mutation root */
 export type Mutation_RootDeleteAssociationByPkArgs = {
   id: Scalars['uuid']
+}
+
+/** mutation root */
+export type Mutation_RootDeleteAssociationToProgramArgs = {
+  where: AssociationToProgramBoolExp
 }
 
 /** mutation root */
@@ -4278,6 +4647,16 @@ export type Mutation_RootInsertAssociationArgs = {
 export type Mutation_RootInsertAssociationOneArgs = {
   object: AssociationInsertInput
   onConflict?: InputMaybe<AssociationOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertAssociationToProgramArgs = {
+  objects: Array<AssociationToProgramInsertInput>
+}
+
+/** mutation root */
+export type Mutation_RootInsertAssociationToProgramOneArgs = {
+  object: AssociationToProgramInsertInput
 }
 
 /** mutation root */
@@ -4394,6 +4773,17 @@ export type Mutation_RootUpdateAssociationByPkArgs = {
 /** mutation root */
 export type Mutation_RootUpdateAssociationManyArgs = {
   updates: Array<AssociationUpdates>
+}
+
+/** mutation root */
+export type Mutation_RootUpdateAssociationToProgramArgs = {
+  _set?: InputMaybe<AssociationToProgramSetInput>
+  where: AssociationToProgramBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootUpdateAssociationToProgramManyArgs = {
+  updates: Array<AssociationToProgramUpdates>
 }
 
 /** mutation root */
@@ -4587,8 +4977,20 @@ export type Query_Root = {
   association: Array<Association>
   /** fetch aggregated fields from the table: "association" */
   associationAggregate: AssociationAggregate
+  /** fetch data from the table: "associationBeneficiaries" */
+  associationBeneficiaries: Array<AssociationBeneficiaries>
+  /** fetch aggregated fields from the table: "associationBeneficiaries" */
+  associationBeneficiariesAggregate: AssociationBeneficiariesAggregate
   /** fetch data from the table: "association" using primary key columns */
   associationByPk?: Maybe<Association>
+  /** fetch data from the table: "associationPrograms" */
+  associationPrograms: Array<AssociationPrograms>
+  /** fetch aggregated fields from the table: "associationPrograms" */
+  associationProgramsAggregate: AssociationProgramsAggregate
+  /** fetch data from the table: "associationToProgram" */
+  associationToProgram: Array<AssociationToProgram>
+  /** fetch aggregated fields from the table: "associationToProgram" */
+  associationToProgramAggregate: AssociationToProgramAggregate
   /** fetch data from the table: "averageAnnualIncome" */
   averageAnnualIncome: Array<AverageAnnualIncome>
   /** fetch aggregated fields from the table: "averageAnnualIncome" */
@@ -4685,8 +5087,56 @@ export type Query_RootAssociationAggregateArgs = {
   where?: InputMaybe<AssociationBoolExp>
 }
 
+export type Query_RootAssociationBeneficiariesArgs = {
+  distinctOn?: InputMaybe<Array<AssociationBeneficiariesSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationBeneficiariesOrderBy>>
+  where?: InputMaybe<AssociationBeneficiariesBoolExp>
+}
+
+export type Query_RootAssociationBeneficiariesAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AssociationBeneficiariesSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationBeneficiariesOrderBy>>
+  where?: InputMaybe<AssociationBeneficiariesBoolExp>
+}
+
 export type Query_RootAssociationByPkArgs = {
   id: Scalars['uuid']
+}
+
+export type Query_RootAssociationProgramsArgs = {
+  distinctOn?: InputMaybe<Array<AssociationProgramsSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationProgramsOrderBy>>
+  where?: InputMaybe<AssociationProgramsBoolExp>
+}
+
+export type Query_RootAssociationProgramsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AssociationProgramsSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationProgramsOrderBy>>
+  where?: InputMaybe<AssociationProgramsBoolExp>
+}
+
+export type Query_RootAssociationToProgramArgs = {
+  distinctOn?: InputMaybe<Array<AssociationToProgramSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationToProgramOrderBy>>
+  where?: InputMaybe<AssociationToProgramBoolExp>
+}
+
+export type Query_RootAssociationToProgramAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AssociationToProgramSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationToProgramOrderBy>>
+  where?: InputMaybe<AssociationToProgramBoolExp>
 }
 
 export type Query_RootAverageAnnualIncomeArgs = {
@@ -4929,10 +5379,28 @@ export type Subscription_Root = {
   association: Array<Association>
   /** fetch aggregated fields from the table: "association" */
   associationAggregate: AssociationAggregate
+  /** fetch data from the table: "associationBeneficiaries" */
+  associationBeneficiaries: Array<AssociationBeneficiaries>
+  /** fetch aggregated fields from the table: "associationBeneficiaries" */
+  associationBeneficiariesAggregate: AssociationBeneficiariesAggregate
+  /** fetch data from the table in a streaming manner : "associationBeneficiaries" */
+  associationBeneficiariesStream: Array<AssociationBeneficiaries>
   /** fetch data from the table: "association" using primary key columns */
   associationByPk?: Maybe<Association>
+  /** fetch data from the table: "associationPrograms" */
+  associationPrograms: Array<AssociationPrograms>
+  /** fetch aggregated fields from the table: "associationPrograms" */
+  associationProgramsAggregate: AssociationProgramsAggregate
+  /** fetch data from the table in a streaming manner : "associationPrograms" */
+  associationProgramsStream: Array<AssociationPrograms>
   /** fetch data from the table in a streaming manner : "association" */
   associationStream: Array<Association>
+  /** fetch data from the table: "associationToProgram" */
+  associationToProgram: Array<AssociationToProgram>
+  /** fetch aggregated fields from the table: "associationToProgram" */
+  associationToProgramAggregate: AssociationToProgramAggregate
+  /** fetch data from the table in a streaming manner : "associationToProgram" */
+  associationToProgramStream: Array<AssociationToProgram>
   /** fetch data from the table: "averageAnnualIncome" */
   averageAnnualIncome: Array<AverageAnnualIncome>
   /** fetch aggregated fields from the table: "averageAnnualIncome" */
@@ -5059,14 +5527,80 @@ export type Subscription_RootAssociationAggregateArgs = {
   where?: InputMaybe<AssociationBoolExp>
 }
 
+export type Subscription_RootAssociationBeneficiariesArgs = {
+  distinctOn?: InputMaybe<Array<AssociationBeneficiariesSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationBeneficiariesOrderBy>>
+  where?: InputMaybe<AssociationBeneficiariesBoolExp>
+}
+
+export type Subscription_RootAssociationBeneficiariesAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AssociationBeneficiariesSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationBeneficiariesOrderBy>>
+  where?: InputMaybe<AssociationBeneficiariesBoolExp>
+}
+
+export type Subscription_RootAssociationBeneficiariesStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<AssociationBeneficiaries_StreamCursorInput>>
+  where?: InputMaybe<AssociationBeneficiariesBoolExp>
+}
+
 export type Subscription_RootAssociationByPkArgs = {
   id: Scalars['uuid']
+}
+
+export type Subscription_RootAssociationProgramsArgs = {
+  distinctOn?: InputMaybe<Array<AssociationProgramsSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationProgramsOrderBy>>
+  where?: InputMaybe<AssociationProgramsBoolExp>
+}
+
+export type Subscription_RootAssociationProgramsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AssociationProgramsSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationProgramsOrderBy>>
+  where?: InputMaybe<AssociationProgramsBoolExp>
+}
+
+export type Subscription_RootAssociationProgramsStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<AssociationPrograms_StreamCursorInput>>
+  where?: InputMaybe<AssociationProgramsBoolExp>
 }
 
 export type Subscription_RootAssociationStreamArgs = {
   batchSize: Scalars['Int']
   cursor: Array<InputMaybe<Association_StreamCursorInput>>
   where?: InputMaybe<AssociationBoolExp>
+}
+
+export type Subscription_RootAssociationToProgramArgs = {
+  distinctOn?: InputMaybe<Array<AssociationToProgramSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationToProgramOrderBy>>
+  where?: InputMaybe<AssociationToProgramBoolExp>
+}
+
+export type Subscription_RootAssociationToProgramAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AssociationToProgramSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AssociationToProgramOrderBy>>
+  where?: InputMaybe<AssociationToProgramBoolExp>
+}
+
+export type Subscription_RootAssociationToProgramStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<AssociationToProgram_StreamCursorInput>>
+  where?: InputMaybe<AssociationToProgramBoolExp>
 }
 
 export type Subscription_RootAverageAnnualIncomeArgs = {

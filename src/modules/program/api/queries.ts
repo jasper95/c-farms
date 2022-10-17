@@ -109,6 +109,66 @@ export type HouseholdProgramsListQuery = {
   }
 }
 
+export type AssociationProgramsListQueryVariables = Types.Exact<{
+  where?: Types.InputMaybe<Types.AssociationProgramsBoolExp>
+  orderBy?: Types.InputMaybe<
+    Array<Types.AssociationProgramsOrderBy> | Types.AssociationProgramsOrderBy
+  >
+  offset?: Types.InputMaybe<Types.Scalars['Int']>
+  limit?: Types.InputMaybe<Types.Scalars['Int']>
+}>
+
+export type AssociationProgramsListQuery = {
+  __typename?: 'query_root'
+  list: Array<{
+    __typename?: 'AssociationPrograms'
+    active: boolean
+    id: any
+    name: string
+    programIds: any
+  }>
+  meta: {
+    __typename?: 'AssociationProgramsAggregate'
+    aggregate?:
+      | { __typename?: 'AssociationProgramsAggregateFields'; count: number }
+      | null
+      | undefined
+  }
+}
+
+export type AssociationBeneficiariesListQueryVariables = Types.Exact<{
+  where?: Types.InputMaybe<Types.AssociationBeneficiariesBoolExp>
+  orderBy?: Types.InputMaybe<
+    | Array<Types.AssociationBeneficiariesOrderBy>
+    | Types.AssociationBeneficiariesOrderBy
+  >
+  offset?: Types.InputMaybe<Types.Scalars['Int']>
+  limit?: Types.InputMaybe<Types.Scalars['Int']>
+}>
+
+export type AssociationBeneficiariesListQuery = {
+  __typename?: 'query_root'
+  list: Array<{
+    __typename?: 'AssociationBeneficiaries'
+    createdAt: any
+    id: any
+    name: string
+    programId?: any | null | undefined
+    active: boolean
+    associationId: any
+  }>
+  meta: {
+    __typename?: 'AssociationBeneficiariesAggregate'
+    aggregate?:
+      | {
+          __typename?: 'AssociationBeneficiariesAggregateFields'
+          count: number
+        }
+      | null
+      | undefined
+  }
+}
+
 export const ProgramListDocument = gql`
   query ProgramList(
     $where: ProgramBoolExp
@@ -247,6 +307,82 @@ export function useHouseholdProgramsListQuery(
 ) {
   return Urql.useQuery<HouseholdProgramsListQuery>({
     query: HouseholdProgramsListDocument,
+    ...options,
+  })
+}
+export const AssociationProgramsListDocument = gql`
+  query AssociationProgramsList(
+    $where: AssociationProgramsBoolExp
+    $orderBy: [AssociationProgramsOrderBy!]
+    $offset: Int
+    $limit: Int
+  ) {
+    list: associationPrograms(
+      where: $where
+      orderBy: $orderBy
+      offset: $offset
+      limit: $limit
+    ) {
+      active
+      id
+      name
+      programIds
+    }
+    meta: associationProgramsAggregate(where: $where) {
+      aggregate {
+        count
+      }
+    }
+  }
+`
+
+export function useAssociationProgramsListQuery(
+  options?: Omit<
+    Urql.UseQueryArgs<AssociationProgramsListQueryVariables>,
+    'query'
+  >
+) {
+  return Urql.useQuery<AssociationProgramsListQuery>({
+    query: AssociationProgramsListDocument,
+    ...options,
+  })
+}
+export const AssociationBeneficiariesListDocument = gql`
+  query AssociationBeneficiariesList(
+    $where: AssociationBeneficiariesBoolExp
+    $orderBy: [AssociationBeneficiariesOrderBy!]
+    $offset: Int
+    $limit: Int
+  ) {
+    list: associationBeneficiaries(
+      where: $where
+      orderBy: $orderBy
+      offset: $offset
+      limit: $limit
+    ) {
+      createdAt
+      id
+      name
+      programId
+      active
+      associationId
+    }
+    meta: associationBeneficiariesAggregate(where: $where) {
+      aggregate {
+        count
+      }
+    }
+  }
+`
+
+export function useAssociationBeneficiariesListQuery(
+  options?: Omit<
+    Urql.UseQueryArgs<AssociationBeneficiariesListQueryVariables>,
+    'query'
+  >
+) {
+  return Urql.useQuery<AssociationBeneficiariesListQuery>({
+    query: AssociationBeneficiariesListDocument,
     ...options,
   })
 }

@@ -40,3 +40,19 @@ type ProgramBeneficiaries {
   barangay: String!
   referenceNo: String!
 }
+
+type AssociationBeneficiaries {
+  createdAt: timestamp!
+  name: String!
+  associationId: uuid!
+  id: uuid!
+  active: Boolean!
+}
+
+type AssociationPrograms {
+  name: String!
+  id: uuid!
+  programIds(path: String): jsonb!
+  active: Boolean!
+  createdAt: timestamp!
+}

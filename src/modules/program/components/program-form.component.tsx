@@ -3,6 +3,8 @@ import { UseFormReturn } from 'react-hook-form'
 import { IProgramSchema } from '@/modules/program/constants'
 import TextField from '@/components/text-field'
 import DateRangePicker from '@/components/date-range-picker'
+import { typeOptions } from '../constants/form-options'
+import SelectField from '@/components/select-field'
 
 interface ProgramFormProps {
   formProps: UseFormReturn<IProgramSchema>
@@ -16,7 +18,12 @@ export default function ProgramForm(props: ProgramFormProps) {
         <TextField control={control} name="name" label="Program Name" />
       </Grid>
       <Grid item md={6} xs={12}>
-        <TextField control={control} name="type" label="Type" />
+        <SelectField
+          control={control}
+          name="type"
+          label="Type"
+          options={typeOptions}
+        />
       </Grid>
       <Grid item md={12} xs={12}>
         <DateRangePicker label="Duration" control={control} name="dateRange" />

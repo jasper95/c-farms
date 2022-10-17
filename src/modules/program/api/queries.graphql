@@ -92,3 +92,53 @@ query HouseholdProgramsList(
     }
   }
 }
+
+query AssociationProgramsList(
+  $where: AssociationProgramsBoolExp
+  $orderBy: [AssociationProgramsOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: associationPrograms(
+    where: $where
+    orderBy: $orderBy
+    offset: $offset
+    limit: $limit
+  ) {
+    active
+    id
+    name
+    programIds
+  }
+  meta: associationProgramsAggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
+
+query AssociationBeneficiariesList(
+  $where: AssociationBeneficiariesBoolExp
+  $orderBy: [AssociationBeneficiariesOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: associationBeneficiaries(
+    where: $where
+    orderBy: $orderBy
+    offset: $offset
+    limit: $limit
+  ) {
+    createdAt
+    id
+    name
+    programId
+    active
+    associationId
+  }
+  meta: associationBeneficiariesAggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}

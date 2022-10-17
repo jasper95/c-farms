@@ -56,6 +56,40 @@ export type CreateHouseholdProgramMutation = {
     | undefined
 }
 
+export type DeleteAssociationProgramMutationVariables = Types.Exact<{
+  ids: Array<Types.Scalars['uuid']> | Types.Scalars['uuid']
+}>
+
+export type DeleteAssociationProgramMutation = {
+  __typename?: 'mutation_root'
+  deleteAssociationToProgram?:
+    | {
+        __typename?: 'AssociationToProgramMutationResponse'
+        affected_rows: number
+        returning: Array<{ __typename?: 'AssociationToProgram'; id: any }>
+      }
+    | null
+    | undefined
+}
+
+export type CreateAssociationProgramMutationVariables = Types.Exact<{
+  objects:
+    | Array<Types.AssociationToProgramInsertInput>
+    | Types.AssociationToProgramInsertInput
+}>
+
+export type CreateAssociationProgramMutation = {
+  __typename?: 'mutation_root'
+  insertAssociationToProgram?:
+    | {
+        __typename?: 'AssociationToProgramMutationResponse'
+        affected_rows: number
+        returning: Array<{ __typename?: 'AssociationToProgram'; id: any }>
+      }
+    | null
+    | undefined
+}
+
 export const CreateProgramDocument = gql`
   mutation CreateProgram($object: ProgramInsertInput!) {
     data: insertProgramOne(object: $object) {
@@ -120,4 +154,40 @@ export function useCreateHouseholdProgramMutation() {
     CreateHouseholdProgramMutation,
     CreateHouseholdProgramMutationVariables
   >(CreateHouseholdProgramDocument)
+}
+export const DeleteAssociationProgramDocument = gql`
+  mutation DeleteAssociationProgram($ids: [uuid!]!) {
+    deleteAssociationToProgram(where: { id: { _in: $ids } }) {
+      affected_rows
+      returning {
+        id
+      }
+    }
+  }
+`
+
+export function useDeleteAssociationProgramMutation() {
+  return Urql.useMutation<
+    DeleteAssociationProgramMutation,
+    DeleteAssociationProgramMutationVariables
+  >(DeleteAssociationProgramDocument)
+}
+export const CreateAssociationProgramDocument = gql`
+  mutation CreateAssociationProgram(
+    $objects: [AssociationToProgramInsertInput!]!
+  ) {
+    insertAssociationToProgram(objects: $objects) {
+      returning {
+        id
+      }
+      affected_rows
+    }
+  }
+`
+
+export function useCreateAssociationProgramMutation() {
+  return Urql.useMutation<
+    CreateAssociationProgramMutation,
+    CreateAssociationProgramMutationVariables
+  >(CreateAssociationProgramDocument)
 }
