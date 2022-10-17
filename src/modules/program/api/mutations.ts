@@ -22,6 +22,41 @@ export type UpdateProgramMutation = {
   data?: { __typename?: 'Program'; id: any } | null | undefined
 }
 
+export type DeleteHouseholdProgramMutationVariables = Types.Exact<{
+  programId: Types.Scalars['uuid']
+  householdIds: Array<Types.Scalars['uuid']> | Types.Scalars['uuid']
+}>
+
+export type DeleteHouseholdProgramMutation = {
+  __typename?: 'mutation_root'
+  deleteHouseholdToProgram?:
+    | {
+        __typename?: 'HouseholdToProgramMutationResponse'
+        affected_rows: number
+        returning: Array<{ __typename?: 'HouseholdToProgram'; id: any }>
+      }
+    | null
+    | undefined
+}
+
+export type CreateHouseholdProgramMutationVariables = Types.Exact<{
+  objects:
+    | Array<Types.HouseholdToProgramInsertInput>
+    | Types.HouseholdToProgramInsertInput
+}>
+
+export type CreateHouseholdProgramMutation = {
+  __typename?: 'mutation_root'
+  insertHouseholdToProgram?:
+    | {
+        __typename?: 'HouseholdToProgramMutationResponse'
+        affected_rows: number
+        returning: Array<{ __typename?: 'HouseholdToProgram'; id: any }>
+      }
+    | null
+    | undefined
+}
+
 export const CreateProgramDocument = gql`
   mutation CreateProgram($object: ProgramInsertInput!) {
     data: insertProgramOne(object: $object) {
@@ -52,4 +87,43 @@ export function useUpdateProgramMutation() {
     UpdateProgramMutation,
     UpdateProgramMutationVariables
   >(UpdateProgramDocument)
+}
+export const DeleteHouseholdProgramDocument = gql`
+  mutation DeleteHouseholdProgram($programId: uuid!, $householdIds: [uuid!]!) {
+    deleteHouseholdToProgram(
+      where: {
+        programId: { _eq: $programId }
+        householdId: { _in: $householdIds }
+      }
+    ) {
+      affected_rows
+      returning {
+        id
+      }
+    }
+  }
+`
+
+export function useDeleteHouseholdProgramMutation() {
+  return Urql.useMutation<
+    DeleteHouseholdProgramMutation,
+    DeleteHouseholdProgramMutationVariables
+  >(DeleteHouseholdProgramDocument)
+}
+export const CreateHouseholdProgramDocument = gql`
+  mutation CreateHouseholdProgram($objects: [HouseholdToProgramInsertInput!]!) {
+    insertHouseholdToProgram(objects: $objects) {
+      returning {
+        id
+      }
+      affected_rows
+    }
+  }
+`
+
+export function useCreateHouseholdProgramMutation() {
+  return Urql.useMutation<
+    CreateHouseholdProgramMutation,
+    CreateHouseholdProgramMutationVariables
+  >(CreateHouseholdProgramDocument)
 }

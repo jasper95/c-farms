@@ -16,6 +16,7 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
+  bigint: any
   date: any
   float8: any
   jsonb: any
@@ -592,6 +593,148 @@ export type AssociationUpdates = {
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<AssociationSetInput>
   where: AssociationBoolExp
+}
+
+/** columns and relationships of "averageAnnualIncome" */
+export type AverageAnnualIncome = {
+  __typename?: 'AverageAnnualIncome'
+  averageinfo?: Maybe<Scalars['numeric']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** aggregated selection of "averageAnnualIncome" */
+export type AverageAnnualIncomeAggregate = {
+  __typename?: 'AverageAnnualIncomeAggregate'
+  aggregate?: Maybe<AverageAnnualIncomeAggregateFields>
+  nodes: Array<AverageAnnualIncome>
+}
+
+/** aggregate fields of "averageAnnualIncome" */
+export type AverageAnnualIncomeAggregateFields = {
+  __typename?: 'AverageAnnualIncomeAggregateFields'
+  avg?: Maybe<AverageAnnualIncomeAvgFields>
+  count: Scalars['Int']
+  max?: Maybe<AverageAnnualIncomeMaxFields>
+  min?: Maybe<AverageAnnualIncomeMinFields>
+  stddev?: Maybe<AverageAnnualIncomeStddevFields>
+  stddevPop?: Maybe<AverageAnnualIncomeStddev_PopFields>
+  stddevSamp?: Maybe<AverageAnnualIncomeStddev_SampFields>
+  sum?: Maybe<AverageAnnualIncomeSumFields>
+  varPop?: Maybe<AverageAnnualIncomeVar_PopFields>
+  varSamp?: Maybe<AverageAnnualIncomeVar_SampFields>
+  variance?: Maybe<AverageAnnualIncomeVarianceFields>
+}
+
+/** aggregate fields of "averageAnnualIncome" */
+export type AverageAnnualIncomeAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<AverageAnnualIncomeSelectColumn>>
+  distinct?: InputMaybe<Scalars['Boolean']>
+}
+
+/** aggregate avg on columns */
+export type AverageAnnualIncomeAvgFields = {
+  __typename?: 'AverageAnnualIncomeAvgFields'
+  averageinfo?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** Boolean expression to filter rows from the table "averageAnnualIncome". All fields are combined with a logical 'AND'. */
+export type AverageAnnualIncomeBoolExp = {
+  _and?: InputMaybe<Array<AverageAnnualIncomeBoolExp>>
+  _not?: InputMaybe<AverageAnnualIncomeBoolExp>
+  _or?: InputMaybe<Array<AverageAnnualIncomeBoolExp>>
+  averageinfo?: InputMaybe<NumericComparisonExp>
+  year?: InputMaybe<IntComparisonExp>
+}
+
+/** aggregate max on columns */
+export type AverageAnnualIncomeMaxFields = {
+  __typename?: 'AverageAnnualIncomeMaxFields'
+  averageinfo?: Maybe<Scalars['numeric']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** aggregate min on columns */
+export type AverageAnnualIncomeMinFields = {
+  __typename?: 'AverageAnnualIncomeMinFields'
+  averageinfo?: Maybe<Scalars['numeric']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** Ordering options when selecting data from "averageAnnualIncome". */
+export type AverageAnnualIncomeOrderBy = {
+  averageinfo?: InputMaybe<OrderBy>
+  year?: InputMaybe<OrderBy>
+}
+
+/** select columns of table "averageAnnualIncome" */
+export enum AverageAnnualIncomeSelectColumn {
+  /** column name */
+  Averageinfo = 'averageinfo',
+  /** column name */
+  Year = 'year',
+}
+
+/** aggregate stddev on columns */
+export type AverageAnnualIncomeStddevFields = {
+  __typename?: 'AverageAnnualIncomeStddevFields'
+  averageinfo?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_pop on columns */
+export type AverageAnnualIncomeStddev_PopFields = {
+  __typename?: 'AverageAnnualIncomeStddev_popFields'
+  averageinfo?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_samp on columns */
+export type AverageAnnualIncomeStddev_SampFields = {
+  __typename?: 'AverageAnnualIncomeStddev_sampFields'
+  averageinfo?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate sum on columns */
+export type AverageAnnualIncomeSumFields = {
+  __typename?: 'AverageAnnualIncomeSumFields'
+  averageinfo?: Maybe<Scalars['numeric']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** aggregate var_pop on columns */
+export type AverageAnnualIncomeVar_PopFields = {
+  __typename?: 'AverageAnnualIncomeVar_popFields'
+  averageinfo?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate var_samp on columns */
+export type AverageAnnualIncomeVar_SampFields = {
+  __typename?: 'AverageAnnualIncomeVar_sampFields'
+  averageinfo?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate variance on columns */
+export type AverageAnnualIncomeVarianceFields = {
+  __typename?: 'AverageAnnualIncomeVarianceFields'
+  averageinfo?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
+export type BigintComparisonExp = {
+  _eq?: InputMaybe<Scalars['bigint']>
+  _gt?: InputMaybe<Scalars['bigint']>
+  _gte?: InputMaybe<Scalars['bigint']>
+  _in?: InputMaybe<Array<Scalars['bigint']>>
+  _isNull?: InputMaybe<Scalars['Boolean']>
+  _lt?: InputMaybe<Scalars['bigint']>
+  _lte?: InputMaybe<Scalars['bigint']>
+  _neq?: InputMaybe<Scalars['bigint']>
+  _nin?: InputMaybe<Array<Scalars['bigint']>>
 }
 
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
@@ -1673,6 +1816,7 @@ export type HouseholdAvgFields = {
 export type HouseholdBeneficiaries = {
   __typename?: 'HouseholdBeneficiaries'
   barangay: Scalars['String']
+  createdAt?: Maybe<Scalars['timestamp']>
   farmSize: Scalars['numeric']
   firstName: Scalars['String']
   grossAnnualIncomeFarming: Scalars['numeric']
@@ -1731,6 +1875,7 @@ export type HouseholdBeneficiariesBoolExp = {
   _not?: InputMaybe<HouseholdBeneficiariesBoolExp>
   _or?: InputMaybe<Array<HouseholdBeneficiariesBoolExp>>
   barangay?: InputMaybe<StringComparisonExp>
+  createdAt?: InputMaybe<TimestampComparisonExp>
   farmSize?: InputMaybe<NumericComparisonExp>
   firstName?: InputMaybe<StringComparisonExp>
   grossAnnualIncomeFarming?: InputMaybe<NumericComparisonExp>
@@ -1745,6 +1890,7 @@ export type HouseholdBeneficiariesBoolExp = {
 export type HouseholdBeneficiariesMaxFields = {
   __typename?: 'HouseholdBeneficiariesMaxFields'
   barangay?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['timestamp']>
   farmSize?: Maybe<Scalars['numeric']>
   firstName?: Maybe<Scalars['String']>
   grossAnnualIncomeFarming?: Maybe<Scalars['numeric']>
@@ -1758,6 +1904,7 @@ export type HouseholdBeneficiariesMaxFields = {
 export type HouseholdBeneficiariesMinFields = {
   __typename?: 'HouseholdBeneficiariesMinFields'
   barangay?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['timestamp']>
   farmSize?: Maybe<Scalars['numeric']>
   firstName?: Maybe<Scalars['String']>
   grossAnnualIncomeFarming?: Maybe<Scalars['numeric']>
@@ -1770,6 +1917,7 @@ export type HouseholdBeneficiariesMinFields = {
 /** Ordering options when selecting data from "householdBeneficiaries". */
 export type HouseholdBeneficiariesOrderBy = {
   barangay?: InputMaybe<OrderBy>
+  createdAt?: InputMaybe<OrderBy>
   farmSize?: InputMaybe<OrderBy>
   firstName?: InputMaybe<OrderBy>
   grossAnnualIncomeFarming?: InputMaybe<OrderBy>
@@ -1784,6 +1932,8 @@ export type HouseholdBeneficiariesOrderBy = {
 export enum HouseholdBeneficiariesSelectColumn {
   /** column name */
   Barangay = 'barangay',
+  /** column name */
+  CreatedAt = 'createdAt',
   /** column name */
   FarmSize = 'farmSize',
   /** column name */
@@ -2241,6 +2391,134 @@ export type HouseholdSumFields = {
   sex?: Maybe<Scalars['Int']>
 }
 
+/** columns and relationships of "householdToProgram" */
+export type HouseholdToProgram = {
+  __typename?: 'HouseholdToProgram'
+  createdAt: Scalars['timestamp']
+  householdId: Scalars['uuid']
+  id: Scalars['uuid']
+  programId: Scalars['uuid']
+  remarks: Scalars['String']
+  updatedAt: Scalars['timestamp']
+}
+
+/** aggregated selection of "householdToProgram" */
+export type HouseholdToProgramAggregate = {
+  __typename?: 'HouseholdToProgramAggregate'
+  aggregate?: Maybe<HouseholdToProgramAggregateFields>
+  nodes: Array<HouseholdToProgram>
+}
+
+/** aggregate fields of "householdToProgram" */
+export type HouseholdToProgramAggregateFields = {
+  __typename?: 'HouseholdToProgramAggregateFields'
+  count: Scalars['Int']
+  max?: Maybe<HouseholdToProgramMaxFields>
+  min?: Maybe<HouseholdToProgramMinFields>
+}
+
+/** aggregate fields of "householdToProgram" */
+export type HouseholdToProgramAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdToProgramSelectColumn>>
+  distinct?: InputMaybe<Scalars['Boolean']>
+}
+
+/** Boolean expression to filter rows from the table "householdToProgram". All fields are combined with a logical 'AND'. */
+export type HouseholdToProgramBoolExp = {
+  _and?: InputMaybe<Array<HouseholdToProgramBoolExp>>
+  _not?: InputMaybe<HouseholdToProgramBoolExp>
+  _or?: InputMaybe<Array<HouseholdToProgramBoolExp>>
+  createdAt?: InputMaybe<TimestampComparisonExp>
+  householdId?: InputMaybe<UuidComparisonExp>
+  id?: InputMaybe<UuidComparisonExp>
+  programId?: InputMaybe<UuidComparisonExp>
+  remarks?: InputMaybe<StringComparisonExp>
+  updatedAt?: InputMaybe<TimestampComparisonExp>
+}
+
+/** input type for inserting data into table "householdToProgram" */
+export type HouseholdToProgramInsertInput = {
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  householdId?: InputMaybe<Scalars['uuid']>
+  id?: InputMaybe<Scalars['uuid']>
+  programId?: InputMaybe<Scalars['uuid']>
+  remarks?: InputMaybe<Scalars['String']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
+/** aggregate max on columns */
+export type HouseholdToProgramMaxFields = {
+  __typename?: 'HouseholdToProgramMaxFields'
+  createdAt?: Maybe<Scalars['timestamp']>
+  householdId?: Maybe<Scalars['uuid']>
+  id?: Maybe<Scalars['uuid']>
+  programId?: Maybe<Scalars['uuid']>
+  remarks?: Maybe<Scalars['String']>
+  updatedAt?: Maybe<Scalars['timestamp']>
+}
+
+/** aggregate min on columns */
+export type HouseholdToProgramMinFields = {
+  __typename?: 'HouseholdToProgramMinFields'
+  createdAt?: Maybe<Scalars['timestamp']>
+  householdId?: Maybe<Scalars['uuid']>
+  id?: Maybe<Scalars['uuid']>
+  programId?: Maybe<Scalars['uuid']>
+  remarks?: Maybe<Scalars['String']>
+  updatedAt?: Maybe<Scalars['timestamp']>
+}
+
+/** response of any mutation on the table "householdToProgram" */
+export type HouseholdToProgramMutationResponse = {
+  __typename?: 'HouseholdToProgramMutationResponse'
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']
+  /** data from the rows affected by the mutation */
+  returning: Array<HouseholdToProgram>
+}
+
+/** Ordering options when selecting data from "householdToProgram". */
+export type HouseholdToProgramOrderBy = {
+  createdAt?: InputMaybe<OrderBy>
+  householdId?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  programId?: InputMaybe<OrderBy>
+  remarks?: InputMaybe<OrderBy>
+  updatedAt?: InputMaybe<OrderBy>
+}
+
+/** select columns of table "householdToProgram" */
+export enum HouseholdToProgramSelectColumn {
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  HouseholdId = 'householdId',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  ProgramId = 'programId',
+  /** column name */
+  Remarks = 'remarks',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+}
+
+/** input type for updating data in table "householdToProgram" */
+export type HouseholdToProgramSetInput = {
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  householdId?: InputMaybe<Scalars['uuid']>
+  id?: InputMaybe<Scalars['uuid']>
+  programId?: InputMaybe<Scalars['uuid']>
+  remarks?: InputMaybe<Scalars['String']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
+export type HouseholdToProgramUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<HouseholdToProgramSetInput>
+  where: HouseholdToProgramBoolExp
+}
+
 /** update columns of table "household" */
 export enum HouseholdUpdateColumn {
   /** column name */
@@ -2359,6 +2637,135 @@ export type IntComparisonExp = {
   _lte?: InputMaybe<Scalars['Int']>
   _neq?: InputMaybe<Scalars['Int']>
   _nin?: InputMaybe<Array<Scalars['Int']>>
+}
+
+/** columns and relationships of "inventoryOfLivestock" */
+export type InventoryOfLivestock = {
+  __typename?: 'InventoryOfLivestock'
+  sum?: Maybe<Scalars['float8']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** aggregated selection of "inventoryOfLivestock" */
+export type InventoryOfLivestockAggregate = {
+  __typename?: 'InventoryOfLivestockAggregate'
+  aggregate?: Maybe<InventoryOfLivestockAggregateFields>
+  nodes: Array<InventoryOfLivestock>
+}
+
+/** aggregate fields of "inventoryOfLivestock" */
+export type InventoryOfLivestockAggregateFields = {
+  __typename?: 'InventoryOfLivestockAggregateFields'
+  avg?: Maybe<InventoryOfLivestockAvgFields>
+  count: Scalars['Int']
+  max?: Maybe<InventoryOfLivestockMaxFields>
+  min?: Maybe<InventoryOfLivestockMinFields>
+  stddev?: Maybe<InventoryOfLivestockStddevFields>
+  stddevPop?: Maybe<InventoryOfLivestockStddev_PopFields>
+  stddevSamp?: Maybe<InventoryOfLivestockStddev_SampFields>
+  sum?: Maybe<InventoryOfLivestockSumFields>
+  varPop?: Maybe<InventoryOfLivestockVar_PopFields>
+  varSamp?: Maybe<InventoryOfLivestockVar_SampFields>
+  variance?: Maybe<InventoryOfLivestockVarianceFields>
+}
+
+/** aggregate fields of "inventoryOfLivestock" */
+export type InventoryOfLivestockAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<InventoryOfLivestockSelectColumn>>
+  distinct?: InputMaybe<Scalars['Boolean']>
+}
+
+/** aggregate avg on columns */
+export type InventoryOfLivestockAvgFields = {
+  __typename?: 'InventoryOfLivestockAvgFields'
+  sum?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** Boolean expression to filter rows from the table "inventoryOfLivestock". All fields are combined with a logical 'AND'. */
+export type InventoryOfLivestockBoolExp = {
+  _and?: InputMaybe<Array<InventoryOfLivestockBoolExp>>
+  _not?: InputMaybe<InventoryOfLivestockBoolExp>
+  _or?: InputMaybe<Array<InventoryOfLivestockBoolExp>>
+  sum?: InputMaybe<Float8ComparisonExp>
+  year?: InputMaybe<IntComparisonExp>
+}
+
+/** aggregate max on columns */
+export type InventoryOfLivestockMaxFields = {
+  __typename?: 'InventoryOfLivestockMaxFields'
+  sum?: Maybe<Scalars['float8']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** aggregate min on columns */
+export type InventoryOfLivestockMinFields = {
+  __typename?: 'InventoryOfLivestockMinFields'
+  sum?: Maybe<Scalars['float8']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** Ordering options when selecting data from "inventoryOfLivestock". */
+export type InventoryOfLivestockOrderBy = {
+  sum?: InputMaybe<OrderBy>
+  year?: InputMaybe<OrderBy>
+}
+
+/** select columns of table "inventoryOfLivestock" */
+export enum InventoryOfLivestockSelectColumn {
+  /** column name */
+  Sum = 'sum',
+  /** column name */
+  Year = 'year',
+}
+
+/** aggregate stddev on columns */
+export type InventoryOfLivestockStddevFields = {
+  __typename?: 'InventoryOfLivestockStddevFields'
+  sum?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_pop on columns */
+export type InventoryOfLivestockStddev_PopFields = {
+  __typename?: 'InventoryOfLivestockStddev_popFields'
+  sum?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_samp on columns */
+export type InventoryOfLivestockStddev_SampFields = {
+  __typename?: 'InventoryOfLivestockStddev_sampFields'
+  sum?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate sum on columns */
+export type InventoryOfLivestockSumFields = {
+  __typename?: 'InventoryOfLivestockSumFields'
+  sum?: Maybe<Scalars['float8']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** aggregate var_pop on columns */
+export type InventoryOfLivestockVar_PopFields = {
+  __typename?: 'InventoryOfLivestockVar_popFields'
+  sum?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate var_samp on columns */
+export type InventoryOfLivestockVar_SampFields = {
+  __typename?: 'InventoryOfLivestockVar_sampFields'
+  sum?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate variance on columns */
+export type InventoryOfLivestockVarianceFields = {
+  __typename?: 'InventoryOfLivestockVarianceFields'
+  sum?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
 }
 
 export type JsonbCastExp = {
@@ -2811,6 +3218,135 @@ export type ProgramUpdates = {
   where: ProgramBoolExp
 }
 
+/** columns and relationships of "registeredHouseholdPerYear" */
+export type RegisteredHouseholdPerYear = {
+  __typename?: 'RegisteredHouseholdPerYear'
+  count?: Maybe<Scalars['bigint']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** aggregated selection of "registeredHouseholdPerYear" */
+export type RegisteredHouseholdPerYearAggregate = {
+  __typename?: 'RegisteredHouseholdPerYearAggregate'
+  aggregate?: Maybe<RegisteredHouseholdPerYearAggregateFields>
+  nodes: Array<RegisteredHouseholdPerYear>
+}
+
+/** aggregate fields of "registeredHouseholdPerYear" */
+export type RegisteredHouseholdPerYearAggregateFields = {
+  __typename?: 'RegisteredHouseholdPerYearAggregateFields'
+  avg?: Maybe<RegisteredHouseholdPerYearAvgFields>
+  count: Scalars['Int']
+  max?: Maybe<RegisteredHouseholdPerYearMaxFields>
+  min?: Maybe<RegisteredHouseholdPerYearMinFields>
+  stddev?: Maybe<RegisteredHouseholdPerYearStddevFields>
+  stddevPop?: Maybe<RegisteredHouseholdPerYearStddev_PopFields>
+  stddevSamp?: Maybe<RegisteredHouseholdPerYearStddev_SampFields>
+  sum?: Maybe<RegisteredHouseholdPerYearSumFields>
+  varPop?: Maybe<RegisteredHouseholdPerYearVar_PopFields>
+  varSamp?: Maybe<RegisteredHouseholdPerYearVar_SampFields>
+  variance?: Maybe<RegisteredHouseholdPerYearVarianceFields>
+}
+
+/** aggregate fields of "registeredHouseholdPerYear" */
+export type RegisteredHouseholdPerYearAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<RegisteredHouseholdPerYearSelectColumn>>
+  distinct?: InputMaybe<Scalars['Boolean']>
+}
+
+/** aggregate avg on columns */
+export type RegisteredHouseholdPerYearAvgFields = {
+  __typename?: 'RegisteredHouseholdPerYearAvgFields'
+  count?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** Boolean expression to filter rows from the table "registeredHouseholdPerYear". All fields are combined with a logical 'AND'. */
+export type RegisteredHouseholdPerYearBoolExp = {
+  _and?: InputMaybe<Array<RegisteredHouseholdPerYearBoolExp>>
+  _not?: InputMaybe<RegisteredHouseholdPerYearBoolExp>
+  _or?: InputMaybe<Array<RegisteredHouseholdPerYearBoolExp>>
+  count?: InputMaybe<BigintComparisonExp>
+  year?: InputMaybe<IntComparisonExp>
+}
+
+/** aggregate max on columns */
+export type RegisteredHouseholdPerYearMaxFields = {
+  __typename?: 'RegisteredHouseholdPerYearMaxFields'
+  count?: Maybe<Scalars['bigint']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** aggregate min on columns */
+export type RegisteredHouseholdPerYearMinFields = {
+  __typename?: 'RegisteredHouseholdPerYearMinFields'
+  count?: Maybe<Scalars['bigint']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** Ordering options when selecting data from "registeredHouseholdPerYear". */
+export type RegisteredHouseholdPerYearOrderBy = {
+  count?: InputMaybe<OrderBy>
+  year?: InputMaybe<OrderBy>
+}
+
+/** select columns of table "registeredHouseholdPerYear" */
+export enum RegisteredHouseholdPerYearSelectColumn {
+  /** column name */
+  Count = 'count',
+  /** column name */
+  Year = 'year',
+}
+
+/** aggregate stddev on columns */
+export type RegisteredHouseholdPerYearStddevFields = {
+  __typename?: 'RegisteredHouseholdPerYearStddevFields'
+  count?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_pop on columns */
+export type RegisteredHouseholdPerYearStddev_PopFields = {
+  __typename?: 'RegisteredHouseholdPerYearStddev_popFields'
+  count?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_samp on columns */
+export type RegisteredHouseholdPerYearStddev_SampFields = {
+  __typename?: 'RegisteredHouseholdPerYearStddev_sampFields'
+  count?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate sum on columns */
+export type RegisteredHouseholdPerYearSumFields = {
+  __typename?: 'RegisteredHouseholdPerYearSumFields'
+  count?: Maybe<Scalars['bigint']>
+  year?: Maybe<Scalars['Int']>
+}
+
+/** aggregate var_pop on columns */
+export type RegisteredHouseholdPerYearVar_PopFields = {
+  __typename?: 'RegisteredHouseholdPerYearVar_popFields'
+  count?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate var_samp on columns */
+export type RegisteredHouseholdPerYearVar_SampFields = {
+  __typename?: 'RegisteredHouseholdPerYearVar_sampFields'
+  count?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
+/** aggregate variance on columns */
+export type RegisteredHouseholdPerYearVarianceFields = {
+  __typename?: 'RegisteredHouseholdPerYearVarianceFields'
+  count?: Maybe<Scalars['Float']>
+  year?: Maybe<Scalars['Float']>
+}
+
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type StringComparisonExp = {
   _eq?: InputMaybe<Scalars['String']>
@@ -2992,6 +3528,20 @@ export type Association_StreamCursorValueInput = {
   name?: InputMaybe<Scalars['String']>
   shortName?: InputMaybe<Scalars['String']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
+/** Streaming cursor of the table "averageAnnualIncome" */
+export type AverageAnnualIncome_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: AverageAnnualIncome_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type AverageAnnualIncome_StreamCursorValueInput = {
+  averageinfo?: InputMaybe<Scalars['numeric']>
+  year?: InputMaybe<Scalars['Int']>
 }
 
 /** order by avg() on columns of table "commodityProduce" */
@@ -3225,6 +3775,7 @@ export type HouseholdBeneficiaries_StreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type HouseholdBeneficiaries_StreamCursorValueInput = {
   barangay?: InputMaybe<Scalars['String']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
   farmSize?: InputMaybe<Scalars['numeric']>
   firstName?: InputMaybe<Scalars['String']>
   grossAnnualIncomeFarming?: InputMaybe<Scalars['numeric']>
@@ -3233,6 +3784,24 @@ export type HouseholdBeneficiaries_StreamCursorValueInput = {
   lastName?: InputMaybe<Scalars['String']>
   programIds?: InputMaybe<Scalars['jsonb']>
   referenceNo?: InputMaybe<Scalars['String']>
+}
+
+/** Streaming cursor of the table "householdToProgram" */
+export type HouseholdToProgram_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: HouseholdToProgram_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type HouseholdToProgram_StreamCursorValueInput = {
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  householdId?: InputMaybe<Scalars['uuid']>
+  id?: InputMaybe<Scalars['uuid']>
+  programId?: InputMaybe<Scalars['uuid']>
+  remarks?: InputMaybe<Scalars['String']>
+  updatedAt?: InputMaybe<Scalars['timestamp']>
 }
 
 /** Streaming cursor of the table "household" */
@@ -3281,6 +3850,20 @@ export type Household_StreamCursorValueInput = {
   updatedAt?: InputMaybe<Scalars['timestamp']>
 }
 
+/** Streaming cursor of the table "inventoryOfLivestock" */
+export type InventoryOfLivestock_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: InventoryOfLivestock_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type InventoryOfLivestock_StreamCursorValueInput = {
+  sum?: InputMaybe<Scalars['float8']>
+  year?: InputMaybe<Scalars['Int']>
+}
+
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root'
@@ -3308,6 +3891,8 @@ export type Mutation_Root = {
   deleteHousehold?: Maybe<HouseholdMutationResponse>
   /** delete single row from the table: "household" */
   deleteHouseholdByPk?: Maybe<Household>
+  /** delete data from the table: "householdToProgram" */
+  deleteHouseholdToProgram?: Maybe<HouseholdToProgramMutationResponse>
   /** delete data from the table: "program" */
   deleteProgram?: Maybe<ProgramMutationResponse>
   /** delete single row from the table: "program" */
@@ -3336,6 +3921,10 @@ export type Mutation_Root = {
   insertHousehold?: Maybe<HouseholdMutationResponse>
   /** insert a single row into the table: "household" */
   insertHouseholdOne?: Maybe<Household>
+  /** insert data into the table: "householdToProgram" */
+  insertHouseholdToProgram?: Maybe<HouseholdToProgramMutationResponse>
+  /** insert a single row into the table: "householdToProgram" */
+  insertHouseholdToProgramOne?: Maybe<HouseholdToProgram>
   /** insert data into the table: "program" */
   insertProgram?: Maybe<ProgramMutationResponse>
   /** insert a single row into the table: "program" */
@@ -3378,6 +3967,12 @@ export type Mutation_Root = {
   updateHouseholdByPk?: Maybe<Household>
   /** update multiples rows of table: "household" */
   updateHouseholdMany?: Maybe<Array<Maybe<HouseholdMutationResponse>>>
+  /** update data of the table: "householdToProgram" */
+  updateHouseholdToProgram?: Maybe<HouseholdToProgramMutationResponse>
+  /** update multiples rows of table: "householdToProgram" */
+  updateHouseholdToProgramMany?: Maybe<
+    Array<Maybe<HouseholdToProgramMutationResponse>>
+  >
   /** update data of the table: "program" */
   updateProgram?: Maybe<ProgramMutationResponse>
   /** update single row of the table: "program" */
@@ -3444,6 +4039,11 @@ export type Mutation_RootDeleteHouseholdArgs = {
 /** mutation root */
 export type Mutation_RootDeleteHouseholdByPkArgs = {
   id: Scalars['uuid']
+}
+
+/** mutation root */
+export type Mutation_RootDeleteHouseholdToProgramArgs = {
+  where: HouseholdToProgramBoolExp
 }
 
 /** mutation root */
@@ -3526,6 +4126,16 @@ export type Mutation_RootInsertHouseholdArgs = {
 export type Mutation_RootInsertHouseholdOneArgs = {
   object: HouseholdInsertInput
   onConflict?: InputMaybe<HouseholdOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertHouseholdToProgramArgs = {
+  objects: Array<HouseholdToProgramInsertInput>
+}
+
+/** mutation root */
+export type Mutation_RootInsertHouseholdToProgramOneArgs = {
+  object: HouseholdToProgramInsertInput
 }
 
 /** mutation root */
@@ -3671,6 +4281,17 @@ export type Mutation_RootUpdateHouseholdManyArgs = {
 }
 
 /** mutation root */
+export type Mutation_RootUpdateHouseholdToProgramArgs = {
+  _set?: InputMaybe<HouseholdToProgramSetInput>
+  where: HouseholdToProgramBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdToProgramManyArgs = {
+  updates: Array<HouseholdToProgramUpdates>
+}
+
+/** mutation root */
 export type Mutation_RootUpdateProgramArgs = {
   _set?: InputMaybe<ProgramSetInput>
   where: ProgramBoolExp
@@ -3745,6 +4366,10 @@ export type Query_Root = {
   associationAggregate: AssociationAggregate
   /** fetch data from the table: "association" using primary key columns */
   associationByPk?: Maybe<Association>
+  /** fetch data from the table: "averageAnnualIncome" */
+  averageAnnualIncome: Array<AverageAnnualIncome>
+  /** fetch aggregated fields from the table: "averageAnnualIncome" */
+  averageAnnualIncomeAggregate: AverageAnnualIncomeAggregate
   /** fetch data from the table: "commodity" */
   commodity: Array<Commodity>
   /** fetch aggregated fields from the table: "commodity" */
@@ -3773,6 +4398,14 @@ export type Query_Root = {
   householdBeneficiariesAggregate: HouseholdBeneficiariesAggregate
   /** fetch data from the table: "household" using primary key columns */
   householdByPk?: Maybe<Household>
+  /** fetch data from the table: "householdToProgram" */
+  householdToProgram: Array<HouseholdToProgram>
+  /** fetch aggregated fields from the table: "householdToProgram" */
+  householdToProgramAggregate: HouseholdToProgramAggregate
+  /** fetch data from the table: "inventoryOfLivestock" */
+  inventoryOfLivestock: Array<InventoryOfLivestock>
+  /** fetch aggregated fields from the table: "inventoryOfLivestock" */
+  inventoryOfLivestockAggregate: InventoryOfLivestockAggregate
   /** fetch data from the table: "produce" */
   produce: Array<Produce>
   /** fetch aggregated fields from the table: "produce" */
@@ -3783,6 +4416,10 @@ export type Query_Root = {
   programAggregate: ProgramAggregate
   /** fetch data from the table: "program" using primary key columns */
   programByPk?: Maybe<Program>
+  /** fetch data from the table: "registeredHouseholdPerYear" */
+  registeredHouseholdPerYear: Array<RegisteredHouseholdPerYear>
+  /** fetch aggregated fields from the table: "registeredHouseholdPerYear" */
+  registeredHouseholdPerYearAggregate: RegisteredHouseholdPerYearAggregate
 }
 
 export type Query_RootAnnualInfoArgs = {
@@ -3823,6 +4460,22 @@ export type Query_RootAssociationAggregateArgs = {
 
 export type Query_RootAssociationByPkArgs = {
   id: Scalars['uuid']
+}
+
+export type Query_RootAverageAnnualIncomeArgs = {
+  distinctOn?: InputMaybe<Array<AverageAnnualIncomeSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AverageAnnualIncomeOrderBy>>
+  where?: InputMaybe<AverageAnnualIncomeBoolExp>
+}
+
+export type Query_RootAverageAnnualIncomeAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AverageAnnualIncomeSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AverageAnnualIncomeOrderBy>>
+  where?: InputMaybe<AverageAnnualIncomeBoolExp>
 }
 
 export type Query_RootCommodityArgs = {
@@ -3921,6 +4574,38 @@ export type Query_RootHouseholdByPkArgs = {
   id: Scalars['uuid']
 }
 
+export type Query_RootHouseholdToProgramArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdToProgramSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<HouseholdToProgramOrderBy>>
+  where?: InputMaybe<HouseholdToProgramBoolExp>
+}
+
+export type Query_RootHouseholdToProgramAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdToProgramSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<HouseholdToProgramOrderBy>>
+  where?: InputMaybe<HouseholdToProgramBoolExp>
+}
+
+export type Query_RootInventoryOfLivestockArgs = {
+  distinctOn?: InputMaybe<Array<InventoryOfLivestockSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<InventoryOfLivestockOrderBy>>
+  where?: InputMaybe<InventoryOfLivestockBoolExp>
+}
+
+export type Query_RootInventoryOfLivestockAggregateArgs = {
+  distinctOn?: InputMaybe<Array<InventoryOfLivestockSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<InventoryOfLivestockOrderBy>>
+  where?: InputMaybe<InventoryOfLivestockBoolExp>
+}
+
 export type Query_RootProduceArgs = {
   distinctOn?: InputMaybe<Array<ProduceSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
@@ -3957,6 +4642,36 @@ export type Query_RootProgramByPkArgs = {
   id: Scalars['uuid']
 }
 
+export type Query_RootRegisteredHouseholdPerYearArgs = {
+  distinctOn?: InputMaybe<Array<RegisteredHouseholdPerYearSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<RegisteredHouseholdPerYearOrderBy>>
+  where?: InputMaybe<RegisteredHouseholdPerYearBoolExp>
+}
+
+export type Query_RootRegisteredHouseholdPerYearAggregateArgs = {
+  distinctOn?: InputMaybe<Array<RegisteredHouseholdPerYearSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<RegisteredHouseholdPerYearOrderBy>>
+  where?: InputMaybe<RegisteredHouseholdPerYearBoolExp>
+}
+
+/** Streaming cursor of the table "registeredHouseholdPerYear" */
+export type RegisteredHouseholdPerYear_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: RegisteredHouseholdPerYear_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type RegisteredHouseholdPerYear_StreamCursorValueInput = {
+  count?: InputMaybe<Scalars['bigint']>
+  year?: InputMaybe<Scalars['Int']>
+}
+
 export type Subscription_Root = {
   __typename?: 'subscription_root'
   /** fetch data from the table: "annualInfo" */
@@ -3975,6 +4690,12 @@ export type Subscription_Root = {
   associationByPk?: Maybe<Association>
   /** fetch data from the table in a streaming manner : "association" */
   associationStream: Array<Association>
+  /** fetch data from the table: "averageAnnualIncome" */
+  averageAnnualIncome: Array<AverageAnnualIncome>
+  /** fetch aggregated fields from the table: "averageAnnualIncome" */
+  averageAnnualIncomeAggregate: AverageAnnualIncomeAggregate
+  /** fetch data from the table in a streaming manner : "averageAnnualIncome" */
+  averageAnnualIncomeStream: Array<AverageAnnualIncome>
   /** fetch data from the table: "commodity" */
   commodity: Array<Commodity>
   /** fetch aggregated fields from the table: "commodity" */
@@ -4013,6 +4734,18 @@ export type Subscription_Root = {
   householdByPk?: Maybe<Household>
   /** fetch data from the table in a streaming manner : "household" */
   householdStream: Array<Household>
+  /** fetch data from the table: "householdToProgram" */
+  householdToProgram: Array<HouseholdToProgram>
+  /** fetch aggregated fields from the table: "householdToProgram" */
+  householdToProgramAggregate: HouseholdToProgramAggregate
+  /** fetch data from the table in a streaming manner : "householdToProgram" */
+  householdToProgramStream: Array<HouseholdToProgram>
+  /** fetch data from the table: "inventoryOfLivestock" */
+  inventoryOfLivestock: Array<InventoryOfLivestock>
+  /** fetch aggregated fields from the table: "inventoryOfLivestock" */
+  inventoryOfLivestockAggregate: InventoryOfLivestockAggregate
+  /** fetch data from the table in a streaming manner : "inventoryOfLivestock" */
+  inventoryOfLivestockStream: Array<InventoryOfLivestock>
   /** fetch data from the table: "produce" */
   produce: Array<Produce>
   /** fetch aggregated fields from the table: "produce" */
@@ -4027,6 +4760,12 @@ export type Subscription_Root = {
   programByPk?: Maybe<Program>
   /** fetch data from the table in a streaming manner : "program" */
   programStream: Array<Program>
+  /** fetch data from the table: "registeredHouseholdPerYear" */
+  registeredHouseholdPerYear: Array<RegisteredHouseholdPerYear>
+  /** fetch aggregated fields from the table: "registeredHouseholdPerYear" */
+  registeredHouseholdPerYearAggregate: RegisteredHouseholdPerYearAggregate
+  /** fetch data from the table in a streaming manner : "registeredHouseholdPerYear" */
+  registeredHouseholdPerYearStream: Array<RegisteredHouseholdPerYear>
 }
 
 export type Subscription_RootAnnualInfoArgs = {
@@ -4079,6 +4818,28 @@ export type Subscription_RootAssociationStreamArgs = {
   batchSize: Scalars['Int']
   cursor: Array<InputMaybe<Association_StreamCursorInput>>
   where?: InputMaybe<AssociationBoolExp>
+}
+
+export type Subscription_RootAverageAnnualIncomeArgs = {
+  distinctOn?: InputMaybe<Array<AverageAnnualIncomeSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AverageAnnualIncomeOrderBy>>
+  where?: InputMaybe<AverageAnnualIncomeBoolExp>
+}
+
+export type Subscription_RootAverageAnnualIncomeAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AverageAnnualIncomeSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AverageAnnualIncomeOrderBy>>
+  where?: InputMaybe<AverageAnnualIncomeBoolExp>
+}
+
+export type Subscription_RootAverageAnnualIncomeStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<AverageAnnualIncome_StreamCursorInput>>
+  where?: InputMaybe<AverageAnnualIncomeBoolExp>
 }
 
 export type Subscription_RootCommodityArgs = {
@@ -4207,6 +4968,50 @@ export type Subscription_RootHouseholdStreamArgs = {
   where?: InputMaybe<HouseholdBoolExp>
 }
 
+export type Subscription_RootHouseholdToProgramArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdToProgramSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<HouseholdToProgramOrderBy>>
+  where?: InputMaybe<HouseholdToProgramBoolExp>
+}
+
+export type Subscription_RootHouseholdToProgramAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdToProgramSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<HouseholdToProgramOrderBy>>
+  where?: InputMaybe<HouseholdToProgramBoolExp>
+}
+
+export type Subscription_RootHouseholdToProgramStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<HouseholdToProgram_StreamCursorInput>>
+  where?: InputMaybe<HouseholdToProgramBoolExp>
+}
+
+export type Subscription_RootInventoryOfLivestockArgs = {
+  distinctOn?: InputMaybe<Array<InventoryOfLivestockSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<InventoryOfLivestockOrderBy>>
+  where?: InputMaybe<InventoryOfLivestockBoolExp>
+}
+
+export type Subscription_RootInventoryOfLivestockAggregateArgs = {
+  distinctOn?: InputMaybe<Array<InventoryOfLivestockSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<InventoryOfLivestockOrderBy>>
+  where?: InputMaybe<InventoryOfLivestockBoolExp>
+}
+
+export type Subscription_RootInventoryOfLivestockStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<InventoryOfLivestock_StreamCursorInput>>
+  where?: InputMaybe<InventoryOfLivestockBoolExp>
+}
+
 export type Subscription_RootProduceArgs = {
   distinctOn?: InputMaybe<Array<ProduceSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
@@ -4253,4 +5058,26 @@ export type Subscription_RootProgramStreamArgs = {
   batchSize: Scalars['Int']
   cursor: Array<InputMaybe<Program_StreamCursorInput>>
   where?: InputMaybe<ProgramBoolExp>
+}
+
+export type Subscription_RootRegisteredHouseholdPerYearArgs = {
+  distinctOn?: InputMaybe<Array<RegisteredHouseholdPerYearSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<RegisteredHouseholdPerYearOrderBy>>
+  where?: InputMaybe<RegisteredHouseholdPerYearBoolExp>
+}
+
+export type Subscription_RootRegisteredHouseholdPerYearAggregateArgs = {
+  distinctOn?: InputMaybe<Array<RegisteredHouseholdPerYearSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<RegisteredHouseholdPerYearOrderBy>>
+  where?: InputMaybe<RegisteredHouseholdPerYearBoolExp>
+}
+
+export type Subscription_RootRegisteredHouseholdPerYearStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<RegisteredHouseholdPerYear_StreamCursorInput>>
+  where?: InputMaybe<RegisteredHouseholdPerYearBoolExp>
 }

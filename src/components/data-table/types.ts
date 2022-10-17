@@ -37,6 +37,15 @@ export type DataTableAction<T extends Identifiable> = {
   conditionalRendering?: (arg: T) => boolean
 }
 
+export type BulkDataTableAction = {
+  onClick: (
+    tableState: TableState,
+    tableDispatch: Dispatch<TableAction>
+  ) => void
+  icon: React.FC<any>
+  label: string
+}
+
 export type RowProp<T extends Identifiable> = {
   row: T
   index: number
@@ -55,11 +64,12 @@ export type DataTableProps<T extends Identifiable> = {
   onRowToggle: () => void
   pageSizes: number[]
   showPagination?: boolean
-  tableState?: TableState
-  tableDispatch?: Dispatch<TableAction>
+  tableState: TableState
+  tableDispatch: Dispatch<TableAction>
   isLoading?: boolean
   rowClassName?: (row: T) => string
   checkedItems?: string[]
   rowCheckboxEnabled?: (row: T) => boolean
   actions?: DataTableAction<T>[]
+  bulkActions?: BulkDataTableAction[]
 }

@@ -15,7 +15,7 @@ export function FarmMapTableActions(
   return (
     <>
       <IconButton onClick={onSwitchView} sx={{ mr: 2 }}>
-        {tableState?.metadata?.view === 'map' ? <ListIcon /> : <MapIcon />}
+        {tableState.metadata.view === 'map' ? <ListIcon /> : <MapIcon />}
       </IconButton>
     </>
   )
@@ -24,7 +24,7 @@ export function FarmMapTableActions(
     tableDispatch?.({
       type: 'SetMetadata',
       payload: {
-        view: tableState?.metadata?.view === 'map' ? 'list' : 'map',
+        view: tableState.metadata.view === 'map' ? 'list' : 'map',
       },
     })
   }

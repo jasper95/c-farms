@@ -41,12 +41,6 @@ export const tableInitialState: TableState = {
   metadata: {},
 }
 
-export type RowSelectionPayload = {
-  index: number
-  checked: boolean
-  rows: string[]
-}
-
 export default function tableReducer(
   state: TableState,
   action: TableAction
@@ -72,18 +66,6 @@ export default function tableReducer(
     SetMetadata: 'metadata',
   }
   const key = keyMappings[action.type]
-  if (action.type === 'SetSelected') {
-    const { index, checked, rows } = action.payload
-    const { selected } = state
-    let arr = []
-    if (index === 0) {
-      arr = checked ? rows : []
-    } else {
-      const id = rows[index - 1]
-      arr = checked ? [...selected, id] : selected.filter((e) => e !== id)
-    }
-    return { ...state, [key]: arr }
-  }
   return { ...state, [key]: action.payload }
 }
 
@@ -91,7 +73,7 @@ export type TableAction =
   | { type: 'SetSize'; payload: number }
   | { type: 'SetPage'; payload: number }
   | { type: 'SetSort'; payload: ColumnSort }
-  | { type: 'SetSelected'; payload: RowSelectionPayload }
+  | { type: 'SetSelected'; payload: string[] }
   | { type: 'ResetSelected' }
   | { type: 'SetSearch'; payload: string }
   | { type: 'SetTotal'; payload: number }

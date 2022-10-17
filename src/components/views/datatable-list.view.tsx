@@ -12,7 +12,7 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Unstable_Grid2'
 import ListFilter from '@/components/list-filter'
 import { FilterValuesList } from '@/components/list-filter/filter-values-list'
-import { ComponentType, ReactNode } from 'react'
+import { ComponentType } from 'react'
 
 interface DatatableListViewProps<
   QueryResponse extends Identifiable,
@@ -20,9 +20,10 @@ interface DatatableListViewProps<
   T extends Identifiable
 > extends UseListViewProps<QueryResponse, QueryVariables, T> {
   name: string
-  readOnly?: boolean
+  withCreate?: boolean
   onCreate?: () => void
   component?: ComponentType<DataTableProps<QueryResponse>>
+  isSelectable?: boolean
   customActions?: ComponentType<
     Pick<DataTableProps<QueryResponse>, 'tableDispatch' | 'tableState'>
   >
@@ -36,6 +37,7 @@ export default function DatatableListView<
   const {
     component: ListComponent = DataTable,
     customActions: CustomActions = () => null,
+    isSelectable,
   } = props
   const { tableProps, onSearchChanged, baseUrl, filters } = useListViewHook(
     pick(
@@ -45,11 +47,13 @@ export default function DatatableListView<
       'columns',
       'onEdit',
       'baseUrl',
-      'filters'
+      'filters',
+      'bulkActions',
+      'additionalTypenames'
     )
   )
   const { tableState, tableDispatch } = tableProps
-  const { name, onCreate, readOnly } = props
+  const { name, onCreate, withCreate } = props
   return (
     <Box>
       <Grid sx={{ mb: 2 }} container spacing={2}>
@@ -76,17 +80,17 @@ export default function DatatableListView<
             </Grid>
           )}
         </Grid>
-        {!readOnly && (
-          <Grid
-            sx={{ order: { sm: 2, sx: 1 } }}
-            container
-            alignItems={'center'}
-            xsOffset="auto"
-          >
-            <Grid>
-              <CustomActions
-                {...pick(tableProps, 'tableState', 'tableDispatch')}
-              />
+        <Grid
+          sx={{ order: { sm: 2, sx: 1 } }}
+          container
+          alignItems={'center'}
+          xsOffset="auto"
+        >
+          <Grid>
+            <CustomActions
+              {...pick(tableProps, 'tableState', 'tableDispatch')}
+            />
+            {withCreate && (
               <Button
                 {...(onCreate
                   ? {
@@ -101,9 +105,9 @@ export default function DatatableListView<
               >
                 Create {name}
               </Button>
-            </Grid>
+            )}
           </Grid>
-        )}
+        </Grid>
         {filters && (
           <Grid xs={12} sx={{ order: { xs: 3 } }}>
             <FilterValuesList
@@ -115,7 +119,11 @@ export default function DatatableListView<
           </Grid>
         )}
       </Grid>
-      <ListComponent {...tableProps} showPagination />
+      <ListComponent
+        {...tableProps}
+        isSelectable={isSelectable}
+        showPagination
+      />
     </Box>
   )
 }

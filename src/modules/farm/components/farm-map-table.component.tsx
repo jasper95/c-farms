@@ -22,7 +22,7 @@ export function FarmMapTableComponent(
     tableDispatch,
     tableState,
   })
-  if (tableState?.metadata?.view === 'map') {
+  if (tableState.metadata.view === 'map') {
     return (
       <Map
         zoom={13}

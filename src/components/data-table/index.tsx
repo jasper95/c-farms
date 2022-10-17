@@ -1,4 +1,4 @@
-import React, { Dispatch, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
@@ -7,6 +7,8 @@ import TableSortLabel from '@mui/material/TableSortLabel'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import TableCell from '@mui/material/TableCell'
+import IconButton from '@mui/material/IconButton'
+import Tooltip from '@mui/material/Tooltip'
 import Card from '@mui/material/Card'
 import {
   Identifiable,
@@ -18,7 +20,22 @@ import Column, { StyledTableCell } from './column'
 import get from 'lodash/get'
 import TablePreloader from './pre-loader'
 import Typography from '@mui/material/Typography'
+import Checkbox from '@mui/material/Checkbox'
+import { styled } from '@mui/material/styles'
+import Box from '@mui/material/Box'
 
+const StyledToolbar = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  top: '0px',
+  left: '0px',
+  width: '100%',
+  zIndex: '9',
+  height: '58px',
+  position: 'absolute',
+  padding: theme.spacing(0, 6, 0, 0.5),
+}))
 function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
   const {
     rows,
@@ -32,6 +49,8 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
     rowClassName = () => '',
     checkedItems,
     actions = [],
+    isSelectable,
+    bulkActions = [],
   } = props
   const columns: DataTableColumn<T>[] = useMemo(() => {
     if (actions.length) {
@@ -48,11 +67,59 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
   const sort = get(tableState, 'sort', [])
   const additionalColumns: DataTableColumn<T>[] = []
   const isEmpty = !isLoading && rows.length === 0
+  const allChecked = Boolean(
+    tableState.selected.length > 0 && tableState.selected.length === rows.length
+  )
+  const someChecked = Boolean(
+    tableState.selected.length > 0 && tableState.selected.length !== rows.length
+  )
   return (
     <TableContainer component={Card}>
+      {tableState.selected.length > 0 && (
+        <StyledToolbar
+          sx={{
+            color: 'primary.main',
+            bgcolor: 'primary.lighter',
+          }}
+        >
+          <Checkbox
+            color="primary"
+            indeterminate={someChecked}
+            checked={allChecked}
+            onChange={handleMainCheckbox}
+            inputProps={{}}
+          />
+          <Typography sx={{ flexGrow: 1 }} variant="subtitle1">
+            {tableState.selected.length} selected
+          </Typography>
+          <Box>
+            {bulkActions.map((action) => (
+              <Tooltip key={action.label} title={action.label}>
+                <IconButton
+                  color="secondary"
+                  onClick={() => action.onClick(tableState, tableDispatch)}
+                >
+                  <action.icon />
+                </IconButton>
+              </Tooltip>
+            ))}
+          </Box>
+        </StyledToolbar>
+      )}
       <Table>
         <TableHead>
           <TableRow>
+            {isSelectable && (
+              <TableCell padding="checkbox">
+                <Checkbox
+                  color="primary"
+                  indeterminate={someChecked}
+                  checked={allChecked}
+                  onChange={handleMainCheckbox}
+                  inputProps={{}}
+                />
+              </TableCell>
+            )}
             {columns
               .concat(additionalColumns)
               .map(({ title, accessor = '', sortable = true }, idx) => {
@@ -100,7 +167,7 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
           )}
           {isLoading && (
             <TablePreloader
-              rows={tableState?.size ?? 10}
+              rows={tableState.size ?? 10}
               columns={columns.length}
             />
           )}
@@ -115,6 +182,18 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
                 }}
                 className={rowClassName(row)}
               >
+                {isSelectable && (
+                  <TableCell padding="checkbox">
+                    <Checkbox
+                      color="primary"
+                      checked={tableState.selected.includes(row.id)}
+                      onChange={(e, val: boolean) =>
+                        handleRowCheckbox(row, val)
+                      }
+                      inputProps={{}}
+                    />
+                  </TableCell>
+                )}
                 {columns.concat(additionalColumns).map((column, idx) => (
                   <Column
                     index={rowIndex}
@@ -127,13 +206,13 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
             ))}
         </TableBody>
       </Table>
-      {showPagination && tableState && tableDispatch && (
+      {showPagination && (
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
           count={totalRows}
-          rowsPerPage={tableState?.size}
-          page={tableState?.page}
+          rowsPerPage={tableState.size}
+          page={tableState.page}
           onPageChange={(_, payload) =>
             tableDispatch({ type: 'SetPage', payload })
           }
@@ -148,19 +227,24 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
     </TableContainer>
   )
 
-  // function handleCheck(val: boolean, event: React.ChangeEvent<HTMLInputElement>) {
-  //   event.stopPropagation();
-  //   const { id } = event.target;
-  //   const index = rows.findIndex((e) => e.id === id);
-  //   onRowToggle(index + 1, val);
-  // }
+  function handleMainCheckbox(
+    event: React.ChangeEvent<HTMLInputElement>,
+    val: boolean
+  ) {
+    tableDispatch({
+      payload: val ? rows.map((e) => e.id) : [],
+      type: 'SetSelected',
+    })
+  }
 
-  function onRowToggle(index: number, checked: boolean) {
-    tableDispatch &&
-      tableDispatch({
-        type: 'SetSelected',
-        payload: { index, checked, rows: rows.map((e) => e.id) },
-      })
+  function handleRowCheckbox(row: T, val: boolean) {
+    const { selected } = tableState
+    tableDispatch({
+      payload: val
+        ? [...selected, row.id]
+        : selected.filter((e) => e !== row.id),
+      type: 'SetSelected',
+    })
   }
 }
 

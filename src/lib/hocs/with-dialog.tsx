@@ -55,7 +55,7 @@ export function withDialog<T extends FieldValues>(
     })
     return (
       <DialogLayout
-        {...pick(props, 'isProcessing')}
+        {...pick(props, 'isProcessing', 'maxWidth')}
         title={title}
         onCancel={onClickCancel}
         onContinue={onContinue ?? onClickContinue}

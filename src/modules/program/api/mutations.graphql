@@ -9,3 +9,26 @@ mutation UpdateProgram($object: ProgramSetInput, $id: ProgramPkColumnsInput!) {
     id
   }
 }
+
+mutation DeleteHouseholdProgram($programId: uuid!, $householdIds: [uuid!]!) {
+  deleteHouseholdToProgram(
+    where: {
+      programId: { _eq: $programId }
+      householdId: { _in: $householdIds }
+    }
+  ) {
+    affected_rows
+    returning {
+      id
+    }
+  }
+}
+
+mutation CreateHouseholdProgram($objects: [HouseholdToProgramInsertInput!]!) {
+  insertHouseholdToProgram(objects: $objects) {
+    returning {
+      id
+    }
+    affected_rows
+  }
+}

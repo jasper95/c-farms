@@ -11,10 +11,10 @@ interface UseFarmMapTableHookProps
     'tableState' | 'tableDispatch'
   > {}
 export function useFarmMapTableHook(props: UseFarmMapTableHookProps) {
-  const { tableState, tableDispatch } = props
+  const { tableState } = props
   const userFilters = useMemo(
-    () => transformFilter(tableState?.filters ?? []),
-    [tableState?.filters]
+    () => transformFilter(tableState.filters),
+    [tableState.filters]
   )
   const [listResponse] = useFarmListQuery({
     variables: {

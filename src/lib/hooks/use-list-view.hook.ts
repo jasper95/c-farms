@@ -1,4 +1,5 @@
 import {
+  BulkDataTableAction,
   DataTableAction,
   DataTableColumn,
   DataTableFilter,
@@ -6,7 +7,7 @@ import {
 } from '@/components/data-table/types'
 import { useTableState } from '@/components/data-table/use-table-state'
 import { useRouter } from 'next/router'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import * as Urql from 'urql'
 import EditIcon from '@mui/icons-material/Edit'
 import { useSearch } from './use-search.hook'
@@ -57,8 +58,10 @@ export interface UseListViewProps<
   ): Urql.UseQueryResponse<BaseListQuery<QueryResponse>, object>
   columns: DataTableColumn<QueryResponse>[]
   filters?: DataTableFilter<T>[]
+  bulkActions?: BulkDataTableAction[]
   onEdit?: (id: string) => void
   baseUrl?: string
+  additionalTypenames?: string[]
 }
 
 export function useListViewHook<
@@ -66,8 +69,15 @@ export function useListViewHook<
   QueryVariables extends Record<string, any>,
   T extends Identifiable
 >(props: UseListViewProps<QueryResponse, QueryVariables, T>) {
-  const { useListQueryHook, listQueryVariables, columns, onEdit, filters } =
-    props
+  const {
+    useListQueryHook,
+    listQueryVariables,
+    columns,
+    onEdit,
+    filters,
+    bulkActions = [],
+    additionalTypenames = [],
+  } = props
   const [tableState, tableDispatch] = useTableState()
   const router = useRouter()
   const baseUrl = props.baseUrl || router.asPath
@@ -79,7 +89,10 @@ export function useListViewHook<
     [tableState.filters]
   )
 
+  const context = useMemo(() => ({ additionalTypenames }), [])
+
   const [listResponse] = useListQueryHook({
+    context,
     variables: {
       limit: tableState.size,
       offset: tableState.page * tableState.size,
@@ -97,6 +110,13 @@ export function useListViewHook<
     () => listResponse?.data?.list || [],
     [listResponse?.data]
   )
+
+  useEffect(() => {
+    tableDispatch({
+      type: 'SetSelected',
+      payload: [],
+    })
+  }, [listResponse?.data, tableDispatch])
 
   const actions: DataTableAction<QueryResponse>[] = useMemo(() => {
     return [
@@ -124,6 +144,7 @@ export function useListViewHook<
       isLoading: listResponse.fetching,
       columns,
       actions,
+      bulkActions,
     },
     filters,
     baseUrl: router.asPath,

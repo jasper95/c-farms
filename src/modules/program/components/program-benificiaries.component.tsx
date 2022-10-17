@@ -1,21 +1,22 @@
 import DatatableListView from '@/components/views/datatable-list.view'
-import { useRouter } from 'next/router'
 import { useHouseholdBenificiariesListQuery } from '../api/queries'
 import { beneficiariesListColumns } from '../constants/beneficiaries-list-columns'
+import { useProgramBeneficiaries } from '../hooks/use-program-beneficiaries'
+import { ProgramBeneficiariesActions } from './program-beneficiaries-actions'
 
 export function ProgramBenificiaries() {
-  const router = useRouter()
+  const { bulkActions, listQueryVariables } = useProgramBeneficiaries()
   return (
     <DatatableListView
-      listQueryVariables={{
-        programIds: {
-          _contains: router.query.id,
-        },
-      }}
+      listQueryVariables={listQueryVariables}
       useListQueryHook={useHouseholdBenificiariesListQuery}
       columns={beneficiariesListColumns}
-      name="Benificiaries"
-      readOnly
+      name="Beneficiaries"
+      withCreate={false}
+      isSelectable
+      bulkActions={bulkActions}
+      customActions={ProgramBeneficiariesActions}
+      additionalTypenames={['HouseholdBeneficiaries']}
     />
   )
 }
