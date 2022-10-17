@@ -2,11 +2,11 @@ import DatatableListView from '@/components/views/datatable-list.view'
 import {
   useAssociationBeneficiariesListQuery,
   useAssociationProgramsListQuery,
-} from '../api/queries'
-import { associationBeneficiariesListColumns } from '../constants/association-beneficiaries-list-columns'
-import { unassignedAssociationListColumns } from '../constants/unassigned-association-list-columns'
-import { ProgramBeneficiariesViewEnum } from '../enums'
-import { useAssociationBeneficiaries } from '../hooks/use-association-beneficiaries'
+} from '@/modules/program/api/queries'
+import { associationBeneficiariesListColumns } from '@/modules/program/constants/association-beneficiaries-list-columns'
+import { unassignedAssociationListColumns } from '@/modules/program/constants/unassigned-association-list-columns'
+import { ProgramBeneficiariesViewEnum } from '@/modules/program/enums'
+import { useAssociationBeneficiaries } from '@/modules/program/hooks/use-association-beneficiaries'
 import { ProgramBeneficiariesActions } from './program-beneficiaries-actions'
 
 export function AssociationBeneficiaries() {

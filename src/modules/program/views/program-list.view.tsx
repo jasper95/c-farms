@@ -6,7 +6,7 @@ import { useCreateProgramMutation } from '@/modules/program/api/mutations'
 import { useProgramListQuery } from '@/modules/program/api/queries'
 import ProgramForm from '@/modules/program/components/program-form.component'
 import { programListColumns, programSchema } from '@/modules/program/constants'
-import { programListFilters } from '../constants/program-list-filters'
+import { programListFilters } from '@/modules/program/constants/program-list-filters'
 
 const name = 'Program'
 export function ProgramListView() {

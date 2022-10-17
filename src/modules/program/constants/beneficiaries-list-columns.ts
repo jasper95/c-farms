@@ -1,6 +1,6 @@
 import { DataTableColumn } from '@/components/data-table/types'
 import formatDate from '@/lib/utils/format-date'
-import { BeneficiariesListRow } from '../interfaces/beneficiares-list-row'
+import { BeneficiariesListRow } from '@/modules/program/interfaces/beneficiares-list-row'
 
 export const beneficiariesListColumns: DataTableColumn<BeneficiariesListRow>[] =
   [

@@ -1,5 +1,5 @@
 import { DataTableColumn } from '@/components/data-table/types'
-import { UnassignedHouseholdListRow } from '../interfaces/unassigned-household-list-row'
+import { UnassignedHouseholdListRow } from '@/modules/program/interfaces/unassigned-household-list-row'
 
 export const unassignedHouseholdListColumns: DataTableColumn<UnassignedHouseholdListRow>[] =
   [

@@ -3,20 +3,19 @@ import { useRouter } from 'next/router'
 import {
   useCreateAssociationProgramMutation,
   useDeleteAssociationProgramMutation,
-} from '../api/mutations'
-import { ProgramBeneficiariesViewEnum } from '../enums'
+} from '@/modules/program/api/mutations'
+import { ProgramBeneficiariesViewEnum } from '@/modules/program/enums'
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import { TableState } from '@/components/data-table/table-reducer'
-import { UnassignedAssociationListRow } from '../interfaces/unassigned-association-list-row'
-import { AssociationBeneficiariesListRow } from '../interfaces/associations-list-row'
+import { UnassignedAssociationListRow } from '@/modules/program/interfaces/unassigned-association-list-row'
+import { AssociationBeneficiariesListRow } from '@/modules/program/interfaces/associations-list-row'
 
 export function useAssociationBeneficiaries() {
   const router = useRouter()
   const view = router.query.view || ProgramBeneficiariesViewEnum.Assigned
   const id = router.query.id
   const { notifySuccess } = useNotificationStore()
-
   const [, onDelete] = useDeleteAssociationProgramMutation()
   const [, onCreate] = useCreateAssociationProgramMutation()
   const bulkActions =

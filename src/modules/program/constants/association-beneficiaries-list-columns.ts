@@ -1,5 +1,5 @@
 import { DataTableColumn } from '@/components/data-table/types'
-import { AssociationBeneficiariesListRow } from '../interfaces/associations-list-row'
+import { AssociationBeneficiariesListRow } from '@/modules/program/interfaces/associations-list-row'
 
 export const associationBeneficiariesListColumns: DataTableColumn<AssociationBeneficiariesListRow>[] =
   [

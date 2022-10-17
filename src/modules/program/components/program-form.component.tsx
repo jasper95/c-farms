@@ -3,7 +3,7 @@ import { UseFormReturn } from 'react-hook-form'
 import { IProgramSchema } from '@/modules/program/constants'
 import TextField from '@/components/text-field'
 import DateRangePicker from '@/components/date-range-picker'
-import { typeOptions } from '../constants/form-options'
+import { typeOptions } from '@/modules/program/constants/form-options'
 import SelectField from '@/components/select-field'
 
 interface ProgramFormProps {

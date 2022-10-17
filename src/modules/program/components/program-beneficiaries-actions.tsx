@@ -3,7 +3,7 @@ import Button from '@mui/material/Button'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { ProgramBeneficiariesViewEnum } from '../enums'
+import { ProgramBeneficiariesViewEnum } from '@/modules/program/enums'
 
 export function ProgramBeneficiariesActions<T extends Identifiable>(
   props: Pick<DataTableProps<T>, 'tableDispatch' | 'tableState'>

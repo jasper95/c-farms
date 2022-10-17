@@ -1,4 +1,5 @@
 export * from './program-form.component'
 export { EditProgramDetails } from './edit-program-details.component'
-export { ProgramBeneficiaries } from './program-beneficiaries.component'
+export { HouseholdBeneficiaries } from './household-beneficiaries.component'
 export { AssociationBeneficiaries } from './association-beneficiaries.component'
+export { Beneficiaries } from './beneficiaries.component'

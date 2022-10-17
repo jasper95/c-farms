@@ -2,16 +2,16 @@ import DatatableListView from '@/components/views/datatable-list.view'
 import {
   useHouseholdProgramsListQuery,
   useProgramBeneficiariesListQuery,
-} from '../api/queries'
-import { beneficiariesListColumns } from '../constants/beneficiaries-list-columns'
-import { unassignedHouseholdListColumns } from '../constants/unassigned-household-list-columns'
-import { ProgramBeneficiariesViewEnum } from '../enums'
-import { useProgramBeneficiaries } from '../hooks/use-program-beneficiaries'
+} from '@/modules/program/api/queries'
+import { beneficiariesListColumns } from '@/modules/program/constants/beneficiaries-list-columns'
+import { unassignedHouseholdListColumns } from '@/modules/program/constants/unassigned-household-list-columns'
+import { ProgramBeneficiariesViewEnum } from '@/modules/program/enums'
+import { useHouseholdBeneficiaries } from '@/modules/program/hooks/use-household-beneficiaries'
 import { ProgramBeneficiariesActions } from './program-beneficiaries-actions'
 
-export function ProgramBeneficiaries() {
+export function HouseholdBeneficiaries() {
   const { bulkActions, view, id, assignedActions, unassignedActions } =
-    useProgramBeneficiaries()
+    useHouseholdBeneficiaries()
   if (view === ProgramBeneficiariesViewEnum.Unassigned) {
     return (
       <DatatableListView

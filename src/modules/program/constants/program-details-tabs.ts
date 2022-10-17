@@ -1,4 +1,4 @@
-import { ProgramDetailsRoutesEnum } from '../enums'
+import { ProgramDetailsRoutesEnum } from '@/modules/program/enums'
 
 export const programDetailsTabs = [
   {
@@ -6,11 +6,7 @@ export const programDetailsTabs = [
     value: ProgramDetailsRoutesEnum.Details,
   },
   {
-    label: 'Household Beneficiaries',
+    label: 'Beneficiaries',
     value: ProgramDetailsRoutesEnum.Beneficiaries,
-  },
-  {
-    label: 'Association Beneficiaries',
-    value: ProgramDetailsRoutesEnum.AssociationBeneficiaries,
   },
 ]

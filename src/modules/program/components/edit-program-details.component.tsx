@@ -2,9 +2,9 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import { useEditViewHook } from '@/lib/hooks/use-edit-view.hook'
 import ProgramForm from './program-form.component'
-import { programSchema } from '../constants'
-import { useProgramDetailsQuery } from '../api/queries'
-import { useUpdateProgramMutation } from '../api/mutations'
+import { programSchema } from '@/modules/program/constants'
+import { useProgramDetailsQuery } from '@/modules/program/api/queries'
+import { useUpdateProgramMutation } from '@/modules/program/api/mutations'
 import { FormToolbar } from '@/components/form-toolbar'
 
 export function EditProgramDetails() {

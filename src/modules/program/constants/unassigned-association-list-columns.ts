@@ -1,5 +1,5 @@
 import { DataTableColumn } from '@/components/data-table/types'
-import { UnassignedAssociationListRow } from '../interfaces/unassigned-association-list-row'
+import { UnassignedAssociationListRow } from '@/modules/program/interfaces/unassigned-association-list-row'
 
 export const unassignedAssociationListColumns: DataTableColumn<UnassignedAssociationListRow>[] =
   [

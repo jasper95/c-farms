@@ -1,17 +1,17 @@
 import { TableState } from '@/components/data-table/table-reducer'
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
 import { useRouter } from 'next/router'
-import { ProgramBeneficiariesViewEnum } from '../enums'
+import { ProgramBeneficiariesViewEnum } from '@/modules/program/enums'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import {
   useCreateHouseholdProgramMutation,
   useDeleteHouseholdProgramMutation,
-} from '../api/mutations'
+} from '@/modules/program/api/mutations'
 import { useNotificationStore } from '@/lib/stores/notification'
-import { UnassignedHouseholdListRow } from '../interfaces/unassigned-household-list-row'
-import { BeneficiariesListRow } from '../interfaces/beneficiares-list-row'
+import { UnassignedHouseholdListRow } from '@/modules/program/interfaces/unassigned-household-list-row'
+import { BeneficiariesListRow } from '@/modules/program/interfaces/beneficiares-list-row'
 
-export function useProgramBeneficiaries() {
+export function useHouseholdBeneficiaries() {
   const router = useRouter()
   const view = router.query.view || ProgramBeneficiariesViewEnum.Assigned
   const id = router.query.id
