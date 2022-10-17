@@ -27,3 +27,21 @@ mutation CreateHouseholdProgram($objects: [HouseholdToProgramInsertInput!]!) {
     affected_rows
   }
 }
+
+mutation DeleteAssociationProgram($ids: [uuid!]!) {
+  deleteAssociationToProgram(where: { id: { _in: $ids } }) {
+    affected_rows
+    returning {
+      id
+    }
+  }
+}
+
+mutation CreateAssociationProgram($objects: [AssociationToProgramInsertInput!]!) {
+  insertAssociationToProgram(objects: $objects) {
+    returning {
+      id
+    }
+    affected_rows
+  }
+}

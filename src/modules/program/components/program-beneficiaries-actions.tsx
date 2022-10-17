@@ -22,11 +22,11 @@ export function ProgramBeneficiariesActions<T extends Identifiable>(
   const buttons = [
     {
       view: ProgramBeneficiariesViewEnum.Assigned,
-      label: 'Assigned',
+      label: 'Selected',
     },
     {
       view: ProgramBeneficiariesViewEnum.Unassigned,
-      label: 'Unassigned',
+      label: 'Not Selected',
     },
   ]
   return (

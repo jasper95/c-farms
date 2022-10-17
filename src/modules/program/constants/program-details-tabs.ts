@@ -6,7 +6,11 @@ export const programDetailsTabs = [
     value: ProgramDetailsRoutesEnum.Details,
   },
   {
-    label: 'Beneficiaries',
+    label: 'Household Beneficiaries',
     value: ProgramDetailsRoutesEnum.Beneficiaries,
+  },
+  {
+    label: 'Association Beneficiaries',
+    value: ProgramDetailsRoutesEnum.AssociationBeneficiaries,
   },
 ]
