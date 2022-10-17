@@ -1,4 +1,5 @@
 import { DataTableColumn } from '@/components/data-table/types'
+import formatDate from '@/lib/utils/format-date'
 import { BeneficiariesListRow } from '../interfaces/beneficiares-list-row'
 
 export const beneficiariesListColumns: DataTableColumn<BeneficiariesListRow>[] =
@@ -9,20 +10,12 @@ export const beneficiariesListColumns: DataTableColumn<BeneficiariesListRow>[] =
       fn: (row) => [row.firstName, row.lastName].join(' '),
     },
     {
-      title: 'Farm Size',
-      type: 'function',
-      fn: (row) => `${row.farmSize} ha`,
-    },
-    {
-      title: 'Farming Income',
-      accessor: 'grossAnnualIncomeFarming',
-    },
-    {
-      title: 'Non-farming Income',
-      accessor: 'grossAnnualIncomeNonfarming',
-    },
-    {
       title: 'Barangay',
       accessor: 'barangay',
+    },
+    {
+      title: 'Date Availed',
+      type: 'function',
+      fn: (row) => formatDate(new Date(row.createdAt)),
     },
   ]

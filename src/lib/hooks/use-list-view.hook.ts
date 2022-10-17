@@ -59,6 +59,7 @@ export interface UseListViewProps<
   columns: DataTableColumn<QueryResponse>[]
   filters?: DataTableFilter<T>[]
   bulkActions?: BulkDataTableAction[]
+  actions?: DataTableAction<QueryResponse>[]
   onEdit?: (id: string) => void
   baseUrl?: string
   additionalTypenames?: string[]
@@ -77,6 +78,7 @@ export function useListViewHook<
     filters,
     bulkActions = [],
     additionalTypenames = [],
+    actions,
   } = props
   const [tableState, tableDispatch] = useTableState()
   const router = useRouter()
@@ -118,7 +120,7 @@ export function useListViewHook<
     })
   }, [listResponse?.data, tableDispatch])
 
-  const actions: DataTableAction<QueryResponse>[] = useMemo(() => {
+  const defaultActions: DataTableAction<QueryResponse>[] = useMemo(() => {
     return [
       {
         label: 'Edit',
@@ -143,7 +145,7 @@ export function useListViewHook<
       totalRows: listResponse?.data?.meta?.aggregate?.count || 0,
       isLoading: listResponse.fetching,
       columns,
-      actions,
+      actions: actions || defaultActions,
       bulkActions,
     },
     filters,

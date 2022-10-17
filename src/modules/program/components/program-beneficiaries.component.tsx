@@ -10,7 +10,8 @@ import { useProgramBeneficiaries } from '../hooks/use-program-beneficiaries'
 import { ProgramBeneficiariesActions } from './program-beneficiaries-actions'
 
 export function ProgramBeneficiaries() {
-  const { bulkActions, view, id } = useProgramBeneficiaries()
+  const { bulkActions, view, id, assignedActions, unassignedActions } =
+    useProgramBeneficiaries()
   if (view === ProgramBeneficiariesViewEnum.Unassigned) {
     return (
       <DatatableListView
@@ -29,6 +30,7 @@ export function ProgramBeneficiaries() {
         bulkActions={bulkActions}
         customActions={ProgramBeneficiariesActions}
         additionalTypenames={['HouseholdPrograms']}
+        actions={unassignedActions}
       />
     )
   }
@@ -47,6 +49,7 @@ export function ProgramBeneficiaries() {
       bulkActions={bulkActions}
       customActions={ProgramBeneficiariesActions}
       additionalTypenames={['ProgramBeneficiaries']}
+      actions={assignedActions}
     />
   )
 }

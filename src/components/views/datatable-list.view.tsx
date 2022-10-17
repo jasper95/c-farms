@@ -49,7 +49,8 @@ export default function DatatableListView<
       'baseUrl',
       'filters',
       'bulkActions',
-      'additionalTypenames'
+      'additionalTypenames',
+      'actions'
     )
   )
   const { tableState, tableDispatch } = tableProps
