@@ -1,7 +1,6 @@
 import { TableState } from '@/components/data-table/table-reducer'
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle'
 import { useRouter } from 'next/router'
-import { useMemo } from 'react'
 import { ProgramBeneficiariesViewEnum } from '../enums'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import {
@@ -16,16 +15,6 @@ export function useProgramBeneficiaries() {
 
   const [, onDelete] = useDeleteHouseholdProgramMutation()
   const [, onCreate] = useCreateHouseholdProgramMutation()
-  const listQueryVariables = useMemo(() => {
-    const variables = {
-      programIds: {
-        _contains: id,
-      },
-    }
-    return view === ProgramBeneficiariesViewEnum.Assigned
-      ? variables
-      : { _not: variables }
-  }, [id, view])
   const bulkActions =
     view === ProgramBeneficiariesViewEnum.Assigned
       ? [
@@ -43,18 +32,18 @@ export function useProgramBeneficiaries() {
           },
         ]
   return {
-    listQueryVariables,
     bulkActions,
+    view,
+    id,
   }
 
   function onRemove(tableState: TableState) {
     const { selected } = tableState
     onDelete(
       {
-        programId: id,
-        householdIds: selected,
+        ids: selected,
       },
-      { additionalTypenames: ['HouseholdBeneficiaries'] }
+      { additionalTypenames: ['ProgramBeneficiaries', 'HouseholdPrograms'] }
     )
   }
 
@@ -67,7 +56,7 @@ export function useProgramBeneficiaries() {
           householdId,
         })),
       },
-      { additionalTypenames: ['HouseholdBeneficiaries'] }
+      { additionalTypenames: ['ProgramBeneficiaries', 'HouseholdPrograms'] }
     )
   }
 }

@@ -29,6 +29,7 @@ export function useNewDialogHook<
     redirectBaseUrl,
     component,
     params,
+    additionalTypenames = [],
   } = props
   const { showDialog } = useDialogStore()
   const router = useRouter()
@@ -48,12 +49,15 @@ export function useNewDialogHook<
         defaultValues: schema.cast({}) as DeepPartial<T>,
         onValid: async (data: AssertsShape<T>) => {
           const payload = transform(data) as MutationPayload
-          const response = await onCreate({
-            object: {
-              ...payload,
-              ...(params || {}),
+          const response = await onCreate(
+            {
+              object: {
+                ...payload,
+                ...(params || {}),
+              },
             },
-          })
+            { additionalTypenames }
+          )
           notifySuccess(`${name} successfully created`)
           if (redirectBaseUrl) {
             router.replace(`${redirectBaseUrl}/${response.data?.data?.id}`)

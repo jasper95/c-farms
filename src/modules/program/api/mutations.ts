@@ -23,8 +23,7 @@ export type UpdateProgramMutation = {
 }
 
 export type DeleteHouseholdProgramMutationVariables = Types.Exact<{
-  programId: Types.Scalars['uuid']
-  householdIds: Array<Types.Scalars['uuid']> | Types.Scalars['uuid']
+  ids: Array<Types.Scalars['uuid']> | Types.Scalars['uuid']
 }>
 
 export type DeleteHouseholdProgramMutation = {
@@ -89,13 +88,8 @@ export function useUpdateProgramMutation() {
   >(UpdateProgramDocument)
 }
 export const DeleteHouseholdProgramDocument = gql`
-  mutation DeleteHouseholdProgram($programId: uuid!, $householdIds: [uuid!]!) {
-    deleteHouseholdToProgram(
-      where: {
-        programId: { _eq: $programId }
-        householdId: { _in: $householdIds }
-      }
-    ) {
+  mutation DeleteHouseholdProgram($ids: [uuid!]!) {
+    deleteHouseholdToProgram(where: { id: { _in: $ids } }) {
       affected_rows
       returning {
         id

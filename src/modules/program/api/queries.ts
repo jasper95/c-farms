@@ -43,20 +43,53 @@ export type ProgramDetailsQuery = {
     | undefined
 }
 
-export type HouseholdBenificiariesListQueryVariables = Types.Exact<{
-  where?: Types.InputMaybe<Types.HouseholdBeneficiariesBoolExp>
+export type ProgramBeneficiariesListQueryVariables = Types.Exact<{
+  where?: Types.InputMaybe<Types.ProgramBeneficiariesBoolExp>
   orderBy?: Types.InputMaybe<
-    | Array<Types.HouseholdBeneficiariesOrderBy>
-    | Types.HouseholdBeneficiariesOrderBy
+    Array<Types.ProgramBeneficiariesOrderBy> | Types.ProgramBeneficiariesOrderBy
   >
   offset?: Types.InputMaybe<Types.Scalars['Int']>
   limit?: Types.InputMaybe<Types.Scalars['Int']>
 }>
 
-export type HouseholdBenificiariesListQuery = {
+export type ProgramBeneficiariesListQuery = {
   __typename?: 'query_root'
   list: Array<{
-    __typename?: 'HouseholdBeneficiaries'
+    __typename?: 'ProgramBeneficiaries'
+    createdAt: any
+    farmSize: any
+    firstName: string
+    grossAnnualIncomeFarming: any
+    grossAnnualIncomeNonfarming: any
+    householdId: any
+    id: any
+    lastName: string
+    programId: any
+    barangay: string
+    referenceNo: string
+  }>
+  meta: {
+    __typename?: 'ProgramBeneficiariesAggregate'
+    aggregate?:
+      | { __typename?: 'ProgramBeneficiariesAggregateFields'; count: number }
+      | null
+      | undefined
+  }
+}
+
+export type HouseholdProgramsListQueryVariables = Types.Exact<{
+  where?: Types.InputMaybe<Types.HouseholdProgramsBoolExp>
+  orderBy?: Types.InputMaybe<
+    Array<Types.HouseholdProgramsOrderBy> | Types.HouseholdProgramsOrderBy
+  >
+  offset?: Types.InputMaybe<Types.Scalars['Int']>
+  limit?: Types.InputMaybe<Types.Scalars['Int']>
+}>
+
+export type HouseholdProgramsListQuery = {
+  __typename?: 'query_root'
+  list: Array<{
+    __typename?: 'HouseholdPrograms'
     barangay: string
     farmSize: any
     firstName: string
@@ -68,9 +101,9 @@ export type HouseholdBenificiariesListQuery = {
     referenceNo: string
   }>
   meta: {
-    __typename?: 'HouseholdBeneficiariesAggregate'
+    __typename?: 'HouseholdProgramsAggregate'
     aggregate?:
-      | { __typename?: 'HouseholdBeneficiariesAggregateFields'; count: number }
+      | { __typename?: 'HouseholdProgramsAggregateFields'; count: number }
       | null
       | undefined
   }
@@ -131,14 +164,58 @@ export function useProgramDetailsQuery(
     ...options,
   })
 }
-export const HouseholdBenificiariesListDocument = gql`
-  query HouseholdBenificiariesList(
-    $where: HouseholdBeneficiariesBoolExp
-    $orderBy: [HouseholdBeneficiariesOrderBy!]
+export const ProgramBeneficiariesListDocument = gql`
+  query ProgramBeneficiariesList(
+    $where: ProgramBeneficiariesBoolExp
+    $orderBy: [ProgramBeneficiariesOrderBy!]
     $offset: Int
     $limit: Int
   ) {
-    list: householdBeneficiaries(
+    list: programBeneficiaries(
+      where: $where
+      orderBy: $orderBy
+      offset: $offset
+      limit: $limit
+    ) {
+      createdAt
+      farmSize
+      firstName
+      grossAnnualIncomeFarming
+      grossAnnualIncomeNonfarming
+      householdId
+      id
+      lastName
+      programId
+      barangay
+      referenceNo
+    }
+    meta: programBeneficiariesAggregate(where: $where) {
+      aggregate {
+        count
+      }
+    }
+  }
+`
+
+export function useProgramBeneficiariesListQuery(
+  options?: Omit<
+    Urql.UseQueryArgs<ProgramBeneficiariesListQueryVariables>,
+    'query'
+  >
+) {
+  return Urql.useQuery<ProgramBeneficiariesListQuery>({
+    query: ProgramBeneficiariesListDocument,
+    ...options,
+  })
+}
+export const HouseholdProgramsListDocument = gql`
+  query HouseholdProgramsList(
+    $where: HouseholdProgramsBoolExp
+    $orderBy: [HouseholdProgramsOrderBy!]
+    $offset: Int
+    $limit: Int
+  ) {
+    list: householdPrograms(
       where: $where
       orderBy: $orderBy
       offset: $offset
@@ -154,7 +231,7 @@ export const HouseholdBenificiariesListDocument = gql`
       programIds
       referenceNo
     }
-    meta: householdBeneficiariesAggregate(where: $where) {
+    meta: householdProgramsAggregate(where: $where) {
       aggregate {
         count
       }
@@ -162,14 +239,14 @@ export const HouseholdBenificiariesListDocument = gql`
   }
 `
 
-export function useHouseholdBenificiariesListQuery(
+export function useHouseholdProgramsListQuery(
   options?: Omit<
-    Urql.UseQueryArgs<HouseholdBenificiariesListQueryVariables>,
+    Urql.UseQueryArgs<HouseholdProgramsListQueryVariables>,
     'query'
   >
 ) {
-  return Urql.useQuery<HouseholdBenificiariesListQuery>({
-    query: HouseholdBenificiariesListDocument,
+  return Urql.useQuery<HouseholdProgramsListQuery>({
+    query: HouseholdProgramsListDocument,
     ...options,
   })
 }

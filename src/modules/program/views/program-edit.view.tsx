@@ -2,7 +2,7 @@ import Breadcrumbs from '@/components/breadcrumbs'
 import { Dashboard } from '@/components/layout/dashboard.layout'
 import { DetailsTabsLayout } from '@/components/layout/details-tabs.layout'
 import { useDetailsTabsCrumbs } from '@/lib/hooks/use-details-details-tabs-crumbs'
-import { EditProgramDetails, ProgramBenificiaries } from '../components'
+import { EditProgramDetails, ProgramBeneficiaries } from '../components'
 import { programDetailsTabs } from '../constants/program-details-tabs'
 import { ProgramDetailsRoutesEnum } from '../enums'
 
@@ -18,8 +18,8 @@ export function ProgramEditView() {
       <Breadcrumbs crumbs={crumbs} />
       <DetailsTabsLayout tabs={programDetailsTabs}>
         {tab === ProgramDetailsRoutesEnum.Details && <EditProgramDetails />}
-        {tab === ProgramDetailsRoutesEnum.Benificiaries && (
-          <ProgramBenificiaries />
+        {tab === ProgramDetailsRoutesEnum.Beneficiaries && (
+          <ProgramBeneficiaries />
         )}
       </DetailsTabsLayout>
     </Dashboard>

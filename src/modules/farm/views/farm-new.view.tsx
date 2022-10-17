@@ -15,6 +15,7 @@ export function FarmNewView() {
     useMutationHook: useCreateFarmMutation,
     name: 'Farm',
     initialValues: router.query,
+    redirectBaseUrl: '/farm',
   })
   return (
     <Dashboard>

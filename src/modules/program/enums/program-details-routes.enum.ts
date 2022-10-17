@@ -1,4 +1,4 @@
 export enum ProgramDetailsRoutesEnum {
   Details = '',
-  Benificiaries = 'beneficiaries',
+  Beneficiaries = 'beneficiaries',
 }

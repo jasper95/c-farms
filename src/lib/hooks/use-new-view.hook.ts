@@ -29,6 +29,7 @@ export interface UseNewViewProps<
   transform?: (arg: AssertsShape<T>) => MutationPayload
   params?: Partial<MutationPayload>
   initialValues?: Partial<T>
+  additionalTypenames?: string[]
 }
 
 export function useNewViewHook<
@@ -45,6 +46,7 @@ export function useNewViewHook<
     redirectBaseUrl,
     params,
     initialValues = {},
+    additionalTypenames = [],
   } = props
   const [createMutationResponse, onCreate] = useMutationHook()
   const router = useRouter()
@@ -59,12 +61,15 @@ export function useNewViewHook<
 
   async function onValid(data: AssertsShape<T>) {
     const payload = transform(data) as MutationPayload
-    const response = await onCreate({
-      object: {
-        ...payload,
-        ...(params || {}),
+    const response = await onCreate(
+      {
+        object: {
+          ...payload,
+          ...(params || {}),
+        },
       },
-    })
+      { additionalTypenames }
+    )
     notifySuccess(`${name} successfully created`)
     if (redirectBaseUrl) {
       router.push(`${redirectBaseUrl}/${response.data?.data?.id}`)

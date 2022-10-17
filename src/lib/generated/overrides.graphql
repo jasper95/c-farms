@@ -14,7 +14,7 @@ type Produce {
   year: Int!
 }
 
-type HouseholdBeneficiaries {
+type HouseholdPrograms {
   barangay: String!
   farmSize: numeric!
   firstName: String!
@@ -23,5 +23,20 @@ type HouseholdBeneficiaries {
   id: uuid!
   lastName: String!
   programIds(path: String): jsonb!
+  referenceNo: String!
+  createdAt: timestamp!
+}
+
+type ProgramBeneficiaries {
+  createdAt: timestamp!
+  farmSize: numeric!
+  firstName: String!
+  grossAnnualIncomeFarming: numeric!
+  grossAnnualIncomeNonfarming: numeric!
+  householdId: uuid!
+  id: uuid!
+  lastName: String!
+  programId: uuid!
+  barangay: String!
   referenceNo: String!
 }

@@ -33,13 +33,44 @@ query ProgramDetails($id: uuid!) {
   }
 }
 
-query HouseholdBenificiariesList(
-  $where: HouseholdBeneficiariesBoolExp
-  $orderBy: [HouseholdBeneficiariesOrderBy!]
+query ProgramBeneficiariesList(
+  $where: ProgramBeneficiariesBoolExp
+  $orderBy: [ProgramBeneficiariesOrderBy!]
   $offset: Int
   $limit: Int
 ) {
-  list: householdBeneficiaries(
+  list: programBeneficiaries(
+    where: $where
+    orderBy: $orderBy
+    offset: $offset
+    limit: $limit
+  ) {
+    createdAt
+    farmSize
+    firstName
+    grossAnnualIncomeFarming
+    grossAnnualIncomeNonfarming
+    householdId
+    id
+    lastName
+    programId
+    barangay
+    referenceNo
+  }
+  meta: programBeneficiariesAggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
+
+query HouseholdProgramsList(
+  $where: HouseholdProgramsBoolExp
+  $orderBy: [HouseholdProgramsOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: householdPrograms(
     where: $where
     orderBy: $orderBy
     offset: $offset
@@ -55,7 +86,7 @@ query HouseholdBenificiariesList(
     programIds
     referenceNo
   }
-  meta: householdBeneficiariesAggregate(where: $where) {
+  meta: householdProgramsAggregate(where: $where) {
     aggregate {
       count
     }

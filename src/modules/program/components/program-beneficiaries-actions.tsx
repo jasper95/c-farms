@@ -1,16 +1,12 @@
-import { DataTableProps } from '@/components/data-table/types'
+import { DataTableProps, Identifiable } from '@/components/data-table/types'
 import Button from '@mui/material/Button'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { ProgramBeneficiariesViewEnum } from '../enums'
-import { BeneficiariesListRow } from '../interfaces/beneficiares-list-row'
 
-export function ProgramBeneficiariesActions(
-  props: Pick<
-    DataTableProps<BeneficiariesListRow>,
-    'tableDispatch' | 'tableState'
-  >
+export function ProgramBeneficiariesActions<T extends Identifiable>(
+  props: Pick<DataTableProps<T>, 'tableDispatch' | 'tableState'>
 ) {
   const { tableDispatch, tableState } = props
   const router = useRouter()

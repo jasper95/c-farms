@@ -10,13 +10,8 @@ mutation UpdateProgram($object: ProgramSetInput, $id: ProgramPkColumnsInput!) {
   }
 }
 
-mutation DeleteHouseholdProgram($programId: uuid!, $householdIds: [uuid!]!) {
-  deleteHouseholdToProgram(
-    where: {
-      programId: { _eq: $programId }
-      householdId: { _in: $householdIds }
-    }
-  ) {
+mutation DeleteHouseholdProgram($ids: [uuid!]!) {
+  deleteHouseholdToProgram(where: { id: { _in: $ids } }) {
     affected_rows
     returning {
       id

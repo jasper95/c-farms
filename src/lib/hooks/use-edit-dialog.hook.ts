@@ -46,6 +46,7 @@ export function useEditDialogHook<
     useDetailsQueryHook,
     component,
     transformResponse,
+    additionalTypenames = [],
   } = props
   const router = useRouter()
   const [, onUpdate] = useMutationHook()
@@ -60,12 +61,15 @@ export function useEditDialogHook<
         title: `Edit ${name}`,
         onValid: async (data: AssertsShape<T>) => {
           const payload = transform(data) as MutationPayload
-          await onUpdate({
-            id: {
-              id,
+          await onUpdate(
+            {
+              id: {
+                id,
+              },
+              object: payload,
             },
-            object: payload,
-          })
+            { additionalTypenames }
+          )
           notifySuccess(`${name} successfully updated`)
           if (redirectBaseUrl) {
             router.push(redirectBaseUrl)

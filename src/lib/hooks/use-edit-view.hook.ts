@@ -39,6 +39,7 @@ export interface UseEditViewProps<
   ): Urql.UseQueryResponse<BaseDetailsQuery<DetailsResponse>, object>
   transform?: (arg: AssertsShape<T>) => MutationPayload
   transformResponse?: (arg: DetailsResponse) => AssertsShape<T>
+  additionalTypenames?: string[]
 }
 
 export function useEditViewHook<
@@ -58,6 +59,7 @@ export function useEditViewHook<
     redirectBaseUrl,
     useDetailsQueryHook,
     transformResponse = (arg) => schema.noUnknown().cast(arg),
+    additionalTypenames = [],
   } = props
 
   const router = useRouter()
@@ -88,12 +90,17 @@ export function useEditViewHook<
 
   async function onValid(data: AssertsShape<T>) {
     const payload = transform(data) as MutationPayload
-    await onUpdate({
-      id: {
-        id,
+    await onUpdate(
+      {
+        id: {
+          id,
+        },
+        object: payload,
       },
-      object: payload,
-    })
+      {
+        additionalTypenames,
+      }
+    )
     notifySuccess(`${name} successfully updated`)
     if (redirectBaseUrl) {
       router.push(redirectBaseUrl)

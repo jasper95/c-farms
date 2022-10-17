@@ -7,6 +7,6 @@ export const programDetailsTabs = [
   },
   {
     label: 'Beneficiaries',
-    value: ProgramDetailsRoutesEnum.Benificiaries,
+    value: ProgramDetailsRoutesEnum.Beneficiaries,
   },
 ]

@@ -53,7 +53,7 @@ export default function DatatableListView<
     )
   )
   const { tableState, tableDispatch } = tableProps
-  const { name, onCreate, withCreate } = props
+  const { name, onCreate, withCreate = true } = props
   return (
     <Box>
       <Grid sx={{ mb: 2 }} container spacing={2}>

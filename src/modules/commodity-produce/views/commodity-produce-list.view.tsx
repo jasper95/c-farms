@@ -26,6 +26,7 @@ export function CommodityProduceInventoryListView() {
     params: {
       householdId,
     },
+    additionalTypenames: ['Produce'],
   })
   const { onClickEdit } = useEditDialogHook({
     schema: commodityProduceSchema,
@@ -46,6 +47,7 @@ export function CommodityProduceInventoryListView() {
       }}
       useListQueryHook={useCommodityProduceListQuery}
       columns={commodityProduceListColumns}
+      additionalTypenames={['Produce']}
     />
   )
 }

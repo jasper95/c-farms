@@ -1,3 +1,3 @@
-import { HouseholdBenificiariesListQuery } from '../api/queries'
+import { ProgramBeneficiariesListQuery } from '../api/queries'
 
-export type BeneficiariesListRow = HouseholdBenificiariesListQuery['list'][0]
+export type BeneficiariesListRow = ProgramBeneficiariesListQuery['list'][0]
