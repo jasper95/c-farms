@@ -1,0 +1,36 @@
+query UserList(
+  $where: UserBoolExp
+  $orderBy: [UserOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: user(
+    where: $where
+    orderBy: $orderBy
+    offset: $offset
+    limit: $limit
+  ) {
+    id
+    firstName
+    lastName
+    username
+    role
+    active
+  }
+  meta: userAggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
+
+query UserDetails($id: uuid!) {
+  details: userByPk(id: $id) {
+    id
+    firstName
+    lastName
+    username
+    role
+    active
+  }
+}

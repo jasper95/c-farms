@@ -56,3 +56,10 @@ type AssociationPrograms {
   active: Boolean!
   createdAt: timestamp!
 }
+
+type AverageAnnualIncome {
+  year: Int!
+  averageinfo: numeric!
+  averageAnnualIncomeFarming: numeric!
+  averageAnnualIncomeNonfarming: numeric!
+}

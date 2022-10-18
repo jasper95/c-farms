@@ -16,7 +16,8 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListAltIcon from '@mui/icons-material/ListAlt'
 import GrassIcon from '@mui/icons-material/Grass'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import { Diversity3 } from '@mui/icons-material'
+import Diversity3Icon from '@mui/icons-material/Diversity3'
+import PortraitIcon from '@mui/icons-material/Portrait'
 
 const menuItems = [
   {
@@ -45,9 +46,14 @@ const menuItems = [
     path: '/commodity',
   },
   {
-    icon: Diversity3,
+    icon: Diversity3Icon,
     primaryText: 'Association',
     path: '/association',
+  },
+  {
+    icon: PortraitIcon,
+    primaryText: 'User',
+    path: '/user',
   },
 ] as const
 
