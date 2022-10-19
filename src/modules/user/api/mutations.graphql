@@ -1,0 +1,11 @@
+mutation CreateUser($object: UserInsertInput!) {
+  data: insertUserOne(object: $object) {
+    id
+  }
+}
+
+mutation UpdateUser($object: UserSetInput, $id: UserPkColumnsInput!) {
+  data: updateUserByPk(_set: $object, pk_columns: $id) {
+    id
+  }
+}

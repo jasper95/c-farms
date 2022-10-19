@@ -1,0 +1,221 @@
+import * as Types from '@/lib/generated/graphql.types'
+
+import gql from 'graphql-tag'
+import * as Urql from 'urql'
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type AverageAnnualIncomeListQueryVariables = Types.Exact<{
+  where?: Types.InputMaybe<Types.AverageAnnualIncomeBoolExp>
+  orderBy?: Types.InputMaybe<
+    Array<Types.AverageAnnualIncomeOrderBy> | Types.AverageAnnualIncomeOrderBy
+  >
+  offset?: Types.InputMaybe<Types.Scalars['Int']>
+  limit?: Types.InputMaybe<Types.Scalars['Int']>
+}>
+
+export type AverageAnnualIncomeListQuery = {
+  __typename?: 'query_root'
+  list: Array<{
+    __typename?: 'AverageAnnualIncome'
+    year: number
+    annualIncomeFarming?: any | null | undefined
+    annualIncomeNonfarming?: any | null | undefined
+    averageinfo: any
+  }>
+}
+
+export type DashboardStatsQueryVariables = Types.Exact<{ [key: string]: never }>
+
+export type DashboardStatsQuery = {
+  __typename?: 'query_root'
+  farms: {
+    __typename?: 'FarmAggregate'
+    aggregate?:
+      | { __typename?: 'FarmAggregateFields'; count: number }
+      | null
+      | undefined
+  }
+  associations: {
+    __typename?: 'AssociationAggregate'
+    aggregate?:
+      | { __typename?: 'AssociationAggregateFields'; count: number }
+      | null
+      | undefined
+  }
+  households: {
+    __typename?: 'HouseholdAggregate'
+    aggregate?:
+      | { __typename?: 'HouseholdAggregateFields'; count: number }
+      | null
+      | undefined
+  }
+  programs: {
+    __typename?: 'ProgramAggregate'
+    aggregate?:
+      | { __typename?: 'ProgramAggregateFields'; count: number }
+      | null
+      | undefined
+  }
+}
+
+export type InventoryOfLivestockListQueryVariables = Types.Exact<{
+  where?: Types.InputMaybe<Types.InventoryOfLivestockBoolExp>
+  orderBy?: Types.InputMaybe<
+    Array<Types.InventoryOfLivestockOrderBy> | Types.InventoryOfLivestockOrderBy
+  >
+  offset?: Types.InputMaybe<Types.Scalars['Int']>
+  limit?: Types.InputMaybe<Types.Scalars['Int']>
+}>
+
+export type InventoryOfLivestockListQuery = {
+  __typename?: 'query_root'
+  list: Array<{
+    __typename?: 'InventoryOfLivestock'
+    year?: number | null | undefined
+    name?: string | null | undefined
+    sum?: any | null | undefined
+  }>
+}
+
+export type CropProduceListQueryVariables = Types.Exact<{
+  where?: Types.InputMaybe<Types.CropProduceBoolExp>
+  orderBy?: Types.InputMaybe<
+    Array<Types.CropProduceOrderBy> | Types.CropProduceOrderBy
+  >
+  offset?: Types.InputMaybe<Types.Scalars['Int']>
+  limit?: Types.InputMaybe<Types.Scalars['Int']>
+}>
+
+export type CropProduceListQuery = {
+  __typename?: 'query_root'
+  list: Array<{
+    __typename?: 'CropProduce'
+    year?: number | null | undefined
+    name?: string | null | undefined
+    sum?: any | null | undefined
+  }>
+}
+
+export const AverageAnnualIncomeListDocument = gql`
+  query AverageAnnualIncomeList(
+    $where: AverageAnnualIncomeBoolExp
+    $orderBy: [AverageAnnualIncomeOrderBy!]
+    $offset: Int
+    $limit: Int
+  ) {
+    list: averageAnnualIncome(
+      where: $where
+      orderBy: $orderBy
+      offset: $offset
+      limit: $limit
+    ) {
+      year
+      annualIncomeFarming
+      annualIncomeNonfarming
+      averageinfo
+    }
+  }
+`
+
+export function useAverageAnnualIncomeListQuery(
+  options?: Omit<
+    Urql.UseQueryArgs<AverageAnnualIncomeListQueryVariables>,
+    'query'
+  >
+) {
+  return Urql.useQuery<AverageAnnualIncomeListQuery>({
+    query: AverageAnnualIncomeListDocument,
+    ...options,
+  })
+}
+export const DashboardStatsDocument = gql`
+  query DashboardStats {
+    farms: farmAggregate {
+      aggregate {
+        count
+      }
+    }
+    associations: associationAggregate {
+      aggregate {
+        count
+      }
+    }
+    households: householdAggregate {
+      aggregate {
+        count
+      }
+    }
+    programs: programAggregate {
+      aggregate {
+        count
+      }
+    }
+  }
+`
+
+export function useDashboardStatsQuery(
+  options?: Omit<Urql.UseQueryArgs<DashboardStatsQueryVariables>, 'query'>
+) {
+  return Urql.useQuery<DashboardStatsQuery>({
+    query: DashboardStatsDocument,
+    ...options,
+  })
+}
+export const InventoryOfLivestockListDocument = gql`
+  query InventoryOfLivestockList(
+    $where: InventoryOfLivestockBoolExp
+    $orderBy: [InventoryOfLivestockOrderBy!]
+    $offset: Int
+    $limit: Int
+  ) {
+    list: inventoryOfLivestock(
+      where: $where
+      orderBy: $orderBy
+      offset: $offset
+      limit: $limit
+    ) {
+      year
+      name
+      sum
+    }
+  }
+`
+
+export function useInventoryOfLivestockListQuery(
+  options?: Omit<
+    Urql.UseQueryArgs<InventoryOfLivestockListQueryVariables>,
+    'query'
+  >
+) {
+  return Urql.useQuery<InventoryOfLivestockListQuery>({
+    query: InventoryOfLivestockListDocument,
+    ...options,
+  })
+}
+export const CropProduceListDocument = gql`
+  query CropProduceList(
+    $where: CropProduceBoolExp
+    $orderBy: [CropProduceOrderBy!]
+    $offset: Int
+    $limit: Int
+  ) {
+    list: cropProduce(
+      where: $where
+      orderBy: $orderBy
+      offset: $offset
+      limit: $limit
+    ) {
+      year
+      name
+      sum
+    }
+  }
+`
+
+export function useCropProduceListQuery(
+  options?: Omit<Urql.UseQueryArgs<CropProduceListQueryVariables>, 'query'>
+) {
+  return Urql.useQuery<CropProduceListQuery>({
+    query: CropProduceListDocument,
+    ...options,
+  })
+}

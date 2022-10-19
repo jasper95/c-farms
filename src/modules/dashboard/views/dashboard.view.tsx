@@ -9,6 +9,7 @@ import {
   BarChart,
   Bar,
   ResponsiveContainer,
+  Label,
 } from 'recharts'
 import Card from '@mui/material/Card'
 import Avatar from '@mui/material/Avatar'
@@ -17,7 +18,8 @@ import { Dashboard as DashboardLayout } from '@/components/layout/dashboard.layo
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import PageviewIcon from '@mui/icons-material/Pageview'
-import { pink } from '@mui/material/colors'
+import { useDashboardHook } from '../hooks/use-dashboard-hook'
+import yellow from '@mui/material/colors/yellow'
 
 const data = [
   {
@@ -63,12 +65,15 @@ const data = [
     amt: 2100,
   },
 ]
+
 export function DashboardView() {
+  const { stats, averageAnnualIncomeRows } = useDashboardHook()
+
   return (
     <DashboardLayout>
       <Grid sx={{ mb: 2 }} container spacing={2}>
-        {[1, 2, 3, 4].map((i) => (
-          <Grid key={i} item xs={6} md={3}>
+        {stats.map((stat) => (
+          <Grid key={stat.label} item xs={6} md={3}>
             <Card
               sx={{
                 p: 2,
@@ -79,14 +84,12 @@ export function DashboardView() {
             >
               <Box>
                 <Typography sx={{ color: 'text.secondary' }} variant="overline">
-                  Label
+                  {stat.label}
                 </Typography>
-                <Typography variant="h5">350,00</Typography>
+                <Typography variant="h5">{stat.value}</Typography>
               </Box>
               <Box>
-                <Avatar sx={{ bgcolor: pink[500] }}>
-                  <PageviewIcon />
-                </Avatar>
+                <Avatar sx={{ bgcolor: stat.color }}>{<stat.icon />}</Avatar>
               </Box>
             </Card>
           </Grid>
@@ -96,14 +99,16 @@ export function DashboardView() {
         <Grid item xs={12} md={6}>
           <Card sx={{ p: 2 }}>
             <Box sx={{ mb: 2, textAlign: 'center' }}>
-              <Typography variant="h5">Label</Typography>
+              <Typography variant="h5">
+                Average Annual Income (in thousand pesos)
+              </Typography>
             </Box>
             <Box sx={{ height: 400 }}>
               <ResponsiveContainer height="100%">
                 <LineChart
                   width={500}
                   height={300}
-                  data={data}
+                  data={averageAnnualIncomeRows}
                   margin={{
                     top: 5,
                     right: 30,
@@ -112,17 +117,33 @@ export function DashboardView() {
                   }}
                 >
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
+                  <XAxis dataKey="year">
+                    <Label value="year" position="insideBottom" offset={0} />
+                  </XAxis>
                   <YAxis />
                   <Tooltip />
                   <Legend />
                   <Line
+                    name="Income Nonfarming"
                     type="monotone"
-                    dataKey="pv"
+                    dataKey="incomeNonfarming"
                     stroke="#8884d8"
                     activeDot={{ r: 8 }}
                   />
-                  <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                  <Line
+                    type="monotone"
+                    name="Income Farming"
+                    dataKey="incomeFarming"
+                    stroke="#82ca9d"
+                    activeDot={{ r: 8 }}
+                  />
+                  <Line
+                    name="Total Annual Income"
+                    type="monotone"
+                    dataKey="totalIncome"
+                    stroke="#ff7300"
+                    activeDot={{ r: 8 }}
+                  />
                 </LineChart>
               </ResponsiveContainer>
             </Box>

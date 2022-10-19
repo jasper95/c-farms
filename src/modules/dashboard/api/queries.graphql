@@ -1,0 +1,62 @@
+query AverageAnnualIncomeList(
+  $where: AverageAnnualIncomeBoolExp
+  $orderBy: [AverageAnnualIncomeOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: averageAnnualIncome(where: $where, orderBy: $orderBy, offset: $offset, limit: $limit) {
+    year
+    annualIncomeFarming
+    annualIncomeNonfarming
+    averageinfo
+  }
+}
+
+query DashboardStats {
+  farms: farmAggregate {
+    aggregate {
+      count
+    }
+  }
+  associations: associationAggregate {
+    aggregate {
+      count
+    }
+  }
+  households: householdAggregate {
+    aggregate {
+      count
+    }
+  }
+  programs: programAggregate {
+    aggregate {
+      count
+    }
+  }
+}
+
+query InventoryOfLivestockList(
+  $where: InventoryOfLivestockBoolExp
+  $orderBy: [InventoryOfLivestockOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: inventoryOfLivestock(where: $where, orderBy: $orderBy, offset: $offset, limit: $limit) {
+    year
+    name
+    sum
+  }
+}
+
+query CropProduceList(
+  $where: CropProduceBoolExp
+  $orderBy: [CropProduceOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: cropProduce(where: $where, orderBy: $orderBy, offset: $offset, limit: $limit) {
+    year
+    name
+    sum
+  }
+}
