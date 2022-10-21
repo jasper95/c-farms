@@ -67,6 +67,7 @@ export type ProgramBeneficiariesListQuery = {
     programId: any
     barangay: string
     referenceNo: string
+    commodities?: any | null | undefined
   }>
   meta: {
     __typename?: 'ProgramBeneficiariesAggregate'
@@ -99,6 +100,7 @@ export type HouseholdProgramsListQuery = {
     lastName: string
     programIds: any
     referenceNo: string
+    commodities?: any | null | undefined
   }>
   meta: {
     __typename?: 'HouseholdProgramsAggregate'
@@ -248,6 +250,7 @@ export const ProgramBeneficiariesListDocument = gql`
       programId
       barangay
       referenceNo
+      commodities
     }
     meta: programBeneficiariesAggregate(where: $where) {
       aggregate {
@@ -290,6 +293,7 @@ export const HouseholdProgramsListDocument = gql`
       lastName
       programIds
       referenceNo
+      commodities
     }
     meta: householdProgramsAggregate(where: $where) {
       aggregate {

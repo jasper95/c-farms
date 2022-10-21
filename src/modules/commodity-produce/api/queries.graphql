@@ -48,6 +48,7 @@ query CommodityProduceList(
     organicPractitioner
     produce
     year
+    commodityType
   }
   meta: produceAggregate(where: $where) {
     aggregate {

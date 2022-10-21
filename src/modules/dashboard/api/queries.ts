@@ -95,6 +95,25 @@ export type CropProduceListQuery = {
   }>
 }
 
+export type RegisteredHouseholdQueryVariables = Types.Exact<{
+  where?: Types.InputMaybe<Types.RegisteredHouseholdPerYearBoolExp>
+  orderBy?: Types.InputMaybe<
+    | Array<Types.RegisteredHouseholdPerYearOrderBy>
+    | Types.RegisteredHouseholdPerYearOrderBy
+  >
+  offset?: Types.InputMaybe<Types.Scalars['Int']>
+  limit?: Types.InputMaybe<Types.Scalars['Int']>
+}>
+
+export type RegisteredHouseholdQuery = {
+  __typename?: 'query_root'
+  list: Array<{
+    __typename?: 'RegisteredHouseholdPerYear'
+    year?: number | null | undefined
+    count?: any | null | undefined
+  }>
+}
+
 export const AverageAnnualIncomeListDocument = gql`
   query AverageAnnualIncomeList(
     $where: AverageAnnualIncomeBoolExp
@@ -216,6 +235,33 @@ export function useCropProduceListQuery(
 ) {
   return Urql.useQuery<CropProduceListQuery>({
     query: CropProduceListDocument,
+    ...options,
+  })
+}
+export const RegisteredHouseholdDocument = gql`
+  query RegisteredHousehold(
+    $where: RegisteredHouseholdPerYearBoolExp
+    $orderBy: [RegisteredHouseholdPerYearOrderBy!]
+    $offset: Int
+    $limit: Int
+  ) {
+    list: registeredHouseholdPerYear(
+      where: $where
+      orderBy: $orderBy
+      offset: $offset
+      limit: $limit
+    ) {
+      year
+      count
+    }
+  }
+`
+
+export function useRegisteredHouseholdQuery(
+  options?: Omit<Urql.UseQueryArgs<RegisteredHouseholdQueryVariables>, 'query'>
+) {
+  return Urql.useQuery<RegisteredHouseholdQuery>({
+    query: RegisteredHouseholdDocument,
     ...options,
   })
 }
