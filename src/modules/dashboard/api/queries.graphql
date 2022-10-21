@@ -60,3 +60,15 @@ query CropProduceList(
     sum
   }
 }
+
+query RegisteredHousehold (
+    $where: RegisteredHouseholdPerYearBoolExp
+    $orderBy: [RegisteredHouseholdPerYearOrderBy!]
+    $offset: Int
+    $limit: Int
+  ) {
+    list: registeredHouseholdPerYear(where: $where, orderBy: $orderBy, offset: $offset, limit: $limit) {
+      year
+      count
+    }
+}

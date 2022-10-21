@@ -3323,6 +3323,7 @@ export type Produce = {
   areaUsed: Scalars['float8']
   commodityId: Scalars['uuid']
   commodityName: Scalars['String']
+  commodityType: Scalars['String']
   createdAt: Scalars['timestamp']
   farmId: Scalars['uuid']
   farmName: Scalars['String']
@@ -3378,6 +3379,7 @@ export type ProduceBoolExp = {
   areaUsed?: InputMaybe<Float8ComparisonExp>
   commodityId?: InputMaybe<UuidComparisonExp>
   commodityName?: InputMaybe<StringComparisonExp>
+  commodityType?: InputMaybe<StringComparisonExp>
   createdAt?: InputMaybe<TimestampComparisonExp>
   farmId?: InputMaybe<UuidComparisonExp>
   farmName?: InputMaybe<StringComparisonExp>
@@ -3394,6 +3396,7 @@ export type ProduceMaxFields = {
   areaUsed?: Maybe<Scalars['float8']>
   commodityId?: Maybe<Scalars['uuid']>
   commodityName?: Maybe<Scalars['String']>
+  commodityType?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
   farmId?: Maybe<Scalars['uuid']>
   farmName?: Maybe<Scalars['String']>
@@ -3409,6 +3412,7 @@ export type ProduceMinFields = {
   areaUsed?: Maybe<Scalars['float8']>
   commodityId?: Maybe<Scalars['uuid']>
   commodityName?: Maybe<Scalars['String']>
+  commodityType?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
   farmId?: Maybe<Scalars['uuid']>
   farmName?: Maybe<Scalars['String']>
@@ -3423,6 +3427,7 @@ export type ProduceOrderBy = {
   areaUsed?: InputMaybe<OrderBy>
   commodityId?: InputMaybe<OrderBy>
   commodityName?: InputMaybe<OrderBy>
+  commodityType?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
   farmId?: InputMaybe<OrderBy>
   farmName?: InputMaybe<OrderBy>
@@ -3441,6 +3446,8 @@ export enum ProduceSelectColumn {
   CommodityId = 'commodityId',
   /** column name */
   CommodityName = 'commodityName',
+  /** column name */
+  CommodityType = 'commodityType',
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
@@ -4818,6 +4825,13 @@ export type Household_StreamCursorValueInput = {
   updatedAt?: InputMaybe<Scalars['timestamp']>
 }
 
+export type InventoryOfLiveStock = {
+  __typename?: 'inventoryOfLiveStock'
+  count: Scalars['Int']
+  name: Scalars['String']
+  year: Scalars['Int']
+}
+
 /** Streaming cursor of the table "inventoryOfLivestock" */
 export type InventoryOfLivestock_StreamCursorInput = {
   /** Stream column input with initial value */
@@ -5381,6 +5395,7 @@ export type Produce_StreamCursorValueInput = {
   areaUsed?: InputMaybe<Scalars['float8']>
   commodityId?: InputMaybe<Scalars['uuid']>
   commodityName?: InputMaybe<Scalars['String']>
+  commodityType?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   farmId?: InputMaybe<Scalars['uuid']>
   farmName?: InputMaybe<Scalars['String']>

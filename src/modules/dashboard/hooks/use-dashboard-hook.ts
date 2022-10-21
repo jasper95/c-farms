@@ -2,8 +2,10 @@ import { OrderBy } from '@/lib/generated/graphql.types'
 import { useMemo } from 'react'
 import {
   useAverageAnnualIncomeListQuery,
+  useCropProduceListQuery,
   useDashboardStatsQuery,
   useInventoryOfLivestockListQuery,
+  useRegisteredHouseholdQuery,
 } from '../api/queries'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import blue from '@mui/material/colors/blue'
@@ -13,6 +15,8 @@ import yellow from '@mui/material/colors/yellow'
 import Diversity3Icon from '@mui/icons-material/Diversity3'
 import GrassIcon from '@mui/icons-material/Grass'
 import ListAltIcon from '@mui/icons-material/ListAlt'
+import { orderBy } from 'lodash'
+import { ASTValidationContext } from 'graphql/validation/ValidationContext'
 
 export function useDashboardHook() {
   const [averageAnnualIncomeResponse] = useAverageAnnualIncomeListQuery({
@@ -21,10 +25,23 @@ export function useDashboardHook() {
     },
   })
 
-  const [inventoryOfLivestockResponse] = useInventoryOfLivestockListQuery()
-  inventoryOfLivestockResponse.data?.list
-  const [dashboardStats] = useDashboardStatsQuery()
+  const [cropProduceResponse] = useCropProduceListQuery({
+    variables: {
+      orderBy: { year: OrderBy.Asc },
+    },
+  })
 
+  const [inventoryOfLivestockResponse] = useInventoryOfLivestockListQuery({
+    variables: {
+      orderBy: { year: OrderBy.Asc },
+    },
+  })
+  const [dashboardStats] = useDashboardStatsQuery()
+  const [registeredHouseholdResponse] = useRegisteredHouseholdQuery({
+    variables: {
+      orderBy: { year: OrderBy.Asc },
+    },
+  })
   const stats = [
     {
       label: 'Households',
@@ -51,6 +68,51 @@ export function useDashboardHook() {
       color: yellow[500],
     },
   ]
+  const registeredHousehold = useMemo(() => {
+    return (
+      registeredHouseholdResponse.data?.list.map((household) => ({
+        count: household.count,
+        year: household.year,
+      })) ?? []
+    )
+  }, [registeredHouseholdResponse.data])
+
+  const cropProduceRows = useMemo(() => {
+    return (
+      cropProduceResponse.data?.list.map((crop) => ({
+        name: crop.name,
+        year: crop.year,
+        weight: crop.sum,
+      })) ?? []
+    )
+  }, [cropProduceResponse.data])
+
+  const crops = new Set(
+    cropProduceRows.map((crop) => {
+      return crop.name
+    })
+  )
+
+  const uniqueCrops = Array.from(crops)
+
+  const inventoryOfLivestockRows = useMemo(() => {
+    return (
+      inventoryOfLivestockResponse.data?.list.map((inventory) => ({
+        name: inventory.name,
+        year: inventory.year,
+        heads: inventory.sum,
+      })) ?? []
+    )
+  }, [inventoryOfLivestockResponse.data])
+
+  const livestocks = new Set(
+    inventoryOfLivestockRows.map((livestock) => {
+      return livestock.name
+    })
+  )
+
+  const uniqueLivestocks = Array.from(livestocks)
+
   const averageAnnualIncomeRows = useMemo(() => {
     return (
       averageAnnualIncomeResponse.data?.list.map((averageAnnualIncome) => ({
@@ -62,18 +124,13 @@ export function useDashboardHook() {
     )
   }, [averageAnnualIncomeResponse.data])
 
-  const inventoryOfLivestockRows = useMemo(() => {
-    return (
-      inventoryOfLivestockResponse.data?.list.map((inventory) => ({
-        name: inventory.name,
-        year: inventory.year,
-        count: inventory.sum,
-      })) ?? []
-    )
-  }, [inventoryOfLivestockResponse.data])
   return {
     averageAnnualIncomeRows,
     stats,
     inventoryOfLivestockRows,
+    cropProduceRows,
+    registeredHousehold,
+    uniqueLivestocks,
+    uniqueCrops,
   }
 }
