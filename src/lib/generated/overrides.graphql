@@ -12,6 +12,7 @@ type Produce {
   organicPractitioner: Boolean!
   produce: float8!
   year: Int!
+  commodityType: String!
 }
 
 type HouseholdPrograms {
@@ -62,4 +63,16 @@ type AverageAnnualIncome {
   averageinfo: numeric!
   averageAnnualIncomeFarming: numeric!
   averageAnnualIncomeNonfarming: numeric!
+}
+
+type InventoryOfLivestock {
+  year: Int!
+  name: String!
+  count: Int!
+}
+
+type CropProduce {
+  name: String!
+  sum: float8!
+  year: Int!
 }

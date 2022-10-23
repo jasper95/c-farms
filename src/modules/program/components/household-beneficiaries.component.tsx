@@ -7,6 +7,7 @@ import { beneficiariesListColumns } from '@/modules/program/constants/beneficiar
 import { unassignedHouseholdListColumns } from '@/modules/program/constants/unassigned-household-list-columns'
 import { ProgramBeneficiariesViewEnum } from '@/modules/program/enums'
 import { useHouseholdBeneficiaries } from '@/modules/program/hooks/use-household-beneficiaries'
+import { programBeneficiariesListFilters } from '../constants/household-beneficiaries-filters'
 import { ProgramBeneficiariesActions } from './program-beneficiaries-actions'
 
 export function HouseholdBeneficiaries() {
@@ -31,6 +32,7 @@ export function HouseholdBeneficiaries() {
         customActions={ProgramBeneficiariesActions}
         additionalTypenames={['HouseholdPrograms']}
         actions={unassignedActions}
+        filters={programBeneficiariesListFilters}
       />
     )
   }

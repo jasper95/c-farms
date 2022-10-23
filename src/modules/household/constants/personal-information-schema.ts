@@ -38,7 +38,7 @@ export const personalInfomationSchema = yup.object({
     .date()
     .required(fieldIsRequired)
     .label('Date of birth')
-    .default(null),
+    .default(new Date('1980-01-01')),
   placeOfBirth: yup
     .string()
     .required(fieldIsRequired)

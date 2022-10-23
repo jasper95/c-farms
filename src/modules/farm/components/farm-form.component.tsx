@@ -22,8 +22,9 @@ interface FarmFormProps {
 
 export function FarmForm(props: FarmFormProps) {
   const { formProps, isMutating, onSave } = props
+  const { householdOptions } = useFarmFormHook(props)
   const { control } = formProps
-  const { householdOptions } = useFarmFormHook()
+
   return (
     <Grid container spacing={2}>
       <Grid item sm={12} md={6}>
@@ -35,7 +36,12 @@ export function FarmForm(props: FarmFormProps) {
             <TextField label="Name" control={control} name="name" />
           </Grid>
           <Grid item sm={12} md={6}>
-            <TextField label="Owner" control={control} name="ownerName" />
+            <SelectField
+              label="Ownership Type"
+              control={control}
+              options={ownershipTypeOptions}
+              name="ownershipType"
+            />
           </Grid>
           <Grid item sm={12} md={12}>
             <SelectField
@@ -45,20 +51,17 @@ export function FarmForm(props: FarmFormProps) {
               name="householdId"
             />
           </Grid>
+
+          <Grid item sm={12} md={6}>
+            <TextField label="Owner" control={control} name="ownerName" />
+          </Grid>
+
           <Grid item sm={12} md={6}>
             <SelectField
               label="Ownership Document"
               control={control}
               options={ownershipDocumentOptions}
               name="ownershipDocument"
-            />
-          </Grid>
-          <Grid item sm={12} md={6}>
-            <SelectField
-              label="Ownership Type"
-              control={control}
-              options={ownershipTypeOptions}
-              name="ownershipType"
             />
           </Grid>
           <Grid item sm={12} md={6}>

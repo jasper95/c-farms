@@ -1231,6 +1231,8 @@ export type CommodityProduce = {
   /** An object relationship */
   farm: Farm
   farmId: Scalars['uuid']
+  /** An object relationship */
+  household: Household
   householdId: Scalars['uuid']
   id: Scalars['uuid']
   organicPractitioner: Scalars['Boolean']
@@ -1308,6 +1310,7 @@ export type CommodityProduceBoolExp = {
   createdAt?: InputMaybe<TimestampComparisonExp>
   farm?: InputMaybe<FarmBoolExp>
   farmId?: InputMaybe<UuidComparisonExp>
+  household?: InputMaybe<HouseholdBoolExp>
   householdId?: InputMaybe<UuidComparisonExp>
   id?: InputMaybe<UuidComparisonExp>
   organicPractitioner?: InputMaybe<BooleanComparisonExp>
@@ -1338,6 +1341,7 @@ export type CommodityProduceInsertInput = {
   createdAt?: InputMaybe<Scalars['timestamp']>
   farm?: InputMaybe<FarmObjRelInsertInput>
   farmId?: InputMaybe<Scalars['uuid']>
+  household?: InputMaybe<HouseholdObjRelInsertInput>
   householdId?: InputMaybe<Scalars['uuid']>
   id?: InputMaybe<Scalars['uuid']>
   organicPractitioner?: InputMaybe<Scalars['Boolean']>
@@ -1397,6 +1401,7 @@ export type CommodityProduceOrderBy = {
   createdAt?: InputMaybe<OrderBy>
   farm?: InputMaybe<FarmOrderBy>
   farmId?: InputMaybe<OrderBy>
+  household?: InputMaybe<HouseholdOrderBy>
   householdId?: InputMaybe<OrderBy>
   id?: InputMaybe<OrderBy>
   organicPractitioner?: InputMaybe<OrderBy>
@@ -1582,9 +1587,10 @@ export type CommodityUpdates = {
 /** columns and relationships of "cropProduce" */
 export type CropProduce = {
   __typename?: 'CropProduce'
-  name?: Maybe<Scalars['String']>
-  sum?: Maybe<Scalars['float8']>
-  year?: Maybe<Scalars['Int']>
+  commodityId?: Maybe<Scalars['uuid']>
+  name: Scalars['String']
+  sum: Scalars['float8']
+  year: Scalars['Int']
 }
 
 /** aggregated selection of "cropProduce" */
@@ -1628,6 +1634,7 @@ export type CropProduceBoolExp = {
   _and?: InputMaybe<Array<CropProduceBoolExp>>
   _not?: InputMaybe<CropProduceBoolExp>
   _or?: InputMaybe<Array<CropProduceBoolExp>>
+  commodityId?: InputMaybe<UuidComparisonExp>
   name?: InputMaybe<StringComparisonExp>
   sum?: InputMaybe<Float8ComparisonExp>
   year?: InputMaybe<IntComparisonExp>
@@ -1636,6 +1643,7 @@ export type CropProduceBoolExp = {
 /** aggregate max on columns */
 export type CropProduceMaxFields = {
   __typename?: 'CropProduceMaxFields'
+  commodityId?: Maybe<Scalars['uuid']>
   name?: Maybe<Scalars['String']>
   sum?: Maybe<Scalars['float8']>
   year?: Maybe<Scalars['Int']>
@@ -1644,6 +1652,7 @@ export type CropProduceMaxFields = {
 /** aggregate min on columns */
 export type CropProduceMinFields = {
   __typename?: 'CropProduceMinFields'
+  commodityId?: Maybe<Scalars['uuid']>
   name?: Maybe<Scalars['String']>
   sum?: Maybe<Scalars['float8']>
   year?: Maybe<Scalars['Int']>
@@ -1651,6 +1660,7 @@ export type CropProduceMinFields = {
 
 /** Ordering options when selecting data from "cropProduce". */
 export type CropProduceOrderBy = {
+  commodityId?: InputMaybe<OrderBy>
   name?: InputMaybe<OrderBy>
   sum?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
@@ -1658,6 +1668,8 @@ export type CropProduceOrderBy = {
 
 /** select columns of table "cropProduce" */
 export enum CropProduceSelectColumn {
+  /** column name */
+  CommodityId = 'commodityId',
   /** column name */
   Name = 'name',
   /** column name */
@@ -2529,6 +2541,7 @@ export type HouseholdPrograms = {
   __typename?: 'HouseholdPrograms'
   barangay: Scalars['String']
   commodities?: Maybe<Scalars['jsonb']>
+  commodityIds?: Maybe<Scalars['jsonb']>
   createdAt: Scalars['timestamp']
   farmSize: Scalars['numeric']
   firstName: Scalars['String']
@@ -2542,6 +2555,11 @@ export type HouseholdPrograms = {
 
 /** columns and relationships of "householdPrograms" */
 export type HouseholdProgramsCommoditiesArgs = {
+  path?: InputMaybe<Scalars['String']>
+}
+
+/** columns and relationships of "householdPrograms" */
+export type HouseholdProgramsCommodityIdsArgs = {
   path?: InputMaybe<Scalars['String']>
 }
 
@@ -2594,6 +2612,7 @@ export type HouseholdProgramsBoolExp = {
   _or?: InputMaybe<Array<HouseholdProgramsBoolExp>>
   barangay?: InputMaybe<StringComparisonExp>
   commodities?: InputMaybe<JsonbComparisonExp>
+  commodityIds?: InputMaybe<JsonbComparisonExp>
   createdAt?: InputMaybe<TimestampComparisonExp>
   farmSize?: InputMaybe<NumericComparisonExp>
   firstName?: InputMaybe<StringComparisonExp>
@@ -2637,6 +2656,7 @@ export type HouseholdProgramsMinFields = {
 export type HouseholdProgramsOrderBy = {
   barangay?: InputMaybe<OrderBy>
   commodities?: InputMaybe<OrderBy>
+  commodityIds?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
   farmSize?: InputMaybe<OrderBy>
   firstName?: InputMaybe<OrderBy>
@@ -2654,6 +2674,8 @@ export enum HouseholdProgramsSelectColumn {
   Barangay = 'barangay',
   /** column name */
   Commodities = 'commodities',
+  /** column name */
+  CommodityIds = 'commodityIds',
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
@@ -3127,9 +3149,11 @@ export type IntComparisonExp = {
 /** columns and relationships of "inventoryOfLivestock" */
 export type InventoryOfLivestock = {
   __typename?: 'InventoryOfLivestock'
-  name?: Maybe<Scalars['String']>
+  commodityId?: Maybe<Scalars['uuid']>
+  count: Scalars['Int']
+  name: Scalars['String']
   sum?: Maybe<Scalars['float8']>
-  year?: Maybe<Scalars['Int']>
+  year: Scalars['Int']
 }
 
 /** aggregated selection of "inventoryOfLivestock" */
@@ -3173,6 +3197,7 @@ export type InventoryOfLivestockBoolExp = {
   _and?: InputMaybe<Array<InventoryOfLivestockBoolExp>>
   _not?: InputMaybe<InventoryOfLivestockBoolExp>
   _or?: InputMaybe<Array<InventoryOfLivestockBoolExp>>
+  commodityId?: InputMaybe<UuidComparisonExp>
   name?: InputMaybe<StringComparisonExp>
   sum?: InputMaybe<Float8ComparisonExp>
   year?: InputMaybe<IntComparisonExp>
@@ -3181,6 +3206,7 @@ export type InventoryOfLivestockBoolExp = {
 /** aggregate max on columns */
 export type InventoryOfLivestockMaxFields = {
   __typename?: 'InventoryOfLivestockMaxFields'
+  commodityId?: Maybe<Scalars['uuid']>
   name?: Maybe<Scalars['String']>
   sum?: Maybe<Scalars['float8']>
   year?: Maybe<Scalars['Int']>
@@ -3189,6 +3215,7 @@ export type InventoryOfLivestockMaxFields = {
 /** aggregate min on columns */
 export type InventoryOfLivestockMinFields = {
   __typename?: 'InventoryOfLivestockMinFields'
+  commodityId?: Maybe<Scalars['uuid']>
   name?: Maybe<Scalars['String']>
   sum?: Maybe<Scalars['float8']>
   year?: Maybe<Scalars['Int']>
@@ -3196,6 +3223,7 @@ export type InventoryOfLivestockMinFields = {
 
 /** Ordering options when selecting data from "inventoryOfLivestock". */
 export type InventoryOfLivestockOrderBy = {
+  commodityId?: InputMaybe<OrderBy>
   name?: InputMaybe<OrderBy>
   sum?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
@@ -3203,6 +3231,8 @@ export type InventoryOfLivestockOrderBy = {
 
 /** select columns of table "inventoryOfLivestock" */
 export enum InventoryOfLivestockSelectColumn {
+  /** column name */
+  CommodityId = 'commodityId',
   /** column name */
   Name = 'name',
   /** column name */
@@ -3323,10 +3353,12 @@ export type Produce = {
   areaUsed: Scalars['float8']
   commodityId: Scalars['uuid']
   commodityName: Scalars['String']
+  commodityType: Scalars['String']
   createdAt: Scalars['timestamp']
   farmId: Scalars['uuid']
   farmName: Scalars['String']
   householdId: Scalars['uuid']
+  householdName?: Maybe<Scalars['String']>
   id: Scalars['uuid']
   organicPractitioner: Scalars['Boolean']
   produce: Scalars['float8']
@@ -3378,10 +3410,12 @@ export type ProduceBoolExp = {
   areaUsed?: InputMaybe<Float8ComparisonExp>
   commodityId?: InputMaybe<UuidComparisonExp>
   commodityName?: InputMaybe<StringComparisonExp>
+  commodityType?: InputMaybe<StringComparisonExp>
   createdAt?: InputMaybe<TimestampComparisonExp>
   farmId?: InputMaybe<UuidComparisonExp>
   farmName?: InputMaybe<StringComparisonExp>
   householdId?: InputMaybe<UuidComparisonExp>
+  householdName?: InputMaybe<StringComparisonExp>
   id?: InputMaybe<UuidComparisonExp>
   organicPractitioner?: InputMaybe<BooleanComparisonExp>
   produce?: InputMaybe<Float8ComparisonExp>
@@ -3394,10 +3428,12 @@ export type ProduceMaxFields = {
   areaUsed?: Maybe<Scalars['float8']>
   commodityId?: Maybe<Scalars['uuid']>
   commodityName?: Maybe<Scalars['String']>
+  commodityType?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
   farmId?: Maybe<Scalars['uuid']>
   farmName?: Maybe<Scalars['String']>
   householdId?: Maybe<Scalars['uuid']>
+  householdName?: Maybe<Scalars['String']>
   id?: Maybe<Scalars['uuid']>
   produce?: Maybe<Scalars['float8']>
   year?: Maybe<Scalars['Int']>
@@ -3409,10 +3445,12 @@ export type ProduceMinFields = {
   areaUsed?: Maybe<Scalars['float8']>
   commodityId?: Maybe<Scalars['uuid']>
   commodityName?: Maybe<Scalars['String']>
+  commodityType?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
   farmId?: Maybe<Scalars['uuid']>
   farmName?: Maybe<Scalars['String']>
   householdId?: Maybe<Scalars['uuid']>
+  householdName?: Maybe<Scalars['String']>
   id?: Maybe<Scalars['uuid']>
   produce?: Maybe<Scalars['float8']>
   year?: Maybe<Scalars['Int']>
@@ -3423,10 +3461,12 @@ export type ProduceOrderBy = {
   areaUsed?: InputMaybe<OrderBy>
   commodityId?: InputMaybe<OrderBy>
   commodityName?: InputMaybe<OrderBy>
+  commodityType?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
   farmId?: InputMaybe<OrderBy>
   farmName?: InputMaybe<OrderBy>
   householdId?: InputMaybe<OrderBy>
+  householdName?: InputMaybe<OrderBy>
   id?: InputMaybe<OrderBy>
   organicPractitioner?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
@@ -3442,6 +3482,8 @@ export enum ProduceSelectColumn {
   /** column name */
   CommodityName = 'commodityName',
   /** column name */
+  CommodityType = 'commodityType',
+  /** column name */
   CreatedAt = 'createdAt',
   /** column name */
   FarmId = 'farmId',
@@ -3449,6 +3491,8 @@ export enum ProduceSelectColumn {
   FarmName = 'farmName',
   /** column name */
   HouseholdId = 'householdId',
+  /** column name */
+  HouseholdName = 'householdName',
   /** column name */
   Id = 'id',
   /** column name */
@@ -4627,6 +4671,7 @@ export type CropProduce_StreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type CropProduce_StreamCursorValueInput = {
+  commodityId?: InputMaybe<Scalars['uuid']>
   name?: InputMaybe<Scalars['String']>
   sum?: InputMaybe<Scalars['float8']>
   year?: InputMaybe<Scalars['Int']>
@@ -4743,6 +4788,7 @@ export type HouseholdPrograms_StreamCursorInput = {
 export type HouseholdPrograms_StreamCursorValueInput = {
   barangay?: InputMaybe<Scalars['String']>
   commodities?: InputMaybe<Scalars['jsonb']>
+  commodityIds?: InputMaybe<Scalars['jsonb']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   farmSize?: InputMaybe<Scalars['numeric']>
   firstName?: InputMaybe<Scalars['String']>
@@ -4828,6 +4874,7 @@ export type InventoryOfLivestock_StreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type InventoryOfLivestock_StreamCursorValueInput = {
+  commodityId?: InputMaybe<Scalars['uuid']>
   name?: InputMaybe<Scalars['String']>
   sum?: InputMaybe<Scalars['float8']>
   year?: InputMaybe<Scalars['Int']>
@@ -5381,10 +5428,12 @@ export type Produce_StreamCursorValueInput = {
   areaUsed?: InputMaybe<Scalars['float8']>
   commodityId?: InputMaybe<Scalars['uuid']>
   commodityName?: InputMaybe<Scalars['String']>
+  commodityType?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   farmId?: InputMaybe<Scalars['uuid']>
   farmName?: InputMaybe<Scalars['String']>
   householdId?: InputMaybe<Scalars['uuid']>
+  householdName?: InputMaybe<Scalars['String']>
   id?: InputMaybe<Scalars['uuid']>
   organicPractitioner?: InputMaybe<Scalars['Boolean']>
   produce?: InputMaybe<Scalars['float8']>

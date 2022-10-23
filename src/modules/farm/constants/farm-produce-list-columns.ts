@@ -1,9 +1,7 @@
 import { DataTableColumn } from '@/components/data-table/types'
 import { CommodityProduceListQuery } from '@/modules/commodity-produce/api/queries'
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
-import CheckBoxIcon from '@mui/icons-material/CheckBox'
 
-export const commodityProduceListColumns: DataTableColumn<
+export const farmProduceListColumns: DataTableColumn<
   CommodityProduceListQuery['list'][0]
 >[] = [
   {
@@ -11,8 +9,8 @@ export const commodityProduceListColumns: DataTableColumn<
     accessor: 'year',
   },
   {
-    title: 'Farm',
-    accessor: 'farmName',
+    title: 'Household',
+    accessor: 'householdName',
   },
   {
     title: 'Commodity',
@@ -28,9 +26,9 @@ export const commodityProduceListColumns: DataTableColumn<
     title: 'Produce',
     type: 'function',
     fn: (row) =>
-      row.commodityType === 'Livestock'
+      row.commodityType === 'Livestock' || row.commodityType === 'Poultry'
         ? row.produce.toString().concat(' heads')
-        : row.produce.toString().concat(' tons'),
+        : row.produce.toString().concat(' metric tons'),
     sortable: false,
   },
 ]

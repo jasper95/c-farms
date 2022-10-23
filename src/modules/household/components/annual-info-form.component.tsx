@@ -26,7 +26,12 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
   return (
     <Grid container spacing={2}>
       <Grid item md={12} xs={12}>
-        <YearPicker control={control} label="Year" name="year" />
+        <YearPicker
+          control={control}
+          label="Year"
+          name="year"
+          maxDate={new Date()}
+        />
       </Grid>
       <Grid item md={12} xs={12}>
         Gross Annual Income

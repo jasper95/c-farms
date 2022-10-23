@@ -22,7 +22,13 @@ export function CommodityProduceForm(props: ICommodityProduceFormProps) {
   return (
     <Grid container spacing={2}>
       <Grid item sm={12} md={6}>
-        <YearPicker control={control} label="Year" name="year" />
+        <YearPicker
+          control={control}
+          label="Year"
+          name="year"
+          maxDate={new Date()}
+          minDate={new Date('1995-01-01')}
+        />
       </Grid>
       <Grid item sm={12} md={6}>
         <SelectField
