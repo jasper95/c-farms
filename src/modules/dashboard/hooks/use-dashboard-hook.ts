@@ -111,7 +111,7 @@ export function useDashboardHook() {
         value: crop.cropId,
       }
     }),
-    _.isEqual
+    isEqual
   )
 
   const inventoryOfLivestockRows = useMemo(() => {
