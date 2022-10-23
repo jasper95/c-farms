@@ -142,6 +142,8 @@ export function PersonalInformationForm(props: IPersonalInformationFormProps) {
           control={control}
           name="dateOfBirth"
           label="Date of birth"
+          maxDate={new Date()}
+          minDate={new Date('1940-01-01')}
         />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>

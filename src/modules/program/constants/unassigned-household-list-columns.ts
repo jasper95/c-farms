@@ -15,11 +15,13 @@ export const unassignedHouseholdListColumns: DataTableColumn<UnassignedHousehold
     },
     {
       title: 'Farming Income',
-      accessor: 'grossAnnualIncomeFarming',
+      type: 'function',
+      fn: (row) => row.grossAnnualIncomeFarming ?? '',
     },
     {
       title: 'Non-farming Income',
-      accessor: 'grossAnnualIncomeNonfarming',
+      type: 'function',
+      fn: (row) => row.grossAnnualIncomeNonfarming ?? '',
     },
     {
       title: 'Barangay',

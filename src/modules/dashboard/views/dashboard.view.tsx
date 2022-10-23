@@ -17,57 +17,20 @@ import Grid from '@mui/material/Grid'
 import { Dashboard as DashboardLayout } from '@/components/layout/dashboard.layout'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
-import PageviewIcon from '@mui/icons-material/Pageview'
 import { useDashboardHook } from '../hooks/use-dashboard-hook'
-import yellow from '@mui/material/colors/yellow'
-
-const data = [
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-]
+import SelectField from '@/components/select-field'
 
 export function DashboardView() {
-  const { stats, averageAnnualIncomeRows } = useDashboardHook()
+  const {
+    stats,
+    averageAnnualIncomeRows,
+    registeredHousehold,
+    filteredCrop,
+    filteredLiveStock,
+    uniqueLivestocks,
+    uniqueCrops,
+    dashboardFormProps,
+  } = useDashboardHook()
 
   return (
     <DashboardLayout>
@@ -152,14 +115,14 @@ export function DashboardView() {
         <Grid item xs={12} md={6}>
           <Card sx={{ p: 2 }}>
             <Box sx={{ mb: 2, textAlign: 'center' }}>
-              <Typography variant="h5">Label</Typography>
+              <Typography variant="h5">Registered Household</Typography>
             </Box>
             <Box sx={{ height: 400 }}>
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                   width={500}
                   height={300}
-                  data={data}
+                  data={registeredHousehold}
                   margin={{
                     top: 5,
                     right: 30,
@@ -168,12 +131,99 @@ export function DashboardView() {
                   }}
                 >
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis />
+                  <XAxis dataKey="year" interval={0} allowDecimals={false} />
+                  <YAxis scale={'linear'} interval={0} allowDecimals={true} />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="pv" fill="#8884d8" />
-                  <Bar dataKey="uv" fill="#82ca9d" />
+                  <Bar dataKey="count" fill="#82ca9d" />
+                </BarChart>
+              </ResponsiveContainer>
+            </Box>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Card sx={{ p: 2 }}>
+            <Box sx={{ mb: 2, textAlign: 'center' }}>
+              <Typography variant="h5">
+                Inventory of Livestock/Poultry
+              </Typography>
+            </Box>
+            <Box sx={{ mb: 2 }}>
+              <Grid container alignItems="center">
+                <Grid item xs={12} md={12}>
+                  <SelectField
+                    sx={{ mb: 2 }}
+                    name="livestock"
+                    control={dashboardFormProps.control}
+                    options={uniqueLivestocks}
+                    label="Livestock"
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+            <Box sx={{ mt: 2, height: 400 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  width={500}
+                  height={300}
+                  data={filteredLiveStock}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="year" allowDecimals={false} />
+                  <YAxis interval={0} allowDecimals={true} />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="heads" fill="#82ca9d" />
+                </BarChart>
+              </ResponsiveContainer>
+            </Box>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Card sx={{ p: 2 }}>
+            <Box sx={{ mb: 2, textAlign: 'center' }}>
+              <Typography variant="h5">
+                Volume of Crop/Fishery Production (in metric tons)
+              </Typography>
+            </Box>
+            <Box sx={{ mb: 2 }}>
+              <Grid container alignItems="center">
+                <Grid item xs={12}>
+                  <SelectField
+                    sx={{ mb: 2 }}
+                    name="crop"
+                    control={dashboardFormProps.control}
+                    options={uniqueCrops}
+                    label="Crop/Fishery Commodity"
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+            <Box sx={{ mt: 2, height: 400 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  width={500}
+                  height={300}
+                  data={filteredCrop}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="year" allowDecimals={false} />
+                  <YAxis interval={0} allowDecimals={true} />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="volume" fill="#82ca9d" />
                 </BarChart>
               </ResponsiveContainer>
             </Box>

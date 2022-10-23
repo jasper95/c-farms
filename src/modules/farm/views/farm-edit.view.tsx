@@ -5,6 +5,7 @@ import { useDetailsTabsCrumbs } from '@/lib/hooks/use-details-details-tabs-crumb
 import { EditFarmDetails } from '../components/edit-farm-details.component'
 import { farmDetailsTabs } from '../constants'
 import { FarmDetailsRoutesEnum } from '../enums'
+import { FarmProduceInventoryListView } from './farm-produce-list.view'
 
 const name = 'Farm'
 
@@ -18,6 +19,9 @@ export function FarmEditView() {
       <Breadcrumbs crumbs={crumbs} />
       <DetailsTabsLayout tabs={farmDetailsTabs}>
         {tab === FarmDetailsRoutesEnum.Details && <EditFarmDetails />}
+        {tab === FarmDetailsRoutesEnum.Produce && (
+          <FarmProduceInventoryListView />
+        )}
       </DetailsTabsLayout>
     </Dashboard>
   )
