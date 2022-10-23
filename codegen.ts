@@ -4,9 +4,9 @@ const config: CodegenConfig = {
   schema: [
     'src/lib/generated/overrides.graphql',
     {
-      [process.env.SCHEMA_PATH || '']: {
+      [process.env.NEXT_PUBLIC_GRAPHQL_URL || '']: {
         headers: {
-          'X-Hasura-Admin-Secret': process.env.HASURA_SECRET || '',
+          'X-Hasura-Admin-Secret': process.env.NEXT_PUBLIC_GRAPHQL_SECRET || '',
         },
       },
     },
