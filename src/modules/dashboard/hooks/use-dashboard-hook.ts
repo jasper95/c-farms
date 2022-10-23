@@ -15,11 +15,9 @@ import yellow from '@mui/material/colors/yellow'
 import Diversity3Icon from '@mui/icons-material/Diversity3'
 import GrassIcon from '@mui/icons-material/Grass'
 import ListAltIcon from '@mui/icons-material/ListAlt'
-import uniq from 'lodash/uniq'
 import { useForm, useWatch } from 'react-hook-form'
 import { dashboardFormSchema } from '../constants/dashboard-form-schema'
-import { uniqWith } from 'lodash'
-import _ from 'lodash'
+import { isEqual, uniqWith } from 'lodash'
 
 export function useDashboardHook() {
   const [averageAnnualIncomeResponse] = useAverageAnnualIncomeListQuery({
@@ -144,7 +142,7 @@ export function useDashboardHook() {
         value: livestock.livestockId,
       }
     }),
-    _.isEqual
+    isEqual
   )
 
   uniqueLivestocks.map((livestock) => console.log('unique: ' + livestock.value))

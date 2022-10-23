@@ -144,7 +144,9 @@ export function DashboardView() {
         <Grid item xs={12} md={6}>
           <Card sx={{ p: 2 }}>
             <Box sx={{ mb: 2, textAlign: 'center' }}>
-              <Typography variant="h5">Inventory of Livestock</Typography>
+              <Typography variant="h5">
+                Inventory of Livestock/Poultry
+              </Typography>
             </Box>
             <Box sx={{ mb: 2 }}>
               <Grid container alignItems="center">
@@ -187,7 +189,7 @@ export function DashboardView() {
           <Card sx={{ p: 2 }}>
             <Box sx={{ mb: 2, textAlign: 'center' }}>
               <Typography variant="h5">
-                Volume of Crop Production (in metric tons)
+                Volume of Crop/Fishery Production (in metric tons)
               </Typography>
             </Box>
             <Box sx={{ mb: 2 }}>
@@ -198,7 +200,7 @@ export function DashboardView() {
                     name="crop"
                     control={dashboardFormProps.control}
                     options={uniqueCrops}
-                    label="Crop"
+                    label="Crop/Fishery Commodity"
                   />
                 </Grid>
               </Grid>
