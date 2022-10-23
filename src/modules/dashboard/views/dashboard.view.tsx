@@ -19,45 +19,19 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { useDashboardHook } from '../hooks/use-dashboard-hook'
 import React, { useMemo, useState } from 'react'
-import { MenuItem, Select, SelectChangeEvent } from '@mui/material'
+import SelectField from '@/components/select-field'
 
 export function DashboardView() {
   const {
     stats,
     averageAnnualIncomeRows,
     registeredHousehold,
-    inventoryOfLivestockRows,
-    cropProduceRows,
+    filteredCrop,
+    filteredLiveStock,
     uniqueLivestocks,
     uniqueCrops,
+    dashboardFormProps,
   } = useDashboardHook()
-
-  const [commodity, setCommodity] = useState('Cattle')
-  const [crop, setCrop] = useState('Banana')
-
-  const filteredLiveStock = useMemo(
-    () =>
-      inventoryOfLivestockRows.filter((livestock) => {
-        return livestock.name === commodity
-      }),
-    [commodity, inventoryOfLivestockRows]
-  )
-
-  const filteredCrop = useMemo(
-    () =>
-      cropProduceRows.filter((cp) => {
-        return cp.name === crop
-      }),
-    [crop, cropProduceRows]
-  )
-
-  const handleLivestockChange = (event: SelectChangeEvent) => {
-    setCommodity(event.target.value as string)
-  }
-
-  const handleCropChange = (event: SelectChangeEvent) => {
-    setCrop(event.target.value as string)
-  }
 
   return (
     <DashboardLayout>
@@ -175,20 +149,17 @@ export function DashboardView() {
             </Box>
             <Box sx={{ mb: 2 }}>
               <Grid container alignItems="center">
-                <Grid item xs={12} md={2}>
-                  <Typography>Livestock:</Typography>
-                </Grid>
-                <Grid item xs={12} md={10}>
-                  <Select
-                    value={commodity}
-                    onChange={handleLivestockChange}
-                    fullWidth={true}
-                  >
-                    {uniqueLivestocks.map((livestock) => (
-                      // eslint-disable-next-line react/jsx-key
-                      <MenuItem value={livestock}> {livestock}</MenuItem>
-                    ))}
-                  </Select>
+                <Grid item xs={12} md={12}>
+                  <SelectField
+                    sx={{ mb: 2 }}
+                    name="livestock"
+                    control={dashboardFormProps.control}
+                    options={uniqueLivestocks.map((e) => ({
+                      label: e,
+                      value: e,
+                    }))}
+                    label="Livestock"
+                  />
                 </Grid>
               </Grid>
             </Box>
@@ -225,20 +196,14 @@ export function DashboardView() {
             </Box>
             <Box sx={{ mb: 2 }}>
               <Grid container alignItems="center">
-                <Grid item xs={12} md={2}>
-                  <Typography>Crop:</Typography>
-                </Grid>
-                <Grid item xs={12} md={10}>
-                  <Select
-                    value={crop}
-                    onChange={handleCropChange}
-                    fullWidth={true}
-                  >
-                    {uniqueCrops.map((cp) => {
-                      // eslint-disable-next-line react/jsx-key
-                      return <MenuItem value={cp}>{cp}</MenuItem>
-                    })}
-                  </Select>
+                <Grid item xs={12}>
+                  <SelectField
+                    sx={{ mb: 2 }}
+                    name="crop"
+                    control={dashboardFormProps.control}
+                    options={uniqueCrops.map((e) => ({ label: e, value: e }))}
+                    label="Crop"
+                  />
                 </Grid>
               </Grid>
             </Box>
