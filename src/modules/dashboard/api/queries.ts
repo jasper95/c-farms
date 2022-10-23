@@ -70,8 +70,8 @@ export type InventoryOfLivestockListQuery = {
   __typename?: 'query_root'
   list: Array<{
     __typename?: 'InventoryOfLivestock'
-    year?: number | null | undefined
-    name?: string | null | undefined
+    year: number
+    name: string
     sum?: any | null | undefined
   }>
 }
@@ -89,9 +89,9 @@ export type CropProduceListQuery = {
   __typename?: 'query_root'
   list: Array<{
     __typename?: 'CropProduce'
-    year?: number | null | undefined
-    name?: string | null | undefined
-    sum?: any | null | undefined
+    year: number
+    name: string
+    sum: any
   }>
 }
 

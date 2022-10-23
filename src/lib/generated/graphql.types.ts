@@ -1582,9 +1582,9 @@ export type CommodityUpdates = {
 /** columns and relationships of "cropProduce" */
 export type CropProduce = {
   __typename?: 'CropProduce'
-  name?: Maybe<Scalars['String']>
-  sum?: Maybe<Scalars['float8']>
-  year?: Maybe<Scalars['Int']>
+  name: Scalars['String']
+  sum: Scalars['float8']
+  year: Scalars['Int']
 }
 
 /** aggregated selection of "cropProduce" */
@@ -3127,9 +3127,10 @@ export type IntComparisonExp = {
 /** columns and relationships of "inventoryOfLivestock" */
 export type InventoryOfLivestock = {
   __typename?: 'InventoryOfLivestock'
-  name?: Maybe<Scalars['String']>
+  count: Scalars['Int']
+  name: Scalars['String']
   sum?: Maybe<Scalars['float8']>
-  year?: Maybe<Scalars['Int']>
+  year: Scalars['Int']
 }
 
 /** aggregated selection of "inventoryOfLivestock" */
@@ -4823,13 +4824,6 @@ export type Household_StreamCursorValueInput = {
   sex?: InputMaybe<Scalars['Int']>
   streetSitioSubdv?: InputMaybe<Scalars['String']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
-}
-
-export type InventoryOfLiveStock = {
-  __typename?: 'inventoryOfLiveStock'
-  count: Scalars['Int']
-  name: Scalars['String']
-  year: Scalars['Int']
 }
 
 /** Streaming cursor of the table "inventoryOfLivestock" */

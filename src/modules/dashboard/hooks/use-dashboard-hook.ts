@@ -15,8 +15,9 @@ import yellow from '@mui/material/colors/yellow'
 import Diversity3Icon from '@mui/icons-material/Diversity3'
 import GrassIcon from '@mui/icons-material/Grass'
 import ListAltIcon from '@mui/icons-material/ListAlt'
-import { orderBy } from 'lodash'
-import { ASTValidationContext } from 'graphql/validation/ValidationContext'
+import uniq from 'lodash/uniq'
+import { useForm, useWatch } from 'react-hook-form'
+import { dashboardFormSchema } from '../constants/dashboard-form-schema'
 
 export function useDashboardHook() {
   const [averageAnnualIncomeResponse] = useAverageAnnualIncomeListQuery({
@@ -29,6 +30,20 @@ export function useDashboardHook() {
     variables: {
       orderBy: { year: OrderBy.Asc },
     },
+  })
+
+  const dashboardFormProps = useForm({
+    defaultValues: dashboardFormSchema.cast({}),
+  })
+
+  const livestock = useWatch({
+    control: dashboardFormProps.control,
+    name: 'livestock',
+  })
+
+  const crop = useWatch({
+    control: dashboardFormProps.control,
+    name: 'crop',
   })
 
   const [inventoryOfLivestockResponse] = useInventoryOfLivestockListQuery({
@@ -87,13 +102,11 @@ export function useDashboardHook() {
     )
   }, [cropProduceResponse.data])
 
-  const crops = new Set(
+  const uniqueCrops = uniq(
     cropProduceRows.map((crop) => {
       return crop.name
     })
   )
-
-  const uniqueCrops = Array.from(crops)
 
   const inventoryOfLivestockRows = useMemo(() => {
     return (
@@ -105,13 +118,19 @@ export function useDashboardHook() {
     )
   }, [inventoryOfLivestockResponse.data])
 
-  const livestocks = new Set(
-    inventoryOfLivestockRows.map((livestock) => {
-      return livestock.name
-    })
+  const filteredLiveStock = useMemo(
+    () => inventoryOfLivestockRows.filter((el) => el.name === livestock),
+    [livestock, inventoryOfLivestockRows]
   )
 
-  const uniqueLivestocks = Array.from(livestocks)
+  const filteredCrop = useMemo(
+    () => cropProduceRows.filter((cp) => cp.name === crop),
+    [crop, cropProduceRows]
+  )
+
+  const uniqueLivestocks = uniq(
+    inventoryOfLivestockRows.map((livestock) => livestock.name)
+  )
 
   const averageAnnualIncomeRows = useMemo(() => {
     return (
@@ -132,5 +151,8 @@ export function useDashboardHook() {
     registeredHousehold,
     uniqueLivestocks,
     uniqueCrops,
+    dashboardFormProps,
+    filteredLiveStock,
+    filteredCrop,
   }
 }

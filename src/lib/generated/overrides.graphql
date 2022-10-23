@@ -65,8 +65,14 @@ type AverageAnnualIncome {
   averageAnnualIncomeNonfarming: numeric!
 }
 
-type inventoryOfLiveStock {
+type InventoryOfLivestock {
   year: Int!
   name: String!
   count: Int!
+}
+
+type CropProduce {
+  name: String!
+  sum: float8!
+  year: Int!
 }
