@@ -54,6 +54,7 @@ export type CommodityProduceListQuery = {
     produce: any
     year: number
     commodityType: string
+    householdName?: string | null | undefined
   }>
   meta: {
     __typename?: 'ProduceAggregate'
@@ -163,6 +164,7 @@ export const CommodityProduceListDocument = gql`
       produce
       year
       commodityType
+      householdName
     }
     meta: produceAggregate(where: $where) {
       aggregate {

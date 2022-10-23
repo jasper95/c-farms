@@ -9,6 +9,10 @@ export const farmProduceListColumns: DataTableColumn<
     accessor: 'year',
   },
   {
+    title: 'Household',
+    accessor: 'householdName',
+  },
+  {
     title: 'Commodity',
     accessor: 'commodityName',
   },
@@ -22,9 +26,9 @@ export const farmProduceListColumns: DataTableColumn<
     title: 'Produce',
     type: 'function',
     fn: (row) =>
-      row.commodityType === 'Livestock'
+      row.commodityType === 'Livestock' || row.commodityType === 'Poultry'
         ? row.produce.toString().concat(' heads')
-        : row.produce.toString().concat(' tons'),
+        : row.produce.toString().concat(' metric tons'),
     sortable: false,
   },
 ]

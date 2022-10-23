@@ -49,6 +49,7 @@ query CommodityProduceList(
     produce
     year
     commodityType
+    householdName
   }
   meta: produceAggregate(where: $where) {
     aggregate {

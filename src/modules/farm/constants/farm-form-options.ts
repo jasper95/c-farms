@@ -17,9 +17,8 @@ export const ownershipDocumentOptions = [
   'Certificate of Ancestral Domain Title',
   'Certificate of Ancestral Land Title',
   'Tax Declaration',
-]
-  .map((e) => ({ label: e, value: e }))
-  .concat([{ label: 'Others', value: '' }])
+  'Others',
+].map((e) => ({ label: e, value: e }))
 
 export const farmTypeOptions = [
   'Irrigated',
