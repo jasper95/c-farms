@@ -45,6 +45,7 @@ query InventoryOfLivestockList(
     year
     name
     sum
+    commodityId
   }
 }
 
@@ -58,6 +59,7 @@ query CropProduceList(
     year
     name
     sum
+    commodityId
   }
 }
 

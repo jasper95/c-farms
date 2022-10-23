@@ -1582,6 +1582,7 @@ export type CommodityUpdates = {
 /** columns and relationships of "cropProduce" */
 export type CropProduce = {
   __typename?: 'CropProduce'
+  commodityId?: Maybe<Scalars['uuid']>
   name: Scalars['String']
   sum: Scalars['float8']
   year: Scalars['Int']
@@ -1628,6 +1629,7 @@ export type CropProduceBoolExp = {
   _and?: InputMaybe<Array<CropProduceBoolExp>>
   _not?: InputMaybe<CropProduceBoolExp>
   _or?: InputMaybe<Array<CropProduceBoolExp>>
+  commodityId?: InputMaybe<UuidComparisonExp>
   name?: InputMaybe<StringComparisonExp>
   sum?: InputMaybe<Float8ComparisonExp>
   year?: InputMaybe<IntComparisonExp>
@@ -1636,6 +1638,7 @@ export type CropProduceBoolExp = {
 /** aggregate max on columns */
 export type CropProduceMaxFields = {
   __typename?: 'CropProduceMaxFields'
+  commodityId?: Maybe<Scalars['uuid']>
   name?: Maybe<Scalars['String']>
   sum?: Maybe<Scalars['float8']>
   year?: Maybe<Scalars['Int']>
@@ -1644,6 +1647,7 @@ export type CropProduceMaxFields = {
 /** aggregate min on columns */
 export type CropProduceMinFields = {
   __typename?: 'CropProduceMinFields'
+  commodityId?: Maybe<Scalars['uuid']>
   name?: Maybe<Scalars['String']>
   sum?: Maybe<Scalars['float8']>
   year?: Maybe<Scalars['Int']>
@@ -1651,6 +1655,7 @@ export type CropProduceMinFields = {
 
 /** Ordering options when selecting data from "cropProduce". */
 export type CropProduceOrderBy = {
+  commodityId?: InputMaybe<OrderBy>
   name?: InputMaybe<OrderBy>
   sum?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
@@ -1658,6 +1663,8 @@ export type CropProduceOrderBy = {
 
 /** select columns of table "cropProduce" */
 export enum CropProduceSelectColumn {
+  /** column name */
+  CommodityId = 'commodityId',
   /** column name */
   Name = 'name',
   /** column name */
@@ -3127,6 +3134,7 @@ export type IntComparisonExp = {
 /** columns and relationships of "inventoryOfLivestock" */
 export type InventoryOfLivestock = {
   __typename?: 'InventoryOfLivestock'
+  commodityId?: Maybe<Scalars['uuid']>
   count: Scalars['Int']
   name: Scalars['String']
   sum?: Maybe<Scalars['float8']>
@@ -3174,6 +3182,7 @@ export type InventoryOfLivestockBoolExp = {
   _and?: InputMaybe<Array<InventoryOfLivestockBoolExp>>
   _not?: InputMaybe<InventoryOfLivestockBoolExp>
   _or?: InputMaybe<Array<InventoryOfLivestockBoolExp>>
+  commodityId?: InputMaybe<UuidComparisonExp>
   name?: InputMaybe<StringComparisonExp>
   sum?: InputMaybe<Float8ComparisonExp>
   year?: InputMaybe<IntComparisonExp>
@@ -3182,6 +3191,7 @@ export type InventoryOfLivestockBoolExp = {
 /** aggregate max on columns */
 export type InventoryOfLivestockMaxFields = {
   __typename?: 'InventoryOfLivestockMaxFields'
+  commodityId?: Maybe<Scalars['uuid']>
   name?: Maybe<Scalars['String']>
   sum?: Maybe<Scalars['float8']>
   year?: Maybe<Scalars['Int']>
@@ -3190,6 +3200,7 @@ export type InventoryOfLivestockMaxFields = {
 /** aggregate min on columns */
 export type InventoryOfLivestockMinFields = {
   __typename?: 'InventoryOfLivestockMinFields'
+  commodityId?: Maybe<Scalars['uuid']>
   name?: Maybe<Scalars['String']>
   sum?: Maybe<Scalars['float8']>
   year?: Maybe<Scalars['Int']>
@@ -3197,6 +3208,7 @@ export type InventoryOfLivestockMinFields = {
 
 /** Ordering options when selecting data from "inventoryOfLivestock". */
 export type InventoryOfLivestockOrderBy = {
+  commodityId?: InputMaybe<OrderBy>
   name?: InputMaybe<OrderBy>
   sum?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
@@ -3204,6 +3216,8 @@ export type InventoryOfLivestockOrderBy = {
 
 /** select columns of table "inventoryOfLivestock" */
 export enum InventoryOfLivestockSelectColumn {
+  /** column name */
+  CommodityId = 'commodityId',
   /** column name */
   Name = 'name',
   /** column name */
@@ -4635,6 +4649,7 @@ export type CropProduce_StreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type CropProduce_StreamCursorValueInput = {
+  commodityId?: InputMaybe<Scalars['uuid']>
   name?: InputMaybe<Scalars['String']>
   sum?: InputMaybe<Scalars['float8']>
   year?: InputMaybe<Scalars['Int']>
@@ -4826,13 +4841,6 @@ export type Household_StreamCursorValueInput = {
   updatedAt?: InputMaybe<Scalars['timestamp']>
 }
 
-export type InventoryOfLiveStock = {
-  __typename?: 'inventoryOfLiveStock'
-  count: Scalars['Int']
-  name: Scalars['String']
-  year: Scalars['Int']
-}
-
 /** Streaming cursor of the table "inventoryOfLivestock" */
 export type InventoryOfLivestock_StreamCursorInput = {
   /** Stream column input with initial value */
@@ -4843,6 +4851,7 @@ export type InventoryOfLivestock_StreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type InventoryOfLivestock_StreamCursorValueInput = {
+  commodityId?: InputMaybe<Scalars['uuid']>
   name?: InputMaybe<Scalars['String']>
   sum?: InputMaybe<Scalars['float8']>
   year?: InputMaybe<Scalars['Int']>

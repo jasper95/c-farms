@@ -18,7 +18,6 @@ import { Dashboard as DashboardLayout } from '@/components/layout/dashboard.layo
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { useDashboardHook } from '../hooks/use-dashboard-hook'
-import React, { useMemo, useState } from 'react'
 import SelectField from '@/components/select-field'
 
 export function DashboardView() {
@@ -154,10 +153,7 @@ export function DashboardView() {
                     sx={{ mb: 2 }}
                     name="livestock"
                     control={dashboardFormProps.control}
-                    options={uniqueLivestocks.map((e) => ({
-                      label: e,
-                      value: e,
-                    }))}
+                    options={uniqueLivestocks}
                     label="Livestock"
                   />
                 </Grid>
@@ -201,7 +197,7 @@ export function DashboardView() {
                     sx={{ mb: 2 }}
                     name="crop"
                     control={dashboardFormProps.control}
-                    options={uniqueCrops.map((e) => ({ label: e, value: e }))}
+                    options={uniqueCrops}
                     label="Crop"
                   />
                 </Grid>
@@ -225,7 +221,7 @@ export function DashboardView() {
                   <YAxis interval={0} allowDecimals={true} />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="weight" fill="#82ca9d" />
+                  <Bar dataKey="volume" fill="#82ca9d" />
                 </BarChart>
               </ResponsiveContainer>
             </Box>

@@ -18,6 +18,8 @@ import ListAltIcon from '@mui/icons-material/ListAlt'
 import uniq from 'lodash/uniq'
 import { useForm, useWatch } from 'react-hook-form'
 import { dashboardFormSchema } from '../constants/dashboard-form-schema'
+import { uniqWith } from 'lodash'
+import _ from 'lodash'
 
 export function useDashboardHook() {
   const [averageAnnualIncomeResponse] = useAverageAnnualIncomeListQuery({
@@ -51,6 +53,7 @@ export function useDashboardHook() {
       orderBy: { year: OrderBy.Asc },
     },
   })
+
   const [dashboardStats] = useDashboardStatsQuery()
   const [registeredHouseholdResponse] = useRegisteredHouseholdQuery({
     variables: {
@@ -97,15 +100,20 @@ export function useDashboardHook() {
       cropProduceResponse.data?.list.map((crop) => ({
         name: crop.name,
         year: crop.year,
-        weight: crop.sum,
+        volume: crop.sum,
+        cropId: crop.commodityId,
       })) ?? []
     )
   }, [cropProduceResponse.data])
 
-  const uniqueCrops = uniq(
+  const uniqueCrops = uniqWith(
     cropProduceRows.map((crop) => {
-      return crop.name
-    })
+      return {
+        label: crop.name,
+        value: crop.cropId,
+      }
+    }),
+    _.isEqual
   )
 
   const inventoryOfLivestockRows = useMemo(() => {
@@ -114,24 +122,32 @@ export function useDashboardHook() {
         name: inventory.name,
         year: inventory.year,
         heads: inventory.sum,
+        livestockId: inventory.commodityId,
       })) ?? []
     )
   }, [inventoryOfLivestockResponse.data])
 
   const filteredLiveStock = useMemo(
-    () => inventoryOfLivestockRows.filter((el) => el.name === livestock),
+    () => inventoryOfLivestockRows.filter((el) => el.livestockId === livestock),
     [livestock, inventoryOfLivestockRows]
   )
 
   const filteredCrop = useMemo(
-    () => cropProduceRows.filter((cp) => cp.name === crop),
+    () => cropProduceRows.filter((cp) => cp.cropId === crop),
     [crop, cropProduceRows]
   )
 
-  const uniqueLivestocks = uniq(
-    inventoryOfLivestockRows.map((livestock) => livestock.name)
+  const uniqueLivestocks = uniqWith(
+    inventoryOfLivestockRows.map((livestock) => {
+      return {
+        label: livestock.name,
+        value: livestock.livestockId,
+      }
+    }),
+    _.isEqual
   )
 
+  uniqueLivestocks.map((livestock) => console.log('unique: ' + livestock.value))
   const averageAnnualIncomeRows = useMemo(() => {
     return (
       averageAnnualIncomeResponse.data?.list.map((averageAnnualIncome) => ({

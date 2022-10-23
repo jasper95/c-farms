@@ -73,6 +73,7 @@ export type InventoryOfLivestockListQuery = {
     year: number
     name: string
     sum?: any | null | undefined
+    commodityId?: any | null | undefined
   }>
 }
 
@@ -92,25 +93,7 @@ export type CropProduceListQuery = {
     year: number
     name: string
     sum: any
-  }>
-}
-
-export type RegisteredHouseholdQueryVariables = Types.Exact<{
-  where?: Types.InputMaybe<Types.RegisteredHouseholdPerYearBoolExp>
-  orderBy?: Types.InputMaybe<
-    | Array<Types.RegisteredHouseholdPerYearOrderBy>
-    | Types.RegisteredHouseholdPerYearOrderBy
-  >
-  offset?: Types.InputMaybe<Types.Scalars['Int']>
-  limit?: Types.InputMaybe<Types.Scalars['Int']>
-}>
-
-export type RegisteredHouseholdQuery = {
-  __typename?: 'query_root'
-  list: Array<{
-    __typename?: 'RegisteredHouseholdPerYear'
-    year?: number | null | undefined
-    count?: any | null | undefined
+    commodityId?: any | null | undefined
   }>
 }
 
@@ -214,6 +197,7 @@ export const InventoryOfLivestockListDocument = gql`
       year
       name
       sum
+      commodityId
     }
   }
 `
@@ -245,6 +229,7 @@ export const CropProduceListDocument = gql`
       year
       name
       sum
+      commodityId
     }
   }
 `
