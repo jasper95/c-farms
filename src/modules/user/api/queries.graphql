@@ -4,16 +4,11 @@ query UserList(
   $offset: Int
   $limit: Int
 ) {
-  list: user(
-    where: $where
-    orderBy: $orderBy
-    offset: $offset
-    limit: $limit
-  ) {
+  list: user(where: $where, orderBy: $orderBy, offset: $offset, limit: $limit) {
     id
     firstName
     lastName
-    username
+    email
     role
     active
   }
@@ -29,7 +24,7 @@ query UserDetails($id: uuid!) {
     id
     firstName
     lastName
-    username
+    email
     role
     active
   }

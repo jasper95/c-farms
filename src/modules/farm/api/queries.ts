@@ -105,7 +105,7 @@ export const HouseholdOptionsDocument = gql`
 export function useHouseholdOptionsQuery(
   options?: Omit<Urql.UseQueryArgs<HouseholdOptionsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<HouseholdOptionsQuery>({
+  return Urql.useQuery<HouseholdOptionsQuery, HouseholdOptionsQueryVariables>({
     query: HouseholdOptionsDocument,
     ...options,
   })
@@ -146,7 +146,10 @@ export const FarmListDocument = gql`
 export function useFarmListQuery(
   options?: Omit<Urql.UseQueryArgs<FarmListQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<FarmListQuery>({ query: FarmListDocument, ...options })
+  return Urql.useQuery<FarmListQuery, FarmListQueryVariables>({
+    query: FarmListDocument,
+    ...options,
+  })
 }
 export const FarmDetailsDocument = gql`
   query FarmDetails($id: uuid!) {
@@ -171,7 +174,7 @@ export const FarmDetailsDocument = gql`
 export function useFarmDetailsQuery(
   options: Omit<Urql.UseQueryArgs<FarmDetailsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<FarmDetailsQuery>({
+  return Urql.useQuery<FarmDetailsQuery, FarmDetailsQueryVariables>({
     query: FarmDetailsDocument,
     ...options,
   })

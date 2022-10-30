@@ -8,8 +8,6 @@ import Divider from '@mui/material/Divider'
 import { UseFormReturn } from 'react-hook-form/dist/types/form'
 import TextField from '@/components/text-field'
 import CreatableSelectField from '@/components/creatable-select-field'
-import { useState } from 'react'
-import { Option } from '@/components/creatable-select-field/interface'
 import MultiSelectField from '@/components/multi-select-field'
 import { IAnnualInfoSchema } from '@/modules/annual-info/constants'
 import YearPicker from '@/components/year-picker'
@@ -20,9 +18,9 @@ interface IAnnualInfoFormProps {
 }
 export function AnnualInfoForm(props: IAnnualInfoFormProps) {
   const { formProps } = props
-  const { control } = formProps
+  const { control, formState } = formProps
+  console.log('formState: ', formState)
 
-  const [options, setOptions] = useState<Option[]>([])
   return (
     <Grid container spacing={2}>
       <Grid item md={12} xs={12}>
@@ -69,21 +67,21 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
           label="Main livelihood"
         />
       </Grid>
-      <Grid item md={6}>
+      <Grid item md={6} xs={12}>
         <CreatableSelectField
           control={control}
           name="farmworkerActivityType"
           label="Farmer Activities"
         />
       </Grid>
-      <Grid item md={6}>
+      <Grid item md={6} xs={12}>
         <CreatableSelectField
           control={control}
           name="fisherActivityType"
           label="Fisher Activities"
         />
       </Grid>
-      <Grid item md={6}>
+      <Grid item md={6} xs={12}>
         <SelectField
           control={control}
           options={educationBackgroundOptions}
@@ -93,8 +91,4 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
       </Grid>
     </Grid>
   )
-
-  function onCreate(string: string) {
-    setOptions([...options, { value: `${Math.random()}`, label: string }])
-  }
 }

@@ -14,7 +14,7 @@ function TextField<T extends FieldValues>(props: ITextFieldProps<T>) {
       InputProps={{
         ...(InputProps && InputProps),
         ...field,
-        value: field.value || '',
+        value: field.value ?? '',
       }}
       error={Boolean(formState.errors[name])}
       helperText={formState.errors[name]?.message}

@@ -69,7 +69,7 @@ export const CommodityListDocument = gql`
 export function useCommodityListQuery(
   options?: Omit<Urql.UseQueryArgs<CommodityListQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<CommodityListQuery>({
+  return Urql.useQuery<CommodityListQuery, CommodityListQueryVariables>({
     query: CommodityListDocument,
     ...options,
   })
@@ -87,7 +87,7 @@ export const CommodityDetailsDocument = gql`
 export function useCommodityDetailsQuery(
   options: Omit<Urql.UseQueryArgs<CommodityDetailsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<CommodityDetailsQuery>({
+  return Urql.useQuery<CommodityDetailsQuery, CommodityDetailsQueryVariables>({
     query: CommodityDetailsDocument,
     ...options,
   })

@@ -199,7 +199,7 @@ export const ProgramListDocument = gql`
 export function useProgramListQuery(
   options?: Omit<Urql.UseQueryArgs<ProgramListQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<ProgramListQuery>({
+  return Urql.useQuery<ProgramListQuery, ProgramListQueryVariables>({
     query: ProgramListDocument,
     ...options,
   })
@@ -221,7 +221,7 @@ export const ProgramDetailsDocument = gql`
 export function useProgramDetailsQuery(
   options: Omit<Urql.UseQueryArgs<ProgramDetailsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<ProgramDetailsQuery>({
+  return Urql.useQuery<ProgramDetailsQuery, ProgramDetailsQueryVariables>({
     query: ProgramDetailsDocument,
     ...options,
   })
@@ -266,10 +266,10 @@ export function useProgramBeneficiariesListQuery(
     'query'
   >
 ) {
-  return Urql.useQuery<ProgramBeneficiariesListQuery>({
-    query: ProgramBeneficiariesListDocument,
-    ...options,
-  })
+  return Urql.useQuery<
+    ProgramBeneficiariesListQuery,
+    ProgramBeneficiariesListQueryVariables
+  >({ query: ProgramBeneficiariesListDocument, ...options })
 }
 export const HouseholdProgramsListDocument = gql`
   query HouseholdProgramsList(
@@ -309,10 +309,10 @@ export function useHouseholdProgramsListQuery(
     'query'
   >
 ) {
-  return Urql.useQuery<HouseholdProgramsListQuery>({
-    query: HouseholdProgramsListDocument,
-    ...options,
-  })
+  return Urql.useQuery<
+    HouseholdProgramsListQuery,
+    HouseholdProgramsListQueryVariables
+  >({ query: HouseholdProgramsListDocument, ...options })
 }
 export const AssociationProgramsListDocument = gql`
   query AssociationProgramsList(
@@ -346,10 +346,10 @@ export function useAssociationProgramsListQuery(
     'query'
   >
 ) {
-  return Urql.useQuery<AssociationProgramsListQuery>({
-    query: AssociationProgramsListDocument,
-    ...options,
-  })
+  return Urql.useQuery<
+    AssociationProgramsListQuery,
+    AssociationProgramsListQueryVariables
+  >({ query: AssociationProgramsListDocument, ...options })
 }
 export const AssociationBeneficiariesListDocument = gql`
   query AssociationBeneficiariesList(
@@ -385,8 +385,8 @@ export function useAssociationBeneficiariesListQuery(
     'query'
   >
 ) {
-  return Urql.useQuery<AssociationBeneficiariesListQuery>({
-    query: AssociationBeneficiariesListDocument,
-    ...options,
-  })
+  return Urql.useQuery<
+    AssociationBeneficiariesListQuery,
+    AssociationBeneficiariesListQueryVariables
+  >({ query: AssociationBeneficiariesListDocument, ...options })
 }

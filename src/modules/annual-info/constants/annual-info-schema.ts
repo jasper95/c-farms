@@ -18,6 +18,7 @@ export const annualInfoSchema = yup.object({
     .array()
     .required(fieldIsRequired)
     .of(yup.string())
+    .min(1, 'Must be at least 1')
     .default([]),
 })
 

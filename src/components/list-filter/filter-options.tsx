@@ -1,14 +1,8 @@
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import { useForm, useWatch } from 'react-hook-form'
 import SelectField from '../select-field'
-import { useEffect, useMemo } from 'react'
-import getFilterList from './get-filter-list'
-import keyBy from 'lodash/keyBy'
 import { FilterValueField } from './filter-value-field'
 import { IFilter, IFilterValue } from '../data-table/table-reducer'
-import { filterSchema } from './filter-form-schema'
-import { FilterTypeEnum } from './filter-type.enum'
 import { useFilterOptionsHook } from './use-filter-options.hook'
 
 interface FilterOptionsProps {

@@ -11,7 +11,7 @@ function SelectField<T extends FieldValues>(props: ISelectFieldProps<T>) {
     control,
     name,
   })
-  const { field } = controller
+  const { field, formState } = controller
   const { value = '', onChange, ...restField } = field
   const optionsMap = useMemo(() => keyBy(options, 'value'), [options])
   return (
@@ -25,7 +25,14 @@ function SelectField<T extends FieldValues>(props: ISelectFieldProps<T>) {
         onChange(newValue)
       }}
       value={value}
-      renderInput={(params) => <TextField label={label} {...params} />}
+      renderInput={(params) => (
+        <TextField
+          label={label}
+          {...params}
+          error={Boolean(formState.errors[name])}
+          helperText={formState.errors[name]?.message}
+        />
+      )}
     />
   )
 }

@@ -13,7 +13,7 @@ export default function MultiSelectField<T extends FieldValues>(
     control,
     name,
   })
-  const { field } = controller
+  const { field, formState } = controller
   const { value = [], onChange, ...restField } = field
   const optionsMap = useMemo(() => keyBy(options, 'value'), [options])
   return (
@@ -26,7 +26,14 @@ export default function MultiSelectField<T extends FieldValues>(
         onChange(newValue)
       }}
       getOptionLabel={(val) => optionsMap[val]?.label ?? ''}
-      renderInput={(params) => <TextField label={label} {...params} />}
+      renderInput={(params) => (
+        <TextField
+          label={label}
+          {...params}
+          error={Boolean(formState.errors[name])}
+          helperText={formState.errors[name]?.message}
+        />
+      )}
     />
   )
 }

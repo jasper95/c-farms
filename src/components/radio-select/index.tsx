@@ -21,7 +21,7 @@ export default function RadioSelect<T extends FieldValues>(
         row
         aria-label={`radio-select-${name}`}
         {...field}
-        value={field.value || ''}
+        value={field.value ?? ''}
       >
         {options.map((option) => (
           <FormControlLabel

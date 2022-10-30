@@ -46,6 +46,7 @@ export default function DatatableListView<
       'useListQueryHook',
       'columns',
       'onEdit',
+      'onDelete',
       'baseUrl',
       'filters',
       'bulkActions',

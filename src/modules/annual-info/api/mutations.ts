@@ -22,6 +22,15 @@ export type UpdateAnnualInfoMutation = {
   data?: { __typename?: 'AnnualInfo'; id: any } | null | undefined
 }
 
+export type DeleteAnnualInfoMutationVariables = Types.Exact<{
+  id: Types.Scalars['uuid']
+}>
+
+export type DeleteAnnualInfoMutation = {
+  __typename?: 'mutation_root'
+  data?: { __typename?: 'AnnualInfo'; id: any } | null | undefined
+}
+
 export const CreateAnnualInfoDocument = gql`
   mutation CreateAnnualInfo($object: AnnualInfoInsertInput!) {
     data: insertAnnualInfoOne(object: $object) {
@@ -52,4 +61,18 @@ export function useUpdateAnnualInfoMutation() {
     UpdateAnnualInfoMutation,
     UpdateAnnualInfoMutationVariables
   >(UpdateAnnualInfoDocument)
+}
+export const DeleteAnnualInfoDocument = gql`
+  mutation DeleteAnnualInfo($id: uuid!) {
+    data: deleteAnnualInfoByPk(id: $id) {
+      id
+    }
+  }
+`
+
+export function useDeleteAnnualInfoMutation() {
+  return Urql.useMutation<
+    DeleteAnnualInfoMutation,
+    DeleteAnnualInfoMutationVariables
+  >(DeleteAnnualInfoDocument)
 }

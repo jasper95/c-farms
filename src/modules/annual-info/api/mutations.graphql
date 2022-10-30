@@ -12,3 +12,9 @@ mutation UpdateAnnualInfo(
     id
   }
 }
+
+mutation DeleteAnnualInfo($id: uuid!) {
+  data: deleteAnnualInfoByPk(id: $id) {
+    id
+  }
+}

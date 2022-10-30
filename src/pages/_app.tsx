@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Head from 'next/head'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
-
+import { SessionProvider } from 'next-auth/react'
 import ThemeProvider from '@/lib/theme'
 import { AppProps } from 'next/dist/shared/lib/router/router'
 import DialogContainer from '@/components/layout/dialog-container.layout'
@@ -14,6 +14,7 @@ import { urqlClient } from '@/lib/urql/client'
 import { NextPage } from 'next'
 import { CacheProvider, EmotionCache } from '@emotion/react'
 import createEmotionCache from '@/lib/utils/create-emotion-cache'
+import { Session } from 'next-auth'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -22,36 +23,44 @@ export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
   emotionCache?: EmotionCache
+  session: Session
 }
 
 const clientSideEmotionCache = createEmotionCache()
 
 export default function MyApp(props: AppPropsWithLayout) {
-  const { Component, pageProps, emotionCache = clientSideEmotionCache } = props
+  const {
+    Component,
+    pageProps,
+    emotionCache = clientSideEmotionCache,
+    session,
+  } = props
 
   const getLayout = Component.getLayout ?? ((page) => page)
 
   return (
-    <UrqlProvider value={urqlClient}>
-      <React.Fragment>
-        <Head>
-          <title>{process.env.NEXT_PUBLIC_PROJECT_NAME}</title>
-          <meta
-            name="viewport"
-            content="minimum-scale=1, initial-scale=1, width=device-width"
-          />
-        </Head>
-        <CacheProvider value={emotionCache}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <ThemeProvider>
-              {getLayout(<Component {...pageProps} />)}
-              <DialogContainer />
-              <NotificationContainer />
-            </ThemeProvider>
-          </LocalizationProvider>
-        </CacheProvider>
-      </React.Fragment>
-    </UrqlProvider>
+    <SessionProvider session={session}>
+      <UrqlProvider value={urqlClient}>
+        <React.Fragment>
+          <Head>
+            <title>{process.env.NEXT_PUBLIC_PROJECT_NAME}</title>
+            <meta
+              name="viewport"
+              content="minimum-scale=1, initial-scale=1, width=device-width"
+            />
+          </Head>
+          <CacheProvider value={emotionCache}>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <ThemeProvider>
+                {getLayout(<Component {...pageProps} />)}
+                <DialogContainer />
+                <NotificationContainer />
+              </ThemeProvider>
+            </LocalizationProvider>
+          </CacheProvider>
+        </React.Fragment>
+      </UrqlProvider>
+    </SessionProvider>
   )
 }
 

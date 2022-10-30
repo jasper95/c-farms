@@ -22,8 +22,342 @@ export type Scalars = {
   jsonb: any
   numeric: any
   timestamp: any
+  timestamptz: any
   userRoleEnum: any
   uuid: any
+}
+
+/** columns and relationships of "account" */
+export type Account = {
+  __typename?: 'Account'
+  accessToken?: Maybe<Scalars['String']>
+  expiresAt?: Maybe<Scalars['bigint']>
+  id: Scalars['uuid']
+  idToken?: Maybe<Scalars['String']>
+  oauthToken?: Maybe<Scalars['String']>
+  oauthTokenSecret?: Maybe<Scalars['String']>
+  provider: Scalars['String']
+  providerAccountId: Scalars['String']
+  refreshToken?: Maybe<Scalars['String']>
+  refreshTokenExpiresIn?: Maybe<Scalars['bigint']>
+  scope?: Maybe<Scalars['String']>
+  sessionState?: Maybe<Scalars['String']>
+  tokenType?: Maybe<Scalars['String']>
+  type: Scalars['String']
+  userId: Scalars['uuid']
+}
+
+/** aggregated selection of "account" */
+export type AccountAggregate = {
+  __typename?: 'AccountAggregate'
+  aggregate?: Maybe<AccountAggregateFields>
+  nodes: Array<Account>
+}
+
+/** aggregate fields of "account" */
+export type AccountAggregateFields = {
+  __typename?: 'AccountAggregateFields'
+  avg?: Maybe<AccountAvgFields>
+  count: Scalars['Int']
+  max?: Maybe<AccountMaxFields>
+  min?: Maybe<AccountMinFields>
+  stddev?: Maybe<AccountStddevFields>
+  stddevPop?: Maybe<AccountStddev_PopFields>
+  stddevSamp?: Maybe<AccountStddev_SampFields>
+  sum?: Maybe<AccountSumFields>
+  varPop?: Maybe<AccountVar_PopFields>
+  varSamp?: Maybe<AccountVar_SampFields>
+  variance?: Maybe<AccountVarianceFields>
+}
+
+/** aggregate fields of "account" */
+export type AccountAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<AccountSelectColumn>>
+  distinct?: InputMaybe<Scalars['Boolean']>
+}
+
+/** aggregate avg on columns */
+export type AccountAvgFields = {
+  __typename?: 'AccountAvgFields'
+  expiresAt?: Maybe<Scalars['Float']>
+  refreshTokenExpiresIn?: Maybe<Scalars['Float']>
+}
+
+/** Boolean expression to filter rows from the table "account". All fields are combined with a logical 'AND'. */
+export type AccountBoolExp = {
+  _and?: InputMaybe<Array<AccountBoolExp>>
+  _not?: InputMaybe<AccountBoolExp>
+  _or?: InputMaybe<Array<AccountBoolExp>>
+  accessToken?: InputMaybe<StringComparisonExp>
+  expiresAt?: InputMaybe<BigintComparisonExp>
+  id?: InputMaybe<UuidComparisonExp>
+  idToken?: InputMaybe<StringComparisonExp>
+  oauthToken?: InputMaybe<StringComparisonExp>
+  oauthTokenSecret?: InputMaybe<StringComparisonExp>
+  provider?: InputMaybe<StringComparisonExp>
+  providerAccountId?: InputMaybe<StringComparisonExp>
+  refreshToken?: InputMaybe<StringComparisonExp>
+  refreshTokenExpiresIn?: InputMaybe<BigintComparisonExp>
+  scope?: InputMaybe<StringComparisonExp>
+  sessionState?: InputMaybe<StringComparisonExp>
+  tokenType?: InputMaybe<StringComparisonExp>
+  type?: InputMaybe<StringComparisonExp>
+  userId?: InputMaybe<UuidComparisonExp>
+}
+
+/** unique or primary key constraints on table "account" */
+export enum AccountConstraint {
+  /** unique or primary key constraint on columns "id" */
+  AccountsPkey = 'accounts_pkey',
+}
+
+/** input type for incrementing numeric columns in table "account" */
+export type AccountIncInput = {
+  expiresAt?: InputMaybe<Scalars['bigint']>
+  refreshTokenExpiresIn?: InputMaybe<Scalars['bigint']>
+}
+
+/** input type for inserting data into table "account" */
+export type AccountInsertInput = {
+  accessToken?: InputMaybe<Scalars['String']>
+  expiresAt?: InputMaybe<Scalars['bigint']>
+  id?: InputMaybe<Scalars['uuid']>
+  idToken?: InputMaybe<Scalars['String']>
+  oauthToken?: InputMaybe<Scalars['String']>
+  oauthTokenSecret?: InputMaybe<Scalars['String']>
+  provider?: InputMaybe<Scalars['String']>
+  providerAccountId?: InputMaybe<Scalars['String']>
+  refreshToken?: InputMaybe<Scalars['String']>
+  refreshTokenExpiresIn?: InputMaybe<Scalars['bigint']>
+  scope?: InputMaybe<Scalars['String']>
+  sessionState?: InputMaybe<Scalars['String']>
+  tokenType?: InputMaybe<Scalars['String']>
+  type?: InputMaybe<Scalars['String']>
+  userId?: InputMaybe<Scalars['uuid']>
+}
+
+/** aggregate max on columns */
+export type AccountMaxFields = {
+  __typename?: 'AccountMaxFields'
+  accessToken?: Maybe<Scalars['String']>
+  expiresAt?: Maybe<Scalars['bigint']>
+  id?: Maybe<Scalars['uuid']>
+  idToken?: Maybe<Scalars['String']>
+  oauthToken?: Maybe<Scalars['String']>
+  oauthTokenSecret?: Maybe<Scalars['String']>
+  provider?: Maybe<Scalars['String']>
+  providerAccountId?: Maybe<Scalars['String']>
+  refreshToken?: Maybe<Scalars['String']>
+  refreshTokenExpiresIn?: Maybe<Scalars['bigint']>
+  scope?: Maybe<Scalars['String']>
+  sessionState?: Maybe<Scalars['String']>
+  tokenType?: Maybe<Scalars['String']>
+  type?: Maybe<Scalars['String']>
+  userId?: Maybe<Scalars['uuid']>
+}
+
+/** aggregate min on columns */
+export type AccountMinFields = {
+  __typename?: 'AccountMinFields'
+  accessToken?: Maybe<Scalars['String']>
+  expiresAt?: Maybe<Scalars['bigint']>
+  id?: Maybe<Scalars['uuid']>
+  idToken?: Maybe<Scalars['String']>
+  oauthToken?: Maybe<Scalars['String']>
+  oauthTokenSecret?: Maybe<Scalars['String']>
+  provider?: Maybe<Scalars['String']>
+  providerAccountId?: Maybe<Scalars['String']>
+  refreshToken?: Maybe<Scalars['String']>
+  refreshTokenExpiresIn?: Maybe<Scalars['bigint']>
+  scope?: Maybe<Scalars['String']>
+  sessionState?: Maybe<Scalars['String']>
+  tokenType?: Maybe<Scalars['String']>
+  type?: Maybe<Scalars['String']>
+  userId?: Maybe<Scalars['uuid']>
+}
+
+/** response of any mutation on the table "account" */
+export type AccountMutationResponse = {
+  __typename?: 'AccountMutationResponse'
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']
+  /** data from the rows affected by the mutation */
+  returning: Array<Account>
+}
+
+/** on_conflict condition type for table "account" */
+export type AccountOnConflict = {
+  constraint: AccountConstraint
+  update_columns?: Array<AccountUpdateColumn>
+  where?: InputMaybe<AccountBoolExp>
+}
+
+/** Ordering options when selecting data from "account". */
+export type AccountOrderBy = {
+  accessToken?: InputMaybe<OrderBy>
+  expiresAt?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  idToken?: InputMaybe<OrderBy>
+  oauthToken?: InputMaybe<OrderBy>
+  oauthTokenSecret?: InputMaybe<OrderBy>
+  provider?: InputMaybe<OrderBy>
+  providerAccountId?: InputMaybe<OrderBy>
+  refreshToken?: InputMaybe<OrderBy>
+  refreshTokenExpiresIn?: InputMaybe<OrderBy>
+  scope?: InputMaybe<OrderBy>
+  sessionState?: InputMaybe<OrderBy>
+  tokenType?: InputMaybe<OrderBy>
+  type?: InputMaybe<OrderBy>
+  userId?: InputMaybe<OrderBy>
+}
+
+/** primary key columns input for table: account */
+export type AccountPkColumnsInput = {
+  id: Scalars['uuid']
+}
+
+/** select columns of table "account" */
+export enum AccountSelectColumn {
+  /** column name */
+  AccessToken = 'accessToken',
+  /** column name */
+  ExpiresAt = 'expiresAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  IdToken = 'idToken',
+  /** column name */
+  OauthToken = 'oauthToken',
+  /** column name */
+  OauthTokenSecret = 'oauthTokenSecret',
+  /** column name */
+  Provider = 'provider',
+  /** column name */
+  ProviderAccountId = 'providerAccountId',
+  /** column name */
+  RefreshToken = 'refreshToken',
+  /** column name */
+  RefreshTokenExpiresIn = 'refreshTokenExpiresIn',
+  /** column name */
+  Scope = 'scope',
+  /** column name */
+  SessionState = 'sessionState',
+  /** column name */
+  TokenType = 'tokenType',
+  /** column name */
+  Type = 'type',
+  /** column name */
+  UserId = 'userId',
+}
+
+/** input type for updating data in table "account" */
+export type AccountSetInput = {
+  accessToken?: InputMaybe<Scalars['String']>
+  expiresAt?: InputMaybe<Scalars['bigint']>
+  id?: InputMaybe<Scalars['uuid']>
+  idToken?: InputMaybe<Scalars['String']>
+  oauthToken?: InputMaybe<Scalars['String']>
+  oauthTokenSecret?: InputMaybe<Scalars['String']>
+  provider?: InputMaybe<Scalars['String']>
+  providerAccountId?: InputMaybe<Scalars['String']>
+  refreshToken?: InputMaybe<Scalars['String']>
+  refreshTokenExpiresIn?: InputMaybe<Scalars['bigint']>
+  scope?: InputMaybe<Scalars['String']>
+  sessionState?: InputMaybe<Scalars['String']>
+  tokenType?: InputMaybe<Scalars['String']>
+  type?: InputMaybe<Scalars['String']>
+  userId?: InputMaybe<Scalars['uuid']>
+}
+
+/** aggregate stddev on columns */
+export type AccountStddevFields = {
+  __typename?: 'AccountStddevFields'
+  expiresAt?: Maybe<Scalars['Float']>
+  refreshTokenExpiresIn?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_pop on columns */
+export type AccountStddev_PopFields = {
+  __typename?: 'AccountStddev_popFields'
+  expiresAt?: Maybe<Scalars['Float']>
+  refreshTokenExpiresIn?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_samp on columns */
+export type AccountStddev_SampFields = {
+  __typename?: 'AccountStddev_sampFields'
+  expiresAt?: Maybe<Scalars['Float']>
+  refreshTokenExpiresIn?: Maybe<Scalars['Float']>
+}
+
+/** aggregate sum on columns */
+export type AccountSumFields = {
+  __typename?: 'AccountSumFields'
+  expiresAt?: Maybe<Scalars['bigint']>
+  refreshTokenExpiresIn?: Maybe<Scalars['bigint']>
+}
+
+/** update columns of table "account" */
+export enum AccountUpdateColumn {
+  /** column name */
+  AccessToken = 'accessToken',
+  /** column name */
+  ExpiresAt = 'expiresAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  IdToken = 'idToken',
+  /** column name */
+  OauthToken = 'oauthToken',
+  /** column name */
+  OauthTokenSecret = 'oauthTokenSecret',
+  /** column name */
+  Provider = 'provider',
+  /** column name */
+  ProviderAccountId = 'providerAccountId',
+  /** column name */
+  RefreshToken = 'refreshToken',
+  /** column name */
+  RefreshTokenExpiresIn = 'refreshTokenExpiresIn',
+  /** column name */
+  Scope = 'scope',
+  /** column name */
+  SessionState = 'sessionState',
+  /** column name */
+  TokenType = 'tokenType',
+  /** column name */
+  Type = 'type',
+  /** column name */
+  UserId = 'userId',
+}
+
+export type AccountUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<AccountIncInput>
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<AccountSetInput>
+  where: AccountBoolExp
+}
+
+/** aggregate var_pop on columns */
+export type AccountVar_PopFields = {
+  __typename?: 'AccountVar_popFields'
+  expiresAt?: Maybe<Scalars['Float']>
+  refreshTokenExpiresIn?: Maybe<Scalars['Float']>
+}
+
+/** aggregate var_samp on columns */
+export type AccountVar_SampFields = {
+  __typename?: 'AccountVar_sampFields'
+  expiresAt?: Maybe<Scalars['Float']>
+  refreshTokenExpiresIn?: Maybe<Scalars['Float']>
+}
+
+/** aggregate variance on columns */
+export type AccountVarianceFields = {
+  __typename?: 'AccountVarianceFields'
+  expiresAt?: Maybe<Scalars['Float']>
+  refreshTokenExpiresIn?: Maybe<Scalars['Float']>
 }
 
 /** columns and relationships of "annualInfo" */
@@ -1231,8 +1565,6 @@ export type CommodityProduce = {
   /** An object relationship */
   farm: Farm
   farmId: Scalars['uuid']
-  /** An object relationship */
-  household: Household
   householdId: Scalars['uuid']
   id: Scalars['uuid']
   organicPractitioner: Scalars['Boolean']
@@ -1310,7 +1642,6 @@ export type CommodityProduceBoolExp = {
   createdAt?: InputMaybe<TimestampComparisonExp>
   farm?: InputMaybe<FarmBoolExp>
   farmId?: InputMaybe<UuidComparisonExp>
-  household?: InputMaybe<HouseholdBoolExp>
   householdId?: InputMaybe<UuidComparisonExp>
   id?: InputMaybe<UuidComparisonExp>
   organicPractitioner?: InputMaybe<BooleanComparisonExp>
@@ -1341,7 +1672,6 @@ export type CommodityProduceInsertInput = {
   createdAt?: InputMaybe<Scalars['timestamp']>
   farm?: InputMaybe<FarmObjRelInsertInput>
   farmId?: InputMaybe<Scalars['uuid']>
-  household?: InputMaybe<HouseholdObjRelInsertInput>
   householdId?: InputMaybe<Scalars['uuid']>
   id?: InputMaybe<Scalars['uuid']>
   organicPractitioner?: InputMaybe<Scalars['Boolean']>
@@ -1401,7 +1731,6 @@ export type CommodityProduceOrderBy = {
   createdAt?: InputMaybe<OrderBy>
   farm?: InputMaybe<FarmOrderBy>
   farmId?: InputMaybe<OrderBy>
-  household?: InputMaybe<HouseholdOrderBy>
   householdId?: InputMaybe<OrderBy>
   id?: InputMaybe<OrderBy>
   organicPractitioner?: InputMaybe<OrderBy>
@@ -4093,6 +4422,151 @@ export type RegisteredHouseholdPerYearVarianceFields = {
   year?: Maybe<Scalars['Float']>
 }
 
+/** columns and relationships of "session" */
+export type Session = {
+  __typename?: 'Session'
+  expires?: Maybe<Scalars['timestamptz']>
+  id: Scalars['uuid']
+  sessionToken: Scalars['String']
+  /** An object relationship */
+  user: User
+  userId: Scalars['uuid']
+}
+
+/** aggregated selection of "session" */
+export type SessionAggregate = {
+  __typename?: 'SessionAggregate'
+  aggregate?: Maybe<SessionAggregateFields>
+  nodes: Array<Session>
+}
+
+/** aggregate fields of "session" */
+export type SessionAggregateFields = {
+  __typename?: 'SessionAggregateFields'
+  count: Scalars['Int']
+  max?: Maybe<SessionMaxFields>
+  min?: Maybe<SessionMinFields>
+}
+
+/** aggregate fields of "session" */
+export type SessionAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<SessionSelectColumn>>
+  distinct?: InputMaybe<Scalars['Boolean']>
+}
+
+/** Boolean expression to filter rows from the table "session". All fields are combined with a logical 'AND'. */
+export type SessionBoolExp = {
+  _and?: InputMaybe<Array<SessionBoolExp>>
+  _not?: InputMaybe<SessionBoolExp>
+  _or?: InputMaybe<Array<SessionBoolExp>>
+  expires?: InputMaybe<TimestamptzComparisonExp>
+  id?: InputMaybe<UuidComparisonExp>
+  sessionToken?: InputMaybe<StringComparisonExp>
+  user?: InputMaybe<UserBoolExp>
+  userId?: InputMaybe<UuidComparisonExp>
+}
+
+/** unique or primary key constraints on table "session" */
+export enum SessionConstraint {
+  /** unique or primary key constraint on columns "id" */
+  SessionsPkey = 'sessions_pkey',
+}
+
+/** input type for inserting data into table "session" */
+export type SessionInsertInput = {
+  expires?: InputMaybe<Scalars['timestamptz']>
+  id?: InputMaybe<Scalars['uuid']>
+  sessionToken?: InputMaybe<Scalars['String']>
+  user?: InputMaybe<UserObjRelInsertInput>
+  userId?: InputMaybe<Scalars['uuid']>
+}
+
+/** aggregate max on columns */
+export type SessionMaxFields = {
+  __typename?: 'SessionMaxFields'
+  expires?: Maybe<Scalars['timestamptz']>
+  id?: Maybe<Scalars['uuid']>
+  sessionToken?: Maybe<Scalars['String']>
+  userId?: Maybe<Scalars['uuid']>
+}
+
+/** aggregate min on columns */
+export type SessionMinFields = {
+  __typename?: 'SessionMinFields'
+  expires?: Maybe<Scalars['timestamptz']>
+  id?: Maybe<Scalars['uuid']>
+  sessionToken?: Maybe<Scalars['String']>
+  userId?: Maybe<Scalars['uuid']>
+}
+
+/** response of any mutation on the table "session" */
+export type SessionMutationResponse = {
+  __typename?: 'SessionMutationResponse'
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']
+  /** data from the rows affected by the mutation */
+  returning: Array<Session>
+}
+
+/** on_conflict condition type for table "session" */
+export type SessionOnConflict = {
+  constraint: SessionConstraint
+  update_columns?: Array<SessionUpdateColumn>
+  where?: InputMaybe<SessionBoolExp>
+}
+
+/** Ordering options when selecting data from "session". */
+export type SessionOrderBy = {
+  expires?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  sessionToken?: InputMaybe<OrderBy>
+  user?: InputMaybe<UserOrderBy>
+  userId?: InputMaybe<OrderBy>
+}
+
+/** primary key columns input for table: session */
+export type SessionPkColumnsInput = {
+  id: Scalars['uuid']
+}
+
+/** select columns of table "session" */
+export enum SessionSelectColumn {
+  /** column name */
+  Expires = 'expires',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  SessionToken = 'sessionToken',
+  /** column name */
+  UserId = 'userId',
+}
+
+/** input type for updating data in table "session" */
+export type SessionSetInput = {
+  expires?: InputMaybe<Scalars['timestamptz']>
+  id?: InputMaybe<Scalars['uuid']>
+  sessionToken?: InputMaybe<Scalars['String']>
+  userId?: InputMaybe<Scalars['uuid']>
+}
+
+/** update columns of table "session" */
+export enum SessionUpdateColumn {
+  /** column name */
+  Expires = 'expires',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  SessionToken = 'sessionToken',
+  /** column name */
+  UserId = 'userId',
+}
+
+export type SessionUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<SessionSetInput>
+  where: SessionBoolExp
+}
+
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type StringComparisonExp = {
   _eq?: InputMaybe<Scalars['String']>
@@ -4139,17 +4613,33 @@ export type TimestampComparisonExp = {
   _nin?: InputMaybe<Array<Scalars['timestamp']>>
 }
 
+/** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
+export type TimestamptzComparisonExp = {
+  _eq?: InputMaybe<Scalars['timestamptz']>
+  _gt?: InputMaybe<Scalars['timestamptz']>
+  _gte?: InputMaybe<Scalars['timestamptz']>
+  _in?: InputMaybe<Array<Scalars['timestamptz']>>
+  _isNull?: InputMaybe<Scalars['Boolean']>
+  _lt?: InputMaybe<Scalars['timestamptz']>
+  _lte?: InputMaybe<Scalars['timestamptz']>
+  _neq?: InputMaybe<Scalars['timestamptz']>
+  _nin?: InputMaybe<Array<Scalars['timestamptz']>>
+}
+
 /** columns and relationships of "user" */
 export type User = {
   __typename?: 'User'
   active: Scalars['Boolean']
   createdAt: Scalars['timestamp']
+  email?: Maybe<Scalars['String']>
+  emailVerified?: Maybe<Scalars['timestamptz']>
   firstName: Scalars['String']
   id: Scalars['uuid']
+  image?: Maybe<Scalars['String']>
   lastName: Scalars['String']
+  name?: Maybe<Scalars['String']>
   role: Scalars['userRoleEnum']
   updatedAt: Scalars['timestamp']
-  username: Scalars['String']
 }
 
 /** aggregated selection of "user" */
@@ -4180,54 +4670,68 @@ export type UserBoolExp = {
   _or?: InputMaybe<Array<UserBoolExp>>
   active?: InputMaybe<BooleanComparisonExp>
   createdAt?: InputMaybe<TimestampComparisonExp>
+  email?: InputMaybe<StringComparisonExp>
+  emailVerified?: InputMaybe<TimestamptzComparisonExp>
   firstName?: InputMaybe<StringComparisonExp>
   id?: InputMaybe<UuidComparisonExp>
+  image?: InputMaybe<StringComparisonExp>
   lastName?: InputMaybe<StringComparisonExp>
+  name?: InputMaybe<StringComparisonExp>
   role?: InputMaybe<UserRoleEnumComparisonExp>
   updatedAt?: InputMaybe<TimestampComparisonExp>
-  username?: InputMaybe<StringComparisonExp>
 }
 
 /** unique or primary key constraints on table "user" */
 export enum UserConstraint {
+  /** unique or primary key constraint on columns "email" */
+  UserEmailKey = 'user_email_key',
   /** unique or primary key constraint on columns "id" */
-  UserPk = 'user_pk',
+  UserPkey = 'user_pkey',
 }
 
 /** input type for inserting data into table "user" */
 export type UserInsertInput = {
   active?: InputMaybe<Scalars['Boolean']>
   createdAt?: InputMaybe<Scalars['timestamp']>
+  email?: InputMaybe<Scalars['String']>
+  emailVerified?: InputMaybe<Scalars['timestamptz']>
   firstName?: InputMaybe<Scalars['String']>
   id?: InputMaybe<Scalars['uuid']>
+  image?: InputMaybe<Scalars['String']>
   lastName?: InputMaybe<Scalars['String']>
+  name?: InputMaybe<Scalars['String']>
   role?: InputMaybe<Scalars['userRoleEnum']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
-  username?: InputMaybe<Scalars['String']>
 }
 
 /** aggregate max on columns */
 export type UserMaxFields = {
   __typename?: 'UserMaxFields'
   createdAt?: Maybe<Scalars['timestamp']>
+  email?: Maybe<Scalars['String']>
+  emailVerified?: Maybe<Scalars['timestamptz']>
   firstName?: Maybe<Scalars['String']>
   id?: Maybe<Scalars['uuid']>
+  image?: Maybe<Scalars['String']>
   lastName?: Maybe<Scalars['String']>
+  name?: Maybe<Scalars['String']>
   role?: Maybe<Scalars['userRoleEnum']>
   updatedAt?: Maybe<Scalars['timestamp']>
-  username?: Maybe<Scalars['String']>
 }
 
 /** aggregate min on columns */
 export type UserMinFields = {
   __typename?: 'UserMinFields'
   createdAt?: Maybe<Scalars['timestamp']>
+  email?: Maybe<Scalars['String']>
+  emailVerified?: Maybe<Scalars['timestamptz']>
   firstName?: Maybe<Scalars['String']>
   id?: Maybe<Scalars['uuid']>
+  image?: Maybe<Scalars['String']>
   lastName?: Maybe<Scalars['String']>
+  name?: Maybe<Scalars['String']>
   role?: Maybe<Scalars['userRoleEnum']>
   updatedAt?: Maybe<Scalars['timestamp']>
-  username?: Maybe<Scalars['String']>
 }
 
 /** response of any mutation on the table "user" */
@@ -4237,6 +4741,13 @@ export type UserMutationResponse = {
   affected_rows: Scalars['Int']
   /** data from the rows affected by the mutation */
   returning: Array<User>
+}
+
+/** input type for inserting object relation for remote table "user" */
+export type UserObjRelInsertInput = {
+  data: UserInsertInput
+  /** upsert condition */
+  onConflict?: InputMaybe<UserOnConflict>
 }
 
 /** on_conflict condition type for table "user" */
@@ -4250,12 +4761,15 @@ export type UserOnConflict = {
 export type UserOrderBy = {
   active?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
+  email?: InputMaybe<OrderBy>
+  emailVerified?: InputMaybe<OrderBy>
   firstName?: InputMaybe<OrderBy>
   id?: InputMaybe<OrderBy>
+  image?: InputMaybe<OrderBy>
   lastName?: InputMaybe<OrderBy>
+  name?: InputMaybe<OrderBy>
   role?: InputMaybe<OrderBy>
   updatedAt?: InputMaybe<OrderBy>
-  username?: InputMaybe<OrderBy>
 }
 
 /** primary key columns input for table: user */
@@ -4283,29 +4797,38 @@ export enum UserSelectColumn {
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
+  Email = 'email',
+  /** column name */
+  EmailVerified = 'emailVerified',
+  /** column name */
   FirstName = 'firstName',
   /** column name */
   Id = 'id',
   /** column name */
+  Image = 'image',
+  /** column name */
   LastName = 'lastName',
+  /** column name */
+  Name = 'name',
   /** column name */
   Role = 'role',
   /** column name */
   UpdatedAt = 'updatedAt',
-  /** column name */
-  Username = 'username',
 }
 
 /** input type for updating data in table "user" */
 export type UserSetInput = {
   active?: InputMaybe<Scalars['Boolean']>
   createdAt?: InputMaybe<Scalars['timestamp']>
+  email?: InputMaybe<Scalars['String']>
+  emailVerified?: InputMaybe<Scalars['timestamptz']>
   firstName?: InputMaybe<Scalars['String']>
   id?: InputMaybe<Scalars['uuid']>
+  image?: InputMaybe<Scalars['String']>
   lastName?: InputMaybe<Scalars['String']>
+  name?: InputMaybe<Scalars['String']>
   role?: InputMaybe<Scalars['userRoleEnum']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
-  username?: InputMaybe<Scalars['String']>
 }
 
 /** update columns of table "user" */
@@ -4315,17 +4838,23 @@ export enum UserUpdateColumn {
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
+  Email = 'email',
+  /** column name */
+  EmailVerified = 'emailVerified',
+  /** column name */
   FirstName = 'firstName',
   /** column name */
   Id = 'id',
   /** column name */
+  Image = 'image',
+  /** column name */
   LastName = 'lastName',
+  /** column name */
+  Name = 'name',
   /** column name */
   Role = 'role',
   /** column name */
   UpdatedAt = 'updatedAt',
-  /** column name */
-  Username = 'username',
 }
 
 export type UserUpdates = {
@@ -4345,6 +4874,162 @@ export type UuidComparisonExp = {
   _lte?: InputMaybe<Scalars['uuid']>
   _neq?: InputMaybe<Scalars['uuid']>
   _nin?: InputMaybe<Array<Scalars['uuid']>>
+}
+
+/** columns and relationships of "verificationToken" */
+export type VerificationToken = {
+  __typename?: 'VerificationToken'
+  expires?: Maybe<Scalars['timestamptz']>
+  identifier: Scalars['String']
+  token: Scalars['String']
+}
+
+/** aggregated selection of "verificationToken" */
+export type VerificationTokenAggregate = {
+  __typename?: 'VerificationTokenAggregate'
+  aggregate?: Maybe<VerificationTokenAggregateFields>
+  nodes: Array<VerificationToken>
+}
+
+/** aggregate fields of "verificationToken" */
+export type VerificationTokenAggregateFields = {
+  __typename?: 'VerificationTokenAggregateFields'
+  count: Scalars['Int']
+  max?: Maybe<VerificationTokenMaxFields>
+  min?: Maybe<VerificationTokenMinFields>
+}
+
+/** aggregate fields of "verificationToken" */
+export type VerificationTokenAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<VerificationTokenSelectColumn>>
+  distinct?: InputMaybe<Scalars['Boolean']>
+}
+
+/** Boolean expression to filter rows from the table "verificationToken". All fields are combined with a logical 'AND'. */
+export type VerificationTokenBoolExp = {
+  _and?: InputMaybe<Array<VerificationTokenBoolExp>>
+  _not?: InputMaybe<VerificationTokenBoolExp>
+  _or?: InputMaybe<Array<VerificationTokenBoolExp>>
+  expires?: InputMaybe<TimestamptzComparisonExp>
+  identifier?: InputMaybe<StringComparisonExp>
+  token?: InputMaybe<StringComparisonExp>
+}
+
+/** unique or primary key constraints on table "verificationToken" */
+export enum VerificationTokenConstraint {
+  /** unique or primary key constraint on columns "token" */
+  VerificationTokensPkey = 'verification_tokens_pkey',
+}
+
+/** input type for inserting data into table "verificationToken" */
+export type VerificationTokenInsertInput = {
+  expires?: InputMaybe<Scalars['timestamptz']>
+  identifier?: InputMaybe<Scalars['String']>
+  token?: InputMaybe<Scalars['String']>
+}
+
+/** aggregate max on columns */
+export type VerificationTokenMaxFields = {
+  __typename?: 'VerificationTokenMaxFields'
+  expires?: Maybe<Scalars['timestamptz']>
+  identifier?: Maybe<Scalars['String']>
+  token?: Maybe<Scalars['String']>
+}
+
+/** aggregate min on columns */
+export type VerificationTokenMinFields = {
+  __typename?: 'VerificationTokenMinFields'
+  expires?: Maybe<Scalars['timestamptz']>
+  identifier?: Maybe<Scalars['String']>
+  token?: Maybe<Scalars['String']>
+}
+
+/** response of any mutation on the table "verificationToken" */
+export type VerificationTokenMutationResponse = {
+  __typename?: 'VerificationTokenMutationResponse'
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int']
+  /** data from the rows affected by the mutation */
+  returning: Array<VerificationToken>
+}
+
+/** on_conflict condition type for table "verificationToken" */
+export type VerificationTokenOnConflict = {
+  constraint: VerificationTokenConstraint
+  update_columns?: Array<VerificationTokenUpdateColumn>
+  where?: InputMaybe<VerificationTokenBoolExp>
+}
+
+/** Ordering options when selecting data from "verificationToken". */
+export type VerificationTokenOrderBy = {
+  expires?: InputMaybe<OrderBy>
+  identifier?: InputMaybe<OrderBy>
+  token?: InputMaybe<OrderBy>
+}
+
+/** primary key columns input for table: verificationToken */
+export type VerificationTokenPkColumnsInput = {
+  token: Scalars['String']
+}
+
+/** select columns of table "verificationToken" */
+export enum VerificationTokenSelectColumn {
+  /** column name */
+  Expires = 'expires',
+  /** column name */
+  Identifier = 'identifier',
+  /** column name */
+  Token = 'token',
+}
+
+/** input type for updating data in table "verificationToken" */
+export type VerificationTokenSetInput = {
+  expires?: InputMaybe<Scalars['timestamptz']>
+  identifier?: InputMaybe<Scalars['String']>
+  token?: InputMaybe<Scalars['String']>
+}
+
+/** update columns of table "verificationToken" */
+export enum VerificationTokenUpdateColumn {
+  /** column name */
+  Expires = 'expires',
+  /** column name */
+  Identifier = 'identifier',
+  /** column name */
+  Token = 'token',
+}
+
+export type VerificationTokenUpdates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<VerificationTokenSetInput>
+  where: VerificationTokenBoolExp
+}
+
+/** Streaming cursor of the table "account" */
+export type Account_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: Account_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type Account_StreamCursorValueInput = {
+  accessToken?: InputMaybe<Scalars['String']>
+  expiresAt?: InputMaybe<Scalars['bigint']>
+  id?: InputMaybe<Scalars['uuid']>
+  idToken?: InputMaybe<Scalars['String']>
+  oauthToken?: InputMaybe<Scalars['String']>
+  oauthTokenSecret?: InputMaybe<Scalars['String']>
+  provider?: InputMaybe<Scalars['String']>
+  providerAccountId?: InputMaybe<Scalars['String']>
+  refreshToken?: InputMaybe<Scalars['String']>
+  refreshTokenExpiresIn?: InputMaybe<Scalars['bigint']>
+  scope?: InputMaybe<Scalars['String']>
+  sessionState?: InputMaybe<Scalars['String']>
+  tokenType?: InputMaybe<Scalars['String']>
+  type?: InputMaybe<Scalars['String']>
+  userId?: InputMaybe<Scalars['uuid']>
 }
 
 /** order by avg() on columns of table "annualInfo" */
@@ -4883,6 +5568,10 @@ export type InventoryOfLivestock_StreamCursorValueInput = {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root'
+  /** delete data from the table: "account" */
+  deleteAccount?: Maybe<AccountMutationResponse>
+  /** delete single row from the table: "account" */
+  deleteAccountByPk?: Maybe<Account>
   /** delete data from the table: "annualInfo" */
   deleteAnnualInfo?: Maybe<AnnualInfoMutationResponse>
   /** delete single row from the table: "annualInfo" */
@@ -4915,10 +5604,22 @@ export type Mutation_Root = {
   deleteProgram?: Maybe<ProgramMutationResponse>
   /** delete single row from the table: "program" */
   deleteProgramByPk?: Maybe<Program>
+  /** delete data from the table: "session" */
+  deleteSession?: Maybe<SessionMutationResponse>
+  /** delete single row from the table: "session" */
+  deleteSessionByPk?: Maybe<Session>
   /** delete data from the table: "user" */
   deleteUser?: Maybe<UserMutationResponse>
   /** delete single row from the table: "user" */
   deleteUserByPk?: Maybe<User>
+  /** delete data from the table: "verificationToken" */
+  deleteVerificationToken?: Maybe<VerificationTokenMutationResponse>
+  /** delete single row from the table: "verificationToken" */
+  deleteVerificationTokenByPk?: Maybe<VerificationToken>
+  /** insert data into the table: "account" */
+  insertAccount?: Maybe<AccountMutationResponse>
+  /** insert a single row into the table: "account" */
+  insertAccountOne?: Maybe<Account>
   /** insert data into the table: "annualInfo" */
   insertAnnualInfo?: Maybe<AnnualInfoMutationResponse>
   /** insert a single row into the table: "annualInfo" */
@@ -4955,10 +5656,24 @@ export type Mutation_Root = {
   insertProgram?: Maybe<ProgramMutationResponse>
   /** insert a single row into the table: "program" */
   insertProgramOne?: Maybe<Program>
+  /** insert data into the table: "session" */
+  insertSession?: Maybe<SessionMutationResponse>
+  /** insert a single row into the table: "session" */
+  insertSessionOne?: Maybe<Session>
   /** insert data into the table: "user" */
   insertUser?: Maybe<UserMutationResponse>
   /** insert a single row into the table: "user" */
   insertUserOne?: Maybe<User>
+  /** insert data into the table: "verificationToken" */
+  insertVerificationToken?: Maybe<VerificationTokenMutationResponse>
+  /** insert a single row into the table: "verificationToken" */
+  insertVerificationTokenOne?: Maybe<VerificationToken>
+  /** update data of the table: "account" */
+  updateAccount?: Maybe<AccountMutationResponse>
+  /** update single row of the table: "account" */
+  updateAccountByPk?: Maybe<Account>
+  /** update multiples rows of table: "account" */
+  updateAccountMany?: Maybe<Array<Maybe<AccountMutationResponse>>>
   /** update data of the table: "annualInfo" */
   updateAnnualInfo?: Maybe<AnnualInfoMutationResponse>
   /** update single row of the table: "annualInfo" */
@@ -5015,12 +5730,36 @@ export type Mutation_Root = {
   updateProgramByPk?: Maybe<Program>
   /** update multiples rows of table: "program" */
   updateProgramMany?: Maybe<Array<Maybe<ProgramMutationResponse>>>
+  /** update data of the table: "session" */
+  updateSession?: Maybe<SessionMutationResponse>
+  /** update single row of the table: "session" */
+  updateSessionByPk?: Maybe<Session>
+  /** update multiples rows of table: "session" */
+  updateSessionMany?: Maybe<Array<Maybe<SessionMutationResponse>>>
   /** update data of the table: "user" */
   updateUser?: Maybe<UserMutationResponse>
   /** update single row of the table: "user" */
   updateUserByPk?: Maybe<User>
   /** update multiples rows of table: "user" */
   updateUserMany?: Maybe<Array<Maybe<UserMutationResponse>>>
+  /** update data of the table: "verificationToken" */
+  updateVerificationToken?: Maybe<VerificationTokenMutationResponse>
+  /** update single row of the table: "verificationToken" */
+  updateVerificationTokenByPk?: Maybe<VerificationToken>
+  /** update multiples rows of table: "verificationToken" */
+  updateVerificationTokenMany?: Maybe<
+    Array<Maybe<VerificationTokenMutationResponse>>
+  >
+}
+
+/** mutation root */
+export type Mutation_RootDeleteAccountArgs = {
+  where: AccountBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootDeleteAccountByPkArgs = {
+  id: Scalars['uuid']
 }
 
 /** mutation root */
@@ -5104,6 +5843,16 @@ export type Mutation_RootDeleteProgramByPkArgs = {
 }
 
 /** mutation root */
+export type Mutation_RootDeleteSessionArgs = {
+  where: SessionBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootDeleteSessionByPkArgs = {
+  id: Scalars['uuid']
+}
+
+/** mutation root */
 export type Mutation_RootDeleteUserArgs = {
   where: UserBoolExp
 }
@@ -5111,6 +5860,28 @@ export type Mutation_RootDeleteUserArgs = {
 /** mutation root */
 export type Mutation_RootDeleteUserByPkArgs = {
   id: Scalars['uuid']
+}
+
+/** mutation root */
+export type Mutation_RootDeleteVerificationTokenArgs = {
+  where: VerificationTokenBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootDeleteVerificationTokenByPkArgs = {
+  token: Scalars['String']
+}
+
+/** mutation root */
+export type Mutation_RootInsertAccountArgs = {
+  objects: Array<AccountInsertInput>
+  onConflict?: InputMaybe<AccountOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertAccountOneArgs = {
+  object: AccountInsertInput
+  onConflict?: InputMaybe<AccountOnConflict>
 }
 
 /** mutation root */
@@ -5218,6 +5989,18 @@ export type Mutation_RootInsertProgramOneArgs = {
 }
 
 /** mutation root */
+export type Mutation_RootInsertSessionArgs = {
+  objects: Array<SessionInsertInput>
+  onConflict?: InputMaybe<SessionOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertSessionOneArgs = {
+  object: SessionInsertInput
+  onConflict?: InputMaybe<SessionOnConflict>
+}
+
+/** mutation root */
 export type Mutation_RootInsertUserArgs = {
   objects: Array<UserInsertInput>
   onConflict?: InputMaybe<UserOnConflict>
@@ -5227,6 +6010,37 @@ export type Mutation_RootInsertUserArgs = {
 export type Mutation_RootInsertUserOneArgs = {
   object: UserInsertInput
   onConflict?: InputMaybe<UserOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertVerificationTokenArgs = {
+  objects: Array<VerificationTokenInsertInput>
+  onConflict?: InputMaybe<VerificationTokenOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsertVerificationTokenOneArgs = {
+  object: VerificationTokenInsertInput
+  onConflict?: InputMaybe<VerificationTokenOnConflict>
+}
+
+/** mutation root */
+export type Mutation_RootUpdateAccountArgs = {
+  _inc?: InputMaybe<AccountIncInput>
+  _set?: InputMaybe<AccountSetInput>
+  where: AccountBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootUpdateAccountByPkArgs = {
+  _inc?: InputMaybe<AccountIncInput>
+  _set?: InputMaybe<AccountSetInput>
+  pk_columns: AccountPkColumnsInput
+}
+
+/** mutation root */
+export type Mutation_RootUpdateAccountManyArgs = {
+  updates: Array<AccountUpdates>
 }
 
 /** mutation root */
@@ -5399,6 +6213,23 @@ export type Mutation_RootUpdateProgramManyArgs = {
 }
 
 /** mutation root */
+export type Mutation_RootUpdateSessionArgs = {
+  _set?: InputMaybe<SessionSetInput>
+  where: SessionBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootUpdateSessionByPkArgs = {
+  _set?: InputMaybe<SessionSetInput>
+  pk_columns: SessionPkColumnsInput
+}
+
+/** mutation root */
+export type Mutation_RootUpdateSessionManyArgs = {
+  updates: Array<SessionUpdates>
+}
+
+/** mutation root */
 export type Mutation_RootUpdateUserArgs = {
   _set?: InputMaybe<UserSetInput>
   where: UserBoolExp
@@ -5413,6 +6244,23 @@ export type Mutation_RootUpdateUserByPkArgs = {
 /** mutation root */
 export type Mutation_RootUpdateUserManyArgs = {
   updates: Array<UserUpdates>
+}
+
+/** mutation root */
+export type Mutation_RootUpdateVerificationTokenArgs = {
+  _set?: InputMaybe<VerificationTokenSetInput>
+  where: VerificationTokenBoolExp
+}
+
+/** mutation root */
+export type Mutation_RootUpdateVerificationTokenByPkArgs = {
+  _set?: InputMaybe<VerificationTokenSetInput>
+  pk_columns: VerificationTokenPkColumnsInput
+}
+
+/** mutation root */
+export type Mutation_RootUpdateVerificationTokenManyArgs = {
+  updates: Array<VerificationTokenUpdates>
 }
 
 /** Streaming cursor of the table "produce" */
@@ -5487,6 +6335,12 @@ export type Program_StreamCursorValueInput = {
 
 export type Query_Root = {
   __typename?: 'query_root'
+  /** fetch data from the table: "account" */
+  account: Array<Account>
+  /** fetch aggregated fields from the table: "account" */
+  accountAggregate: AccountAggregate
+  /** fetch data from the table: "account" using primary key columns */
+  accountByPk?: Maybe<Account>
   /** fetch data from the table: "annualInfo" */
   annualInfo: Array<AnnualInfo>
   /** fetch aggregated fields from the table: "annualInfo" */
@@ -5573,12 +6427,44 @@ export type Query_Root = {
   registeredHouseholdPerYear: Array<RegisteredHouseholdPerYear>
   /** fetch aggregated fields from the table: "registeredHouseholdPerYear" */
   registeredHouseholdPerYearAggregate: RegisteredHouseholdPerYearAggregate
+  /** fetch data from the table: "session" */
+  session: Array<Session>
+  /** fetch aggregated fields from the table: "session" */
+  sessionAggregate: SessionAggregate
+  /** fetch data from the table: "session" using primary key columns */
+  sessionByPk?: Maybe<Session>
   /** fetch data from the table: "user" */
   user: Array<User>
   /** fetch aggregated fields from the table: "user" */
   userAggregate: UserAggregate
   /** fetch data from the table: "user" using primary key columns */
   userByPk?: Maybe<User>
+  /** fetch data from the table: "verificationToken" */
+  verificationToken: Array<VerificationToken>
+  /** fetch aggregated fields from the table: "verificationToken" */
+  verificationTokenAggregate: VerificationTokenAggregate
+  /** fetch data from the table: "verificationToken" using primary key columns */
+  verificationTokenByPk?: Maybe<VerificationToken>
+}
+
+export type Query_RootAccountArgs = {
+  distinctOn?: InputMaybe<Array<AccountSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AccountOrderBy>>
+  where?: InputMaybe<AccountBoolExp>
+}
+
+export type Query_RootAccountAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AccountSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AccountOrderBy>>
+  where?: InputMaybe<AccountBoolExp>
+}
+
+export type Query_RootAccountByPkArgs = {
+  id: Scalars['uuid']
 }
 
 export type Query_RootAnnualInfoArgs = {
@@ -5897,6 +6783,26 @@ export type Query_RootRegisteredHouseholdPerYearAggregateArgs = {
   where?: InputMaybe<RegisteredHouseholdPerYearBoolExp>
 }
 
+export type Query_RootSessionArgs = {
+  distinctOn?: InputMaybe<Array<SessionSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<SessionOrderBy>>
+  where?: InputMaybe<SessionBoolExp>
+}
+
+export type Query_RootSessionAggregateArgs = {
+  distinctOn?: InputMaybe<Array<SessionSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<SessionOrderBy>>
+  where?: InputMaybe<SessionBoolExp>
+}
+
+export type Query_RootSessionByPkArgs = {
+  id: Scalars['uuid']
+}
+
 export type Query_RootUserArgs = {
   distinctOn?: InputMaybe<Array<UserSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
@@ -5917,6 +6823,26 @@ export type Query_RootUserByPkArgs = {
   id: Scalars['uuid']
 }
 
+export type Query_RootVerificationTokenArgs = {
+  distinctOn?: InputMaybe<Array<VerificationTokenSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<VerificationTokenOrderBy>>
+  where?: InputMaybe<VerificationTokenBoolExp>
+}
+
+export type Query_RootVerificationTokenAggregateArgs = {
+  distinctOn?: InputMaybe<Array<VerificationTokenSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<VerificationTokenOrderBy>>
+  where?: InputMaybe<VerificationTokenBoolExp>
+}
+
+export type Query_RootVerificationTokenByPkArgs = {
+  token: Scalars['String']
+}
+
 /** Streaming cursor of the table "registeredHouseholdPerYear" */
 export type RegisteredHouseholdPerYear_StreamCursorInput = {
   /** Stream column input with initial value */
@@ -5931,8 +6857,32 @@ export type RegisteredHouseholdPerYear_StreamCursorValueInput = {
   year?: InputMaybe<Scalars['Int']>
 }
 
+/** Streaming cursor of the table "session" */
+export type Session_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: Session_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type Session_StreamCursorValueInput = {
+  expires?: InputMaybe<Scalars['timestamptz']>
+  id?: InputMaybe<Scalars['uuid']>
+  sessionToken?: InputMaybe<Scalars['String']>
+  userId?: InputMaybe<Scalars['uuid']>
+}
+
 export type Subscription_Root = {
   __typename?: 'subscription_root'
+  /** fetch data from the table: "account" */
+  account: Array<Account>
+  /** fetch aggregated fields from the table: "account" */
+  accountAggregate: AccountAggregate
+  /** fetch data from the table: "account" using primary key columns */
+  accountByPk?: Maybe<Account>
+  /** fetch data from the table in a streaming manner : "account" */
+  accountStream: Array<Account>
   /** fetch data from the table: "annualInfo" */
   annualInfo: Array<AnnualInfo>
   /** fetch aggregated fields from the table: "annualInfo" */
@@ -6055,6 +7005,14 @@ export type Subscription_Root = {
   registeredHouseholdPerYearAggregate: RegisteredHouseholdPerYearAggregate
   /** fetch data from the table in a streaming manner : "registeredHouseholdPerYear" */
   registeredHouseholdPerYearStream: Array<RegisteredHouseholdPerYear>
+  /** fetch data from the table: "session" */
+  session: Array<Session>
+  /** fetch aggregated fields from the table: "session" */
+  sessionAggregate: SessionAggregate
+  /** fetch data from the table: "session" using primary key columns */
+  sessionByPk?: Maybe<Session>
+  /** fetch data from the table in a streaming manner : "session" */
+  sessionStream: Array<Session>
   /** fetch data from the table: "user" */
   user: Array<User>
   /** fetch aggregated fields from the table: "user" */
@@ -6063,6 +7021,40 @@ export type Subscription_Root = {
   userByPk?: Maybe<User>
   /** fetch data from the table in a streaming manner : "user" */
   userStream: Array<User>
+  /** fetch data from the table: "verificationToken" */
+  verificationToken: Array<VerificationToken>
+  /** fetch aggregated fields from the table: "verificationToken" */
+  verificationTokenAggregate: VerificationTokenAggregate
+  /** fetch data from the table: "verificationToken" using primary key columns */
+  verificationTokenByPk?: Maybe<VerificationToken>
+  /** fetch data from the table in a streaming manner : "verificationToken" */
+  verificationTokenStream: Array<VerificationToken>
+}
+
+export type Subscription_RootAccountArgs = {
+  distinctOn?: InputMaybe<Array<AccountSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AccountOrderBy>>
+  where?: InputMaybe<AccountBoolExp>
+}
+
+export type Subscription_RootAccountAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AccountSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AccountOrderBy>>
+  where?: InputMaybe<AccountBoolExp>
+}
+
+export type Subscription_RootAccountByPkArgs = {
+  id: Scalars['uuid']
+}
+
+export type Subscription_RootAccountStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<Account_StreamCursorInput>>
+  where?: InputMaybe<AccountBoolExp>
 }
 
 export type Subscription_RootAnnualInfoArgs = {
@@ -6489,6 +7481,32 @@ export type Subscription_RootRegisteredHouseholdPerYearStreamArgs = {
   where?: InputMaybe<RegisteredHouseholdPerYearBoolExp>
 }
 
+export type Subscription_RootSessionArgs = {
+  distinctOn?: InputMaybe<Array<SessionSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<SessionOrderBy>>
+  where?: InputMaybe<SessionBoolExp>
+}
+
+export type Subscription_RootSessionAggregateArgs = {
+  distinctOn?: InputMaybe<Array<SessionSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<SessionOrderBy>>
+  where?: InputMaybe<SessionBoolExp>
+}
+
+export type Subscription_RootSessionByPkArgs = {
+  id: Scalars['uuid']
+}
+
+export type Subscription_RootSessionStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<Session_StreamCursorInput>>
+  where?: InputMaybe<SessionBoolExp>
+}
+
 export type Subscription_RootUserArgs = {
   distinctOn?: InputMaybe<Array<UserSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
@@ -6515,6 +7533,32 @@ export type Subscription_RootUserStreamArgs = {
   where?: InputMaybe<UserBoolExp>
 }
 
+export type Subscription_RootVerificationTokenArgs = {
+  distinctOn?: InputMaybe<Array<VerificationTokenSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<VerificationTokenOrderBy>>
+  where?: InputMaybe<VerificationTokenBoolExp>
+}
+
+export type Subscription_RootVerificationTokenAggregateArgs = {
+  distinctOn?: InputMaybe<Array<VerificationTokenSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<VerificationTokenOrderBy>>
+  where?: InputMaybe<VerificationTokenBoolExp>
+}
+
+export type Subscription_RootVerificationTokenByPkArgs = {
+  token: Scalars['String']
+}
+
+export type Subscription_RootVerificationTokenStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<VerificationToken_StreamCursorInput>>
+  where?: InputMaybe<VerificationTokenBoolExp>
+}
+
 /** Streaming cursor of the table "user" */
 export type User_StreamCursorInput = {
   /** Stream column input with initial value */
@@ -6527,10 +7571,28 @@ export type User_StreamCursorInput = {
 export type User_StreamCursorValueInput = {
   active?: InputMaybe<Scalars['Boolean']>
   createdAt?: InputMaybe<Scalars['timestamp']>
+  email?: InputMaybe<Scalars['String']>
+  emailVerified?: InputMaybe<Scalars['timestamptz']>
   firstName?: InputMaybe<Scalars['String']>
   id?: InputMaybe<Scalars['uuid']>
+  image?: InputMaybe<Scalars['String']>
   lastName?: InputMaybe<Scalars['String']>
+  name?: InputMaybe<Scalars['String']>
   role?: InputMaybe<Scalars['userRoleEnum']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
-  username?: InputMaybe<Scalars['String']>
+}
+
+/** Streaming cursor of the table "verificationToken" */
+export type VerificationToken_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: VerificationToken_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type VerificationToken_StreamCursorValueInput = {
+  expires?: InputMaybe<Scalars['timestamptz']>
+  identifier?: InputMaybe<Scalars['String']>
+  token?: InputMaybe<Scalars['String']>
 }

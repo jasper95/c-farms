@@ -17,7 +17,7 @@ export type UserListQuery = {
     id: any
     firstName: string
     lastName: string
-    username: string
+    email?: string | null | undefined
     role: any
     active: boolean
   }>
@@ -42,7 +42,7 @@ export type UserDetailsQuery = {
         id: any
         firstName: string
         lastName: string
-        username: string
+        email?: string | null | undefined
         role: any
         active: boolean
       }
@@ -66,7 +66,7 @@ export const UserListDocument = gql`
       id
       firstName
       lastName
-      username
+      email
       role
       active
     }
@@ -81,7 +81,10 @@ export const UserListDocument = gql`
 export function useUserListQuery(
   options?: Omit<Urql.UseQueryArgs<UserListQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<UserListQuery>({ query: UserListDocument, ...options })
+  return Urql.useQuery<UserListQuery, UserListQueryVariables>({
+    query: UserListDocument,
+    ...options,
+  })
 }
 export const UserDetailsDocument = gql`
   query UserDetails($id: uuid!) {
@@ -89,7 +92,7 @@ export const UserDetailsDocument = gql`
       id
       firstName
       lastName
-      username
+      email
       role
       active
     }
@@ -99,7 +102,7 @@ export const UserDetailsDocument = gql`
 export function useUserDetailsQuery(
   options: Omit<Urql.UseQueryArgs<UserDetailsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<UserDetailsQuery>({
+  return Urql.useQuery<UserDetailsQuery, UserDetailsQueryVariables>({
     query: UserDetailsDocument,
     ...options,
   })

@@ -80,7 +80,7 @@ export const AssociationListDocument = gql`
 export function useAssociationListQuery(
   options?: Omit<Urql.UseQueryArgs<AssociationListQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<AssociationListQuery>({
+  return Urql.useQuery<AssociationListQuery, AssociationListQueryVariables>({
     query: AssociationListDocument,
     ...options,
   })
@@ -100,8 +100,8 @@ export const AssociationDetailsDocument = gql`
 export function useAssociationDetailsQuery(
   options: Omit<Urql.UseQueryArgs<AssociationDetailsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<AssociationDetailsQuery>({
-    query: AssociationDetailsDocument,
-    ...options,
-  })
+  return Urql.useQuery<
+    AssociationDetailsQuery,
+    AssociationDetailsQueryVariables
+  >({ query: AssociationDetailsDocument, ...options })
 }

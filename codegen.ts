@@ -23,13 +23,23 @@ const config: CodegenConfig = {
     'src/lib/generated/graphql.schema.json': {
       plugins: ['introspection'],
     },
-    'src/': {
+    'src/modules': {
       preset: 'near-operation-file',
       presetConfig: {
         extension: '.ts',
         baseTypesPath: '~@/lib/generated/graphql.types',
       },
       plugins: ['typescript-operations', 'typescript-urql'],
+      hooks: {
+        afterOneFileWrite: ['eslint --fix'],
+      },
+    },
+    'src/lib/auth/generated.ts': {
+      preset: 'import-types-preset',
+      presetConfig: {
+        typesPath: '@/lib/generated/graphql.types',
+      },
+      plugins: ['typescript-operations', 'typescript-graphql-request'],
       hooks: {
         afterOneFileWrite: ['eslint --fix'],
       },

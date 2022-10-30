@@ -11,11 +11,13 @@ import {
 import { useRouter } from 'next/router'
 import {
   useCreateAnnualInfoMutation,
+  useDeleteAnnualInfoMutation,
   useUpdateAnnualInfoMutation,
 } from '@/modules/annual-info/api/mutations'
 import { useEditDialogHook } from '@/lib/hooks/use-edit-dialog.hook'
 import { AnnualInfoForm } from '@/modules/household/components'
 import { annualInfoListFilters } from '../constants/annual-info-list-filters'
+import { useDeleteDialogHook } from '@/lib/hooks/use-delete-dialog.hook'
 
 const name = 'Annual Info'
 export function AnnualInfoListView() {
@@ -30,6 +32,10 @@ export function AnnualInfoListView() {
       householdId,
     },
   })
+  const { onClickDelete } = useDeleteDialogHook({
+    name,
+    useMutationHook: useDeleteAnnualInfoMutation,
+  })
   const { onClickEdit } = useEditDialogHook({
     schema: annualInfoSchema,
     useDetailsQueryHook: useAnnualInfoDetailsQuery,
@@ -40,8 +46,10 @@ export function AnnualInfoListView() {
   return (
     <DatatableListView
       name="Annual Info"
+      // additionalTypenames={['AnnualInfo']}
       onCreate={onClickCreate}
       onEdit={onClickEdit}
+      onDelete={onClickDelete}
       listQueryVariables={{
         householdId: {
           _eq: householdId,

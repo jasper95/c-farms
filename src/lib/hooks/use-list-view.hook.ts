@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useMemo } from 'react'
 import * as Urql from 'urql'
 import EditIcon from '@mui/icons-material/Edit'
+import DeleteIcon from '@mui/icons-material/Delete'
 import { useSearch } from './use-search.hook'
 import transformFilter from '../utils/transform-filter'
 import * as Types from '@/lib/generated/graphql.types'
@@ -61,6 +62,7 @@ export interface UseListViewProps<
   bulkActions?: BulkDataTableAction[]
   actions?: DataTableAction<QueryResponse>[]
   onEdit?: (id: string) => void
+  onDelete?: (id: string) => void
   baseUrl?: string
   additionalTypenames?: string[]
 }
@@ -75,6 +77,7 @@ export function useListViewHook<
     listQueryVariables,
     columns,
     onEdit,
+    onDelete,
     filters,
     bulkActions = [],
     additionalTypenames = [],
@@ -120,8 +123,8 @@ export function useListViewHook<
     })
   }, [listResponse?.data, tableDispatch])
 
-  const defaultActions: DataTableAction<QueryResponse>[] = useMemo(() => {
-    return [
+  const defaultActions = useMemo(() => {
+    const actions: DataTableAction<QueryResponse>[] = [
       {
         label: 'Edit',
         icon: EditIcon,
@@ -135,7 +138,15 @@ export function useListViewHook<
           }),
       },
     ]
-  }, [onEdit, baseUrl])
+    if (onDelete) {
+      actions.push({
+        label: 'Delete',
+        icon: DeleteIcon,
+        onClick: (row) => onDelete(row.id),
+      })
+    }
+    return actions
+  }, [onEdit, onDelete, baseUrl])
 
   return {
     tableProps: {

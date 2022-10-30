@@ -7,10 +7,8 @@ type IConfirmPaylaod = {
 }
 type IConfirmDialogProps = IFormContentProps<IConfirmPaylaod>
 
-function ConfirmDialog(props: IConfirmDialogProps) {
+export function ConfirmDialog(props: IConfirmDialogProps) {
   const { formProps } = props
   const message = useWatch({ name: 'message', control: formProps.control })
   return <Typography variant="body1">{message}</Typography>
 }
-
-export default withDialog(ConfirmDialog)
