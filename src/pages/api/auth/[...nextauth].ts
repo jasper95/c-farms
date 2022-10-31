@@ -1,6 +1,5 @@
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import jwt from 'jsonwebtoken'
-import EmailProvider from 'next-auth/providers/email'
 import { HasuraAdapter } from '@/lib/auth/adapter/hasura-adapter'
 import { JWT } from 'next-auth/jwt'
 import GoogleProvider from 'next-auth/providers/google'
@@ -9,17 +8,6 @@ import camelcaseKeys from 'camelcase-keys'
 
 export const authOptions: NextAuthOptions = {
   providers: [
-    EmailProvider({
-      server: {
-        host: 'smtp.sendgrid.net',
-        port: 587,
-        auth: {
-          user: 'apikey',
-          pass: process.env.SENDGRID_API_KEY,
-        },
-      },
-      from: process.env.AUTH_EMAIL_FROM,
-    }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || '',
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
