@@ -4,6 +4,7 @@ import Navigation from './navigation.layout'
 import Box from '@mui/material/Box'
 import Container, { ContainerProps } from '@mui/material/Container'
 import { styled } from '@mui/material/styles'
+import { useSession } from 'next-auth/react'
 
 type DashboardProps = {
   children: ReactNode
@@ -15,6 +16,14 @@ export const AppbarSpace = styled('div')(({ theme }) => ({
 }))
 export function Dashboard(props: DashboardProps) {
   const { maxWidth = 'xl' } = props
+  const response = useSession({ required: true })
+
+  if (response.status === 'loading') {
+    return <div>Loading...</div>
+  }
+  if (response.status !== 'authenticated') {
+    return null
+  }
   return (
     <Box sx={{ display: 'flex' }}>
       <Header />

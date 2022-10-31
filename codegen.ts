@@ -11,7 +11,7 @@ const config: CodegenConfig = {
       },
     },
   ],
-  documents: 'src/**/*.graphql',
+  documents: 'src/modules/**/*.graphql',
   overwrite: true,
   generates: {
     'src/lib/generated/graphql.types.ts': {
@@ -30,16 +30,6 @@ const config: CodegenConfig = {
         baseTypesPath: '~@/lib/generated/graphql.types',
       },
       plugins: ['typescript-operations', 'typescript-urql'],
-      hooks: {
-        afterOneFileWrite: ['eslint --fix'],
-      },
-    },
-    'src/lib/auth/generated.ts': {
-      preset: 'import-types-preset',
-      presetConfig: {
-        typesPath: '@/lib/generated/graphql.types',
-      },
-      plugins: ['typescript-operations', 'typescript-graphql-request'],
       hooks: {
         afterOneFileWrite: ['eslint --fix'],
       },

@@ -1,3 +1,14 @@
+query GetAuthAccount($provider: String!, $providerAccountId: String!) {
+  account(
+    where: {
+      provider: { _eq: $provider }
+      providerAccountId: { _eq: $providerAccountId }
+    }
+  ) {
+    ...Account
+  }
+}
+
 mutation CreateAccount($data: AccountInsertInput!) {
   insertAccountOne(object: $data) {
     ...Account

@@ -11,8 +11,8 @@ export const userListColumns: DataTableColumn<UserListQuery['list'][0]>[] = [
     accessor: 'lastName',
   },
   {
-    title: 'Username',
-    accessor: 'username',
+    title: 'Email',
+    accessor: 'email',
   },
   {
     title: 'Role',

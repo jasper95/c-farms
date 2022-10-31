@@ -1,4 +1,3 @@
-import { GraphQLClient } from 'graphql-request'
 import {
   Adapter,
   AdapterAccount,
@@ -6,13 +5,8 @@ import {
   AdapterUser,
   VerificationToken,
 } from 'next-auth/adapters'
-
-import { getSdk } from '../generated'
-
-type HasuraAdapterArgs = {
-  endpoint: string
-  adminSecret: string
-}
+import camelcaseKeys from 'camelcase-keys'
+import { authSdk } from '../auth-sdk'
 
 const transformDate = <T extends { [key: string]: unknown }>(
   object: T | null | undefined,
@@ -30,42 +24,32 @@ const transformDate = <T extends { [key: string]: unknown }>(
   return object
 }
 
-export const HasuraAdapter = ({
-  endpoint,
-  adminSecret,
-}: HasuraAdapterArgs): Adapter => {
-  const client = new GraphQLClient(endpoint, {
-    headers: {
-      ['x-hasura-admin-secret']: adminSecret,
-    },
-  })
-
-  const sdk = getSdk(client)
-
+export const HasuraAdapter = (): Adapter => {
   return {
-    // User
     createUser: async (data) => {
-      const res = await sdk.CreateUser({ data })
+      const res = await authSdk.CreateAuthUser({ data })
       const user = transformDate(res?.insertUserOne, 'emailVerified')
 
       return user as AdapterUser
     },
     getUser: async (id) => {
-      const res = await sdk.GetUser({ id })
+      const res = await authSdk.GetAuthUser({ id })
       const user = transformDate(res?.userByPk, 'emailVerified')
 
       return user as AdapterUser
     },
     getUserByEmail: async (email) => {
-      const res = await sdk.GetUsers({ where: { email: { _eq: email } } })
+      const res = await authSdk.GetAuthUsers({
+        where: { email: { _eq: email } },
+      })
       const user = transformDate(res?.user?.[0], 'emailVerified')
 
       if (!user) return null
 
       return user as AdapterUser
     },
-    getUserByAccount: async ({ providerAccountId, provider }) => {
-      const res = await sdk.GetUsers({
+    getUserByAccount: async ({ providerAccountId, provider, ...restData }) => {
+      const res = await authSdk.GetAuthUsers({
         where: {
           accounts: {
             provider: { _eq: provider },
@@ -80,26 +64,26 @@ export const HasuraAdapter = ({
       return user as AdapterUser
     },
     updateUser: async ({ id, ...data }) => {
-      const res = await sdk.UpdateUser({ id, data })
+      const res = await authSdk.UpdateAuthUser({ id, data })
       const user = transformDate(res?.updateUserByPk, 'emailVerified')
 
       return user as AdapterUser
     },
     deleteUser: async (id) => {
-      const res = await sdk.DeleteUser({ id })
+      const res = await authSdk.DeleteAuthUser({ id })
       const user = transformDate(res?.deleteUserByPk, 'emailVerified')
 
       return user as AdapterUser
     },
     // Session
     createSession: async (data) => {
-      const res = await sdk.CreateSession({ data })
+      const res = await authSdk.CreateSession({ data })
       const session = transformDate(res?.insertSessionOne, 'expires')
 
       return session as AdapterSession
     },
     getSessionAndUser: async (sessionToken) => {
-      const res = await sdk.GetSession({ sessionToken })
+      const res = await authSdk.GetSession({ sessionToken })
       const session = transformDate(res?.session?.[0], 'expires')
       const user = transformDate(session?.user, 'emailVerified')
 
@@ -109,7 +93,7 @@ export const HasuraAdapter = ({
       }
     },
     updateSession: async ({ sessionToken, ...data }) => {
-      const res = await sdk.UpdateSession({ sessionToken, data })
+      const res = await authSdk.UpdateSession({ sessionToken, data })
       const session = transformDate(
         res?.updateSession?.returning?.[0],
         'expires'
@@ -120,7 +104,7 @@ export const HasuraAdapter = ({
       return session as AdapterSession
     },
     deleteSession: async (sessionToken) => {
-      const res = await sdk.DeleteSession({ sessionToken })
+      const res = await authSdk.DeleteSession({ sessionToken })
       const session = transformDate(
         res?.deleteSession?.returning?.[0],
         'expires'
@@ -132,41 +116,41 @@ export const HasuraAdapter = ({
     },
     // Account
     linkAccount: async (data) => {
-      const res = await sdk.CreateAccount({
-        data,
+      const res = await authSdk.CreateAccount({
+        data: camelcaseKeys(data),
       })
-      const account: AdapterAccount = res?.insertAccountOne
+      const account = res?.insertAccountOne
 
-      return account
+      return account as AdapterAccount
     },
     unlinkAccount: async ({ providerAccountId, provider }) => {
-      const res = await sdk.DeleteAccount({ provider, providerAccountId })
-      const account: AdapterAccount = res?.deleteAccount?.returning?.[0]
+      const res = await authSdk.DeleteAccount({ provider, providerAccountId })
+      const account = res?.deleteAccount?.returning?.[0]
 
       if (!account) return
 
-      return account
+      return account as AdapterAccount
     },
     // Verification Token
     createVerificationToken: async (data) => {
-      const res = await sdk.CreateVerificationToken({ data })
-      const verificationToken: VerificationToken = transformDate(
+      const res = await authSdk.CreateVerificationToken({ data })
+      const verificationToken = transformDate(
         res?.insertVerificationTokenOne,
         'expires'
       )
 
-      return verificationToken
+      return verificationToken as VerificationToken
     },
     useVerificationToken: async ({ identifier, token }) => {
-      const res = await sdk.DeleteVerificationToken({ identifier, token })
-      const verificationToken: VerificationToken = transformDate(
+      const res = await authSdk.DeleteVerificationToken({ identifier, token })
+      const verificationToken = transformDate(
         res?.deleteVerificationToken?.returning?.[0],
         'expires'
       )
 
       if (!verificationToken) return null
 
-      return verificationToken
+      return verificationToken as VerificationToken
     },
   }
 }

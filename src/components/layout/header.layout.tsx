@@ -1,7 +1,5 @@
 import React from 'react'
 import { styled } from '@mui/material/styles'
-import clsx from 'clsx'
-import { Theme } from '@mui/material/styles'
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
@@ -9,7 +7,8 @@ import MenuIcon from '@mui/icons-material/Menu'
 import { useSidebarStore } from '@/lib/stores/sidebar'
 import { DRAWER_WIDTH } from './constants'
 import Typography from '@mui/material/Typography'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import Box from '@mui/material/Box'
+import { AccountMenu } from './account-menu.layout'
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean
@@ -35,7 +34,6 @@ const AppBar = styled(MuiAppBar, {
 
 export default function Header() {
   const { sidbarOpened: open, toggleSidebar } = useSidebarStore()
-  const isSmall = useMediaQuery<Theme>((theme) => theme.breakpoints.down('sm'))
   return (
     <AppBar elevation={0} position="fixed" open={open}>
       <Toolbar>
@@ -55,6 +53,8 @@ export default function Header() {
         <Typography variant="h6" noWrap>
           Mini variant drawer
         </Typography>
+        <Box sx={{ flexGrow: 1 }} />
+        <AccountMenu />
       </Toolbar>
     </AppBar>
   )

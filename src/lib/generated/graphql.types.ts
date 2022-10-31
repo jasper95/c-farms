@@ -1431,9 +1431,11 @@ export type Commodity = {
   /** An aggregate relationship */
   commodityProducesAggregate: CommodityProduceAggregate
   commodityType: Scalars['String']
+  conversionFactor?: Maybe<Scalars['numeric']>
   createdAt: Scalars['timestamp']
   id: Scalars['uuid']
   name: Scalars['String']
+  unit?: Maybe<Scalars['String']>
   updatedAt: Scalars['timestamp']
 }
 
@@ -1465,15 +1467,29 @@ export type CommodityAggregate = {
 /** aggregate fields of "commodity" */
 export type CommodityAggregateFields = {
   __typename?: 'CommodityAggregateFields'
+  avg?: Maybe<CommodityAvgFields>
   count: Scalars['Int']
   max?: Maybe<CommodityMaxFields>
   min?: Maybe<CommodityMinFields>
+  stddev?: Maybe<CommodityStddevFields>
+  stddevPop?: Maybe<CommodityStddev_PopFields>
+  stddevSamp?: Maybe<CommodityStddev_SampFields>
+  sum?: Maybe<CommoditySumFields>
+  varPop?: Maybe<CommodityVar_PopFields>
+  varSamp?: Maybe<CommodityVar_SampFields>
+  variance?: Maybe<CommodityVarianceFields>
 }
 
 /** aggregate fields of "commodity" */
 export type CommodityAggregateFieldsCountArgs = {
   columns?: InputMaybe<Array<CommoditySelectColumn>>
   distinct?: InputMaybe<Scalars['Boolean']>
+}
+
+/** aggregate avg on columns */
+export type CommodityAvgFields = {
+  __typename?: 'CommodityAvgFields'
+  conversionFactor?: Maybe<Scalars['Float']>
 }
 
 /** Boolean expression to filter rows from the table "commodity". All fields are combined with a logical 'AND'. */
@@ -1483,9 +1499,11 @@ export type CommodityBoolExp = {
   _or?: InputMaybe<Array<CommodityBoolExp>>
   commodityProduces?: InputMaybe<CommodityProduceBoolExp>
   commodityType?: InputMaybe<StringComparisonExp>
+  conversionFactor?: InputMaybe<NumericComparisonExp>
   createdAt?: InputMaybe<TimestampComparisonExp>
   id?: InputMaybe<UuidComparisonExp>
   name?: InputMaybe<StringComparisonExp>
+  unit?: InputMaybe<StringComparisonExp>
   updatedAt?: InputMaybe<TimestampComparisonExp>
 }
 
@@ -1495,13 +1513,20 @@ export enum CommodityConstraint {
   CropCommodityPk = 'crop_commodity_pk',
 }
 
+/** input type for incrementing numeric columns in table "commodity" */
+export type CommodityIncInput = {
+  conversionFactor?: InputMaybe<Scalars['numeric']>
+}
+
 /** input type for inserting data into table "commodity" */
 export type CommodityInsertInput = {
   commodityProduces?: InputMaybe<CommodityProduceArrRelInsertInput>
   commodityType?: InputMaybe<Scalars['String']>
+  conversionFactor?: InputMaybe<Scalars['numeric']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   id?: InputMaybe<Scalars['uuid']>
   name?: InputMaybe<Scalars['String']>
+  unit?: InputMaybe<Scalars['String']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
 }
 
@@ -1509,9 +1534,11 @@ export type CommodityInsertInput = {
 export type CommodityMaxFields = {
   __typename?: 'CommodityMaxFields'
   commodityType?: Maybe<Scalars['String']>
+  conversionFactor?: Maybe<Scalars['numeric']>
   createdAt?: Maybe<Scalars['timestamp']>
   id?: Maybe<Scalars['uuid']>
   name?: Maybe<Scalars['String']>
+  unit?: Maybe<Scalars['String']>
   updatedAt?: Maybe<Scalars['timestamp']>
 }
 
@@ -1519,9 +1546,11 @@ export type CommodityMaxFields = {
 export type CommodityMinFields = {
   __typename?: 'CommodityMinFields'
   commodityType?: Maybe<Scalars['String']>
+  conversionFactor?: Maybe<Scalars['numeric']>
   createdAt?: Maybe<Scalars['timestamp']>
   id?: Maybe<Scalars['uuid']>
   name?: Maybe<Scalars['String']>
+  unit?: Maybe<Scalars['String']>
   updatedAt?: Maybe<Scalars['timestamp']>
 }
 
@@ -1545,9 +1574,11 @@ export type CommodityOnConflict = {
 export type CommodityOrderBy = {
   commodityProducesAggregate?: InputMaybe<CommodityProduceAggregateOrderBy>
   commodityType?: InputMaybe<OrderBy>
+  conversionFactor?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
   id?: InputMaybe<OrderBy>
   name?: InputMaybe<OrderBy>
+  unit?: InputMaybe<OrderBy>
   updatedAt?: InputMaybe<OrderBy>
 }
 
@@ -1569,6 +1600,8 @@ export type CommodityProduce = {
   id: Scalars['uuid']
   organicPractitioner: Scalars['Boolean']
   produce?: Maybe<Scalars['float8']>
+  produceInUnit?: Maybe<Scalars['float8']>
+  unit: Scalars['String']
   updatedAt: Scalars['timestamp']
   year: Scalars['Int']
 }
@@ -1629,6 +1662,7 @@ export type CommodityProduceAvgFields = {
   __typename?: 'CommodityProduceAvgFields'
   areaUsed?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
+  produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
 }
 
@@ -1646,6 +1680,8 @@ export type CommodityProduceBoolExp = {
   id?: InputMaybe<UuidComparisonExp>
   organicPractitioner?: InputMaybe<BooleanComparisonExp>
   produce?: InputMaybe<Float8ComparisonExp>
+  produceInUnit?: InputMaybe<Float8ComparisonExp>
+  unit?: InputMaybe<StringComparisonExp>
   updatedAt?: InputMaybe<TimestampComparisonExp>
   year?: InputMaybe<IntComparisonExp>
 }
@@ -1662,6 +1698,7 @@ export enum CommodityProduceConstraint {
 export type CommodityProduceIncInput = {
   areaUsed?: InputMaybe<Scalars['float8']>
   produce?: InputMaybe<Scalars['float8']>
+  produceInUnit?: InputMaybe<Scalars['float8']>
   year?: InputMaybe<Scalars['Int']>
 }
 
@@ -1676,6 +1713,8 @@ export type CommodityProduceInsertInput = {
   id?: InputMaybe<Scalars['uuid']>
   organicPractitioner?: InputMaybe<Scalars['Boolean']>
   produce?: InputMaybe<Scalars['float8']>
+  produceInUnit?: InputMaybe<Scalars['float8']>
+  unit?: InputMaybe<Scalars['String']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
   year?: InputMaybe<Scalars['Int']>
 }
@@ -1690,6 +1729,8 @@ export type CommodityProduceMaxFields = {
   householdId?: Maybe<Scalars['uuid']>
   id?: Maybe<Scalars['uuid']>
   produce?: Maybe<Scalars['float8']>
+  produceInUnit?: Maybe<Scalars['float8']>
+  unit?: Maybe<Scalars['String']>
   updatedAt?: Maybe<Scalars['timestamp']>
   year?: Maybe<Scalars['Int']>
 }
@@ -1704,6 +1745,8 @@ export type CommodityProduceMinFields = {
   householdId?: Maybe<Scalars['uuid']>
   id?: Maybe<Scalars['uuid']>
   produce?: Maybe<Scalars['float8']>
+  produceInUnit?: Maybe<Scalars['float8']>
+  unit?: Maybe<Scalars['String']>
   updatedAt?: Maybe<Scalars['timestamp']>
   year?: Maybe<Scalars['Int']>
 }
@@ -1735,6 +1778,8 @@ export type CommodityProduceOrderBy = {
   id?: InputMaybe<OrderBy>
   organicPractitioner?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
+  produceInUnit?: InputMaybe<OrderBy>
+  unit?: InputMaybe<OrderBy>
   updatedAt?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
 }
@@ -1763,6 +1808,10 @@ export enum CommodityProduceSelectColumn {
   /** column name */
   Produce = 'produce',
   /** column name */
+  ProduceInUnit = 'produceInUnit',
+  /** column name */
+  Unit = 'unit',
+  /** column name */
   UpdatedAt = 'updatedAt',
   /** column name */
   Year = 'year',
@@ -1778,6 +1827,8 @@ export type CommodityProduceSetInput = {
   id?: InputMaybe<Scalars['uuid']>
   organicPractitioner?: InputMaybe<Scalars['Boolean']>
   produce?: InputMaybe<Scalars['float8']>
+  produceInUnit?: InputMaybe<Scalars['float8']>
+  unit?: InputMaybe<Scalars['String']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
   year?: InputMaybe<Scalars['Int']>
 }
@@ -1787,6 +1838,7 @@ export type CommodityProduceStddevFields = {
   __typename?: 'CommodityProduceStddevFields'
   areaUsed?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
+  produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
 }
 
@@ -1795,6 +1847,7 @@ export type CommodityProduceStddev_PopFields = {
   __typename?: 'CommodityProduceStddev_popFields'
   areaUsed?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
+  produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
 }
 
@@ -1803,6 +1856,7 @@ export type CommodityProduceStddev_SampFields = {
   __typename?: 'CommodityProduceStddev_sampFields'
   areaUsed?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
+  produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
 }
 
@@ -1811,6 +1865,7 @@ export type CommodityProduceSumFields = {
   __typename?: 'CommodityProduceSumFields'
   areaUsed?: Maybe<Scalars['float8']>
   produce?: Maybe<Scalars['float8']>
+  produceInUnit?: Maybe<Scalars['float8']>
   year?: Maybe<Scalars['Int']>
 }
 
@@ -1833,6 +1888,10 @@ export enum CommodityProduceUpdateColumn {
   /** column name */
   Produce = 'produce',
   /** column name */
+  ProduceInUnit = 'produceInUnit',
+  /** column name */
+  Unit = 'unit',
+  /** column name */
   UpdatedAt = 'updatedAt',
   /** column name */
   Year = 'year',
@@ -1851,6 +1910,7 @@ export type CommodityProduceVar_PopFields = {
   __typename?: 'CommodityProduceVar_popFields'
   areaUsed?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
+  produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
 }
 
@@ -1859,6 +1919,7 @@ export type CommodityProduceVar_SampFields = {
   __typename?: 'CommodityProduceVar_sampFields'
   areaUsed?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
+  produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
 }
 
@@ -1867,6 +1928,7 @@ export type CommodityProduceVarianceFields = {
   __typename?: 'CommodityProduceVarianceFields'
   areaUsed?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
+  produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
 }
 
@@ -1875,11 +1937,15 @@ export enum CommoditySelectColumn {
   /** column name */
   CommodityType = 'commodityType',
   /** column name */
+  ConversionFactor = 'conversionFactor',
+  /** column name */
   CreatedAt = 'createdAt',
   /** column name */
   Id = 'id',
   /** column name */
   Name = 'name',
+  /** column name */
+  Unit = 'unit',
   /** column name */
   UpdatedAt = 'updatedAt',
 }
@@ -1887,10 +1953,36 @@ export enum CommoditySelectColumn {
 /** input type for updating data in table "commodity" */
 export type CommoditySetInput = {
   commodityType?: InputMaybe<Scalars['String']>
+  conversionFactor?: InputMaybe<Scalars['numeric']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   id?: InputMaybe<Scalars['uuid']>
   name?: InputMaybe<Scalars['String']>
+  unit?: InputMaybe<Scalars['String']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
+/** aggregate stddev on columns */
+export type CommodityStddevFields = {
+  __typename?: 'CommodityStddevFields'
+  conversionFactor?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_pop on columns */
+export type CommodityStddev_PopFields = {
+  __typename?: 'CommodityStddev_popFields'
+  conversionFactor?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_samp on columns */
+export type CommodityStddev_SampFields = {
+  __typename?: 'CommodityStddev_sampFields'
+  conversionFactor?: Maybe<Scalars['Float']>
+}
+
+/** aggregate sum on columns */
+export type CommoditySumFields = {
+  __typename?: 'CommoditySumFields'
+  conversionFactor?: Maybe<Scalars['numeric']>
 }
 
 /** update columns of table "commodity" */
@@ -1898,19 +1990,43 @@ export enum CommodityUpdateColumn {
   /** column name */
   CommodityType = 'commodityType',
   /** column name */
+  ConversionFactor = 'conversionFactor',
+  /** column name */
   CreatedAt = 'createdAt',
   /** column name */
   Id = 'id',
   /** column name */
   Name = 'name',
   /** column name */
+  Unit = 'unit',
+  /** column name */
   UpdatedAt = 'updatedAt',
 }
 
 export type CommodityUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<CommodityIncInput>
   /** sets the columns of the filtered rows to the given values */
   _set?: InputMaybe<CommoditySetInput>
   where: CommodityBoolExp
+}
+
+/** aggregate var_pop on columns */
+export type CommodityVar_PopFields = {
+  __typename?: 'CommodityVar_popFields'
+  conversionFactor?: Maybe<Scalars['Float']>
+}
+
+/** aggregate var_samp on columns */
+export type CommodityVar_SampFields = {
+  __typename?: 'CommodityVar_sampFields'
+  conversionFactor?: Maybe<Scalars['Float']>
+}
+
+/** aggregate variance on columns */
+export type CommodityVarianceFields = {
+  __typename?: 'CommodityVarianceFields'
+  conversionFactor?: Maybe<Scalars['Float']>
 }
 
 /** columns and relationships of "cropProduce" */
@@ -3691,6 +3807,8 @@ export type Produce = {
   id: Scalars['uuid']
   organicPractitioner: Scalars['Boolean']
   produce: Scalars['float8']
+  produceInUnit?: Maybe<Scalars['float8']>
+  unit?: Maybe<Scalars['String']>
   year: Scalars['Int']
 }
 
@@ -3728,6 +3846,7 @@ export type ProduceAvgFields = {
   __typename?: 'ProduceAvgFields'
   areaUsed?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
+  produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
 }
 
@@ -3748,6 +3867,8 @@ export type ProduceBoolExp = {
   id?: InputMaybe<UuidComparisonExp>
   organicPractitioner?: InputMaybe<BooleanComparisonExp>
   produce?: InputMaybe<Float8ComparisonExp>
+  produceInUnit?: InputMaybe<Float8ComparisonExp>
+  unit?: InputMaybe<StringComparisonExp>
   year?: InputMaybe<IntComparisonExp>
 }
 
@@ -3765,6 +3886,8 @@ export type ProduceMaxFields = {
   householdName?: Maybe<Scalars['String']>
   id?: Maybe<Scalars['uuid']>
   produce?: Maybe<Scalars['float8']>
+  produceInUnit?: Maybe<Scalars['float8']>
+  unit?: Maybe<Scalars['String']>
   year?: Maybe<Scalars['Int']>
 }
 
@@ -3782,6 +3905,8 @@ export type ProduceMinFields = {
   householdName?: Maybe<Scalars['String']>
   id?: Maybe<Scalars['uuid']>
   produce?: Maybe<Scalars['float8']>
+  produceInUnit?: Maybe<Scalars['float8']>
+  unit?: Maybe<Scalars['String']>
   year?: Maybe<Scalars['Int']>
 }
 
@@ -3799,6 +3924,8 @@ export type ProduceOrderBy = {
   id?: InputMaybe<OrderBy>
   organicPractitioner?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
+  produceInUnit?: InputMaybe<OrderBy>
+  unit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
 }
 
@@ -3829,6 +3956,10 @@ export enum ProduceSelectColumn {
   /** column name */
   Produce = 'produce',
   /** column name */
+  ProduceInUnit = 'produceInUnit',
+  /** column name */
+  Unit = 'unit',
+  /** column name */
   Year = 'year',
 }
 
@@ -3837,6 +3968,7 @@ export type ProduceStddevFields = {
   __typename?: 'ProduceStddevFields'
   areaUsed?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
+  produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
 }
 
@@ -3845,6 +3977,7 @@ export type ProduceStddev_PopFields = {
   __typename?: 'ProduceStddev_popFields'
   areaUsed?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
+  produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
 }
 
@@ -3853,6 +3986,7 @@ export type ProduceStddev_SampFields = {
   __typename?: 'ProduceStddev_sampFields'
   areaUsed?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
+  produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
 }
 
@@ -3861,6 +3995,7 @@ export type ProduceSumFields = {
   __typename?: 'ProduceSumFields'
   areaUsed?: Maybe<Scalars['float8']>
   produce?: Maybe<Scalars['float8']>
+  produceInUnit?: Maybe<Scalars['float8']>
   year?: Maybe<Scalars['Int']>
 }
 
@@ -3869,6 +4004,7 @@ export type ProduceVar_PopFields = {
   __typename?: 'ProduceVar_popFields'
   areaUsed?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
+  produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
 }
 
@@ -3877,6 +4013,7 @@ export type ProduceVar_SampFields = {
   __typename?: 'ProduceVar_sampFields'
   areaUsed?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
+  produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
 }
 
@@ -3885,6 +4022,7 @@ export type ProduceVarianceFields = {
   __typename?: 'ProduceVarianceFields'
   areaUsed?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
+  produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
 }
 
@@ -4684,9 +4822,9 @@ export type UserBoolExp = {
 /** unique or primary key constraints on table "user" */
 export enum UserConstraint {
   /** unique or primary key constraint on columns "email" */
-  UserEmailKey = 'user_email_key',
+  UsersEmailKey = 'users_email_key',
   /** unique or primary key constraint on columns "id" */
-  UserPkey = 'user_pkey',
+  UsersPkey = 'users_pkey',
 }
 
 /** input type for inserting data into table "user" */
@@ -5229,6 +5367,7 @@ export type AverageAnnualIncome_StreamCursorValueInput = {
 export type CommodityProduce_Avg_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
+  produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
 }
 
@@ -5241,6 +5380,8 @@ export type CommodityProduce_Max_Order_By = {
   householdId?: InputMaybe<OrderBy>
   id?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
+  produceInUnit?: InputMaybe<OrderBy>
+  unit?: InputMaybe<OrderBy>
   updatedAt?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
 }
@@ -5254,6 +5395,8 @@ export type CommodityProduce_Min_Order_By = {
   householdId?: InputMaybe<OrderBy>
   id?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
+  produceInUnit?: InputMaybe<OrderBy>
+  unit?: InputMaybe<OrderBy>
   updatedAt?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
 }
@@ -5262,6 +5405,7 @@ export type CommodityProduce_Min_Order_By = {
 export type CommodityProduce_Stddev_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
+  produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
 }
 
@@ -5269,6 +5413,7 @@ export type CommodityProduce_Stddev_Order_By = {
 export type CommodityProduce_Stddev_Pop_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
+  produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
 }
 
@@ -5276,6 +5421,7 @@ export type CommodityProduce_Stddev_Pop_Order_By = {
 export type CommodityProduce_Stddev_Samp_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
+  produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
 }
 
@@ -5297,6 +5443,8 @@ export type CommodityProduce_StreamCursorValueInput = {
   id?: InputMaybe<Scalars['uuid']>
   organicPractitioner?: InputMaybe<Scalars['Boolean']>
   produce?: InputMaybe<Scalars['float8']>
+  produceInUnit?: InputMaybe<Scalars['float8']>
+  unit?: InputMaybe<Scalars['String']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
   year?: InputMaybe<Scalars['Int']>
 }
@@ -5305,6 +5453,7 @@ export type CommodityProduce_StreamCursorValueInput = {
 export type CommodityProduce_Sum_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
+  produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
 }
 
@@ -5312,6 +5461,7 @@ export type CommodityProduce_Sum_Order_By = {
 export type CommodityProduce_Var_Pop_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
+  produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
 }
 
@@ -5319,6 +5469,7 @@ export type CommodityProduce_Var_Pop_Order_By = {
 export type CommodityProduce_Var_Samp_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
+  produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
 }
 
@@ -5326,6 +5477,7 @@ export type CommodityProduce_Var_Samp_Order_By = {
 export type CommodityProduce_Variance_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
+  produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
 }
 
@@ -5340,9 +5492,11 @@ export type Commodity_StreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type Commodity_StreamCursorValueInput = {
   commodityType?: InputMaybe<Scalars['String']>
+  conversionFactor?: InputMaybe<Scalars['numeric']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   id?: InputMaybe<Scalars['uuid']>
   name?: InputMaybe<Scalars['String']>
+  unit?: InputMaybe<Scalars['String']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
 }
 
@@ -6102,12 +6256,14 @@ export type Mutation_RootUpdateAssociationToProgramManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdateCommodityArgs = {
+  _inc?: InputMaybe<CommodityIncInput>
   _set?: InputMaybe<CommoditySetInput>
   where: CommodityBoolExp
 }
 
 /** mutation root */
 export type Mutation_RootUpdateCommodityByPkArgs = {
+  _inc?: InputMaybe<CommodityIncInput>
   _set?: InputMaybe<CommoditySetInput>
   pk_columns: CommodityPkColumnsInput
 }
@@ -6285,6 +6441,8 @@ export type Produce_StreamCursorValueInput = {
   id?: InputMaybe<Scalars['uuid']>
   organicPractitioner?: InputMaybe<Scalars['Boolean']>
   produce?: InputMaybe<Scalars['float8']>
+  produceInUnit?: InputMaybe<Scalars['float8']>
+  unit?: InputMaybe<Scalars['String']>
   year?: InputMaybe<Scalars['Int']>
 }
 

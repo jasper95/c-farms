@@ -9,6 +9,7 @@
     "cdk": "cdk",
     "deploy": "ts-node bin.ts",
     "generate:codegen": "graphql-codegen --require dotenv/config --config codegen.ts",
+    "generate:codegen:adapter": "graphql-codegen --require dotenv/config --config src/lib/auth/codegen.ts",
     "prepare": "husky install",
     "lint-staged": "lint-staged --allow-empty"
   },
@@ -32,6 +33,7 @@
     "aws-amplify": "^4.3.8",
     "aws-sdk": "^2.1033.0",
     "axios": "^0.24.0",
+    "camelcase-keys": "^8.0.2",
     "date-fns": "^2.26.0",
     "graphql": "^16.3.0",
     "js-search": "^2.0.0",

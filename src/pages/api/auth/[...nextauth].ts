@@ -3,6 +3,9 @@ import jwt from 'jsonwebtoken'
 import EmailProvider from 'next-auth/providers/email'
 import { HasuraAdapter } from '@/lib/auth/adapter/hasura-adapter'
 import { JWT } from 'next-auth/jwt'
+import GoogleProvider from 'next-auth/providers/google'
+import { authSdk } from '@/lib/auth/auth-sdk'
+import camelcaseKeys from 'camelcase-keys'
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -11,17 +14,18 @@ export const authOptions: NextAuthOptions = {
         host: 'smtp.sendgrid.net',
         port: 587,
         auth: {
-          user: 'apiKey',
-          pass: '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',
+          user: 'apikey',
+          pass: process.env.SENDGRID_API_KEY,
         },
       },
-      from: 'no-reply@c-farms.vercel.app',
+      from: process.env.AUTH_EMAIL_FROM,
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
     }),
   ],
-  adapter: HasuraAdapter({
-    endpoint: process.env.NEXT_PUBLIC_GRAPHQL_URL || '',
-    adminSecret: process.env.NEXT_PUBLIC_GRAPHQL_SECRET || '',
-  }),
+  adapter: HasuraAdapter(),
   theme: {
     colorScheme: 'auto',
   },
@@ -42,6 +46,8 @@ export const authOptions: NextAuthOptions = {
       return decodedToken as JWT
     },
   },
+  pages: {},
+  secret: '4408bfe46d18eed00afc52caea6d66a4',
   callbacks: {
     async jwt({ token }) {
       return {
@@ -54,11 +60,32 @@ export const authOptions: NextAuthOptions = {
         },
       }
     },
-    // Add user ID to the session
-    // session: async ({ session, token, user }) => {
-    //   user.id = token.sub!
-    //   return session
-    // },
+    async signIn(args) {
+      const { user, account } = args
+      const { user: users } = await authSdk.GetAuthUsers({
+        where: {
+          email: {
+            _eq: user.email,
+          },
+        },
+      })
+      if (users.length === 0) {
+        return false
+      }
+      const accounts = await authSdk.GetAuthAccount({
+        provider: account?.provider ?? '',
+        providerAccountId: account?.providerAccountId ?? '',
+      })
+      if (accounts.account?.length === 0) {
+        await authSdk.CreateAccount({
+          data: camelcaseKeys({
+            ...account,
+            userId: users[0]?.id,
+          }),
+        })
+      }
+      return true
+    },
   },
 }
 

@@ -19,6 +19,7 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { useDashboardHook } from '../hooks/use-dashboard-hook'
 import SelectField from '@/components/select-field'
+import { useSession } from 'next-auth/react'
 
 export function DashboardView() {
   const {

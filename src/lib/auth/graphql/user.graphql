@@ -1,10 +1,10 @@
-query GetUser($id: uuid!) {
+query GetAuthUser($id: uuid!) {
   userByPk(id: $id) {
     ...User
   }
 }
 
-query GetUsers($where: UserBoolExp!) {
+query GetAuthUsers($where: UserBoolExp!) {
   user(where: $where) {
     ...User
   }
@@ -22,7 +22,7 @@ mutation UpdateAuthUser($id: uuid!, $data: UserSetInput!) {
   }
 }
 
-mutation DeleteUser($id: uuid!) {
+mutation DeleteAuthUser($id: uuid!) {
   deleteUserByPk(id: $id) {
     ...User
   }

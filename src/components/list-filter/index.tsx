@@ -14,7 +14,7 @@ export default function ListFilter(props: ListFilterProps) {
   const { filters, filterValues, setFilterValues } = props
 
   return (
-    <PopupState variant="popover" popupId="demo-popup-popover">
+    <PopupState variant="popover" popupId="list-filter-popover">
       {(popupState) => (
         <>
           <Button {...bindTrigger(popupState)} startIcon={<FilterListIcon />}>
