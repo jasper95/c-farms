@@ -13,4 +13,8 @@ export const commodityListColumns: DataTableColumn<
     title: 'Type',
     accessor: 'commodityType',
   },
+  {
+    title: 'Unit',
+    accessor: 'unit',
+  },
 ]

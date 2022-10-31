@@ -19,6 +19,7 @@ export type CommodityListQuery = {
     id: any
     name: string
     commodityType: string
+    unit?: string | null | undefined
   }>
   meta: {
     __typename?: 'CommodityAggregate'
@@ -36,7 +37,14 @@ export type CommodityDetailsQueryVariables = Types.Exact<{
 export type CommodityDetailsQuery = {
   __typename?: 'query_root'
   details?:
-    | { __typename?: 'Commodity'; id: any; name: string; commodityType: string }
+    | {
+        __typename?: 'Commodity'
+        id: any
+        name: string
+        commodityType: string
+        unit?: string | null | undefined
+        conversionFactor?: any | null | undefined
+      }
     | null
     | undefined
 }
@@ -57,6 +65,7 @@ export const CommodityListDocument = gql`
       id
       name
       commodityType
+      unit
     }
     meta: commodityAggregate(where: $where) {
       aggregate {
@@ -69,7 +78,7 @@ export const CommodityListDocument = gql`
 export function useCommodityListQuery(
   options?: Omit<Urql.UseQueryArgs<CommodityListQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<CommodityListQuery, CommodityListQueryVariables>({
+  return Urql.useQuery<CommodityListQuery>({
     query: CommodityListDocument,
     ...options,
   })
@@ -80,6 +89,8 @@ export const CommodityDetailsDocument = gql`
       id
       name
       commodityType
+      unit
+      conversionFactor
     }
   }
 `
@@ -87,7 +98,7 @@ export const CommodityDetailsDocument = gql`
 export function useCommodityDetailsQuery(
   options: Omit<Urql.UseQueryArgs<CommodityDetailsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<CommodityDetailsQuery, CommodityDetailsQueryVariables>({
+  return Urql.useQuery<CommodityDetailsQuery>({
     query: CommodityDetailsDocument,
     ...options,
   })

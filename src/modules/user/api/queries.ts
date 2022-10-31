@@ -81,10 +81,7 @@ export const UserListDocument = gql`
 export function useUserListQuery(
   options?: Omit<Urql.UseQueryArgs<UserListQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<UserListQuery, UserListQueryVariables>({
-    query: UserListDocument,
-    ...options,
-  })
+  return Urql.useQuery<UserListQuery>({ query: UserListDocument, ...options })
 }
 export const UserDetailsDocument = gql`
   query UserDetails($id: uuid!) {
@@ -102,7 +99,7 @@ export const UserDetailsDocument = gql`
 export function useUserDetailsQuery(
   options: Omit<Urql.UseQueryArgs<UserDetailsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<UserDetailsQuery, UserDetailsQueryVariables>({
+  return Urql.useQuery<UserDetailsQuery>({
     query: UserDetailsDocument,
     ...options,
   })

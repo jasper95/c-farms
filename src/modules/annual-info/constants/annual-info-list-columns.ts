@@ -9,10 +9,15 @@ export const annualInfoListColumns: DataTableColumn<
     accessor: 'year',
   },
   {
-    title: 'Income',
+    title: 'Income (Php)',
     type: 'function',
     fn: (row) =>
-      `${row.grossAnnualIncomeFarming + row.grossAnnualIncomeNonfarming}`,
+      `${parseFloat(
+        row.grossAnnualIncomeFarming + row.grossAnnualIncomeNonfarming
+      )
+        .toFixed(2)
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        .toString()}`,
   },
   {
     title: 'Livelihood',

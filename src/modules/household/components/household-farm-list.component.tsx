@@ -17,6 +17,7 @@ export function HouseholdFarmList() {
         },
       }}
       onCreate={() => router.push(`/farm/new?householdId=${router.query.id}`)}
+      actions={[]}
       useListQueryHook={useFarmListQuery}
       columns={farmListColumns}
       component={FarmMapTableComponent}

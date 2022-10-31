@@ -113,7 +113,7 @@ export const AnnualInfoListDocument = gql`
 export function useAnnualInfoListQuery(
   options?: Omit<Urql.UseQueryArgs<AnnualInfoListQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<AnnualInfoListQuery, AnnualInfoListQueryVariables>({
+  return Urql.useQuery<AnnualInfoListQuery>({
     query: AnnualInfoListDocument,
     ...options,
   })
@@ -130,7 +130,8 @@ export const AnnualInfoDetailsDocument = gql`
 export function useAnnualInfoDetailsQuery(
   options: Omit<Urql.UseQueryArgs<AnnualInfoDetailsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<AnnualInfoDetailsQuery, AnnualInfoDetailsQueryVariables>(
-    { query: AnnualInfoDetailsDocument, ...options }
-  )
+  return Urql.useQuery<AnnualInfoDetailsQuery>({
+    query: AnnualInfoDetailsDocument,
+    ...options,
+  })
 }

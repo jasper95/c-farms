@@ -30,7 +30,11 @@ export const commodityProduceListColumns: DataTableColumn<
     fn: (row) =>
       row.commodityType === 'Livestock'
         ? row.produce.toString().concat(' heads')
-        : row.produce.toString().concat(' tons'),
+        : parseFloat(row.produce)
+            .toFixed(2)
+            .toString()
+            .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+            .concat(' metric tons'),
     sortable: false,
   },
 ]

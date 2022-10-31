@@ -13,6 +13,7 @@ query CommodityList(
     id
     name
     commodityType
+    unit
   }
   meta: commodityAggregate(where: $where) {
     aggregate {
@@ -26,5 +27,7 @@ query CommodityDetails($id: uuid!) {
     id
     name
     commodityType
+    unit
+    conversionFactor
   }
 }

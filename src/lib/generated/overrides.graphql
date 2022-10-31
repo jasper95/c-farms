@@ -13,6 +13,8 @@ type Produce {
   produce: float8!
   year: Int!
   commodityType: String!
+  produceInUnit: float8!
+  unit: String!
 }
 
 type HouseholdPrograms {

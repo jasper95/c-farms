@@ -13,6 +13,8 @@ query CommodityOptions(
     id
     name
     commodityType
+    unit
+    conversionFactor
   }
 }
 
@@ -50,6 +52,8 @@ query CommodityProduceList(
     year
     commodityType
     householdName
+    produceInUnit
+    unit
   }
   meta: produceAggregate(where: $where) {
     aggregate {
@@ -68,5 +72,7 @@ query CommodityProduceDetails($id: uuid!) {
     householdId
     year
     areaUsed
+    produceInUnit
+    unit
   }
 }

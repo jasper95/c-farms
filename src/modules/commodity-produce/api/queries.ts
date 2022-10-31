@@ -19,6 +19,8 @@ export type CommodityOptionsQuery = {
     id: any
     name: string
     commodityType: string
+    unit?: string | null | undefined
+    conversionFactor?: any | null | undefined
   }>
 }
 
@@ -55,6 +57,8 @@ export type CommodityProduceListQuery = {
     year: number
     commodityType: string
     householdName?: string | null | undefined
+    produceInUnit: any
+    unit: string
   }>
   meta: {
     __typename?: 'ProduceAggregate'
@@ -82,6 +86,8 @@ export type CommodityProduceDetailsQuery = {
         householdId: any
         year: number
         areaUsed: any
+        produceInUnit?: any | null | undefined
+        unit: string
       }
     | null
     | undefined
@@ -103,6 +109,8 @@ export const CommodityOptionsDocument = gql`
       id
       name
       commodityType
+      unit
+      conversionFactor
     }
   }
 `
@@ -110,7 +118,7 @@ export const CommodityOptionsDocument = gql`
 export function useCommodityOptionsQuery(
   options?: Omit<Urql.UseQueryArgs<CommodityOptionsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<CommodityOptionsQuery, CommodityOptionsQueryVariables>({
+  return Urql.useQuery<CommodityOptionsQuery>({
     query: CommodityOptionsDocument,
     ...options,
   })
@@ -137,7 +145,7 @@ export const FarmOptionsDocument = gql`
 export function useFarmOptionsQuery(
   options?: Omit<Urql.UseQueryArgs<FarmOptionsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<FarmOptionsQuery, FarmOptionsQueryVariables>({
+  return Urql.useQuery<FarmOptionsQuery>({
     query: FarmOptionsDocument,
     ...options,
   })
@@ -165,6 +173,8 @@ export const CommodityProduceListDocument = gql`
       year
       commodityType
       householdName
+      produceInUnit
+      unit
     }
     meta: produceAggregate(where: $where) {
       aggregate {
@@ -177,10 +187,10 @@ export const CommodityProduceListDocument = gql`
 export function useCommodityProduceListQuery(
   options?: Omit<Urql.UseQueryArgs<CommodityProduceListQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<
-    CommodityProduceListQuery,
-    CommodityProduceListQueryVariables
-  >({ query: CommodityProduceListDocument, ...options })
+  return Urql.useQuery<CommodityProduceListQuery>({
+    query: CommodityProduceListDocument,
+    ...options,
+  })
 }
 export const CommodityProduceDetailsDocument = gql`
   query CommodityProduceDetails($id: uuid!) {
@@ -193,6 +203,8 @@ export const CommodityProduceDetailsDocument = gql`
       householdId
       year
       areaUsed
+      produceInUnit
+      unit
     }
   }
 `
@@ -203,8 +215,8 @@ export function useCommodityProduceDetailsQuery(
     'query'
   >
 ) {
-  return Urql.useQuery<
-    CommodityProduceDetailsQuery,
-    CommodityProduceDetailsQueryVariables
-  >({ query: CommodityProduceDetailsDocument, ...options })
+  return Urql.useQuery<CommodityProduceDetailsQuery>({
+    query: CommodityProduceDetailsDocument,
+    ...options,
+  })
 }

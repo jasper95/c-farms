@@ -26,6 +26,16 @@ export function CommodityForm(props: CommodityFormProps) {
               options={typeOptions}
             />
           </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField control={control} name="unit" label="Unit of Measure" />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              control={control}
+              name="conversionFactor"
+              label="Conversion to MT"
+            />
+          </Grid>
         </Grid>
       </Grid>
     </Grid>

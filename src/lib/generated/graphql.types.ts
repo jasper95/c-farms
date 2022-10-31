@@ -76,6 +76,28 @@ export type AccountAggregateFieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']>
 }
 
+/** order by aggregate values of table "account" */
+export type AccountAggregateOrderBy = {
+  avg?: InputMaybe<Account_Avg_Order_By>
+  count?: InputMaybe<OrderBy>
+  max?: InputMaybe<Account_Max_Order_By>
+  min?: InputMaybe<Account_Min_Order_By>
+  stddev?: InputMaybe<Account_Stddev_Order_By>
+  stddev_pop?: InputMaybe<Account_Stddev_Pop_Order_By>
+  stddev_samp?: InputMaybe<Account_Stddev_Samp_Order_By>
+  sum?: InputMaybe<Account_Sum_Order_By>
+  var_pop?: InputMaybe<Account_Var_Pop_Order_By>
+  var_samp?: InputMaybe<Account_Var_Samp_Order_By>
+  variance?: InputMaybe<Account_Variance_Order_By>
+}
+
+/** input type for inserting array relation for remote table "account" */
+export type AccountArrRelInsertInput = {
+  data: Array<AccountInsertInput>
+  /** upsert condition */
+  onConflict?: InputMaybe<AccountOnConflict>
+}
+
 /** aggregate avg on columns */
 export type AccountAvgFields = {
   __typename?: 'AccountAvgFields'
@@ -3807,8 +3829,8 @@ export type Produce = {
   id: Scalars['uuid']
   organicPractitioner: Scalars['Boolean']
   produce: Scalars['float8']
-  produceInUnit?: Maybe<Scalars['float8']>
-  unit?: Maybe<Scalars['String']>
+  produceInUnit: Scalars['float8']
+  unit: Scalars['String']
   year: Scalars['Int']
 }
 
@@ -4767,6 +4789,10 @@ export type TimestamptzComparisonExp = {
 /** columns and relationships of "user" */
 export type User = {
   __typename?: 'User'
+  /** An array relationship */
+  accounts: Array<Account>
+  /** An aggregate relationship */
+  accountsAggregate: AccountAggregate
   active: Scalars['Boolean']
   createdAt: Scalars['timestamp']
   email?: Maybe<Scalars['String']>
@@ -4778,6 +4804,24 @@ export type User = {
   name?: Maybe<Scalars['String']>
   role: Scalars['userRoleEnum']
   updatedAt: Scalars['timestamp']
+}
+
+/** columns and relationships of "user" */
+export type UserAccountsArgs = {
+  distinctOn?: InputMaybe<Array<AccountSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AccountOrderBy>>
+  where?: InputMaybe<AccountBoolExp>
+}
+
+/** columns and relationships of "user" */
+export type UserAccountsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AccountSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<AccountOrderBy>>
+  where?: InputMaybe<AccountBoolExp>
 }
 
 /** aggregated selection of "user" */
@@ -4806,6 +4850,7 @@ export type UserBoolExp = {
   _and?: InputMaybe<Array<UserBoolExp>>
   _not?: InputMaybe<UserBoolExp>
   _or?: InputMaybe<Array<UserBoolExp>>
+  accounts?: InputMaybe<AccountBoolExp>
   active?: InputMaybe<BooleanComparisonExp>
   createdAt?: InputMaybe<TimestampComparisonExp>
   email?: InputMaybe<StringComparisonExp>
@@ -4829,6 +4874,7 @@ export enum UserConstraint {
 
 /** input type for inserting data into table "user" */
 export type UserInsertInput = {
+  accounts?: InputMaybe<AccountArrRelInsertInput>
   active?: InputMaybe<Scalars['Boolean']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   email?: InputMaybe<Scalars['String']>
@@ -4897,6 +4943,7 @@ export type UserOnConflict = {
 
 /** Ordering options when selecting data from "user". */
 export type UserOrderBy = {
+  accountsAggregate?: InputMaybe<AccountAggregateOrderBy>
   active?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
   email?: InputMaybe<OrderBy>
@@ -5143,6 +5190,68 @@ export type VerificationTokenUpdates = {
   where: VerificationTokenBoolExp
 }
 
+/** order by avg() on columns of table "account" */
+export type Account_Avg_Order_By = {
+  expiresAt?: InputMaybe<OrderBy>
+  refreshTokenExpiresIn?: InputMaybe<OrderBy>
+}
+
+/** order by max() on columns of table "account" */
+export type Account_Max_Order_By = {
+  accessToken?: InputMaybe<OrderBy>
+  expiresAt?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  idToken?: InputMaybe<OrderBy>
+  oauthToken?: InputMaybe<OrderBy>
+  oauthTokenSecret?: InputMaybe<OrderBy>
+  provider?: InputMaybe<OrderBy>
+  providerAccountId?: InputMaybe<OrderBy>
+  refreshToken?: InputMaybe<OrderBy>
+  refreshTokenExpiresIn?: InputMaybe<OrderBy>
+  scope?: InputMaybe<OrderBy>
+  sessionState?: InputMaybe<OrderBy>
+  tokenType?: InputMaybe<OrderBy>
+  type?: InputMaybe<OrderBy>
+  userId?: InputMaybe<OrderBy>
+}
+
+/** order by min() on columns of table "account" */
+export type Account_Min_Order_By = {
+  accessToken?: InputMaybe<OrderBy>
+  expiresAt?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  idToken?: InputMaybe<OrderBy>
+  oauthToken?: InputMaybe<OrderBy>
+  oauthTokenSecret?: InputMaybe<OrderBy>
+  provider?: InputMaybe<OrderBy>
+  providerAccountId?: InputMaybe<OrderBy>
+  refreshToken?: InputMaybe<OrderBy>
+  refreshTokenExpiresIn?: InputMaybe<OrderBy>
+  scope?: InputMaybe<OrderBy>
+  sessionState?: InputMaybe<OrderBy>
+  tokenType?: InputMaybe<OrderBy>
+  type?: InputMaybe<OrderBy>
+  userId?: InputMaybe<OrderBy>
+}
+
+/** order by stddev() on columns of table "account" */
+export type Account_Stddev_Order_By = {
+  expiresAt?: InputMaybe<OrderBy>
+  refreshTokenExpiresIn?: InputMaybe<OrderBy>
+}
+
+/** order by stddev_pop() on columns of table "account" */
+export type Account_Stddev_Pop_Order_By = {
+  expiresAt?: InputMaybe<OrderBy>
+  refreshTokenExpiresIn?: InputMaybe<OrderBy>
+}
+
+/** order by stddev_samp() on columns of table "account" */
+export type Account_Stddev_Samp_Order_By = {
+  expiresAt?: InputMaybe<OrderBy>
+  refreshTokenExpiresIn?: InputMaybe<OrderBy>
+}
+
 /** Streaming cursor of the table "account" */
 export type Account_StreamCursorInput = {
   /** Stream column input with initial value */
@@ -5168,6 +5277,30 @@ export type Account_StreamCursorValueInput = {
   tokenType?: InputMaybe<Scalars['String']>
   type?: InputMaybe<Scalars['String']>
   userId?: InputMaybe<Scalars['uuid']>
+}
+
+/** order by sum() on columns of table "account" */
+export type Account_Sum_Order_By = {
+  expiresAt?: InputMaybe<OrderBy>
+  refreshTokenExpiresIn?: InputMaybe<OrderBy>
+}
+
+/** order by var_pop() on columns of table "account" */
+export type Account_Var_Pop_Order_By = {
+  expiresAt?: InputMaybe<OrderBy>
+  refreshTokenExpiresIn?: InputMaybe<OrderBy>
+}
+
+/** order by var_samp() on columns of table "account" */
+export type Account_Var_Samp_Order_By = {
+  expiresAt?: InputMaybe<OrderBy>
+  refreshTokenExpiresIn?: InputMaybe<OrderBy>
+}
+
+/** order by variance() on columns of table "account" */
+export type Account_Variance_Order_By = {
+  expiresAt?: InputMaybe<OrderBy>
+  refreshTokenExpiresIn?: InputMaybe<OrderBy>
 }
 
 /** order by avg() on columns of table "annualInfo" */

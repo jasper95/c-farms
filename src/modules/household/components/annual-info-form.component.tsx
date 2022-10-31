@@ -12,6 +12,7 @@ import MultiSelectField from '@/components/multi-select-field'
 import { IAnnualInfoSchema } from '@/modules/annual-info/constants'
 import YearPicker from '@/components/year-picker'
 import InputAdornment from '@mui/material/InputAdornment'
+import { useWatch } from 'react-hook-form'
 
 interface IAnnualInfoFormProps {
   formProps: UseFormReturn<IAnnualInfoSchema>
@@ -20,6 +21,7 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
   const { formProps } = props
   const { control, formState } = formProps
   console.log('formState: ', formState)
+  const mainLivelihood = useWatch({ control, name: 'mainLivelihood' })
 
   return (
     <Grid container spacing={2}>
@@ -67,20 +69,24 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
           label="Main livelihood"
         />
       </Grid>
-      <Grid item md={6} xs={12}>
-        <CreatableSelectField
-          control={control}
-          name="farmworkerActivityType"
-          label="Farmer Activities"
-        />
-      </Grid>
-      <Grid item md={6} xs={12}>
-        <CreatableSelectField
-          control={control}
-          name="fisherActivityType"
-          label="Fisher Activities"
-        />
-      </Grid>
+      {mainLivelihood.includes('Farmworker/Laborer') && (
+        <Grid item md={6} xs={12}>
+          <CreatableSelectField
+            control={control}
+            name="farmworkerActivityType"
+            label="Farmer Activities"
+          />
+        </Grid>
+      )}
+      {mainLivelihood.includes('Fisherfolk') && (
+        <Grid item md={6} xs={12}>
+          <CreatableSelectField
+            control={control}
+            name="fisherActivityType"
+            label="Fisher Activities"
+          />
+        </Grid>
+      )}
       <Grid item md={6} xs={12}>
         <SelectField
           control={control}

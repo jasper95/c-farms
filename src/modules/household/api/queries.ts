@@ -181,7 +181,7 @@ export const HouseholdListDocument = gql`
 export function useHouseholdListQuery(
   options?: Omit<Urql.UseQueryArgs<HouseholdListQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<HouseholdListQuery, HouseholdListQueryVariables>({
+  return Urql.useQuery<HouseholdListQuery>({
     query: HouseholdListDocument,
     ...options,
   })
@@ -198,7 +198,7 @@ export const HouseholdDetailsDocument = gql`
 export function useHouseholdDetailsQuery(
   options: Omit<Urql.UseQueryArgs<HouseholdDetailsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<HouseholdDetailsQuery, HouseholdDetailsQueryVariables>({
+  return Urql.useQuery<HouseholdDetailsQuery>({
     query: HouseholdDetailsDocument,
     ...options,
   })

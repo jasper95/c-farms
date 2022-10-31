@@ -143,10 +143,10 @@ export function useAverageAnnualIncomeListQuery(
     'query'
   >
 ) {
-  return Urql.useQuery<
-    AverageAnnualIncomeListQuery,
-    AverageAnnualIncomeListQueryVariables
-  >({ query: AverageAnnualIncomeListDocument, ...options })
+  return Urql.useQuery<AverageAnnualIncomeListQuery>({
+    query: AverageAnnualIncomeListDocument,
+    ...options,
+  })
 }
 export const DashboardStatsDocument = gql`
   query DashboardStats {
@@ -176,7 +176,7 @@ export const DashboardStatsDocument = gql`
 export function useDashboardStatsQuery(
   options?: Omit<Urql.UseQueryArgs<DashboardStatsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<DashboardStatsQuery, DashboardStatsQueryVariables>({
+  return Urql.useQuery<DashboardStatsQuery>({
     query: DashboardStatsDocument,
     ...options,
   })
@@ -208,10 +208,10 @@ export function useInventoryOfLivestockListQuery(
     'query'
   >
 ) {
-  return Urql.useQuery<
-    InventoryOfLivestockListQuery,
-    InventoryOfLivestockListQueryVariables
-  >({ query: InventoryOfLivestockListDocument, ...options })
+  return Urql.useQuery<InventoryOfLivestockListQuery>({
+    query: InventoryOfLivestockListDocument,
+    ...options,
+  })
 }
 export const CropProduceListDocument = gql`
   query CropProduceList(
@@ -237,7 +237,7 @@ export const CropProduceListDocument = gql`
 export function useCropProduceListQuery(
   options?: Omit<Urql.UseQueryArgs<CropProduceListQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<CropProduceListQuery, CropProduceListQueryVariables>({
+  return Urql.useQuery<CropProduceListQuery>({
     query: CropProduceListDocument,
     ...options,
   })
@@ -264,8 +264,8 @@ export const RegisteredHouseholdDocument = gql`
 export function useRegisteredHouseholdQuery(
   options?: Omit<Urql.UseQueryArgs<RegisteredHouseholdQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<
-    RegisteredHouseholdQuery,
-    RegisteredHouseholdQueryVariables
-  >({ query: RegisteredHouseholdDocument, ...options })
+  return Urql.useQuery<RegisteredHouseholdQuery>({
+    query: RegisteredHouseholdDocument,
+    ...options,
+  })
 }
