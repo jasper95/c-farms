@@ -47,19 +47,20 @@ export const authOptions: NextAuthOptions = {
     },
   },
   pages: {},
-  secret: '4408bfe46d18eed00afc52caea6d66a4',
+  secret: process.env.JWT_SECRET,
   callbacks: {
-    async jwt({ token }) {
-      return {
-        ...token,
-        'https://hasura.io/jwt/claims': {
-          'x-hasura-allowed-roles': ['user'],
-          'x-hasura-default-role': 'user',
-          'x-hasura-role': 'user',
-          'x-hasura-user-id': token.sub,
-        },
-      }
-    },
+    // TODO: use generated jwt to hasura requests
+    // async jwt({ token, user }) {
+    //   return {
+    //     ...token,
+    //     'https://hasura.io/jwt/claims': {
+    //       'x-hasura-allowed-roles': ['user'],
+    //       'x-hasura-default-role': 'user',
+    //       'x-hasura-role': 'user',
+    //       'x-hasura-user-id': token.sub,
+    //     },
+    //   }
+    // },
     async signIn(args) {
       const { user, account } = args
       const { user: users } = await authSdk.GetAuthUsers({
