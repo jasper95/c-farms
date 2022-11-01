@@ -33,7 +33,7 @@ export const annualInfoSchema = yup.object({
     )
     .default([]),
   highestFormalEducation: yup.string().required(fieldIsRequired).default(''),
-  grossAnnualIncomeFarming: yup.number().required(fieldIsRequired).default(0),
+  grossAnnualIncomeFarming: yup.number().required(fieldIsRequired).min(1),
   grossAnnualIncomeNonfarming: yup
     .number()
     .required(fieldIsRequired)

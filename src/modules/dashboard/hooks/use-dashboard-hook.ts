@@ -4,6 +4,7 @@ import {
   useAverageAnnualIncomeListQuery,
   useCropProduceListQuery,
   useDashboardStatsQuery,
+  useFisheriesProduceListQuery,
   useInventoryOfLivestockListQuery,
   useRegisteredHouseholdQuery,
 } from '../api/queries'
@@ -32,6 +33,12 @@ export function useDashboardHook() {
     },
   })
 
+  const [fisheriesProduceResponse] = useFisheriesProduceListQuery({
+    variables: {
+      orderBy: { year: OrderBy.Asc },
+    },
+  })
+
   const dashboardFormProps = useForm({
     defaultValues: dashboardFormSchema.cast({}),
   })
@@ -41,9 +48,19 @@ export function useDashboardHook() {
     name: 'livestock',
   })
 
+  const fishery = useWatch({
+    control: dashboardFormProps.control,
+    name: 'fishery',
+  })
+
   const crop = useWatch({
     control: dashboardFormProps.control,
     name: 'crop',
+  })
+
+  const cropYield = useWatch({
+    control: dashboardFormProps.control,
+    name: 'cropYield',
   })
 
   const [inventoryOfLivestockResponse] = useInventoryOfLivestockListQuery({
@@ -98,17 +115,39 @@ export function useDashboardHook() {
       cropProduceResponse.data?.list.map((crop) => ({
         name: crop.name,
         year: crop.year,
-        volume: crop.sum,
+        volume: crop.produce,
         cropId: crop.commodityId,
+        yield: crop.yield,
       })) ?? []
     )
   }, [cropProduceResponse.data])
+
+  const fisheryProduceRows = useMemo(() => {
+    return (
+      fisheriesProduceResponse.data?.list.map((fish) => ({
+        name: fish.name,
+        year: fish.year,
+        volume: fish.produce,
+        fishId: fish.commodityId,
+      })) ?? []
+    )
+  }, [fisheriesProduceResponse.data])
 
   const uniqueCrops = uniqWith(
     cropProduceRows.map((crop) => {
       return {
         label: crop.name,
         value: crop.cropId,
+      }
+    }),
+    isEqual
+  )
+
+  const uniqueFish = uniqWith(
+    fisheryProduceRows.map((fish) => {
+      return {
+        label: fish.name,
+        value: fish.fishId,
       }
     }),
     isEqual
@@ -133,6 +172,16 @@ export function useDashboardHook() {
   const filteredCrop = useMemo(
     () => cropProduceRows.filter((cp) => cp.cropId === crop),
     [crop, cropProduceRows]
+  )
+
+  const filteredFish = useMemo(
+    () => fisheryProduceRows.filter((fish) => fish.fishId === fishery),
+    [fishery, fisheryProduceRows]
+  )
+
+  const filteredCropYield = useMemo(
+    () => cropProduceRows.filter((cp) => cp.cropId == cropYield),
+    [cropYield, cropProduceRows]
   )
 
   const uniqueLivestocks = uniqWith(
@@ -168,5 +217,8 @@ export function useDashboardHook() {
     dashboardFormProps,
     filteredLiveStock,
     filteredCrop,
+    filteredCropYield,
+    uniqueFish,
+    filteredFish,
   }
 }

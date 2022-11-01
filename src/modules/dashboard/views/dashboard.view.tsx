@@ -31,6 +31,9 @@ export function DashboardView() {
     uniqueLivestocks,
     uniqueCrops,
     dashboardFormProps,
+    filteredCropYield,
+    uniqueFish,
+    filteredFish,
   } = useDashboardHook()
 
   return (
@@ -145,8 +148,94 @@ export function DashboardView() {
         <Grid item xs={12} md={6}>
           <Card sx={{ p: 2 }}>
             <Box sx={{ mb: 2, textAlign: 'center' }}>
+              <Typography variant="h5">Crop Yield (metric tons/ha)</Typography>
+            </Box>
+            <Box sx={{ mb: 2 }}>
+              <Grid container alignItems="center">
+                <Grid item xs={12}>
+                  <SelectField
+                    sx={{ mb: 2 }}
+                    name="cropYield"
+                    control={dashboardFormProps.control}
+                    options={uniqueCrops}
+                    label="Crop"
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+            <Box sx={{ mt: 2, height: 400 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  width={500}
+                  height={300}
+                  data={filteredCropYield}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="year" allowDecimals={false} />
+                  <YAxis interval={0} allowDecimals={true} />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="yield" fill="#8884d8" />
+                </BarChart>
+              </ResponsiveContainer>
+            </Box>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Card sx={{ p: 2 }}>
+            <Box sx={{ mb: 2, textAlign: 'center' }}>
               <Typography variant="h5">
-                Inventory of Livestock/Poultry
+                Volume of Crop Production (in metric tons)
+              </Typography>
+            </Box>
+            <Box sx={{ mb: 2 }}>
+              <Grid container alignItems="center">
+                <Grid item xs={12}>
+                  <SelectField
+                    sx={{ mb: 2 }}
+                    name="crop"
+                    control={dashboardFormProps.control}
+                    options={uniqueCrops}
+                    label="Crop Commodity"
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+            <Box sx={{ mt: 2, height: 400 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  width={500}
+                  height={300}
+                  data={filteredCrop}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="year" allowDecimals={false} />
+                  <YAxis interval={0} allowDecimals={true} />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="volume" fill="#82ca9d" />
+                </BarChart>
+              </ResponsiveContainer>
+            </Box>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Card sx={{ p: 2 }}>
+            <Box sx={{ mb: 2, textAlign: 'center' }}>
+              <Typography variant="h5">
+                Inventory of Livestock/Poultry (heads)
               </Typography>
             </Box>
             <Box sx={{ mb: 2 }}>
@@ -190,18 +279,18 @@ export function DashboardView() {
           <Card sx={{ p: 2 }}>
             <Box sx={{ mb: 2, textAlign: 'center' }}>
               <Typography variant="h5">
-                Volume of Crop/Fishery Production (in metric tons)
+                Volume of Fishery Production (in metric tons)
               </Typography>
             </Box>
             <Box sx={{ mb: 2 }}>
               <Grid container alignItems="center">
-                <Grid item xs={12}>
+                <Grid item xs={12} md={12}>
                   <SelectField
                     sx={{ mb: 2 }}
-                    name="crop"
+                    name="fishery"
                     control={dashboardFormProps.control}
-                    options={uniqueCrops}
-                    label="Crop/Fishery Commodity"
+                    options={uniqueFish}
+                    label="Fishery Commodity"
                   />
                 </Grid>
               </Grid>
@@ -211,7 +300,7 @@ export function DashboardView() {
                 <BarChart
                   width={500}
                   height={300}
-                  data={filteredCrop}
+                  data={filteredFish}
                   margin={{
                     top: 5,
                     right: 30,

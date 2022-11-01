@@ -7,6 +7,7 @@ import { useEffect, useMemo } from 'react'
 import { UseFormReturn, useWatch } from 'react-hook-form'
 import { ICommodityProduceSchema } from '../constants/commodity-produce-schema'
 import { find } from 'lodash'
+import { OrderBy } from '@/lib/generated/graphql.types'
 
 interface ICommodityProduceFormProps {
   formProps: UseFormReturn<ICommodityProduceSchema>
@@ -14,7 +15,11 @@ interface ICommodityProduceFormProps {
 
 export function useCommodityProduceFormHook(props: ICommodityProduceFormProps) {
   const router = useRouter()
-  const [commodityListOptionsResponse] = useCommodityOptionsQuery()
+  const [commodityListOptionsResponse] = useCommodityOptionsQuery({
+    variables: {
+      orderBy: { name: OrderBy.Asc },
+    },
+  })
   const commodityProduceFormProps = props.formProps
 
   const { getValues: produceGetValues } = commodityProduceFormProps

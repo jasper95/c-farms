@@ -28,6 +28,7 @@ type HouseholdPrograms {
   programIds(path: String): jsonb!
   referenceNo: String!
   createdAt: timestamp!
+  commodities(path: String): jsonb!
 }
 
 type ProgramBeneficiaries {
@@ -42,6 +43,7 @@ type ProgramBeneficiaries {
   programId: uuid!
   barangay: String!
   referenceNo: String!
+  commodities(path: Int): jsonb!
 }
 
 type AssociationBeneficiaries {
@@ -75,6 +77,13 @@ type InventoryOfLivestock {
 
 type CropProduce {
   name: String!
-  sum: float8!
+  produce: float8!
+  year: Int!
+  yield: float8!
+}
+
+type FisheriesProduce {
+  name: String!
+  produce: float8!
   year: Int!
 }

@@ -58,8 +58,9 @@ query CropProduceList(
   list: cropProduce(where: $where, orderBy: $orderBy, offset: $offset, limit: $limit) {
     year
     name
-    sum
+    produce
     commodityId
+    yield
   }
 }
 
@@ -73,4 +74,18 @@ query RegisteredHousehold (
       year
       count
     }
+}
+
+query FisheriesProduceList(
+  $where: FisheriesProduceBoolExp
+  $orderBy: [FisheriesProduceOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: fisheriesProduce(where: $where, orderBy: $orderBy, offset: $offset, limit: $limit) {
+    year
+    name
+    produce
+    commodityId
+  }
 }
