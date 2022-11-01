@@ -15,7 +15,7 @@ export default function UserForm(props: UserFormProps) {
   return (
     <Grid container spacing={2}>
       <Grid item md={6} xs={12}>
-        <TextField control={control} name="username" label="Username" />
+        <TextField control={control} name="email" label="Email" />
       </Grid>
       <Grid item md={6} xs={12}>
         <SelectField
@@ -26,10 +26,7 @@ export default function UserForm(props: UserFormProps) {
         />
       </Grid>
       <Grid item md={6} xs={12}>
-        <TextField control={control} name="firstName" label="Firstname" />
-      </Grid>
-      <Grid item md={6} xs={12}>
-        <TextField control={control} name="lastName" label="Lastname" />
+        <TextField control={control} name="name" label="Name" />
       </Grid>
       <Grid item md={6} xs={12}>
         <SwitchField control={control} name="active" label="Active" />

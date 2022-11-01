@@ -37,7 +37,5 @@ fragment AnnualInfoFragment on AnnualInfo {
   grossAnnualIncomeNonfarming
   highestFormalEducation
   fisherActivityType
-  is4PsBeneficiary
-  personWithDisability
   year
 }

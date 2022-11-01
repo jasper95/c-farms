@@ -20,7 +20,6 @@ interface IAnnualInfoFormProps {
 export function AnnualInfoForm(props: IAnnualInfoFormProps) {
   const { formProps } = props
   const { control, formState } = formProps
-  console.log('formState: ', formState)
   const mainLivelihood = useWatch({ control, name: 'mainLivelihood' })
 
   return (

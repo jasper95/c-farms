@@ -3,12 +3,8 @@ import { UserListQuery } from '@/modules/user/api/queries'
 
 export const userListColumns: DataTableColumn<UserListQuery['list'][0]>[] = [
   {
-    title: 'Firstname',
-    accessor: 'firstName',
-  },
-  {
-    title: 'Lastname',
-    accessor: 'lastName',
+    title: 'Name',
+    accessor: 'name',
   },
   {
     title: 'Email',

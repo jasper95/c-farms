@@ -118,7 +118,7 @@ export const CommodityOptionsDocument = gql`
 export function useCommodityOptionsQuery(
   options?: Omit<Urql.UseQueryArgs<CommodityOptionsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<CommodityOptionsQuery>({
+  return Urql.useQuery<CommodityOptionsQuery, CommodityOptionsQueryVariables>({
     query: CommodityOptionsDocument,
     ...options,
   })
@@ -145,7 +145,7 @@ export const FarmOptionsDocument = gql`
 export function useFarmOptionsQuery(
   options?: Omit<Urql.UseQueryArgs<FarmOptionsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<FarmOptionsQuery>({
+  return Urql.useQuery<FarmOptionsQuery, FarmOptionsQueryVariables>({
     query: FarmOptionsDocument,
     ...options,
   })
@@ -187,10 +187,10 @@ export const CommodityProduceListDocument = gql`
 export function useCommodityProduceListQuery(
   options?: Omit<Urql.UseQueryArgs<CommodityProduceListQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<CommodityProduceListQuery>({
-    query: CommodityProduceListDocument,
-    ...options,
-  })
+  return Urql.useQuery<
+    CommodityProduceListQuery,
+    CommodityProduceListQueryVariables
+  >({ query: CommodityProduceListDocument, ...options })
 }
 export const CommodityProduceDetailsDocument = gql`
   query CommodityProduceDetails($id: uuid!) {
@@ -215,8 +215,8 @@ export function useCommodityProduceDetailsQuery(
     'query'
   >
 ) {
-  return Urql.useQuery<CommodityProduceDetailsQuery>({
-    query: CommodityProduceDetailsDocument,
-    ...options,
-  })
+  return Urql.useQuery<
+    CommodityProduceDetailsQuery,
+    CommodityProduceDetailsQueryVariables
+  >({ query: CommodityProduceDetailsDocument, ...options })
 }

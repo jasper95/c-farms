@@ -47,8 +47,6 @@ export type AnnualInfoDetailsQuery = {
         grossAnnualIncomeNonfarming: any
         highestFormalEducation: string
         fisherActivityType: any
-        is4PsBeneficiary: boolean
-        personWithDisability: boolean
         year: number
       }
     | null
@@ -64,8 +62,6 @@ export type AnnualInfoFragmentFragment = {
   grossAnnualIncomeNonfarming: any
   highestFormalEducation: string
   fisherActivityType: any
-  is4PsBeneficiary: boolean
-  personWithDisability: boolean
   year: number
 }
 
@@ -78,8 +74,6 @@ export const AnnualInfoFragmentFragmentDoc = gql`
     grossAnnualIncomeNonfarming
     highestFormalEducation
     fisherActivityType
-    is4PsBeneficiary
-    personWithDisability
     year
   }
 `
@@ -113,7 +107,7 @@ export const AnnualInfoListDocument = gql`
 export function useAnnualInfoListQuery(
   options?: Omit<Urql.UseQueryArgs<AnnualInfoListQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<AnnualInfoListQuery>({
+  return Urql.useQuery<AnnualInfoListQuery, AnnualInfoListQueryVariables>({
     query: AnnualInfoListDocument,
     ...options,
   })
@@ -130,8 +124,7 @@ export const AnnualInfoDetailsDocument = gql`
 export function useAnnualInfoDetailsQuery(
   options: Omit<Urql.UseQueryArgs<AnnualInfoDetailsQueryVariables>, 'query'>
 ) {
-  return Urql.useQuery<AnnualInfoDetailsQuery>({
-    query: AnnualInfoDetailsDocument,
-    ...options,
-  })
+  return Urql.useQuery<AnnualInfoDetailsQuery, AnnualInfoDetailsQueryVariables>(
+    { query: AnnualInfoDetailsDocument, ...options }
+  )
 }
