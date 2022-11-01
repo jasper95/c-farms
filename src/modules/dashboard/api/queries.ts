@@ -92,8 +92,9 @@ export type CropProduceListQuery = {
     __typename?: 'CropProduce'
     year: number
     name: string
-    sum: any
+    produce: any
     commodityId?: any | null | undefined
+    yield: any
   }>
 }
 
@@ -113,6 +114,26 @@ export type RegisteredHouseholdQuery = {
     __typename?: 'RegisteredHouseholdPerYear'
     year?: number | null | undefined
     count?: any | null | undefined
+  }>
+}
+
+export type FisheriesProduceListQueryVariables = Types.Exact<{
+  where?: Types.InputMaybe<Types.FisheriesProduceBoolExp>
+  orderBy?: Types.InputMaybe<
+    Array<Types.FisheriesProduceOrderBy> | Types.FisheriesProduceOrderBy
+  >
+  offset?: Types.InputMaybe<Types.Scalars['Int']>
+  limit?: Types.InputMaybe<Types.Scalars['Int']>
+}>
+
+export type FisheriesProduceListQuery = {
+  __typename?: 'query_root'
+  list: Array<{
+    __typename?: 'FisheriesProduce'
+    year: number
+    name: string
+    produce: any
+    commodityId?: any | null | undefined
   }>
 }
 
@@ -228,8 +249,9 @@ export const CropProduceListDocument = gql`
     ) {
       year
       name
-      sum
+      produce
       commodityId
+      yield
     }
   }
 `
@@ -268,4 +290,33 @@ export function useRegisteredHouseholdQuery(
     RegisteredHouseholdQuery,
     RegisteredHouseholdQueryVariables
   >({ query: RegisteredHouseholdDocument, ...options })
+}
+export const FisheriesProduceListDocument = gql`
+  query FisheriesProduceList(
+    $where: FisheriesProduceBoolExp
+    $orderBy: [FisheriesProduceOrderBy!]
+    $offset: Int
+    $limit: Int
+  ) {
+    list: fisheriesProduce(
+      where: $where
+      orderBy: $orderBy
+      offset: $offset
+      limit: $limit
+    ) {
+      year
+      name
+      produce
+      commodityId
+    }
+  }
+`
+
+export function useFisheriesProduceListQuery(
+  options?: Omit<Urql.UseQueryArgs<FisheriesProduceListQueryVariables>, 'query'>
+) {
+  return Urql.useQuery<
+    FisheriesProduceListQuery,
+    FisheriesProduceListQueryVariables
+  >({ query: FisheriesProduceListDocument, ...options })
 }

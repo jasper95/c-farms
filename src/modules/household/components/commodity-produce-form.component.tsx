@@ -54,7 +54,14 @@ export function CommodityProduceForm(props: ICommodityProduceFormProps) {
         />
       </Grid>
       <Grid item sm={12} md={6}>
-        <TextField label="Unit" control={control} name="unit" />
+        <TextField
+          label="Unit"
+          control={control}
+          name="unit"
+          InputProps={{
+            readOnly: true,
+          }}
+        />
       </Grid>
       <Grid item sm={12} md={6}>
         <TextField
@@ -65,7 +72,7 @@ export function CommodityProduceForm(props: ICommodityProduceFormProps) {
       </Grid>
       <Grid item sm={12} md={6}>
         <TextField
-          label="Produce in MT"
+          label="Produce in MT/Heads"
           control={control}
           name="produce"
           InputProps={{

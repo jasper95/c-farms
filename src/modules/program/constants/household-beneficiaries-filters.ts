@@ -2,7 +2,7 @@ import { DataTableFilter } from '@/components/data-table/types'
 import { FieldTypeEnum } from '@/components/list-filter/field-type.enum'
 import * as T from '@/lib/generated/graphql.types'
 
-export const programBeneficiariesListFilters: DataTableFilter<T.ProgramBeneficiaries>[] =
+export const programBeneficiariesListFilters: DataTableFilter<T.HouseholdPrograms>[] =
   [
     {
       field: 'grossAnnualIncomeFarming',
@@ -11,7 +11,7 @@ export const programBeneficiariesListFilters: DataTableFilter<T.ProgramBeneficia
     },
     {
       field: 'farmSize',
-      type: FieldTypeEnum.String,
+      type: FieldTypeEnum.Number,
       label: 'Farm Size(ha)',
     },
     {
@@ -23,5 +23,25 @@ export const programBeneficiariesListFilters: DataTableFilter<T.ProgramBeneficia
       field: 'barangay',
       type: FieldTypeEnum.String,
       label: 'Barangay',
+    },
+    {
+      field: 'firstName',
+      type: FieldTypeEnum.String,
+      label: 'First Name',
+    },
+    {
+      field: 'lastName',
+      type: FieldTypeEnum.String,
+      label: 'Last Name',
+    },
+    {
+      field: 'commodities',
+      type: FieldTypeEnum.String,
+      label: 'Commodities',
+    },
+    {
+      field: 'mainLivelihood',
+      type: FieldTypeEnum.String,
+      label: 'Main Livelihood',
     },
   ]
