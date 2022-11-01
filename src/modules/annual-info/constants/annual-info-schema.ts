@@ -11,29 +11,23 @@ export const annualInfoSchema = yup.object({
   farmworkerActivityType: yup
     .array()
     .of(yup.string())
-    .when(
-      'mainLivelihood',
-      (mainLivelihood: string | string[], schema: any) => {
-        return mainLivelihood.includes('Farmworker/Laborer')
-          ? yup.array().min(1, 'At least 1 farm activity is required.')
-          : schema
-      }
-    )
+    .when('mainLivelihood', (mainLivelihood, schema) => {
+      return mainLivelihood.includes('Farmworker/Laborer')
+        ? yup.array().min(1, 'At least 1 farm activity is required.')
+        : schema
+    })
     .default([]),
   fisherActivityType: yup
     .array()
     .of(yup.string())
-    .when(
-      'mainLivelihood',
-      (mainLivelihood: string | string[], schema: any) => {
-        return mainLivelihood.includes('Fisherfolk')
-          ? yup.array().min(1, 'At least 1 fishing activity is required.')
-          : schema
-      }
-    )
+    .when('mainLivelihood', (mainLivelihood, schema) => {
+      return mainLivelihood.includes('Fisherfolk')
+        ? yup.array().min(1, 'At least 1 fishing activity is required.')
+        : schema
+    })
     .default([]),
   highestFormalEducation: yup.string().required(fieldIsRequired).default(''),
-  grossAnnualIncomeFarming: yup.number().required(fieldIsRequired).min(1),
+  grossAnnualIncomeFarming: yup.number().required(fieldIsRequired).default(0),
   grossAnnualIncomeNonfarming: yup
     .number()
     .required(fieldIsRequired)
