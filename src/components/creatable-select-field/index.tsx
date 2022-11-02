@@ -11,7 +11,7 @@ function CreatableSelectField<T extends FieldValues>(
     control,
     name,
   })
-  const { field } = controller
+  const { field, formState } = controller
   const { value = [] } = field
   return (
     <Autocomplete
@@ -32,6 +32,8 @@ function CreatableSelectField<T extends FieldValues>(
               field.onChange(value.concat(e.target.value))
             }
           }}
+          error={Boolean(formState.errors[name])}
+          helperText={formState.errors[name]?.message}
         />
       )}
     />

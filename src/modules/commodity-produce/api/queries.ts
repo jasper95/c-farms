@@ -19,6 +19,8 @@ export type CommodityOptionsQuery = {
     id: any
     name: string
     commodityType: string
+    unit?: string | null | undefined
+    conversionFactor?: any | null | undefined
   }>
 }
 
@@ -55,6 +57,8 @@ export type CommodityProduceListQuery = {
     year: number
     commodityType: string
     householdName?: string | null | undefined
+    produceInUnit: any
+    unit: string
   }>
   meta: {
     __typename?: 'ProduceAggregate'
@@ -82,6 +86,8 @@ export type CommodityProduceDetailsQuery = {
         householdId: any
         year: number
         areaUsed: any
+        produceInUnit?: any | null | undefined
+        unit: string
       }
     | null
     | undefined
@@ -103,6 +109,8 @@ export const CommodityOptionsDocument = gql`
       id
       name
       commodityType
+      unit
+      conversionFactor
     }
   }
 `
@@ -165,6 +173,8 @@ export const CommodityProduceListDocument = gql`
       year
       commodityType
       householdName
+      produceInUnit
+      unit
     }
     meta: produceAggregate(where: $where) {
       aggregate {
@@ -193,6 +203,8 @@ export const CommodityProduceDetailsDocument = gql`
       householdId
       year
       areaUsed
+      produceInUnit
+      unit
     }
   }
 `

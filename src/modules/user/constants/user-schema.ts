@@ -2,9 +2,8 @@ import { fieldIsRequired } from '@/lib/utils/form-utils'
 import * as yup from 'yup'
 
 export const userSchema = yup.object({
-  firstName: yup.string().required(fieldIsRequired).default(''),
-  lastName: yup.string().required(fieldIsRequired).default(''),
-  username: yup
+  name: yup.string().required(fieldIsRequired).default(''),
+  email: yup
     .string()
     .email('Invalid email format')
     .required(fieldIsRequired)

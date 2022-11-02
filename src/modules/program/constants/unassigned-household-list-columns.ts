@@ -11,20 +11,42 @@ export const unassignedHouseholdListColumns: DataTableColumn<UnassignedHousehold
     {
       title: 'Farm Size',
       type: 'function',
-      fn: (row) => `${row.farmSize} ha`,
+      fn: (row) => `${row.farmSize ?? '0'} ha`,
     },
     {
       title: 'Farming Income',
       type: 'function',
-      fn: (row) => row.grossAnnualIncomeFarming ?? '',
+      fn: (row) =>
+        row.grossAnnualIncomeFarming
+          ? parseFloat(row.grossAnnualIncomeFarming)
+              .toFixed(2)
+              .toString()
+              .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+          : '',
     },
     {
       title: 'Non-farming Income',
       type: 'function',
-      fn: (row) => row.grossAnnualIncomeNonfarming ?? '',
+      fn: (row) =>
+        row.grossAnnualIncomeNonfarming
+          ? parseFloat(row.grossAnnualIncomeNonfarming)
+              .toFixed(2)
+              .toString()
+              .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+          : '',
     },
     {
       title: 'Barangay',
       accessor: 'barangay',
+    },
+    {
+      title: 'Commodities',
+      type: 'function',
+      fn: (row) => row.commodities.join(', '),
+    },
+    {
+      title: 'Main Livelihood',
+      type: 'function',
+      fn: (row) => (row.mainLivelihood ? row.mainLivelihood.join(', ') : ''),
     },
   ]

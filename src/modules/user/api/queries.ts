@@ -15,8 +15,7 @@ export type UserListQuery = {
   list: Array<{
     __typename?: 'User'
     id: any
-    firstName: string
-    lastName: string
+    name?: string | null | undefined
     email?: string | null | undefined
     role: any
     active: boolean
@@ -40,8 +39,7 @@ export type UserDetailsQuery = {
     | {
         __typename?: 'User'
         id: any
-        firstName: string
-        lastName: string
+        name?: string | null | undefined
         email?: string | null | undefined
         role: any
         active: boolean
@@ -64,8 +62,7 @@ export const UserListDocument = gql`
       limit: $limit
     ) {
       id
-      firstName
-      lastName
+      name
       email
       role
       active
@@ -90,8 +87,7 @@ export const UserDetailsDocument = gql`
   query UserDetails($id: uuid!) {
     details: userByPk(id: $id) {
       id
-      firstName
-      lastName
+      name
       email
       role
       active

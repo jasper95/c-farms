@@ -7,6 +7,8 @@ export const commodityProduceSchema = yup.object({
   produce: yup.number().default(0),
   organicPractitioner: yup.boolean().default(false),
   areaUsed: yup.number().default(0),
+  produceInUnit: yup.number().default(0),
+  unit: yup.string().default('MT'),
 })
 
 export type ICommodityProduceSchema = yup.InferType<

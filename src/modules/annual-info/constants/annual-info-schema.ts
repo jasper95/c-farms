@@ -2,8 +2,30 @@ import { fieldIsRequired } from '@/lib/utils/form-utils'
 import * as yup from 'yup'
 
 export const annualInfoSchema = yup.object({
-  farmworkerActivityType: yup.array().of(yup.string()).default([]),
-  fisherActivityType: yup.array().of(yup.string()).default([]),
+  mainLivelihood: yup
+    .array()
+    .required(fieldIsRequired)
+    .of(yup.string())
+    .min(1, 'Must be at least 1 livelihood')
+    .default([]),
+  farmworkerActivityType: yup
+    .array()
+    .of(yup.string())
+    .when('mainLivelihood', (mainLivelihood, schema) => {
+      return mainLivelihood.includes('Farmworker/Laborer')
+        ? yup.array().min(1, 'At least 1 farm activity is required.')
+        : schema
+    })
+    .default([]),
+  fisherActivityType: yup
+    .array()
+    .of(yup.string())
+    .when('mainLivelihood', (mainLivelihood, schema) => {
+      return mainLivelihood.includes('Fisherfolk')
+        ? yup.array().min(1, 'At least 1 fishing activity is required.')
+        : schema
+    })
+    .default([]),
   highestFormalEducation: yup.string().required(fieldIsRequired).default(''),
   grossAnnualIncomeFarming: yup.number().required(fieldIsRequired).default(0),
   grossAnnualIncomeNonfarming: yup
@@ -14,12 +36,6 @@ export const annualInfoSchema = yup.object({
     .number()
     .required(fieldIsRequired)
     .default(new Date().getFullYear()),
-  mainLivelihood: yup
-    .array()
-    .required(fieldIsRequired)
-    .of(yup.string())
-    .min(1, 'Must be at least 1')
-    .default([]),
 })
 
 export type IAnnualInfoSchema = yup.InferType<typeof annualInfoSchema>

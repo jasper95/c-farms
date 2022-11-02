@@ -57,6 +57,7 @@ query ProgramBeneficiariesList(
     barangay
     referenceNo
     commodities
+    mainLivelihood
   }
   meta: programBeneficiariesAggregate(where: $where) {
     aggregate {
@@ -87,6 +88,8 @@ query HouseholdProgramsList(
     programIds
     referenceNo
     commodities
+    commodityIds
+    mainLivelihood
   }
   meta: householdProgramsAggregate(where: $where) {
     aggregate {

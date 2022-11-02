@@ -18,7 +18,7 @@ export function CommodityProduceForm(props: ICommodityProduceFormProps) {
   const { control } = formProps
 
   const [options, setOptions] = useState<Option[]>([])
-  const { commodityOptions, farmOptions } = useCommodityProduceFormHook()
+  const { commodityOptions, farmOptions } = useCommodityProduceFormHook(props)
   return (
     <Grid container spacing={2}>
       <Grid item sm={12} md={6}>
@@ -55,9 +55,29 @@ export function CommodityProduceForm(props: ICommodityProduceFormProps) {
       </Grid>
       <Grid item sm={12} md={6}>
         <TextField
-          label="Produce"
+          label="Unit"
+          control={control}
+          name="unit"
+          InputProps={{
+            readOnly: true,
+          }}
+        />
+      </Grid>
+      <Grid item sm={12} md={6}>
+        <TextField
+          label="Produce in Unit"
+          control={control}
+          name="produceInUnit"
+        />
+      </Grid>
+      <Grid item sm={12} md={6}>
+        <TextField
+          label="Produce in MT/Heads"
           control={control}
           name="produce"
+          InputProps={{
+            readOnly: true,
+          }}
           type="number"
         />
       </Grid>

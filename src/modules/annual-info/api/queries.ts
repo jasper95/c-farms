@@ -47,8 +47,6 @@ export type AnnualInfoDetailsQuery = {
         grossAnnualIncomeNonfarming: any
         highestFormalEducation: string
         fisherActivityType: any
-        is4PsBeneficiary: boolean
-        personWithDisability: boolean
         year: number
       }
     | null
@@ -64,8 +62,6 @@ export type AnnualInfoFragmentFragment = {
   grossAnnualIncomeNonfarming: any
   highestFormalEducation: string
   fisherActivityType: any
-  is4PsBeneficiary: boolean
-  personWithDisability: boolean
   year: number
 }
 
@@ -78,8 +74,6 @@ export const AnnualInfoFragmentFragmentDoc = gql`
     grossAnnualIncomeNonfarming
     highestFormalEducation
     fisherActivityType
-    is4PsBeneficiary
-    personWithDisability
     year
   }
 `
