@@ -4,7 +4,7 @@ import Navigation from './navigation.layout'
 import Box from '@mui/material/Box'
 import Container, { ContainerProps } from '@mui/material/Container'
 import { styled } from '@mui/material/styles'
-import { useSession } from 'next-auth/react'
+import { withAuthentication } from '@/lib/authentication/hocs/with-authentication.hoc'
 
 type DashboardProps = {
   children: ReactNode
@@ -14,16 +14,8 @@ export const AppbarSpace = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
 }))
-export function Dashboard(props: DashboardProps) {
+function DashboardLayout(props: DashboardProps) {
   const { maxWidth = 'xl' } = props
-  const response = useSession({ required: true })
-
-  if (response.status === 'loading') {
-    return <div>Loading...</div>
-  }
-  if (response.status !== 'authenticated') {
-    return null
-  }
   return (
     <Box sx={{ display: 'flex' }}>
       <Header />
@@ -35,6 +27,7 @@ export function Dashboard(props: DashboardProps) {
     </Box>
   )
 }
+export const Dashboard = withAuthentication(DashboardLayout)
 
 export default function getDashboardLayout(page: ReactElement) {
   return <Dashboard>{page}</Dashboard>

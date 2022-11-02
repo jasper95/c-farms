@@ -10,10 +10,10 @@ const config: CodegenConfig = {
       },
     },
   ],
-  documents: 'src/lib/auth/**/*.graphql',
+  documents: 'src/lib/authentication/**/*.graphql',
   overwrite: true,
   generates: {
-    'src/lib/auth/generated.ts': {
+    'src/lib/authentication/generated.ts': {
       plugins: [
         'typescript',
         'typescript-operations',

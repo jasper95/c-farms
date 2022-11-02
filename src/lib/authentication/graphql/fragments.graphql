@@ -5,6 +5,7 @@ fragment User on User {
   email
   image
   emailVerified
+  role
 }
 
 fragment Session on Session {

@@ -27,7 +27,8 @@
     "stripInternal": true,
     "target": "ES2020",
     "typeRoots": [
-      "node_modules/@types"
+      "node_modules/@types",
+      "src/lib/authentication/types"
     ],
     "useDefineForClassFields": true,
     "allowJs": true,

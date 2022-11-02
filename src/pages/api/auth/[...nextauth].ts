@@ -1,9 +1,9 @@
 import NextAuth, { NextAuthOptions } from 'next-auth'
 import jwt from 'jsonwebtoken'
-import { HasuraAdapter } from '@/lib/auth/adapter/hasura-adapter'
+import { HasuraAdapter } from '@/lib/authentication/adapter/hasura-adapter'
 import { JWT } from 'next-auth/jwt'
 import GoogleProvider from 'next-auth/providers/google'
-import { authSdk } from '@/lib/auth/auth-sdk'
+import { authSdk } from '@/lib/authentication/sdk'
 import camelcaseKeys from 'camelcase-keys'
 
 export const authOptions: NextAuthOptions = {
@@ -38,17 +38,21 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.JWT_SECRET,
   callbacks: {
     // TODO: use generated jwt to hasura requests
-    // async jwt({ token, user }) {
-    //   return {
-    //     ...token,
-    //     'https://hasura.io/jwt/claims': {
-    //       'x-hasura-allowed-roles': ['user'],
-    //       'x-hasura-default-role': 'user',
-    //       'x-hasura-role': 'user',
-    //       'x-hasura-user-id': token.sub,
-    //     },
-    //   }
-    // },
+    async jwt({ token, user }) {
+      if (user) {
+        return {
+          ...token,
+          role: user.role,
+          'https://hasura.io/jwt/claims': {
+            'x-hasura-allowed-roles': [user?.role],
+            'x-hasura-default-role': user?.role,
+            'x-hasura-role': user?.role,
+            'x-hasura-user-id': token.sub,
+          },
+        }
+      }
+      return token
+    },
     async signIn(args) {
       const { user, account } = args
       const { user: users } = await authSdk.GetAuthUsers({
@@ -74,6 +78,10 @@ export const authOptions: NextAuthOptions = {
         })
       }
       return true
+    },
+    session({ session, token }) {
+      session.user.role = token.role
+      return session
     },
   },
 }

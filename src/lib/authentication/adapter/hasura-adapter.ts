@@ -6,7 +6,7 @@ import {
   VerificationToken,
 } from 'next-auth/adapters'
 import camelcaseKeys from 'camelcase-keys'
-import { authSdk } from '../auth-sdk'
+import { authSdk } from '../sdk'
 
 const transformDate = <T extends { [key: string]: unknown }>(
   object: T | null | undefined,
@@ -29,12 +29,14 @@ export const HasuraAdapter = (): Adapter => {
     createUser: async (data) => {
       const res = await authSdk.CreateAuthUser({ data })
       const user = transformDate(res?.insertUserOne, 'emailVerified')
+      console.log('user: ', user)
 
       return user as AdapterUser
     },
     getUser: async (id) => {
       const res = await authSdk.GetAuthUser({ id })
       const user = transformDate(res?.userByPk, 'emailVerified')
+      console.log('user: ', user)
 
       return user as AdapterUser
     },
