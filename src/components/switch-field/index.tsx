@@ -8,14 +8,14 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 export default function SwitchField<T extends FieldValues>(
   props: ISwitchProps<T>
 ) {
-  const { label, name, control } = props
+  const { label, name, control, disabled } = props
   const controller = useController({
     control,
     name,
   })
   const { field } = controller
   return (
-    <FormControl>
+    <FormControl disabled={disabled}>
       <FormGroup row>
         <FormControlLabel
           control={<MuiSwitch {...field} checked={field.value || false} />}

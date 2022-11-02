@@ -129,7 +129,7 @@ export function useListViewHook<
   }, [listResponse?.data, tableDispatch])
 
   const canEdit = useMemo(
-    () => ability?.can(PermissionEnum.Create, name),
+    () => ability?.can(PermissionEnum.Update, name),
     [ability, name]
   )
   const canDelete = useMemo(

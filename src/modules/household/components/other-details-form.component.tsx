@@ -8,10 +8,11 @@ import SwitchField from '@/components/switch-field'
 
 interface IOtherDetailsFormProps {
   formProps: UseFormReturn<IOtherDetailsSchema>
+  formDisabled?: boolean
 }
 
 export function OtherDetailsForm(props: IOtherDetailsFormProps) {
-  const { formProps } = props
+  const { formProps, formDisabled } = props
   const { control } = formProps
   const isHouseholdHead = useWatch({ control, name: 'isHouseholdHead' })
   return (
@@ -21,6 +22,7 @@ export function OtherDetailsForm(props: IOtherDetailsFormProps) {
           control={control}
           name="isHouseholdHead"
           label="Household head"
+          disabled={formDisabled}
         />
       </Grid>
       {!isHouseholdHead && (
@@ -35,6 +37,7 @@ export function OtherDetailsForm(props: IOtherDetailsFormProps) {
               control={control}
               label="Name of household head"
               name="nameOfHouseholdHead"
+              disabled={formDisabled}
             />
           </Grid>
           <Grid item md={4} xs={12}>
@@ -42,6 +45,7 @@ export function OtherDetailsForm(props: IOtherDetailsFormProps) {
               control={control}
               name="relationshipToHouseholdHead"
               label="Relationship"
+              disabled={formDisabled}
             />
           </Grid>
         </>
@@ -57,6 +61,7 @@ export function OtherDetailsForm(props: IOtherDetailsFormProps) {
           name="maleCount"
           label="Male"
           type="number"
+          disabled={formDisabled}
         />
       </Grid>
       <Grid item md={4} xs={12}>
@@ -75,6 +80,7 @@ export function OtherDetailsForm(props: IOtherDetailsFormProps) {
           control={control}
           name="ipMembership"
           label="IP Membership"
+          disabled={formDisabled}
         />
       </Grid>
       <Grid item md={4} xs={12}>
@@ -82,6 +88,7 @@ export function OtherDetailsForm(props: IOtherDetailsFormProps) {
           control={control}
           name="governmentIdType"
           label="Government ID type"
+          disabled={formDisabled}
         />
       </Grid>
       <Grid item md={4} xs={12}>
@@ -90,6 +97,7 @@ export function OtherDetailsForm(props: IOtherDetailsFormProps) {
           name="governmentIdNo"
           label="Government ID No."
           type="text"
+          disabled={formDisabled}
         />
       </Grid>
       <Grid item md={4}>
@@ -97,6 +105,7 @@ export function OtherDetailsForm(props: IOtherDetailsFormProps) {
           control={control}
           name="personWithDisability"
           label="Person with disability"
+          disabled={formDisabled}
         />
       </Grid>
       <Grid item md={4}>
@@ -104,6 +113,7 @@ export function OtherDetailsForm(props: IOtherDetailsFormProps) {
           control={control}
           name="is4psBeneficiary"
           label="4P's benificiary"
+          disabled={formDisabled}
         />
       </Grid>
       <Grid item xs={12}>
@@ -114,6 +124,7 @@ export function OtherDetailsForm(props: IOtherDetailsFormProps) {
           control={control}
           name="emergencyContactName"
           label="Emergency Contact Name"
+          disabled={formDisabled}
         />
       </Grid>
       <Grid item md={4} xs={12}>
@@ -122,6 +133,7 @@ export function OtherDetailsForm(props: IOtherDetailsFormProps) {
           placeholder="09xxxxxxxxx"
           label="Emergency Contact No."
           name="emergencyContactNumber"
+          disabled={formDisabled}
         />
       </Grid>
     </Grid>
