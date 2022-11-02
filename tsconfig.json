@@ -28,7 +28,7 @@
     "target": "ES2020",
     "typeRoots": [
       "node_modules/@types",
-      "src/lib/authentication/types"
+      "src/modules/common/types"
     ],
     "useDefineForClassFields": true,
     "allowJs": true,

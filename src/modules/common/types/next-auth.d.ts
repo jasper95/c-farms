@@ -1,6 +1,6 @@
+import { RoleEnum } from '@/modules/common/authorization/enums/role.enum'
 import NextAuth, { DefaultSession, DefaultUser } from 'next-auth'
 import { JWT } from 'next-auth/jwt'
-import { Role } from './role'
 
 declare module 'next-auth' {
   /**
@@ -8,20 +8,20 @@ declare module 'next-auth' {
    */
   interface Session {
     user: {
-      role: Role
+      role: RoleEnum
     } & DefaultSession['user'] &
       DefaultUser
   }
 
   interface User extends DefaultUser {
-    role: Role
+    role: RoleEnum
   }
 }
 
 declare module 'next-auth/jwt' {
   /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
   interface JWT {
-    role: Role
+    role: RoleEnum
     idToken?: string
   }
 }

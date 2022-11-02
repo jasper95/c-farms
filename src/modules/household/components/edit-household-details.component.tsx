@@ -8,7 +8,7 @@ import { useHouseholdDetailsQuery } from '@/modules/household/api/queries'
 import { useUpdateHouseholdMutation } from '@/modules/household/api/mutations'
 
 export function EditHouseholdDetails() {
-  const { formProps, onSave, isMutating } = useEditViewHook({
+  const { formProps, onSave, isMutating, formDisabled } = useEditViewHook({
     useDetailsQueryHook: useHouseholdDetailsQuery,
     useMutationHook: useUpdateHouseholdMutation,
     name: 'Household',
@@ -18,9 +18,12 @@ export function EditHouseholdDetails() {
   return (
     <Card>
       <CardContent>
-        <PersonalInformationForm formProps={formProps} />
+        <PersonalInformationForm
+          formDisabled={formDisabled}
+          formProps={formProps}
+        />
         <FormToolbar
-          confirmDisabled={!formProps.formState.isDirty}
+          confirmDisabled={!formProps.formState.isDirty || !formDisabled}
           cancelVisible={false}
           onConfirm={onSave}
           isLoading={isMutating}

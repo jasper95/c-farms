@@ -1,5 +1,5 @@
-import { RoleTypeEnum } from '@/modules/user/enums/role-type.enum'
+import { RoleEnum } from '@/modules/common/authorization/enums/role.enum'
 
-export const roleTypeOptions = Object.entries(RoleTypeEnum).map(
+export const roleTypeOptions = Object.entries(RoleEnum).map(
   ([label, value]) => ({ label, value })
 )

@@ -1,24 +1,14 @@
 import {
   createMongoAbility,
-  ForcedSubject,
   CreateAbility,
-  MongoAbility,
   AbilityBuilder,
 } from '@casl/ability'
 import { User } from 'next-auth'
-import { Role } from '../authentication/types/role'
+import { PermissionEnum } from './enums/permission.enum'
+import { ResourceEnum } from './enums/resource.enum'
+import { RoleEnum } from './enums/role.enum'
+import { AppAbility } from '../../../lib/stores/auth.store'
 
-const actions = ['manage', 'invite'] as const
-const subjects = ['User', 'all'] as const
-type AppAbilities = [
-  typeof actions[number],
-  (
-    | typeof subjects[number]
-    | ForcedSubject<Exclude<typeof subjects[number], 'all'>>
-  )
-]
-
-export type AppAbility = MongoAbility<AppAbilities>
 export const createAppAbility = createMongoAbility as CreateAbility<AppAbility>
 
 type DefinePermissions = (
@@ -26,17 +16,21 @@ type DefinePermissions = (
   builder: AbilityBuilder<AppAbility>
 ) => void
 
-const rolePermissions: Record<Role, DefinePermissions> = {
+const rolePermissions: Record<RoleEnum, DefinePermissions> = {
   encoder(user, { can }) {
-    can('invite', 'User')
+    can(PermissionEnum.Create, ResourceEnum.Household)
+    can(PermissionEnum.Read, ResourceEnum.Household)
   },
   administrator(user, { can }) {
-    can('manage', 'all')
+    can(PermissionEnum.Create, ResourceEnum.All)
+    can(PermissionEnum.Read, ResourceEnum.All)
+    can(PermissionEnum.Update, ResourceEnum.All)
+    can(PermissionEnum.Delete, ResourceEnum.All)
   },
   manager(user, { can }) {},
 }
 
-export function defineAbilityFor(user: User): AppAbility {
+export function defineAbilityFor(user: User) {
   const builder = new AbilityBuilder(createAppAbility)
 
   if (rolePermissions[user.role]) {

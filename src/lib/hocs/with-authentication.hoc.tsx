@@ -1,12 +1,12 @@
 import { LinearProgress } from '@mui/material'
 import { useSession } from 'next-auth/react'
 import React, { useEffect, useMemo } from 'react'
-import { defineAbilityFor } from '../../authorization/define-ability'
-import { useAuthorizationStore } from '../../authorization/stores/authorization.store'
+import { defineAbilityFor } from '@/modules/common/authorization/define-ability'
+import { useAuthStore } from '@/lib/stores/auth.store'
 
 export function withAuthentication<T>(WrappedComponent: React.FC<T>) {
-  const WithAuth: React.FC<T> = (props) => {
-    const { authorize } = useAuthorizationStore()
+  const WithAuthentication: React.FC<T> = (props) => {
+    const { authorize } = useAuthStore()
     const { data: session, status } = useSession({ required: true })
     const isLoading = useMemo(() => status === 'loading', [status])
     useEffect(() => {
@@ -19,5 +19,5 @@ export function withAuthentication<T>(WrappedComponent: React.FC<T>) {
     }
     return <WrappedComponent {...props} />
   }
-  return WithAuth
+  return WithAuthentication
 }

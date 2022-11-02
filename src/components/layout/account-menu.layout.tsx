@@ -6,7 +6,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import MenuItem from '@mui/material/MenuItem'
-import { useLogout } from '@/lib/hooks/use-logout'
+import { useLogout } from '@/modules/common/hooks/use-logout'
 
 export function AccountMenu() {
   const { handleLogout } = useLogout()

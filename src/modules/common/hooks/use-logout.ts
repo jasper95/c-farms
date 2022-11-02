@@ -1,8 +1,8 @@
 import { signOut } from 'next-auth/react'
-import { useAuthorizationStore } from '../authorization/stores/authorization.store'
+import { useAuthStore } from '../../../lib/stores/auth.store'
 
 export function useLogout() {
-  const { logout } = useAuthorizationStore()
+  const { logout } = useAuthStore()
   return {
     handleLogout,
   }

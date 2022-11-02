@@ -15,6 +15,8 @@ import { useSearch } from './use-search.hook'
 import transformFilter from '../utils/transform-filter'
 import * as Types from '@/lib/generated/graphql.types'
 import { OrderBy } from '@/lib/generated/graphql.types'
+import { useAuthStore } from '../stores/auth.store'
+import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
 
 export type BaseListQuery<ListRow> = {
   list: Array<ListRow>
@@ -65,6 +67,7 @@ export interface UseListViewProps<
   onDelete?: (id: string) => void
   baseUrl?: string
   additionalTypenames?: string[]
+  name: string
 }
 
 export function useListViewHook<
@@ -82,8 +85,10 @@ export function useListViewHook<
     bulkActions = [],
     additionalTypenames = [],
     actions,
+    name,
   } = props
   const [tableState, tableDispatch] = useTableState()
+  const { ability } = useAuthStore()
   const router = useRouter()
   const baseUrl = props.baseUrl || router.asPath
   const { onSearchChanged } = useSearch({
@@ -123,9 +128,18 @@ export function useListViewHook<
     })
   }, [listResponse?.data, tableDispatch])
 
+  const canEdit = useMemo(
+    () => ability?.can(PermissionEnum.Create, name),
+    [ability, name]
+  )
+  const canDelete = useMemo(
+    () => ability?.can(PermissionEnum.Delete, name),
+    [ability, name]
+  )
   const defaultActions = useMemo(() => {
-    const actions: DataTableAction<QueryResponse>[] = [
-      {
+    const actions: DataTableAction<QueryResponse>[] = []
+    if (canEdit) {
+      actions.push({
         label: 'Edit',
         icon: EditIcon,
         ...(onEdit && {
@@ -136,9 +150,9 @@ export function useListViewHook<
             type: 'link',
             href: (row) => `${baseUrl}/${row.id}`,
           }),
-      },
-    ]
-    if (onDelete) {
+      })
+    }
+    if (canDelete && onDelete) {
       actions.push({
         label: 'Delete',
         icon: DeleteIcon,
@@ -146,7 +160,7 @@ export function useListViewHook<
       })
     }
     return actions
-  }, [onEdit, onDelete, baseUrl])
+  }, [onEdit, onDelete, baseUrl, canEdit, canDelete])
 
   return {
     tableProps: {

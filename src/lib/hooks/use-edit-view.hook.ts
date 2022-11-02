@@ -7,6 +7,8 @@ import { useNotificationStore } from '@/lib/stores/notification'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { MutationResponseType } from './use-new-view.hook'
+import { useAuthStore } from '../stores/auth.store'
+import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
 
 export type BaseDetailsQuery<Details> = {
   details?: Details | null | undefined
@@ -51,6 +53,7 @@ export function useEditViewHook<
   props: UseEditViewProps<T, DetailsResponse, MutationPayload, MutationResponse>
 ) {
   const { notifySuccess } = useNotificationStore()
+  const { ability } = useAuthStore()
   const {
     useMutationHook,
     schema,
@@ -61,6 +64,8 @@ export function useEditViewHook<
     transformResponse = (arg) => schema.noUnknown().cast(arg),
     additionalTypenames = [],
   } = props
+
+  const formDisabled = ability?.cannot(PermissionEnum.Update, name)
 
   const router = useRouter()
   const id = router.query.id
@@ -112,5 +117,6 @@ export function useEditViewHook<
     isFetching: detailsQueryResponse.fetching,
     isMutating: editMutationResponse.fetching,
     onSave,
+    formDisabled,
   }
 }

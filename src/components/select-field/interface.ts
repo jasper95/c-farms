@@ -7,4 +7,5 @@ export type ISelectFieldProps<T extends FieldValues> = UseControllerProps<T> & {
   label: string
   placeholder?: string
   sx?: SxProps<Theme>
+  disabled?: boolean
 }

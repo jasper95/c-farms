@@ -1,34 +1,22 @@
-import React, { ReactElement, ReactNode } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { SessionProvider } from 'next-auth/react'
 import ThemeProvider from '@/lib/theme'
-import { AppProps } from 'next/dist/shared/lib/router/router'
 import DialogContainer from '@/components/layout/dialog-container.layout'
 import NotificationContainer from '@/components/layout/notification-container.layout'
 import { Provider as UrqlProvider } from 'urql'
 import 'tailwindcss/tailwind.css'
 import { urqlClient } from '@/lib/urql/client'
-import { NextPage } from 'next'
-import { CacheProvider, EmotionCache } from '@emotion/react'
+import { CacheProvider } from '@emotion/react'
 import createEmotionCache from '@/lib/utils/create-emotion-cache'
-import { Session } from 'next-auth'
-
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode
-}
-
-type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout
-  emotionCache?: EmotionCache
-  session: Session
-}
+import { AppProps } from '@/modules/common/interfaces/app-props.interface'
 
 const clientSideEmotionCache = createEmotionCache()
 
-export default function MyApp(props: AppPropsWithLayout) {
+export default function MyApp(props: AppProps) {
   const {
     Component,
     pageProps,

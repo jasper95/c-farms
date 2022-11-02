@@ -1,7 +1,8 @@
+import { MongoAbility } from '@casl/ability'
 import { Session } from 'next-auth'
 import create from 'zustand'
-import { AppAbility } from '../define-ability'
 
+export type AppAbility = MongoAbility<[string, string]>
 type IAuthStore = {
   isInitializing: boolean
   isLoading: boolean
@@ -13,7 +14,7 @@ type IAuthStore = {
   logout(): void
 }
 
-export const useAuthorizationStore = create<IAuthStore>((set) => ({
+export const useAuthStore = create<IAuthStore>((set) => ({
   isInitializing: true,
   isLoading: false,
   accessToken: '',

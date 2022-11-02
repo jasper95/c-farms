@@ -9,12 +9,16 @@ import {
 } from '@/modules/household/components'
 import { createHouseholdSteps } from '@/modules/household/constants'
 import { useHouseholdNew } from '@/modules/household/hooks'
-import { Dashboard } from '@/components/layout/dashboard.layout'
+import getDashboardLayout from '@/components/layout/dashboard.layout'
 import { FormToolbar } from '@/components/form-toolbar'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
+import { PageProps } from '@/modules/common/interfaces/page-props.interface'
+import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
+import { ResourceEnum } from '@/modules/common/authorization/enums/resource.enum'
+import { withAuthorization } from '@/lib/hocs/with-authorization'
 
-export function HouseholdNewView() {
+function View() {
   const {
     activeStep,
     topRef,
@@ -26,7 +30,7 @@ export function HouseholdNewView() {
     isMutating,
   } = useHouseholdNew()
   return (
-    <Dashboard>
+    <>
       <Breadcrumbs
         crumbs={[{ name: 'Household' }, { name: 'New Household' }]}
       />
@@ -69,6 +73,13 @@ export function HouseholdNewView() {
           />
         </CardContent>
       </Card>
-    </Dashboard>
+    </>
   )
 }
+
+export const HouseholdNewView: PageProps = withAuthorization({
+  permission: PermissionEnum.Create,
+  resource: ResourceEnum.Household,
+})(View)
+
+HouseholdNewView.getLayout = getDashboardLayout

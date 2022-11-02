@@ -9,13 +9,13 @@ import { FieldValues, useController } from 'react-hook-form'
 export default function RadioSelect<T extends FieldValues>(
   props: IRadioSelectProps<T>
 ) {
-  const { options, label, control, name } = props
+  const { options, label, control, name, disabled } = props
   const { field } = useController({
     control,
     name,
   })
   return (
-    <FormControl component="fieldset">
+    <FormControl component="fieldset" disabled={disabled}>
       <FormLabel component="legend">{label}</FormLabel>
       <RadioGroup
         row
