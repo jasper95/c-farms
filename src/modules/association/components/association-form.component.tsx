@@ -7,21 +7,34 @@ import { IAssociationSchema } from '../constants'
 import SwitchField from '@/components/switch-field'
 
 interface AssociationFormProps {
+  formDisabled?: boolean
   formProps: UseFormReturn<IAssociationSchema>
 }
 
 export default function AssociationForm(props: AssociationFormProps) {
+  const { formDisabled } = props
   const { control } = props.formProps
   return (
     <Grid container spacing={2}>
       <Grid item md={6} xs={12}>
-        <TextField control={control} name="name" label="Name" />
+        <TextField
+          disabled={formDisabled}
+          control={control}
+          name="name"
+          label="Name"
+        />
       </Grid>
       <Grid item md={6} xs={12}>
-        <TextField control={control} name="shortName" label="Short Name" />
+        <TextField
+          disabled={formDisabled}
+          control={control}
+          name="shortName"
+          label="Short Name"
+        />
       </Grid>
       <Grid item md={12} xs={12}>
         <TextField
+          disabled={formDisabled}
           control={control}
           rows={7}
           name="description"
@@ -30,7 +43,12 @@ export default function AssociationForm(props: AssociationFormProps) {
         />
       </Grid>
       <Grid item md={6} xs={12}>
-        <SwitchField control={control} name="active" label="Active" />
+        <SwitchField
+          disabled={formDisabled}
+          control={control}
+          name="active"
+          label="Active"
+        />
       </Grid>
     </Grid>
   )

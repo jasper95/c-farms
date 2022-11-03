@@ -70,6 +70,7 @@ export function OtherDetailsForm(props: IOtherDetailsFormProps) {
           name="femaleCount"
           label="Female"
           type="number"
+          disabled={formDisabled}
         />
       </Grid>
       <Grid item xs={12}>

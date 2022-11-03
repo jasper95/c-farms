@@ -16,9 +16,10 @@ import { useWatch } from 'react-hook-form'
 
 interface IAnnualInfoFormProps {
   formProps: UseFormReturn<IAnnualInfoSchema>
+  formDisabled?: boolean
 }
 export function AnnualInfoForm(props: IAnnualInfoFormProps) {
-  const { formProps } = props
+  const { formProps, formDisabled } = props
   const { control, formState } = formProps
   const mainLivelihood = useWatch({ control, name: 'mainLivelihood' })
 
@@ -26,6 +27,7 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
     <Grid container spacing={2}>
       <Grid item md={12} xs={12}>
         <YearPicker
+          disabled={formDisabled}
           control={control}
           label="Year"
           name="year"
@@ -37,6 +39,7 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
       </Grid>
       <Grid item md={6} xs={12}>
         <TextField
+          disabled={formDisabled}
           control={control}
           label="Farming"
           name="grossAnnualIncomeFarming"
@@ -48,6 +51,7 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
       </Grid>
       <Grid item md={6} xs={12}>
         <TextField
+          disabled={formDisabled}
           control={control}
           label="Non-farming"
           name="grossAnnualIncomeNonfarming"
@@ -62,6 +66,7 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
       </Grid>
       <Grid item xs={12} md={6}>
         <MultiSelectField
+          disabled={formDisabled}
           control={control}
           name="mainLivelihood"
           options={livelihoodOptions}
@@ -71,6 +76,7 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
       {mainLivelihood.includes('Farmworker/Laborer') && (
         <Grid item md={6} xs={12}>
           <CreatableSelectField
+            disabled={formDisabled}
             control={control}
             name="farmworkerActivityType"
             label="Farmer Activities"
@@ -80,6 +86,7 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
       {mainLivelihood.includes('Fisherfolk') && (
         <Grid item md={6} xs={12}>
           <CreatableSelectField
+            disabled={formDisabled}
             control={control}
             name="fisherActivityType"
             label="Fisher Activities"
@@ -88,6 +95,7 @@ export function AnnualInfoForm(props: IAnnualInfoFormProps) {
       )}
       <Grid item md={6} xs={12}>
         <SelectField
+          disabled={formDisabled}
           control={control}
           options={educationBackgroundOptions}
           label="Highest formal Education"

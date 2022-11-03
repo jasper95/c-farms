@@ -22,6 +22,15 @@ export type UpdateFarmMutation = {
   data?: { __typename?: 'Farm'; id: any } | null | undefined
 }
 
+export type DeleteFarmMutationVariables = Types.Exact<{
+  id: Types.Scalars['uuid']
+}>
+
+export type DeleteFarmMutation = {
+  __typename?: 'mutation_root'
+  data?: { __typename?: 'Farm'; id: any } | null | undefined
+}
+
 export const CreateFarmDocument = gql`
   mutation CreateFarm($object: FarmInsertInput!) {
     data: insertFarmOne(object: $object) {
@@ -46,5 +55,18 @@ export const UpdateFarmDocument = gql`
 export function useUpdateFarmMutation() {
   return Urql.useMutation<UpdateFarmMutation, UpdateFarmMutationVariables>(
     UpdateFarmDocument
+  )
+}
+export const DeleteFarmDocument = gql`
+  mutation DeleteFarm($id: uuid!) {
+    data: deleteFarmByPk(id: $id) {
+      id
+    }
+  }
+`
+
+export function useDeleteFarmMutation() {
+  return Urql.useMutation<DeleteFarmMutation, DeleteFarmMutationVariables>(
+    DeleteFarmDocument
   )
 }

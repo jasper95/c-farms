@@ -9,3 +9,9 @@ mutation UpdateAssociation($object: AssociationSetInput, $id: AssociationPkColum
     id
   }
 }
+
+mutation DeleteAssociation($id: uuid!) {
+  data: deleteAssociationByPk(id: $id){
+    id
+  }
+}

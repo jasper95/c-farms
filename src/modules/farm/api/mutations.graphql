@@ -9,3 +9,9 @@ mutation UpdateFarm($object: FarmSetInput, $id: FarmPkColumnsInput!) {
     id
   }
 }
+
+mutation DeleteFarm($id: uuid!) {
+  data: deleteFarmByPk(id: $id) {
+    id
+  }
+}

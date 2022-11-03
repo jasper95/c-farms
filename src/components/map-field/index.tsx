@@ -11,7 +11,7 @@ const Map = dynamic(() => import('@/components/map'), {
 export default function MapField<T extends FieldValues>(
   props: IMapFieldProps<T>
 ) {
-  const { control, name } = props
+  const { control, name, enabled } = props
   const { field } = useController({
     control,
     name,
@@ -22,7 +22,7 @@ export default function MapField<T extends FieldValues>(
   )
   return (
     <Map
-      isEditable
+      isEditable={enabled}
       onCreateFeature={(layer) => {
         field.onChange(layer)
       }}

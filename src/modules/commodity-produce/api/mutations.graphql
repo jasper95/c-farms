@@ -12,3 +12,9 @@ mutation UpdateCommodityProduce(
     id
   }
 }
+
+mutation DeleteCommodityProduce($id: uuid!) {
+  data: deleteCommodityProduceByPk(id: $id) {
+    id
+  }
+}

@@ -1,4 +1,6 @@
 import DatatableListView from '@/components/views/datatable-list.view'
+import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
+import { ResourceEnum } from '@/modules/common/authorization/enums/resource.enum'
 import {
   useAssociationBeneficiariesListQuery,
   useAssociationProgramsListQuery,
@@ -8,8 +10,14 @@ import { unassignedAssociationListColumns } from '@/modules/program/constants/un
 import { ProgramBeneficiariesViewEnum } from '@/modules/program/enums'
 import { useAssociationBeneficiaries } from '@/modules/program/hooks/use-association-beneficiaries'
 import { ProgramBeneficiariesActions } from './program-beneficiaries-actions'
+import { useAuthStore } from '@/lib/stores/auth.store'
 
 export function AssociationBeneficiaries() {
+  const { ability } = useAuthStore()
+  const canUpdate = ability?.can(
+    PermissionEnum.Update,
+    ResourceEnum.AssociationBeneficiaries
+  )
   const { bulkActions, view, id, assignedActions, unassignedActions } =
     useAssociationBeneficiaries()
   if (view === ProgramBeneficiariesViewEnum.Unassigned) {
@@ -26,11 +34,11 @@ export function AssociationBeneficiaries() {
         columns={unassignedAssociationListColumns}
         name="Association Beneficiaries"
         withCreate={false}
-        isSelectable
-        bulkActions={bulkActions}
+        isSelectable={canUpdate}
+        bulkActions={canUpdate ? bulkActions : []}
         customActions={ProgramBeneficiariesActions}
         additionalTypenames={['AssociationPrograms']}
-        actions={unassignedActions}
+        actions={canUpdate ? unassignedActions : []}
       />
     )
   }
@@ -45,11 +53,11 @@ export function AssociationBeneficiaries() {
       columns={associationBeneficiariesListColumns}
       name="Association Beneficiaries"
       withCreate={false}
-      isSelectable
-      bulkActions={bulkActions}
+      isSelectable={canUpdate}
+      bulkActions={canUpdate ? bulkActions : []}
       customActions={ProgramBeneficiariesActions}
       additionalTypenames={['AssociationBeneficiaries']}
-      actions={assignedActions}
+      actions={canUpdate ? assignedActions : []}
     />
   )
 }

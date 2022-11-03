@@ -18,9 +18,13 @@ import { useEditDialogHook } from '@/lib/hooks/use-edit-dialog.hook'
 import { AnnualInfoForm } from '@/modules/household/components'
 import { annualInfoListFilters } from '../constants/annual-info-list-filters'
 import { useDeleteDialogHook } from '@/lib/hooks/use-delete-dialog.hook'
+import { ResourceEnum } from '@/modules/common/authorization/enums/resource.enum'
+import { withAuthorization } from '@/lib/hocs/with-authorization'
+import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
+import { PageProps } from '@/modules/common/interfaces/page-props.interface'
 
 const name = 'Annual Info'
-export function AnnualInfoListView() {
+function View() {
   const router = useRouter()
   const householdId = router.query.id
   const { onClickCreate } = useNewDialogHook({
@@ -45,7 +49,6 @@ export function AnnualInfoListView() {
   })
   return (
     <DatatableListView
-      name="Annual Info"
       // additionalTypenames={['AnnualInfo']}
       onCreate={onClickCreate}
       onEdit={onClickEdit}
@@ -58,6 +61,11 @@ export function AnnualInfoListView() {
       useListQueryHook={useAnnualInfoListQuery}
       columns={annualInfoListColumns}
       filters={annualInfoListFilters}
+      name={ResourceEnum.AnnualInfo}
     />
   )
 }
+export const AnnualInfoListView: PageProps = withAuthorization({
+  permission: PermissionEnum.Read,
+  resource: ResourceEnum.AnnualInfo,
+})(View)

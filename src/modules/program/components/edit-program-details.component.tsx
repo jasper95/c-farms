@@ -6,13 +6,17 @@ import { programSchema } from '@/modules/program/constants'
 import { useProgramDetailsQuery } from '@/modules/program/api/queries'
 import { useUpdateProgramMutation } from '@/modules/program/api/mutations'
 import { FormToolbar } from '@/components/form-toolbar'
+import { withAuthorization } from '@/lib/hocs/with-authorization'
+import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
+import { ResourceEnum } from '@/modules/common/authorization/enums/resource.enum'
+import { PageProps } from '@/modules/common/interfaces/page-props.interface'
 
-export function EditProgramDetails() {
-  const { formProps, onSave, isMutating } = useEditViewHook({
+function View() {
+  const { formProps, formDisabled, onSave, isMutating } = useEditViewHook({
     schema: programSchema,
     useDetailsQueryHook: useProgramDetailsQuery,
     useMutationHook: useUpdateProgramMutation,
-    name: 'Program',
+    name: ResourceEnum.Program,
     transform: ({ dateRange, ...a }) => ({
       ...a,
       dateStart: dateRange[0],
@@ -28,14 +32,20 @@ export function EditProgramDetails() {
   return (
     <Card>
       <CardContent>
-        <ProgramForm formProps={formProps} />
+        <ProgramForm formProps={formProps} formDisabled={formDisabled} />
         <FormToolbar
           cancelVisible={false}
           onConfirm={onSave}
           confirmLabel="Save"
           isLoading={isMutating}
+          confirmDisabled={formDisabled}
         />
       </CardContent>
     </Card>
   )
 }
+
+export const EditProgramDetails: PageProps = withAuthorization({
+  permission: PermissionEnum.Read,
+  resource: ResourceEnum.Program,
+})(View)

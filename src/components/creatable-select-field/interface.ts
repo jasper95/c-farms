@@ -8,4 +8,5 @@ export type Option = {
 export type ICreatableSelectFieldProps<T extends FieldValues> =
   UseControllerProps<T> & {
     label: string
+    disabled?: boolean
   }

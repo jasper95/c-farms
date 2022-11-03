@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { CommodityProduceForm } from '@/modules/household/components/commodity-produce-form.component'
 import {
   useCreateCommodityProduceMutation,
+  useDeleteCommodityProduceMutation,
   useUpdateCommodityProduceMutation,
 } from '@/modules/commodity-produce/api/mutations'
 import { commodityProduceSchema } from '@/modules/commodity-produce/constants/commodity-produce-schema'
@@ -13,9 +14,14 @@ import {
 } from '@/modules/commodity-produce/api/queries'
 import { commodityProduceListColumns } from '@/modules/commodity-produce/constants/commodity-produce-list-columns'
 import { useEditDialogHook } from '@/lib/hooks/use-edit-dialog.hook'
+import { ResourceEnum } from '@/modules/common/authorization/enums/resource.enum'
+import { withAuthorization } from '@/lib/hocs/with-authorization'
+import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
+import { PageProps } from '@/modules/common/interfaces/page-props.interface'
+import { useDeleteDialogHook } from '@/lib/hooks/use-delete-dialog.hook'
 
 const name = 'Commodity Produce'
-export function CommodityProduceInventoryListView() {
+function View() {
   const router = useRouter()
   const householdId = router.query.id
   const { onClickCreate } = useNewDialogHook({
@@ -28,6 +34,10 @@ export function CommodityProduceInventoryListView() {
     },
     additionalTypenames: ['Produce'],
   })
+  const { onClickDelete } = useDeleteDialogHook({
+    name,
+    useMutationHook: useDeleteCommodityProduceMutation,
+  })
   const { onClickEdit } = useEditDialogHook({
     schema: commodityProduceSchema,
     useDetailsQueryHook: useCommodityProduceDetailsQuery,
@@ -37,9 +47,10 @@ export function CommodityProduceInventoryListView() {
   })
   return (
     <DatatableListView
-      name="Commodity Produce"
+      name={ResourceEnum.CommodityProduce}
       onCreate={onClickCreate}
       onEdit={onClickEdit}
+      onDelete={onClickDelete}
       listQueryVariables={{
         householdId: {
           _eq: householdId,
@@ -51,3 +62,8 @@ export function CommodityProduceInventoryListView() {
     />
   )
 }
+
+export const CommodityProduceInventoryListView: PageProps = withAuthorization({
+  resource: ResourceEnum.CommodityProduce,
+  permission: PermissionEnum.Read,
+})(View)
