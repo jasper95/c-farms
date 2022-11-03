@@ -6,12 +6,13 @@ import { personalInfomationSchema } from '@/modules/household/constants'
 import { useEditViewHook } from '@/lib/hooks/use-edit-view.hook'
 import { useHouseholdDetailsQuery } from '@/modules/household/api/queries'
 import { useUpdateHouseholdMutation } from '@/modules/household/api/mutations'
+import { ResourceEnum } from '@/modules/common/authorization/enums/resource.enum'
 
 export function EditHouseholdDetails() {
   const { formProps, onSave, isMutating, formDisabled } = useEditViewHook({
     useDetailsQueryHook: useHouseholdDetailsQuery,
     useMutationHook: useUpdateHouseholdMutation,
-    name: 'Household',
+    name: ResourceEnum.Household,
     schema: personalInfomationSchema,
   })
 
@@ -23,7 +24,7 @@ export function EditHouseholdDetails() {
           formProps={formProps}
         />
         <FormToolbar
-          confirmDisabled={!formProps.formState.isDirty || !formDisabled}
+          confirmDisabled={!formProps.formState.isDirty || formDisabled}
           cancelVisible={false}
           onConfirm={onSave}
           isLoading={isMutating}

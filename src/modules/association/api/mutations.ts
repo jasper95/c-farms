@@ -22,6 +22,15 @@ export type UpdateAssociationMutation = {
   data?: { __typename?: 'Association'; id: any } | null | undefined
 }
 
+export type DeleteAssociationMutationVariables = Types.Exact<{
+  id: Types.Scalars['uuid']
+}>
+
+export type DeleteAssociationMutation = {
+  __typename?: 'mutation_root'
+  data?: { __typename?: 'Association'; id: any } | null | undefined
+}
+
 export const CreateAssociationDocument = gql`
   mutation CreateAssociation($object: AssociationInsertInput!) {
     data: insertAssociationOne(object: $object) {
@@ -52,4 +61,18 @@ export function useUpdateAssociationMutation() {
     UpdateAssociationMutation,
     UpdateAssociationMutationVariables
   >(UpdateAssociationDocument)
+}
+export const DeleteAssociationDocument = gql`
+  mutation DeleteAssociation($id: uuid!) {
+    data: deleteAssociationByPk(id: $id) {
+      id
+    }
+  }
+`
+
+export function useDeleteAssociationMutation() {
+  return Urql.useMutation<
+    DeleteAssociationMutation,
+    DeleteAssociationMutationVariables
+  >(DeleteAssociationDocument)
 }

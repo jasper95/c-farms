@@ -8,7 +8,7 @@ import keyBy from 'lodash/keyBy'
 export default function MultiSelectField<T extends FieldValues>(
   props: MultiSelectFieldProps<T>
 ) {
-  const { options, label, control, name } = props
+  const { options, label, control, name, disabled } = props
   const controller = useController({
     control,
     name,
@@ -19,6 +19,7 @@ export default function MultiSelectField<T extends FieldValues>(
   return (
     <Autocomplete
       {...restField}
+      disabled={disabled}
       multiple
       options={options.map((e) => e.value)}
       value={value}

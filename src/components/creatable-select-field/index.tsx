@@ -6,7 +6,7 @@ import { ICreatableSelectFieldProps } from './interface'
 function CreatableSelectField<T extends FieldValues>(
   props: ICreatableSelectFieldProps<T>
 ) {
-  const { control, name, label } = props
+  const { control, name, label, disabled } = props
   const controller = useController({
     control,
     name,
@@ -15,6 +15,7 @@ function CreatableSelectField<T extends FieldValues>(
   const { value = [] } = field
   return (
     <Autocomplete
+      disabled={disabled}
       multiple
       options={[]}
       open={false}

@@ -18,25 +18,37 @@ interface FarmFormProps {
   formProps: UseFormReturn<IFarmSchema>
   onSave: () => void
   isMutating: boolean
+  formDisabled?: boolean
 }
 
 export function FarmForm(props: FarmFormProps) {
-  const { formProps, isMutating, onSave } = props
+  const { formProps, formDisabled, isMutating, onSave } = props
   const { householdOptions } = useFarmFormHook(props)
   const { control } = formProps
 
   return (
     <Grid container spacing={2}>
       <Grid item sm={12} md={6}>
-        <MapField label="" control={control} name="location" />
+        <MapField
+          enabled={!formDisabled}
+          label=""
+          control={control}
+          name="location"
+        />
       </Grid>
       <Grid item sm={12} md={6}>
         <Grid container spacing={2}>
           <Grid item sm={12} md={6}>
-            <TextField label="Name" control={control} name="name" />
+            <TextField
+              disabled={formDisabled}
+              label="Name"
+              control={control}
+              name="name"
+            />
           </Grid>
           <Grid item sm={12} md={6}>
             <SelectField
+              disabled={formDisabled}
               label="Ownership Type"
               control={control}
               options={ownershipTypeOptions}
@@ -45,6 +57,7 @@ export function FarmForm(props: FarmFormProps) {
           </Grid>
           <Grid item sm={12} md={12}>
             <SelectField
+              disabled={formDisabled}
               label="Household"
               control={control}
               options={householdOptions}
@@ -53,11 +66,17 @@ export function FarmForm(props: FarmFormProps) {
           </Grid>
 
           <Grid item sm={12} md={6}>
-            <TextField label="Owner" control={control} name="ownerName" />
+            <TextField
+              disabled={formDisabled}
+              label="Owner"
+              control={control}
+              name="ownerName"
+            />
           </Grid>
 
           <Grid item sm={12} md={6}>
             <SelectField
+              disabled={formDisabled}
               label="Ownership Document"
               control={control}
               options={ownershipDocumentOptions}
@@ -66,6 +85,7 @@ export function FarmForm(props: FarmFormProps) {
           </Grid>
           <Grid item sm={12} md={6}>
             <SelectField
+              disabled={formDisabled}
               label="Type"
               control={control}
               options={farmTypeOptions}
@@ -74,6 +94,7 @@ export function FarmForm(props: FarmFormProps) {
           </Grid>
           <Grid item sm={12} md={6}>
             <TextField
+              disabled={formDisabled}
               label="Size in ha"
               control={control}
               name="sizeInHaTotal"
@@ -82,6 +103,7 @@ export function FarmForm(props: FarmFormProps) {
           </Grid>
           <Grid item sm={12} md={6}>
             <SelectField
+              disabled={formDisabled}
               label="Barangay"
               control={control}
               options={barangayOptions}
@@ -90,6 +112,7 @@ export function FarmForm(props: FarmFormProps) {
           </Grid>
           <Grid item sm={12} md={6}>
             <TextField
+              disabled={formDisabled}
               label="Municipality"
               control={control}
               name="municipality"
@@ -97,6 +120,7 @@ export function FarmForm(props: FarmFormProps) {
           </Grid>
           <Grid item sm={6}>
             <SwitchField
+              disabled={formDisabled}
               control={control}
               name="isAgrarianReformBeneficiary"
               label="Agrarian Reform Beneficiary"
@@ -104,6 +128,7 @@ export function FarmForm(props: FarmFormProps) {
           </Grid>
           <Grid item sm={6}>
             <SwitchField
+              disabled={formDisabled}
               control={control}
               name="withinAncestralDomain"
               label="Within Ancestral Domain"
@@ -112,6 +137,8 @@ export function FarmForm(props: FarmFormProps) {
         </Grid>
         <FormToolbar
           cancelVisible={false}
+          confirmVisible={false}
+          confirmDisabled={formDisabled}
           onConfirm={onSave}
           confirmLabel="Save"
           isLoading={isMutating}

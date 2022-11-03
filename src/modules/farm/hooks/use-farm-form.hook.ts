@@ -10,6 +10,7 @@ interface FarmFormProps {
   formProps: UseFormReturn<IFarmSchema>
   onSave: () => void
   isMutating: boolean
+  formDisabled?: boolean
 }
 
 export function useFarmFormHook(props: FarmFormProps) {

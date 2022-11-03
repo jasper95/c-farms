@@ -22,6 +22,15 @@ export type UpdateCommodityProduceMutation = {
   data?: { __typename?: 'CommodityProduce'; id: any } | null | undefined
 }
 
+export type DeleteCommodityProduceMutationVariables = Types.Exact<{
+  id: Types.Scalars['uuid']
+}>
+
+export type DeleteCommodityProduceMutation = {
+  __typename?: 'mutation_root'
+  data?: { __typename?: 'CommodityProduce'; id: any } | null | undefined
+}
+
 export const CreateCommodityProduceDocument = gql`
   mutation CreateCommodityProduce($object: CommodityProduceInsertInput!) {
     data: insertCommodityProduceOne(object: $object) {
@@ -52,4 +61,18 @@ export function useUpdateCommodityProduceMutation() {
     UpdateCommodityProduceMutation,
     UpdateCommodityProduceMutationVariables
   >(UpdateCommodityProduceDocument)
+}
+export const DeleteCommodityProduceDocument = gql`
+  mutation DeleteCommodityProduce($id: uuid!) {
+    data: deleteCommodityProduceByPk(id: $id) {
+      id
+    }
+  }
+`
+
+export function useDeleteCommodityProduceMutation() {
+  return Urql.useMutation<
+    DeleteCommodityProduceMutation,
+    DeleteCommodityProduceMutationVariables
+  >(DeleteCommodityProduceDocument)
 }

@@ -10,4 +10,5 @@ export type MultiSelectFieldProps<T extends FieldValues> =
     options: Option[]
     label: string
     placeholder?: string
+    disabled?: boolean
   }

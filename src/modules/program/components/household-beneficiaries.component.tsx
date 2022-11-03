@@ -1,4 +1,9 @@
 import DatatableListView from '@/components/views/datatable-list.view'
+import { withAuthorization } from '@/lib/hocs/with-authorization'
+import { useAuthStore } from '@/lib/stores/auth.store'
+import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
+import { ResourceEnum } from '@/modules/common/authorization/enums/resource.enum'
+import { PageProps } from '@/modules/common/interfaces/page-props.interface'
 import {
   useHouseholdProgramsListQuery,
   useProgramBeneficiariesListQuery,
@@ -10,7 +15,12 @@ import { useHouseholdBeneficiaries } from '@/modules/program/hooks/use-household
 import { programBeneficiariesListFilters } from '../constants/household-beneficiaries-filters'
 import { ProgramBeneficiariesActions } from './program-beneficiaries-actions'
 
-export function HouseholdBeneficiaries() {
+function View() {
+  const { ability } = useAuthStore()
+  const canUpdate = ability?.can(
+    PermissionEnum.Update,
+    ResourceEnum.HouseholdBeneficiaries
+  )
   const { bulkActions, view, id, assignedActions, unassignedActions } =
     useHouseholdBeneficiaries()
   if (view === ProgramBeneficiariesViewEnum.Unassigned) {
@@ -25,13 +35,13 @@ export function HouseholdBeneficiaries() {
         }}
         useListQueryHook={useHouseholdProgramsListQuery}
         columns={unassignedHouseholdListColumns}
-        name="Beneficiaries"
+        name={ResourceEnum.HouseholdBeneficiaries}
         withCreate={false}
-        isSelectable
-        bulkActions={bulkActions}
+        isSelectable={canUpdate}
+        bulkActions={canUpdate ? bulkActions : []}
         customActions={ProgramBeneficiariesActions}
         additionalTypenames={['HouseholdPrograms']}
-        actions={unassignedActions}
+        actions={canUpdate ? unassignedActions : []}
         filters={programBeneficiariesListFilters}
       />
     )
@@ -45,13 +55,17 @@ export function HouseholdBeneficiaries() {
       }}
       useListQueryHook={useProgramBeneficiariesListQuery}
       columns={beneficiariesListColumns}
-      name="Beneficiaries"
+      name={ResourceEnum.ProgramBeneficiaries}
       withCreate={false}
-      isSelectable
-      bulkActions={bulkActions}
+      isSelectable={canUpdate}
+      bulkActions={canUpdate ? bulkActions : []}
       customActions={ProgramBeneficiariesActions}
       additionalTypenames={['ProgramBeneficiaries']}
-      actions={assignedActions}
+      actions={canUpdate ? assignedActions : []}
     />
   )
 }
+export const HouseholdBeneficiaries: PageProps = withAuthorization({
+  permission: PermissionEnum.Read,
+  resource: ResourceEnum.ProgramBeneficiaries,
+})(View)

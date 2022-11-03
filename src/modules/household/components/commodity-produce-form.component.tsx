@@ -9,6 +9,10 @@ import { ICommodityProduceSchema } from '@/modules/commodity-produce/constants'
 import { useCommodityProduceFormHook } from '@/modules/commodity-produce/hooks/commodity-produce-form.hook'
 import SwitchField from '@/components/switch-field'
 import InputAdornment from '@mui/material/InputAdornment'
+import { withAuthorization } from '@/lib/hocs/with-authorization'
+import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
+import { ResourceEnum } from '@/modules/common/authorization/enums/resource.enum'
+import { PageProps } from '@/modules/common/interfaces/page-props.interface'
 
 interface ICommodityProduceFormProps {
   formProps: UseFormReturn<ICommodityProduceSchema>
