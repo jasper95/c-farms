@@ -13,6 +13,9 @@ import Grid from '@mui/material/Unstable_Grid2'
 import ListFilter from '@/components/list-filter'
 import { FilterValuesList } from '@/components/list-filter/filter-values-list'
 import { ComponentType } from 'react'
+import DownloadIcon from '@mui/icons-material/Download'
+import IconButton from '@mui/material/IconButton'
+import Tooltip from '@mui/material/Tooltip'
 
 interface DatatableListViewProps<
   QueryResponse extends Identifiable,
@@ -94,6 +97,11 @@ export default function DatatableListView<
             <CustomActions
               {...pick(tableProps, 'tableState', 'tableDispatch')}
             />
+            <Tooltip title="Export">
+              <IconButton sx={{ mr: 2 }}>
+                <DownloadIcon />
+              </IconButton>
+            </Tooltip>
             {canCreate && withCreate && (
               <Button
                 {...(onCreate

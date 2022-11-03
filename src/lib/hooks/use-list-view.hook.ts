@@ -7,7 +7,7 @@ import {
 } from '@/components/data-table/types'
 import { useTableState } from '@/components/data-table/use-table-state'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import * as Urql from 'urql'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -137,6 +137,8 @@ export function useListViewHook<
     [ability, name]
   )
 
+  const onExport = useCallback(() => {}, [])
+
   const defaultActions = useMemo(() => {
     const actions: DataTableAction<QueryResponse>[] = []
     if (canEdit) {
@@ -178,5 +180,6 @@ export function useListViewHook<
     baseUrl: router.asPath,
     onSearchChanged,
     canCreate,
+    onExport,
   }
 }
