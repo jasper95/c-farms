@@ -24,6 +24,7 @@ import {
 import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
 import { ResourceEnum } from '@/modules/common/authorization/enums/resource.enum'
 import { PageProps } from '@/modules/common/interfaces/page-props.interface'
+import { commodityListFilters } from '../constants/commodity-list-filters'
 
 function View() {
   const { onClickCreate } = useNewDialogHook({
@@ -31,7 +32,9 @@ function View() {
     schema: commoditySchema,
     name: 'Commodity',
     useMutationHook: useCreateCommodityMutation,
+    additionalTypenames: ['Commodity'],
   })
+
   const { onClickDelete } = useDeleteDialogHook({
     useMutationHook: useDeleteCommodityMutation,
     name: '',
@@ -42,6 +45,7 @@ function View() {
     useMutationHook: useUpdateCommodityMutation,
     name: 'Commodity',
     component: CommodityForm,
+    additionalTypenames: ['Commodity'],
   })
 
   return (
@@ -55,6 +59,8 @@ function View() {
         useListQueryHook={useCommodityListQuery}
         columns={commodityListColumns}
         name={ResourceEnum.Commodity}
+        filters={commodityListFilters}
+        additionalTypenames={['Commodity']}
       />
     </>
   )

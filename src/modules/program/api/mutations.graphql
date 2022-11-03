@@ -45,3 +45,9 @@ mutation CreateAssociationProgram($objects: [AssociationToProgramInsertInput!]!)
     affected_rows
   }
 }
+
+mutation DeleteProgram($id: uuid!) {
+  data: deleteProgramByPk(id: $id) {
+    id
+  }
+}

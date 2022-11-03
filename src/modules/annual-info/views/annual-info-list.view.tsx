@@ -1,4 +1,5 @@
 import DatatableListView from '@/components/views/datatable-list.view'
+import { Option } from '@/components/creatable-select-field/interface'
 import { useNewDialogHook } from '@/lib/hooks/use-new-dialog.hook'
 import {
   useAnnualInfoDetailsQuery,
@@ -15,13 +16,14 @@ import {
   useUpdateAnnualInfoMutation,
 } from '@/modules/annual-info/api/mutations'
 import { useEditDialogHook } from '@/lib/hooks/use-edit-dialog.hook'
-import { AnnualInfoForm } from '@/modules/household/components'
+import { AnnualInfoForm } from '@/modules/household/components/annual-info-form.component'
 import { annualInfoListFilters } from '../constants/annual-info-list-filters'
 import { useDeleteDialogHook } from '@/lib/hooks/use-delete-dialog.hook'
 import { ResourceEnum } from '@/modules/common/authorization/enums/resource.enum'
 import { withAuthorization } from '@/lib/hocs/with-authorization'
 import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
 import { PageProps } from '@/modules/common/interfaces/page-props.interface'
+import { useState } from 'react'
 
 const name = 'Annual Info'
 function View() {
@@ -35,6 +37,7 @@ function View() {
     params: {
       householdId,
     },
+    additionalTypenames: ['Annual-Info'],
   })
   const { onClickDelete } = useDeleteDialogHook({
     name,
@@ -62,6 +65,7 @@ function View() {
       columns={annualInfoListColumns}
       filters={annualInfoListFilters}
       name={ResourceEnum.AnnualInfo}
+      additionalTypenames={['Annual-Info']}
     />
   )
 }
