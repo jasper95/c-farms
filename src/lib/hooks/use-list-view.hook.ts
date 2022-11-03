@@ -128,14 +128,15 @@ export function useListViewHook<
     })
   }, [listResponse?.data, tableDispatch])
 
-  const canEdit = useMemo(
-    () => ability?.can(PermissionEnum.Update, name),
+  const { canCreate, canDelete, canEdit } = useMemo(
+    () => ({
+      canCreate: ability?.can(PermissionEnum.Create, name),
+      canDelete: ability?.can(PermissionEnum.Delete, name),
+      canEdit: ability?.can(PermissionEnum.Update, name),
+    }),
     [ability, name]
   )
-  const canDelete = useMemo(
-    () => ability?.can(PermissionEnum.Delete, name),
-    [ability, name]
-  )
+
   const defaultActions = useMemo(() => {
     const actions: DataTableAction<QueryResponse>[] = []
     if (canEdit) {
@@ -176,5 +177,6 @@ export function useListViewHook<
     filters,
     baseUrl: router.asPath,
     onSearchChanged,
+    canCreate,
   }
 }

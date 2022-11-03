@@ -13,8 +13,6 @@ import Grid from '@mui/material/Unstable_Grid2'
 import ListFilter from '@/components/list-filter'
 import { FilterValuesList } from '@/components/list-filter/filter-values-list'
 import { ComponentType } from 'react'
-import { useAuthStore } from '@/lib/stores/auth.store'
-import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
 
 interface DatatableListViewProps<
   QueryResponse extends Identifiable,
@@ -41,26 +39,25 @@ export default function DatatableListView<
     customActions: CustomActions = () => null,
     isSelectable,
   } = props
-  const { tableProps, onSearchChanged, baseUrl, filters } = useListViewHook(
-    pick(
-      props,
-      'listQueryVariables',
-      'useListQueryHook',
-      'columns',
-      'onEdit',
-      'onDelete',
-      'baseUrl',
-      'filters',
-      'bulkActions',
-      'additionalTypenames',
-      'actions',
-      'name'
+  const { tableProps, onSearchChanged, baseUrl, filters, canCreate } =
+    useListViewHook(
+      pick(
+        props,
+        'listQueryVariables',
+        'useListQueryHook',
+        'columns',
+        'onEdit',
+        'onDelete',
+        'baseUrl',
+        'filters',
+        'bulkActions',
+        'additionalTypenames',
+        'actions',
+        'name'
+      )
     )
-  )
   const { tableState, tableDispatch } = tableProps
   const { name, onCreate, withCreate = true } = props
-  const { ability } = useAuthStore()
-  const canCreate = withCreate && ability?.can(PermissionEnum.Create, name)
   return (
     <Box>
       <Grid sx={{ mb: 2 }} container spacing={2}>
@@ -97,7 +94,7 @@ export default function DatatableListView<
             <CustomActions
               {...pick(tableProps, 'tableState', 'tableDispatch')}
             />
-            {canCreate && (
+            {canCreate && withCreate && (
               <Button
                 {...(onCreate
                   ? {

@@ -18,6 +18,7 @@ type DefinePermissions = (
 
 const rolePermissions: Record<RoleEnum, DefinePermissions> = {
   encoder(user, { can, cannot }) {
+    can(PermissionEnum.Read, ResourceEnum.Dashboard)
     can(PermissionEnum.Create, ResourceEnum.AnnualInfo)
     can(PermissionEnum.Read, ResourceEnum.AnnualInfo)
     can(PermissionEnum.Read, ResourceEnum.Association)
