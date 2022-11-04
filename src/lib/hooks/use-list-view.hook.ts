@@ -17,7 +17,6 @@ import * as Types from '@/lib/generated/graphql.types'
 import { OrderBy } from '@/lib/generated/graphql.types'
 import { useAuthStore } from '../stores/auth.store'
 import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
-import { useRequest } from './use-request.hook'
 import { exportCsv } from '../utils/exporter'
 
 export type BaseListQuery<ListRow> = {

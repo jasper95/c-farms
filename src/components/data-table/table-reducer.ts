@@ -1,3 +1,4 @@
+import { AsyncSelectFieldProps } from '../asyc-select-field'
 import { FieldTypeEnum } from '../list-filter/field-type.enum'
 import { FilterTypeEnum } from '../list-filter/filter-type.enum'
 import { ColumnSort } from './types'
@@ -7,6 +8,7 @@ export interface IFilter {
   field: string
   label: string
   options?: { label: string; value: string }[]
+  asyncProps?: Pick<AsyncSelectFieldProps, 'useOptionsQueryHook' | 'variables'>
 }
 
 export interface IFilterValue {

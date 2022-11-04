@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import { UseFormReturn, useWatch } from 'react-hook-form'
+import { AsyncSelectField } from '../asyc-select-field'
 import { IFilter } from '../data-table/table-reducer'
 import DatePicker from '../date-picker'
 import SelectField from '../select-field'
@@ -40,14 +41,23 @@ export function FilterValueField(props: FilterValueFieldProps) {
       </Box>
     )
   } else if (selectedFilter?.type === FieldTypeEnum.Enumeration) {
+    if (selectedFilter.asyncProps) {
+      return (
+        <AsyncSelectField
+          {...selectedFilter.asyncProps}
+          name="value"
+          label="Value"
+        />
+      )
+    }
     const { options = [] } = selectedFilter
     return (
       <SelectField
         sx={{ mb: 2 }}
         name="value"
+        label="Value"
         control={control}
         options={options}
-        label="Value"
       />
     )
   }
