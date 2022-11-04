@@ -12,7 +12,15 @@ export type ProgramListQueryVariables = Types.Exact<{
 
 export type ProgramListQuery = {
   __typename?: 'query_root'
-  list: Array<{ __typename?: 'Program'; id: any; name: string; type: string }>
+  list: Array<{
+    __typename?: 'Program'
+    id: any
+    name: string
+    type: string
+    sponsoringAgency: string
+    dateStart: any
+    dateEnd?: any | null | undefined
+  }>
   meta: {
     __typename?: 'ProgramAggregate'
     aggregate?:
@@ -67,7 +75,8 @@ export type ProgramBeneficiariesListQuery = {
     programId: any
     barangay: string
     referenceNo: string
-    commodities: any
+    commodityIds?: any | null | undefined
+    commodityNames?: any | null | undefined
     mainLivelihood?: any | null | undefined
   }>
   meta: {
@@ -190,6 +199,9 @@ export const ProgramListDocument = gql`
       id
       name
       type
+      sponsoringAgency
+      dateStart
+      dateEnd
     }
     meta: programAggregate(where: $where) {
       aggregate {
@@ -253,7 +265,8 @@ export const ProgramBeneficiariesListDocument = gql`
       programId
       barangay
       referenceNo
-      commodities
+      commodityIds
+      commodityNames
       mainLivelihood
     }
     meta: programBeneficiariesAggregate(where: $where) {

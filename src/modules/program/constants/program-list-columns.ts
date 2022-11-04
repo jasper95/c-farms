@@ -1,9 +1,8 @@
 import { DataTableColumn } from '@/components/data-table/types'
 import { ProgramListQuery } from '@/modules/program/api/queries'
 
-export const programListColumns: DataTableColumn<
-  ProgramListQuery['list'][0]
->[] = [
+export type ProgramListRow = ProgramListQuery['list'][0]
+export const programListColumns: DataTableColumn<ProgramListRow>[] = [
   {
     title: 'Name',
     accessor: 'name',
@@ -12,5 +11,9 @@ export const programListColumns: DataTableColumn<
   {
     title: 'Type',
     accessor: 'type',
+  },
+  {
+    title: 'Sponsoring Agency',
+    accessor: 'sponsoringAgency',
   },
 ]

@@ -4271,6 +4271,8 @@ export type ProgramBeneficiaries = {
   __typename?: 'ProgramBeneficiaries'
   barangay: Scalars['String']
   commodities: Scalars['jsonb']
+  commodityIds?: Maybe<Scalars['jsonb']>
+  commodityNames?: Maybe<Scalars['jsonb']>
   createdAt: Scalars['timestamp']
   farmSize: Scalars['numeric']
   firstName: Scalars['String']
@@ -4287,6 +4289,16 @@ export type ProgramBeneficiaries = {
 /** columns and relationships of "programBeneficiaries" */
 export type ProgramBeneficiariesCommoditiesArgs = {
   path?: InputMaybe<Scalars['Int']>
+}
+
+/** columns and relationships of "programBeneficiaries" */
+export type ProgramBeneficiariesCommodityIdsArgs = {
+  path?: InputMaybe<Scalars['String']>
+}
+
+/** columns and relationships of "programBeneficiaries" */
+export type ProgramBeneficiariesCommodityNamesArgs = {
+  path?: InputMaybe<Scalars['String']>
 }
 
 /** columns and relationships of "programBeneficiaries" */
@@ -4337,7 +4349,8 @@ export type ProgramBeneficiariesBoolExp = {
   _not?: InputMaybe<ProgramBeneficiariesBoolExp>
   _or?: InputMaybe<Array<ProgramBeneficiariesBoolExp>>
   barangay?: InputMaybe<StringComparisonExp>
-  commodities?: InputMaybe<JsonbComparisonExp>
+  commodityIds?: InputMaybe<JsonbComparisonExp>
+  commodityNames?: InputMaybe<JsonbComparisonExp>
   createdAt?: InputMaybe<TimestampComparisonExp>
   farmSize?: InputMaybe<NumericComparisonExp>
   firstName?: InputMaybe<StringComparisonExp>
@@ -4386,7 +4399,8 @@ export type ProgramBeneficiariesMinFields = {
 /** Ordering options when selecting data from "programBeneficiaries". */
 export type ProgramBeneficiariesOrderBy = {
   barangay?: InputMaybe<OrderBy>
-  commodities?: InputMaybe<OrderBy>
+  commodityIds?: InputMaybe<OrderBy>
+  commodityNames?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
   farmSize?: InputMaybe<OrderBy>
   firstName?: InputMaybe<OrderBy>
@@ -4405,7 +4419,9 @@ export enum ProgramBeneficiariesSelectColumn {
   /** column name */
   Barangay = 'barangay',
   /** column name */
-  Commodities = 'commodities',
+  CommodityIds = 'commodityIds',
+  /** column name */
+  CommodityNames = 'commodityNames',
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
@@ -6802,7 +6818,8 @@ export type ProgramBeneficiaries_StreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type ProgramBeneficiaries_StreamCursorValueInput = {
   barangay?: InputMaybe<Scalars['String']>
-  commodities?: InputMaybe<Scalars['jsonb']>
+  commodityIds?: InputMaybe<Scalars['jsonb']>
+  commodityNames?: InputMaybe<Scalars['jsonb']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   farmSize?: InputMaybe<Scalars['numeric']>
   firstName?: InputMaybe<Scalars['String']>

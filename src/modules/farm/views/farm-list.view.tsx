@@ -13,6 +13,7 @@ import { PageProps } from '@/modules/common/interfaces/page-props.interface'
 import { useDeleteDialogHook } from '@/lib/hooks/use-delete-dialog.hook'
 import { useDeleteFarmMutation } from '../api/mutations'
 import { farmListFilters } from '../constants/farm-list-filters'
+import { farmExportColumns } from '../constants/farm-export-columns'
 
 const name = 'Farm'
 function View() {
@@ -33,6 +34,7 @@ function View() {
         name={ResourceEnum.Farm}
         onDelete={onClickDelete}
         filters={farmListFilters}
+        exportFields={farmExportColumns}
       />
     </>
   )

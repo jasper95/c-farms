@@ -17,6 +17,7 @@ import { programListColumns, programSchema } from '@/modules/program/constants'
 import { programListFilters } from '@/modules/program/constants/program-list-filters'
 import { PageProps } from '@/modules/common/interfaces/page-props.interface'
 import { useDeleteDialogHook } from '@/lib/hooks/use-delete-dialog.hook'
+import { programExportColumns } from '../constants/program-export-columns'
 
 const name = 'Program'
 function View() {
@@ -51,6 +52,7 @@ function View() {
         onDelete={onClickDelete}
         filters={programListFilters}
         additionalTypenames={['Program']}
+        exportFields={programExportColumns}
       />
     </>
   )

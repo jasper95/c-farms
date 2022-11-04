@@ -1,9 +1,8 @@
 import { DataTableColumn } from '@/components/data-table/types'
 import { AssociationListQuery } from '@/modules/association/api/queries'
 
-export const associationListColumns: DataTableColumn<
-  AssociationListQuery['list'][0]
->[] = [
+export type AssociationListRow = AssociationListQuery['list'][0]
+export const associationListColumns: DataTableColumn<AssociationListRow>[] = [
   {
     title: 'Name',
     accessor: 'shortName',
