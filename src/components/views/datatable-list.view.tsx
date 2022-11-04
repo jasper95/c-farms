@@ -42,7 +42,7 @@ export default function DatatableListView<
     customActions: CustomActions = () => null,
     isSelectable,
   } = props
-  const { tableProps, onSearchChanged, baseUrl, filters, canCreate } =
+  const { tableProps, onSearchChanged, baseUrl, filters, canCreate, onExport } =
     useListViewHook(
       pick(
         props,
@@ -56,7 +56,8 @@ export default function DatatableListView<
         'bulkActions',
         'additionalTypenames',
         'actions',
-        'name'
+        'name',
+        'exportFields'
       )
     )
   const { tableState, tableDispatch } = tableProps
@@ -97,11 +98,13 @@ export default function DatatableListView<
             <CustomActions
               {...pick(tableProps, 'tableState', 'tableDispatch')}
             />
-            <Tooltip title="Export">
-              <IconButton sx={{ mr: 2 }}>
-                <DownloadIcon />
-              </IconButton>
-            </Tooltip>
+            {onExport && (
+              <Tooltip title="Export">
+                <IconButton onClick={onExport} sx={{ mr: 2 }}>
+                  <DownloadIcon />
+                </IconButton>
+              </Tooltip>
+            )}
             {canCreate && withCreate && (
               <Button
                 {...(onCreate

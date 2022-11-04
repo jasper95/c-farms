@@ -7,7 +7,7 @@ import {
 } from '@/components/data-table/types'
 import { useTableState } from '@/components/data-table/use-table-state'
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import * as Urql from 'urql'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
@@ -17,6 +17,8 @@ import * as Types from '@/lib/generated/graphql.types'
 import { OrderBy } from '@/lib/generated/graphql.types'
 import { useAuthStore } from '../stores/auth.store'
 import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
+import { useRequest } from './use-request.hook'
+import { exportCsv } from '../utils/exporter'
 
 export type BaseListQuery<ListRow> = {
   list: Array<ListRow>
@@ -39,6 +41,8 @@ export type BaseListVariables<T> = Types.Exact<{
       | 'DESC_NULLS_LAST'
   }
 }>
+
+export type ExportOf<T> = (keyof T)[]
 
 export interface ListPagination {
   limit: number
@@ -68,6 +72,7 @@ export interface UseListViewProps<
   baseUrl?: string
   additionalTypenames?: string[]
   name: string
+  exportFields?: ExportOf<QueryResponse>
 }
 
 export function useListViewHook<
@@ -86,6 +91,7 @@ export function useListViewHook<
     additionalTypenames = [],
     actions,
     name,
+    exportFields,
   } = props
   const [tableState, tableDispatch] = useTableState()
   const { ability } = useAuthStore()
@@ -116,6 +122,20 @@ export function useListViewHook<
     },
   })
 
+  const [{ data: exportedData }, fetchAll] = useListQueryHook({
+    pause: true,
+  })
+
+  // dirty work-around
+  const [triggerDownload, setTriggerDownload] = useState(false)
+
+  useEffect(() => {
+    if (exportedData && exportFields && triggerDownload) {
+      exportCsv(exportedData.list, exportFields as string[], name)
+      setTriggerDownload(false)
+    }
+  }, [exportedData, exportFields, name, triggerDownload, setTriggerDownload])
+
   const rows = useMemo(
     () => listResponse?.data?.list || [],
     [listResponse?.data]
@@ -137,7 +157,15 @@ export function useListViewHook<
     [ability, name]
   )
 
-  const onExport = useCallback(() => {}, [])
+  const onExport = useCallback(() => {
+    fetchAll({
+      where: {
+        ...listQueryVariables,
+        _and: userFilters,
+      },
+    })
+    setTriggerDownload(true)
+  }, [fetchAll, listQueryVariables, userFilters, setTriggerDownload])
 
   const defaultActions = useMemo(() => {
     const actions: DataTableAction<QueryResponse>[] = []
@@ -180,6 +208,6 @@ export function useListViewHook<
     baseUrl: router.asPath,
     onSearchChanged,
     canCreate,
-    onExport,
+    onExport: exportFields ? onExport : undefined,
   }
 }

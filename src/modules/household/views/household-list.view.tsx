@@ -1,6 +1,7 @@
 import Breadcrumbs from '@/components/breadcrumbs'
 import getDashboardLayout from '@/components/layout/dashboard.layout'
 import {
+  householdExportColumns,
   householdListColumns,
   householdListFilters,
 } from '@/modules/household/constants'
@@ -21,6 +22,7 @@ function View() {
         columns={householdListColumns}
         name={ResourceEnum.Household}
         filters={householdListFilters}
+        exportFields={householdExportColumns}
       />
     </>
   )

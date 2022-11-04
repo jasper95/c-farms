@@ -1,5 +1,5 @@
 export enum ResourceEnum {
-  All = 'All',
+  All = 'all',
   Dashboard = 'Dashboard',
   AnnualInfo = 'Annual Info',
   Association = 'Association',

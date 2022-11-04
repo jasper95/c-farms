@@ -35,10 +35,7 @@ const rolePermissions: Record<RoleEnum, DefinePermissions> = {
     can(PermissionEnum.Read, ResourceEnum.ProgramBeneficiaries)
   },
   administrator(user, { can }) {
-    can(PermissionEnum.Create, ResourceEnum.All)
-    can(PermissionEnum.Read, ResourceEnum.All)
-    can(PermissionEnum.Update, ResourceEnum.All)
-    can(PermissionEnum.Delete, ResourceEnum.All)
+    can(PermissionEnum.Manage, ResourceEnum.All)
   },
   manager(user, { can }) {
     can(PermissionEnum.Read, ResourceEnum.All)
