@@ -6,7 +6,6 @@ import { useRouter } from 'next/router'
 import { useEffect, useMemo } from 'react'
 import { UseFormReturn, useWatch } from 'react-hook-form'
 import { ICommodityProduceSchema } from '../constants/commodity-produce-schema'
-import { find } from 'lodash'
 import { OrderBy } from '@/lib/generated/graphql.types'
 
 interface ICommodityProduceFormProps {
@@ -46,9 +45,9 @@ export function useCommodityProduceFormHook(props: ICommodityProduceFormProps) {
     )
   }, [commodityListOptionsResponse.data])
 
-  const commodity = find(commodityOptions, {
-    value: produceGetValues('commodityId'),
-  })
+  const commodity = commodityOptions.find(
+    (option) => option.value === produceGetValues('commodityId')
+  )
 
   useEffect(() => {
     produceSetValue('unit', commodity?.unit ?? '')

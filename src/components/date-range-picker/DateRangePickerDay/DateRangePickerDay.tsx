@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import clsx from 'clsx'
 import { SxProps } from '@mui/system'
 import { alpha, styled, Theme, useThemeProps } from '@mui/material/styles'
-import { unstable_composeClasses as composeClasses } from '@mui/material'
+import composeClasses from '@mui/utils/composeClasses'
 import {
   DAY_MARGIN,
   useUtils,

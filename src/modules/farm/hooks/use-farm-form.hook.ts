@@ -3,7 +3,6 @@ import { useMemo } from 'react'
 import { IFarmSchema } from '../constants'
 import { UseFormReturn, useWatch } from 'react-hook-form'
 import { useEffect } from 'react'
-import { find } from 'lodash'
 import { OrderBy } from '@/lib/generated/graphql.types'
 
 interface FarmFormProps {
@@ -57,9 +56,9 @@ export function useFarmFormHook(props: FarmFormProps) {
     )
   }, [householdListOptionsResponse.data])
 
-  const householdName = find(householdOptions, {
-    value: farmGetValues('householdId'),
-  })?.label
+  const householdName = householdOptions.find(
+    (option) => option.value === farmGetValues('householdId')
+  )?.label
 
   useEffect(() => {
     ownershipType === 'Registered Owner'

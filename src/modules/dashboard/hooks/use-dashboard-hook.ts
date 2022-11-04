@@ -18,7 +18,8 @@ import GrassIcon from '@mui/icons-material/Grass'
 import ListAltIcon from '@mui/icons-material/ListAlt'
 import { useForm, useWatch } from 'react-hook-form'
 import { dashboardFormSchema } from '../constants/dashboard-form-schema'
-import { isEqual, uniqWith } from 'lodash'
+import isEqual from 'lodash/isEqual'
+import uniqWith from 'lodash/uniqWith'
 
 export function useDashboardHook() {
   const [averageAnnualIncomeResponse] = useAverageAnnualIncomeListQuery({

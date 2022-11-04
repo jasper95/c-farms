@@ -1,4 +1,4 @@
-import { LinearProgress } from '@mui/material'
+import LinearProgress from '@mui/material/LinearProgress'
 import { useSession } from 'next-auth/react'
 import React, { useEffect, useMemo } from 'react'
 import { defineAbilityFor } from '@/modules/common/authorization/define-ability'
