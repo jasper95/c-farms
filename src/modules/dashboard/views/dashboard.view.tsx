@@ -19,7 +19,6 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { useDashboardHook } from '../hooks/use-dashboard-hook'
 import SelectField from '@/components/select-field'
-import { useSession } from 'next-auth/react'
 
 export function DashboardView() {
   const {
@@ -40,7 +39,7 @@ export function DashboardView() {
     <DashboardLayout>
       <Grid sx={{ mb: 2 }} container spacing={2}>
         {stats.map((stat) => (
-          <Grid key={stat.label} item xs={6} md={3}>
+          <Grid key={stat.label} item xs={12} md={3}>
             <Card
               sx={{
                 p: 2,
