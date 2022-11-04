@@ -3,4 +3,5 @@ export enum PermissionEnum {
   Read = 'read',
   Update = 'update',
   Delete = 'delete',
+  Manage = 'manage',
 }
