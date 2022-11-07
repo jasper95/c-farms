@@ -5,10 +5,9 @@ import IconButton from '@mui/material/IconButton'
 import { Theme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+import MenuIcon from '@mui/icons-material/Menu'
 import NavigationMenu from './navigation-menu.layout'
 import { DRAWER_WIDTH } from './constants'
-import Box from '@mui/material/Box'
 import { Logo } from './logo'
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -66,15 +65,17 @@ export default function Navigation() {
       variant={isSmall ? 'temporary' : 'permanent'}
       open={open}
       onClose={toggleSidebar}
+      PaperProps={{
+        sx: {
+          bgcolor: 'background.default',
+          borderRightStyle: 'dashed',
+        },
+      }}
     >
       <DrawerHeader>
         {open && <Logo />}
         <IconButton onClick={toggleSidebar}>
-          {theme.direction === 'rtl' ? (
-            <ChevronRightIcon />
-          ) : (
-            <ChevronLeftIcon />
-          )}
+          {open ? <ChevronLeftIcon /> : <MenuIcon />}
         </IconButton>
       </DrawerHeader>
       <NavigationMenu />
