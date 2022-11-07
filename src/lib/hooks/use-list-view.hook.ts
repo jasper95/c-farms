@@ -185,11 +185,20 @@ export function useListViewHook<
     fetchAll({
       where: {
         ...listQueryVariables,
+        ...(searchFilters.length && {
+          _or: searchFilters,
+        }),
         _and: userFilters,
       },
     })
     setTriggerDownload(true)
-  }, [fetchAll, listQueryVariables, userFilters, setTriggerDownload])
+  }, [
+    fetchAll,
+    listQueryVariables,
+    userFilters,
+    setTriggerDownload,
+    searchFilters,
+  ])
 
   const defaultActions = useMemo(() => {
     const actions: DataTableAction<QueryResponse>[] = []
