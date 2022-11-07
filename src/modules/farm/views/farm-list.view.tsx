@@ -12,6 +12,8 @@ import { PermissionEnum } from '@/modules/common/authorization/enums/permission.
 import { PageProps } from '@/modules/common/interfaces/page-props.interface'
 import { useDeleteDialogHook } from '@/lib/hooks/use-delete-dialog.hook'
 import { useDeleteFarmMutation } from '../api/mutations'
+import { farmExportColumns } from '../constants/farm-export-columns'
+import { farmListFilters } from '../constants/farm-list-filters'
 
 const name = 'Farm'
 function View() {
@@ -31,6 +33,8 @@ function View() {
         customActions={FarmMapTableActions}
         name={ResourceEnum.Farm}
         onDelete={onClickDelete}
+        filters={farmListFilters}
+        exportFields={farmExportColumns}
       />
     </>
   )

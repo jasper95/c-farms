@@ -7,12 +7,17 @@ import { withAuthorization } from '@/lib/hocs/with-authorization'
 import { useNewDialogHook } from '@/lib/hooks/use-new-dialog.hook'
 import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
 import { ResourceEnum } from '@/modules/common/authorization/enums/resource.enum'
-import { useCreateProgramMutation } from '@/modules/program/api/mutations'
+import {
+  useCreateProgramMutation,
+  useDeleteProgramMutation,
+} from '@/modules/program/api/mutations'
 import { useProgramListQuery } from '@/modules/program/api/queries'
 import ProgramForm from '@/modules/program/components/program-form.component'
 import { programListColumns, programSchema } from '@/modules/program/constants'
 import { programListFilters } from '@/modules/program/constants/program-list-filters'
 import { PageProps } from '@/modules/common/interfaces/page-props.interface'
+import { useDeleteDialogHook } from '@/lib/hooks/use-delete-dialog.hook'
+import { programExportColumns } from '../constants/program-export-columns'
 
 const name = 'Program'
 function View() {
@@ -26,6 +31,13 @@ function View() {
       dateStart: dateRange[0],
       dateEnd: dateRange[1],
     }),
+    additionalTypenames: ['Program'],
+  })
+
+  const { onClickDelete } = useDeleteDialogHook({
+    name,
+    useMutationHook: useDeleteProgramMutation,
+    additionalTypenames: ['Program'],
   })
 
   return (
@@ -37,7 +49,10 @@ function View() {
         columns={programListColumns}
         name={ResourceEnum.Program}
         onCreate={onClickCreate}
+        onDelete={onClickDelete}
         filters={programListFilters}
+        additionalTypenames={['Program']}
+        exportFields={programExportColumns}
       />
     </>
   )

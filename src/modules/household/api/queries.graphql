@@ -16,6 +16,10 @@ query HouseholdList(
     middleName
     referenceNo
     barangay
+    is4psBeneficiary
+    ipMembership
+    maleCount
+    femaleCount
   }
   meta: householdAggregate(where: $where) {
     aggregate {

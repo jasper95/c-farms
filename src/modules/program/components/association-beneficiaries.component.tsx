@@ -11,6 +11,7 @@ import { ProgramBeneficiariesViewEnum } from '@/modules/program/enums'
 import { useAssociationBeneficiaries } from '@/modules/program/hooks/use-association-beneficiaries'
 import { ProgramBeneficiariesActions } from './program-beneficiaries-actions'
 import { useAuthStore } from '@/lib/stores/auth.store'
+import { associationBeneficiariesExportColumns } from '../constants/association-beneficiaries-export-columns'
 
 export function AssociationBeneficiaries() {
   const { ability } = useAuthStore()
@@ -58,6 +59,7 @@ export function AssociationBeneficiaries() {
       customActions={ProgramBeneficiariesActions}
       additionalTypenames={['AssociationBeneficiaries']}
       actions={canUpdate ? assignedActions : []}
+      exportFields={associationBeneficiariesExportColumns}
     />
   )
 }

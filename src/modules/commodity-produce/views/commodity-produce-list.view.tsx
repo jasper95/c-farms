@@ -19,6 +19,7 @@ import { withAuthorization } from '@/lib/hocs/with-authorization'
 import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
 import { PageProps } from '@/modules/common/interfaces/page-props.interface'
 import { useDeleteDialogHook } from '@/lib/hooks/use-delete-dialog.hook'
+import { commodityProduceListFilters } from '../constants/commodity-produce-list-filters'
 
 const name = 'Commodity Produce'
 function View() {
@@ -37,6 +38,7 @@ function View() {
   const { onClickDelete } = useDeleteDialogHook({
     name,
     useMutationHook: useDeleteCommodityProduceMutation,
+    additionalTypenames: ['Produce'],
   })
   const { onClickEdit } = useEditDialogHook({
     schema: commodityProduceSchema,
@@ -59,6 +61,7 @@ function View() {
       useListQueryHook={useCommodityProduceListQuery}
       columns={commodityProduceListColumns}
       additionalTypenames={['Produce']}
+      filters={commodityProduceListFilters}
     />
   )
 }

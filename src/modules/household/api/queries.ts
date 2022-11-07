@@ -22,6 +22,10 @@ export type HouseholdListQuery = {
     middleName: string
     referenceNo: string
     barangay: string
+    is4psBeneficiary: boolean
+    ipMembership: string
+    maleCount: number
+    femaleCount: number
   }>
   meta: {
     __typename?: 'HouseholdAggregate'
@@ -169,6 +173,10 @@ export const HouseholdListDocument = gql`
       middleName
       referenceNo
       barangay
+      is4psBeneficiary
+      ipMembership
+      maleCount
+      femaleCount
     }
     meta: householdAggregate(where: $where) {
       aggregate {

@@ -16,9 +16,10 @@ import {
 import { useUserDetailsQuery, useUserListQuery } from '../api/queries'
 import UserForm from '../components/user-form.component'
 import { userListColumns, userSchema } from '../constants'
+import { userListFilters } from '../constants/user-list-filters'
 
 function View() {
-  const name = 'user'
+  const name = 'User'
   const { onClickCreate } = useNewDialogHook({
     component: UserForm,
     schema: userSchema,
@@ -42,6 +43,7 @@ function View() {
         name={ResourceEnum.User}
         onCreate={onClickCreate}
         onEdit={onClickEdit}
+        filters={userListFilters}
       />
     </>
   )

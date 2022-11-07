@@ -90,6 +90,15 @@ export type CreateAssociationProgramMutation = {
     | undefined
 }
 
+export type DeleteProgramMutationVariables = Types.Exact<{
+  id: Types.Scalars['uuid']
+}>
+
+export type DeleteProgramMutation = {
+  __typename?: 'mutation_root'
+  data?: { __typename?: 'Program'; id: any } | null | undefined
+}
+
 export const CreateProgramDocument = gql`
   mutation CreateProgram($object: ProgramInsertInput!) {
     data: insertProgramOne(object: $object) {
@@ -190,4 +199,18 @@ export function useCreateAssociationProgramMutation() {
     CreateAssociationProgramMutation,
     CreateAssociationProgramMutationVariables
   >(CreateAssociationProgramDocument)
+}
+export const DeleteProgramDocument = gql`
+  mutation DeleteProgram($id: uuid!) {
+    data: deleteProgramByPk(id: $id) {
+      id
+    }
+  }
+`
+
+export function useDeleteProgramMutation() {
+  return Urql.useMutation<
+    DeleteProgramMutation,
+    DeleteProgramMutationVariables
+  >(DeleteProgramDocument)
 }

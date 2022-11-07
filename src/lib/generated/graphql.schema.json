@@ -30759,6 +30759,56 @@
             "deprecationReason": null
           },
           {
+            "name": "commodityIds",
+            "description": null,
+            "args": [
+              {
+                "name": "path",
+                "description": "JSON select path",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityNames",
+            "description": null,
+            "args": [
+              {
+                "name": "path",
+                "description": "JSON select path",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "createdAt",
             "description": null,
             "args": [],
@@ -31294,7 +31344,19 @@
             "deprecationReason": null
           },
           {
-            "name": "commodities",
+            "name": "commodityIds",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "JsonbComparisonExp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityNames",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -31747,7 +31809,19 @@
             "deprecationReason": null
           },
           {
-            "name": "commodities",
+            "name": "commodityIds",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "OrderBy",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityNames",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -31910,7 +31984,13 @@
             "deprecationReason": null
           },
           {
-            "name": "commodities",
+            "name": "commodityIds",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityNames",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -48647,7 +48727,19 @@
             "deprecationReason": null
           },
           {
-            "name": "commodities",
+            "name": "commodityIds",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "commodityNames",
             "description": null,
             "type": {
               "kind": "SCALAR",

@@ -21,6 +21,7 @@ import {
 } from '../api/queries'
 import AssociationForm from '../components/association-form.component'
 import { associationListColumns, associationSchema } from '../constants'
+import { associationExportColumns } from '../constants/association-export-columns'
 
 const name = 'Association'
 function View() {
@@ -53,6 +54,7 @@ function View() {
         onCreate={onClickCreate}
         onEdit={onClickEdit}
         onDelete={onClickDelete}
+        exportFields={associationExportColumns}
       />
     </>
   )
