@@ -96,9 +96,6 @@ export default function DatatableListView<
           xsOffset="auto"
         >
           <Grid>
-            <CustomActions
-              {...pick(tableProps, 'tableState', 'tableDispatch')}
-            />
             {onExport && (
               <Tooltip title="Export">
                 <IconButton onClick={onExport} sx={{ mr: 2 }}>
@@ -106,6 +103,9 @@ export default function DatatableListView<
                 </IconButton>
               </Tooltip>
             )}
+            <CustomActions
+              {...pick(tableProps, 'tableState', 'tableDispatch')}
+            />
             {canCreate && withCreate && (
               <Button
                 {...(onCreate

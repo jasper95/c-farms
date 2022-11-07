@@ -7,8 +7,9 @@ import { ResourceEnum } from '@/modules/common/authorization/enums/resource.enum
 import DashboardIcon from '@mui/icons-material/Dashboard'
 import MapIcon from '@mui/icons-material/Map'
 import { useAuthStore } from '@/lib/stores/auth.store'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
+import { useRouter } from 'next/router'
 
 const menuItems = [
   {
@@ -49,13 +50,22 @@ const menuItems = [
 ]
 export function useNavigationMenu() {
   const { ability } = useAuthStore()
-
+  const router = useRouter()
   const menus = useMemo(
     () =>
       menuItems.filter((e) => ability?.can(PermissionEnum.Read, e.resource)),
     [ability]
   )
+
+  const isActive = useCallback(
+    (path: string) => {
+      return `${path}/`.indexOf(`${router.pathname}/`) === 0
+    },
+    [router]
+  )
+
   return {
     menus,
+    isActive,
   }
 }
