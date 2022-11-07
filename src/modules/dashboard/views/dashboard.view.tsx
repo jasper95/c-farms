@@ -19,6 +19,8 @@ import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { useDashboardHook } from '../hooks/use-dashboard-hook'
 import SelectField from '@/components/select-field'
+import DownloadIcon from '@mui/icons-material/Download'
+import IconButton from '@mui/material/IconButton'
 
 export function DashboardView() {
   const {
@@ -151,7 +153,7 @@ export function DashboardView() {
             </Box>
             <Box sx={{ mb: 2 }}>
               <Grid container alignItems="center">
-                <Grid item xs={12}>
+                <Grid item xs={10}>
                   <SelectField
                     sx={{ mb: 2 }}
                     name="cropYield"
@@ -160,7 +162,13 @@ export function DashboardView() {
                     label="Crop"
                   />
                 </Grid>
+                <Grid item xs={2}>
+                  <IconButton sx={{ ml: 2 }}>
+                    <DownloadIcon />
+                  </IconButton>
+                </Grid>
               </Grid>
+              <Grid container alignItems="right"></Grid>
             </Box>
             <Box sx={{ mt: 2, height: 400 }}>
               <ResponsiveContainer width="100%" height="100%">
@@ -195,7 +203,7 @@ export function DashboardView() {
             </Box>
             <Box sx={{ mb: 2 }}>
               <Grid container alignItems="center">
-                <Grid item xs={12}>
+                <Grid item xs={10}>
                   <SelectField
                     sx={{ mb: 2 }}
                     name="crop"
@@ -203,6 +211,11 @@ export function DashboardView() {
                     options={uniqueCrops}
                     label="Crop Commodity"
                   />
+                </Grid>
+                <Grid item xs={2}>
+                  <IconButton sx={{ ml: 2 }}>
+                    <DownloadIcon />
+                  </IconButton>
                 </Grid>
               </Grid>
             </Box>
