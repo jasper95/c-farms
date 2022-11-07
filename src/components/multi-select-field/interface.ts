@@ -1,14 +1,13 @@
+import { TextFieldProps } from '@mui/material/TextField'
 import { UseControllerProps, FieldValues } from 'react-hook-form'
 
 export type Option = {
   label: string
-  value: string
+  value: any
 }
 
 export type MultiSelectFieldProps<T extends FieldValues> =
-  UseControllerProps<T> & {
-    options: Option[]
-    label: string
-    placeholder?: string
-    disabled?: boolean
-  }
+  UseControllerProps<T> &
+    TextFieldProps & {
+      options: Option[]
+    }

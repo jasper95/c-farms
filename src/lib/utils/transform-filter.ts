@@ -15,6 +15,7 @@ const filterTypeValueMapping = {
   [FilterTypeEnum.GreaterThanEqual]: '_gte',
   [FilterTypeEnum.LessThan]: '_lt',
   [FilterTypeEnum.LessThanEqual]: '_lte',
+  [FilterTypeEnum.Are]: '_hasKeysAny',
 }
 
 export default function transformFilter(filters: IFilterValue[]) {

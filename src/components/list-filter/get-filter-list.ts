@@ -4,7 +4,20 @@ import { FilterTypeEnum } from './filter-type.enum'
 export function getFilterList(type: FieldTypeEnum) {
   console.log('type: ', type)
   switch (type) {
+    case FieldTypeEnum.EnumerationMultiple:
+      return [
+        {
+          label: 'are',
+          value: FilterTypeEnum.Are,
+        },
+      ]
     case FieldTypeEnum.Enumeration:
+      return [
+        {
+          label: 'is',
+          value: FilterTypeEnum.Is,
+        },
+      ]
     case FieldTypeEnum.String: {
       return [
         {

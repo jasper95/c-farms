@@ -9,6 +9,12 @@ export const filterSchema = yup.object({
     .required()
     .default(FilterTypeEnum.Is),
   value: yup.mixed().required(),
+  options: yup.array().of(
+    yup.object({
+      label: yup.string().default(''),
+      value: yup.mixed().default(''),
+    })
+  ),
 })
 
 export type IFilterFormSchema = yup.InferType<typeof filterSchema>

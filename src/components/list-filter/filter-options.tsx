@@ -15,7 +15,15 @@ export function FilterOptions(props: FilterOptionsProps) {
     useFilterOptionsHook(props)
   const { control } = formProps
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', p: 2, minWidth: 262 }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        p: 2,
+        minWidth: 262,
+        maxWidth: 362,
+      }}
+    >
       <SelectField
         sx={{ mb: 2 }}
         name="field"

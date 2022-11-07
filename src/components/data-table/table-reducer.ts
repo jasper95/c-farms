@@ -1,14 +1,19 @@
-import { AsyncSelectFieldProps } from '../asyc-select-field'
 import { FieldTypeEnum } from '../list-filter/field-type.enum'
 import { FilterTypeEnum } from '../list-filter/filter-type.enum'
 import { ColumnSort } from './types'
+import { Option } from '../select-field/interface'
+import { AsyncFilterFieldProps } from '../list-filter/async-filter-field'
 
 export interface IFilter {
   type: FieldTypeEnum
   field: string
   label: string
-  options?: { label: string; value: string }[]
-  asyncProps?: Pick<AsyncSelectFieldProps, 'useOptionsQueryHook' | 'variables'>
+  options?: Option[]
+  isMultiple?: boolean
+  asyncProps?: Pick<
+    AsyncFilterFieldProps,
+    'useOptionsQueryHook' | 'variables' | 'transform'
+  >
 }
 
 export interface IFilterValue {
@@ -19,6 +24,8 @@ export interface IFilterValue {
   label: string
   field: string
   fieldType: FieldTypeEnum
+  options?: Option[]
+  isMultiple?: boolean
 }
 
 export type TableState = {

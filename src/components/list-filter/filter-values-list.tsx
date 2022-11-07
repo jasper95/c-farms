@@ -35,6 +35,9 @@ export function FilterValuesList(props: FilterValuesListProps) {
     ) {
       return ''
     }
+    if (filter.options) {
+      return filter.options.map((e) => e.label).join(', ')
+    }
     if (filter.fieldType === FieldTypeEnum.Date) {
       return formatDate(filter.value)
     }

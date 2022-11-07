@@ -8,7 +8,7 @@ import keyBy from 'lodash/keyBy'
 export default function MultiSelectField<T extends FieldValues>(
   props: MultiSelectFieldProps<T>
 ) {
-  const { options, label, control, name, disabled } = props
+  const { options, control, name, disabled, ...restProps } = props
   const controller = useController({
     control,
     name,
@@ -29,7 +29,7 @@ export default function MultiSelectField<T extends FieldValues>(
       getOptionLabel={(val) => optionsMap[val]?.label ?? ''}
       renderInput={(params) => (
         <TextField
-          label={label}
+          {...restProps}
           {...params}
           error={Boolean(formState.errors[name])}
           helperText={formState.errors[name]?.message}

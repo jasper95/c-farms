@@ -47,8 +47,17 @@ export function useFilterOptionsHook(props: UseFilterOptionsHookProps) {
 
   function onValid() {
     const formValues = formProps.getValues()
+    let options
+    if (Array.isArray(formValues.value) && Array.isArray(formValues.options)) {
+      options = formValues.options.filter((e) =>
+        formValues.value.includes(e.value)
+      )
+    } else if (Array.isArray(formValues.options)) {
+      options = formValues.options.filter((e) => formValues.value === e.value)
+    }
     onAddFilter({
       ...formValues,
+      options,
       label: filterTypesMap[formValues.field]!.label,
       typeLabel: typeOptions.find((e) => e.value === formValues.type)!.label,
       fieldType: selectedFilter!.type,

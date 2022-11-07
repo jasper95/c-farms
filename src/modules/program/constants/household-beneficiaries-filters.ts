@@ -1,6 +1,11 @@
 import { DataTableFilter } from '@/components/data-table/types'
 import { FieldTypeEnum } from '@/components/list-filter/field-type.enum'
 import * as T from '@/lib/generated/graphql.types'
+import {
+  CommodityListQuery,
+  useCommodityListQuery,
+} from '@/modules/commodity/api/queries'
+import { livelihoodOptions } from '@/modules/household/constants'
 
 export const programBeneficiariesListFilters: DataTableFilter<T.HouseholdPrograms>[] =
   [
@@ -36,12 +41,19 @@ export const programBeneficiariesListFilters: DataTableFilter<T.HouseholdProgram
     },
     {
       field: 'commodities',
-      type: FieldTypeEnum.String,
+      type: FieldTypeEnum.EnumerationMultiple,
       label: 'Commodities',
+      asyncProps: {
+        useOptionsQueryHook: useCommodityListQuery,
+        variables: {},
+        transform: (data) =>
+          data.map((e) => ({ label: e.name, value: e.name })),
+      },
     },
     {
       field: 'mainLivelihood',
-      type: FieldTypeEnum.String,
+      type: FieldTypeEnum.EnumerationMultiple,
+      options: livelihoodOptions,
       label: 'Main Livelihood',
     },
   ]

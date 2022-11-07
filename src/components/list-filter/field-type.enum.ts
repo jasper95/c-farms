@@ -3,5 +3,6 @@ export enum FieldTypeEnum {
   String = 'string',
   Number = 'number',
   Enumeration = 'enumeration',
+  EnumerationMultiple = 'enumerationMultiple',
   Any = '',
 }
