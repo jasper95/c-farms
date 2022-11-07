@@ -7,9 +7,11 @@ import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import MenuItem from '@mui/material/MenuItem'
 import { useLogout } from '@/modules/common/hooks/use-logout'
+import { useAuthStore } from '@/lib/stores/auth.store'
 
 export function AccountMenu() {
   const { handleLogout } = useLogout()
+  const { session } = useAuthStore()
   return (
     <PopupState variant="popover" popupId="account-menu-popover">
       {(popupState) => (
@@ -40,14 +42,14 @@ export function AccountMenu() {
           >
             <Box sx={{ my: 1.5, px: 2.5 }}>
               <Typography variant="subtitle2" noWrap>
-                Jasper Bernales
+                {session?.user?.name}
               </Typography>
               <Typography
                 variant="body2"
                 sx={{ color: 'text.secondary' }}
                 noWrap
               >
-                bernalesjasper@gmail.com
+                {session?.user?.email}
               </Typography>
             </Box>
 
