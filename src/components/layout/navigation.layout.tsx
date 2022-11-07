@@ -8,6 +8,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import NavigationMenu from './navigation-menu.layout'
 import { DRAWER_WIDTH } from './constants'
+import Box from '@mui/material/Box'
+import { Logo } from './logo'
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: DRAWER_WIDTH,
@@ -33,7 +35,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
 export const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'flex-end',
+  justifyContent: 'space-between',
   padding: theme.spacing(0, 1),
   boxShadow: `inset 0px -1px 0px #F4F5F6`,
   // necessary for content to be below app bar
@@ -66,6 +68,7 @@ export default function Navigation() {
       onClose={toggleSidebar}
     >
       <DrawerHeader>
+        {open && <Logo />}
         <IconButton onClick={toggleSidebar}>
           {theme.direction === 'rtl' ? (
             <ChevronRightIcon />

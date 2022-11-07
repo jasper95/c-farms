@@ -1,5 +1,5 @@
 import React from 'react'
-import { styled } from '@mui/material/styles'
+import { alpha, styled } from '@mui/material/styles'
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
@@ -9,6 +9,7 @@ import { DRAWER_WIDTH } from './constants'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import { AccountMenu } from './account-menu.layout'
+import { Logo } from './logo'
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean
@@ -18,6 +19,10 @@ const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })<AppBarProps>(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
+  boxShadow: 'none',
+  backdropFilter: 'blur(6px)',
+  WebkitBackdropFilter: 'blur(6px)', // Fix on Mobile
+  backgroundColor: alpha(theme.palette.background.default, 0.72),
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
@@ -44,15 +49,14 @@ export default function Header() {
           onClick={toggleSidebar}
           sx={{
             marginRight: 1,
+            color: 'text.primary',
             ...(open && { display: 'none' }),
           }}
           size="large"
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap>
-          Mini variant drawer
-        </Typography>
+        {!open && <Logo />}
         <Box sx={{ flexGrow: 1 }} />
         <AccountMenu />
       </Toolbar>

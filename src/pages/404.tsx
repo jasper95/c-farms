@@ -55,7 +55,7 @@ export default function Custom404() {
             opacity="0.2"
           ></path>
           <image
-            href="https://minimals.cc/assets/illustrations/characters/character_4.png"
+            href="/images/not-found.png"
             height="300"
             x="220"
             y="30"
