@@ -16,16 +16,21 @@ export interface IFilter {
   >
 }
 
-export interface IFilterValue {
+export interface IFilterValue extends IBaseFilterValue {
   id: string
-  type: FilterTypeEnum
-  value: any
+
   typeLabel: string
   label: string
   field: string
   fieldType: FieldTypeEnum
   options?: Option[]
   isMultiple?: boolean
+}
+
+export interface IBaseFilterValue {
+  value: any
+  field: string
+  type: FilterTypeEnum
 }
 
 export type TableState = {

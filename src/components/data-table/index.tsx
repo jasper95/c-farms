@@ -128,15 +128,15 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
                   : undefined
                 return (
                   <TableCell
-                    sortDirection={sorted?.direction ?? false}
-                    key={idx}
+                    sortDirection={false}
+                    key={`${String(accessor)}-${idx}`}
                   >
                     <TableSortLabel
                       hideSortIcon={!sortable}
                       active={Boolean(sorted)}
                       direction={sorted?.direction}
                       onClick={() => {
-                        if (tableDispatch && sortable) {
+                        if (tableDispatch && sortable && accessor) {
                           const payload: ColumnSort = {
                             column: String(accessor),
                             direction:

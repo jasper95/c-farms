@@ -57,7 +57,8 @@ export default function DatatableListView<
         'additionalTypenames',
         'actions',
         'name',
-        'exportFields'
+        'exportFields',
+        'searchFields'
       )
     )
   const { tableState, tableDispatch } = tableProps

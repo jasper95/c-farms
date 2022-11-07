@@ -52,7 +52,7 @@ function View() {
   })
   return (
     <DatatableListView
-      // additionalTypenames={['AnnualInfo']}
+      additionalTypenames={['AnnualInfo']}
       onCreate={onClickCreate}
       onEdit={onClickEdit}
       onDelete={onClickDelete}
@@ -65,7 +65,6 @@ function View() {
       columns={annualInfoListColumns}
       filters={annualInfoListFilters}
       name={ResourceEnum.AnnualInfo}
-      additionalTypenames={['Annual-Info']}
     />
   )
 }

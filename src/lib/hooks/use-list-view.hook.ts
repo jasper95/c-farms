@@ -12,7 +12,9 @@ import * as Urql from 'urql'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { useSearch } from './use-search.hook'
-import transformFilter from '../utils/transform-filter'
+import transformFilter, {
+  transformSearchFilter,
+} from '../utils/transform-filter'
 import * as Types from '@/lib/generated/graphql.types'
 import { OrderBy } from '@/lib/generated/graphql.types'
 import { useAuthStore } from '../stores/auth.store'
@@ -72,6 +74,7 @@ export interface UseListViewProps<
   additionalTypenames?: string[]
   name: string
   exportFields?: ExportOf<QueryResponse>
+  searchFields?: (keyof QueryResponse)[]
 }
 
 export function useListViewHook<
@@ -91,18 +94,39 @@ export function useListViewHook<
     actions,
     name,
     exportFields,
+    searchFields,
   } = props
   const [tableState, tableDispatch] = useTableState()
   const { ability } = useAuthStore()
   const router = useRouter()
   const baseUrl = props.baseUrl || router.asPath
-  const { onSearchChanged } = useSearch({
+  const { onSearchChanged, searchValue } = useSearch({
     initialSearch: (router.query?.search || '') as string,
   })
   const userFilters = useMemo(
     () => transformFilter(tableState.filters),
     [tableState.filters]
   )
+
+  const searchFilters = useMemo(() => {
+    if (searchFields && searchValue) {
+      return transformSearchFilter(searchValue, searchFields as string[])
+    }
+    return []
+  }, [searchFields, searchValue])
+
+  const sort = useMemo(() => {
+    const [currentSort] = tableState.sort
+    if (currentSort) {
+      return {
+        [currentSort.column]:
+          currentSort.direction === 'asc' ? OrderBy.Asc : OrderBy.Desc,
+      }
+    }
+    return {
+      createdAt: OrderBy.Desc,
+    }
+  }, [tableState])
 
   const context = useMemo(() => ({ additionalTypenames }), [])
 
@@ -111,11 +135,12 @@ export function useListViewHook<
     variables: {
       limit: tableState.size,
       offset: tableState.page * tableState.size,
-      orderBy: {
-        createdAt: OrderBy.Desc,
-      },
+      orderBy: sort,
       where: {
         ...listQueryVariables,
+        ...(searchFilters.length && {
+          _or: searchFilters,
+        }),
         _and: userFilters,
       },
     },

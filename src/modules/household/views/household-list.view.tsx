@@ -23,6 +23,7 @@ function View() {
         name={ResourceEnum.Household}
         filters={householdListFilters}
         exportFields={householdExportColumns}
+        searchFields={['firstName', 'lastName']}
       />
     </>
   )

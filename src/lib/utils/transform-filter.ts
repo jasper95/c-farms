@@ -1,14 +1,14 @@
-import { IFilterValue } from '@/components/data-table/table-reducer'
+import { IBaseFilterValue } from '@/components/data-table/table-reducer'
 import { FilterTypeEnum } from '@/components/list-filter/filter-type.enum'
 import groupBy from 'lodash/groupBy'
 
 const filterTypeValueMapping = {
   [FilterTypeEnum.IsNull]: '_isNull',
   [FilterTypeEnum.IsNotNull]: '_isNotNull',
-  [FilterTypeEnum.Contains]: '_like',
-  [FilterTypeEnum.NotContains]: '_nlike',
-  [FilterTypeEnum.StartsWith]: '_like',
-  [FilterTypeEnum.EndsWith]: '_like',
+  [FilterTypeEnum.Contains]: '_ilike',
+  [FilterTypeEnum.NotContains]: '_nilike',
+  [FilterTypeEnum.StartsWith]: '_ilike',
+  [FilterTypeEnum.EndsWith]: '_ilike',
   [FilterTypeEnum.Is]: '_eq',
   [FilterTypeEnum.IsNot]: '_neq',
   [FilterTypeEnum.GreaterThan]: '_gt',
@@ -18,7 +18,7 @@ const filterTypeValueMapping = {
   [FilterTypeEnum.Are]: '_hasKeysAny',
 }
 
-export default function transformFilter(filters: IFilterValue[]) {
+export default function transformFilter(filters: IBaseFilterValue[]) {
   return Object.entries(groupBy(filters, 'field')).map(
     ([field, fieldFilters]) => ({
       _or: fieldFilters.map((filter) => ({
@@ -30,7 +30,19 @@ export default function transformFilter(filters: IFilterValue[]) {
   )
 }
 
-function transformFilterValue(filter: IFilterValue) {
+export function transformSearchFilter(searchValue: string, fields: string[]) {
+  return fields.map((field) => ({
+    [field]: {
+      [filterTypeValueMapping[FilterTypeEnum.Contains]]: transformFilterValue({
+        type: FilterTypeEnum.Contains,
+        value: searchValue,
+        field,
+      }),
+    },
+  }))
+}
+
+function transformFilterValue(filter: IBaseFilterValue) {
   switch (filter.type) {
     case FilterTypeEnum.NotContains:
     case FilterTypeEnum.Contains:
