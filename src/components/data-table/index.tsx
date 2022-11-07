@@ -136,7 +136,7 @@ function DataTable<T extends Identifiable>(props: DataTableProps<T>) {
                       active={Boolean(sorted)}
                       direction={sorted?.direction}
                       onClick={() => {
-                        if (tableDispatch && sortable && accessor) {
+                        if (sortable && accessor) {
                           const payload: ColumnSort = {
                             column: String(accessor),
                             direction:
