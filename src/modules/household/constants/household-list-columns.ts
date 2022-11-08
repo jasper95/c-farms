@@ -6,16 +6,18 @@ export const householdListColumns: DataTableColumn<HouseholdListRow>[] = [
   {
     title: 'Reference No',
     accessor: 'referenceNo',
-    sortable: false,
+    sortable: true,
   },
   {
     title: 'Name',
+    accessor: 'lastName',
     type: 'function',
     fn: (row) => [row.firstName, row.lastName].join(' '),
-    sortable: false,
+    sortable: true,
   },
   {
     title: 'Barangay',
     accessor: 'barangay',
+    sortable: true,
   },
 ]

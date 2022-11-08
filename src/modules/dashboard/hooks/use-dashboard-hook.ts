@@ -119,6 +119,7 @@ export function useDashboardHook() {
         volume: crop.produce,
         cropId: crop.commodityId,
         yield: crop.yield,
+        areaHarvested: crop.areaUsed,
       })) ?? []
     )
   }, [cropProduceResponse.data])

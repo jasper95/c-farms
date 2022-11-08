@@ -1,6 +1,7 @@
 import {
   LineChart,
   Line,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -10,6 +11,8 @@ import {
   Bar,
   ResponsiveContainer,
   Label,
+  LabelList,
+  ComposedChart,
 } from 'recharts'
 import Card from '@mui/material/Card'
 import Avatar from '@mui/material/Avatar'
@@ -85,9 +88,7 @@ export function DashboardView() {
                   }}
                 >
                   <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="year">
-                    <Label value="year" position="insideBottom" offset={0} />
-                  </XAxis>
+                  <XAxis dataKey="year"></XAxis>
                   <YAxis />
                   <Tooltip />
                   <Legend />
@@ -141,103 +142,6 @@ export function DashboardView() {
                   <Tooltip />
                   <Legend />
                   <Bar dataKey="count" fill="#82ca9d" />
-                </BarChart>
-              </ResponsiveContainer>
-            </Box>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Card sx={{ p: 2 }}>
-            <Box sx={{ mb: 2, textAlign: 'center' }}>
-              <Typography variant="h5">Crop Yield (metric tons/ha)</Typography>
-            </Box>
-            <Box sx={{ mb: 2 }}>
-              <Grid container alignItems="center">
-                <Grid item xs={10}>
-                  <SelectField
-                    sx={{ mb: 2 }}
-                    name="cropYield"
-                    control={dashboardFormProps.control}
-                    options={uniqueCrops}
-                    label="Crop"
-                  />
-                </Grid>
-                <Grid item xs={2}>
-                  <IconButton sx={{ ml: 2 }}>
-                    <DownloadIcon />
-                  </IconButton>
-                </Grid>
-              </Grid>
-              <Grid container alignItems="right"></Grid>
-            </Box>
-            <Box sx={{ mt: 2, height: 400 }}>
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  width={500}
-                  height={300}
-                  data={filteredCropYield}
-                  margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="year" allowDecimals={false} />
-                  <YAxis interval={0} allowDecimals={true} />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="yield" fill="#8884d8" />
-                </BarChart>
-              </ResponsiveContainer>
-            </Box>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Card sx={{ p: 2 }}>
-            <Box sx={{ mb: 2, textAlign: 'center' }}>
-              <Typography variant="h5">
-                Volume of Crop Production (in metric tons)
-              </Typography>
-            </Box>
-            <Box sx={{ mb: 2 }}>
-              <Grid container alignItems="center">
-                <Grid item xs={10}>
-                  <SelectField
-                    sx={{ mb: 2 }}
-                    name="crop"
-                    control={dashboardFormProps.control}
-                    options={uniqueCrops}
-                    label="Crop Commodity"
-                  />
-                </Grid>
-                <Grid item xs={2}>
-                  <IconButton sx={{ ml: 2 }}>
-                    <DownloadIcon />
-                  </IconButton>
-                </Grid>
-              </Grid>
-            </Box>
-            <Box sx={{ mt: 2, height: 400 }}>
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  width={500}
-                  height={300}
-                  data={filteredCrop}
-                  margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                  }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="year" allowDecimals={false} />
-                  <YAxis interval={0} allowDecimals={true} />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="volume" fill="#82ca9d" />
                 </BarChart>
               </ResponsiveContainer>
             </Box>
@@ -327,6 +231,101 @@ export function DashboardView() {
                   <Legend />
                   <Bar dataKey="volume" fill="#82ca9d" />
                 </BarChart>
+              </ResponsiveContainer>
+            </Box>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={12}>
+          <Card sx={{ p: 2 }}>
+            <Box sx={{ mb: 2, textAlign: 'center' }}>
+              <Typography variant="h5">
+                Crop Production, Yield and Area Harvested
+              </Typography>
+            </Box>
+            <Box sx={{ mb: 2 }}>
+              <Grid container alignItems="center">
+                <Grid item xs={10}>
+                  <SelectField
+                    sx={{ mb: 2 }}
+                    name="cropYield"
+                    control={dashboardFormProps.control}
+                    options={uniqueCrops}
+                    label="Crop"
+                  />
+                </Grid>
+                <Grid item xs={2}>
+                  <IconButton sx={{ ml: 2 }}>
+                    <DownloadIcon />
+                  </IconButton>
+                </Grid>
+              </Grid>
+              <Grid container alignItems="right"></Grid>
+            </Box>
+            <Box sx={{ mt: 2, height: 400 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <ComposedChart
+                  data={filteredCropYield}
+                  margin={{
+                    top: 10,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="year" allowDecimals={false} />
+                  <YAxis
+                    yAxisId={0}
+                    dataKey="volume"
+                    interval={0}
+                    allowDecimals={true}
+                    orientation="left"
+                  >
+                    <Label value="volume" position="left" angle={-90} />
+                  </YAxis>
+                  <YAxis
+                    yAxisId={1}
+                    dataKey="areaHarvested"
+                    interval={0}
+                    allowDecimals={true}
+                    orientation="right"
+                  >
+                    <Label
+                      value="area harvested"
+                      position="right"
+                      angle={-90}
+                    />
+                  </YAxis>
+                  <Tooltip />
+                  <Legend />
+                  <Area
+                    yAxisId={1}
+                    type="monotone"
+                    dataKey="areaHarvested"
+                    fill="#8884d8"
+                    stroke="#8884d8"
+                    name="area harvested (ha)"
+                  />
+                  <Bar
+                    yAxisId={0}
+                    type="monotone"
+                    dataKey="volume"
+                    fill="#413ea0"
+                    name="volume (mt)"
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="yield"
+                    stroke="#ff7300"
+                    name="yield (mt/ha)"
+                  >
+                    <LabelList
+                      dataKey="yield"
+                      position="bottom"
+                      fill="#ff7300"
+                    />
+                  </Line>
+                </ComposedChart>
               </ResponsiveContainer>
             </Box>
           </Card>
