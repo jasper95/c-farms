@@ -95,6 +95,7 @@ export type CropProduceListQuery = {
     produce: any
     commodityId?: any | null | undefined
     yield: any
+    areaUsed?: any | null | undefined
   }>
 }
 
@@ -252,6 +253,7 @@ export const CropProduceListDocument = gql`
       produce
       commodityId
       yield
+      areaUsed
     }
   }
 `

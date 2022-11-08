@@ -7,7 +7,7 @@ export const commodityListColumns: DataTableColumn<
   {
     title: 'Commodity',
     accessor: 'name',
-    sortable: false,
+    sortable: true,
   },
   {
     title: 'Type',
