@@ -2,7 +2,7 @@ import Breadcrumbs from '@/components/breadcrumbs'
 import getDashboardLayout, {
   Dashboard,
 } from '@/components/layout/dashboard.layout'
-import { useFarmListQuery } from '@/modules/farm/api/queries'
+import { useFarmViewListQuery } from '@/modules/farm/api/queries'
 import DatatableListView from '@/components/views/datatable-list.view'
 import { farmListColumns } from '../constants'
 import { FarmMapTableComponent, FarmMapTableActions } from '../components'
@@ -27,7 +27,7 @@ function View() {
       <Breadcrumbs crumbs={[{ name: 'Farm' }]} />
       <DatatableListView
         listQueryVariables={{}}
-        useListQueryHook={useFarmListQuery}
+        useListQueryHook={useFarmViewListQuery}
         columns={farmListColumns}
         component={FarmMapTableComponent}
         customActions={FarmMapTableActions}
@@ -35,6 +35,8 @@ function View() {
         onDelete={onClickDelete}
         filters={farmListFilters}
         exportFields={farmExportColumns}
+        searchFields={['lastName', 'firstName', 'ownerName', 'name']}
+        additionalTypenames={['FarmView']}
       />
     </>
   )

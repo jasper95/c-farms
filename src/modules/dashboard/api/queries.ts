@@ -92,9 +92,9 @@ export type CropProduceListQuery = {
     __typename?: 'CropProduce'
     year: number
     name: string
-    produce: any
+    produce?: any | null | undefined
     commodityId?: any | null | undefined
-    yield: any
+    yield?: any | null | undefined
     areaUsed?: any | null | undefined
   }>
 }

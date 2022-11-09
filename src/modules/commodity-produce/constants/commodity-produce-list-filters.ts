@@ -1,6 +1,7 @@
 import { DataTableFilter } from '@/components/data-table/types'
 import { FieldTypeEnum } from '@/components/list-filter/field-type.enum'
 import * as T from '@/lib/generated/graphql.types'
+import { typeOptions } from '@/modules/commodity/constants/form-options'
 
 export const commodityProduceListFilters: DataTableFilter<T.Produce>[] = [
   {
@@ -15,7 +16,28 @@ export const commodityProduceListFilters: DataTableFilter<T.Produce>[] = [
   },
   {
     field: 'commodityType',
-    type: FieldTypeEnum.String,
+    type: FieldTypeEnum.Enumeration,
     label: 'Type',
+    options: typeOptions,
+  },
+  {
+    field: 'organicPractitioner',
+    type: FieldTypeEnum.Enumeration,
+    label: 'Organic',
+    options: [
+      {
+        label: 'Organic',
+        value: 'True',
+      },
+      {
+        label: 'Non-organic',
+        value: 'False',
+      },
+    ],
+  },
+  {
+    field: 'produce',
+    label: 'Produce',
+    type: FieldTypeEnum.Number,
   },
 ]

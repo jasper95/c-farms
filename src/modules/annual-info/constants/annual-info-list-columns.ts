@@ -7,6 +7,7 @@ export const annualInfoListColumns: DataTableColumn<
   {
     title: 'Year',
     accessor: 'year',
+    sortable: true,
   },
   {
     title: 'Income (Php)',

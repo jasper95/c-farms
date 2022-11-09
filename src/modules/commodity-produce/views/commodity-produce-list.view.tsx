@@ -62,6 +62,7 @@ function View() {
       columns={commodityProduceListColumns}
       additionalTypenames={['Produce']}
       filters={commodityProduceListFilters}
+      searchFields={['commodityName', 'farmName']}
     />
   )
 }

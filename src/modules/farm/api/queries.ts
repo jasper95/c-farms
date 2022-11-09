@@ -82,6 +82,39 @@ export type FarmDetailsQuery = {
     | undefined
 }
 
+export type FarmViewListQueryVariables = Types.Exact<{
+  where?: Types.InputMaybe<Types.FarmViewBoolExp>
+  orderBy?: Types.InputMaybe<
+    Array<Types.FarmViewOrderBy> | Types.FarmViewOrderBy
+  >
+  offset?: Types.InputMaybe<Types.Scalars['Int']>
+  limit?: Types.InputMaybe<Types.Scalars['Int']>
+}>
+
+export type FarmViewListQuery = {
+  __typename?: 'query_root'
+  list: Array<{
+    __typename?: 'FarmView'
+    id: any
+    name: string
+    firstName: string
+    lastName: string
+    sizeInHaTotal: any
+    ownerName: string
+    ownershipType: string
+    createdAt: any
+    location: any
+    householdId: any
+  }>
+  meta: {
+    __typename?: 'FarmViewAggregate'
+    aggregate?:
+      | { __typename?: 'FarmViewAggregateFields'; count: number }
+      | null
+      | undefined
+  }
+}
+
 export const HouseholdOptionsDocument = gql`
   query HouseholdOptions(
     $where: HouseholdBoolExp
@@ -176,6 +209,46 @@ export function useFarmDetailsQuery(
 ) {
   return Urql.useQuery<FarmDetailsQuery, FarmDetailsQueryVariables>({
     query: FarmDetailsDocument,
+    ...options,
+  })
+}
+export const FarmViewListDocument = gql`
+  query FarmViewList(
+    $where: FarmViewBoolExp
+    $orderBy: [FarmViewOrderBy!]
+    $offset: Int
+    $limit: Int
+  ) {
+    list: farmView(
+      where: $where
+      orderBy: $orderBy
+      offset: $offset
+      limit: $limit
+    ) {
+      id
+      name
+      firstName
+      lastName
+      sizeInHaTotal
+      ownerName
+      ownershipType
+      createdAt
+      location
+      householdId
+    }
+    meta: farmViewAggregate(where: $where) {
+      aggregate {
+        count
+      }
+    }
+  }
+`
+
+export function useFarmViewListQuery(
+  options?: Omit<Urql.UseQueryArgs<FarmViewListQueryVariables>, 'query'>
+) {
+  return Urql.useQuery<FarmViewListQuery, FarmViewListQueryVariables>({
+    query: FarmViewListDocument,
     ...options,
   })
 }

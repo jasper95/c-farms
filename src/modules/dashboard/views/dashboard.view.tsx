@@ -35,7 +35,6 @@ export function DashboardView() {
     uniqueLivestocks,
     uniqueCrops,
     dashboardFormProps,
-    filteredCropYield,
     uniqueFish,
     filteredFish,
   } = useDashboardHook()
@@ -174,7 +173,7 @@ export function DashboardView() {
                   height={300}
                   data={filteredLiveStock}
                   margin={{
-                    top: 5,
+                    top: 20,
                     right: 30,
                     left: 20,
                     bottom: 5,
@@ -218,7 +217,7 @@ export function DashboardView() {
                   height={300}
                   data={filteredFish}
                   margin={{
-                    top: 5,
+                    top: 20,
                     right: 30,
                     left: 20,
                     bottom: 5,
@@ -247,7 +246,7 @@ export function DashboardView() {
                 <Grid item xs={10}>
                   <SelectField
                     sx={{ mb: 2 }}
-                    name="cropYield"
+                    name="crop"
                     control={dashboardFormProps.control}
                     options={uniqueCrops}
                     label="Crop"
@@ -264,7 +263,7 @@ export function DashboardView() {
             <Box sx={{ mt: 2, height: 400 }}>
               <ResponsiveContainer width="100%" height="100%">
                 <ComposedChart
-                  data={filteredCropYield}
+                  data={filteredCrop}
                   margin={{
                     top: 10,
                     right: 30,

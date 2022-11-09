@@ -23,8 +23,8 @@ export function FarmPopup(props: IFarmPopupProps) {
       icon: <GroupIcon />,
       label: 'Household',
       value: (
-        <Link underline="hover" href={`/household/${data.household.id}`}>
-          {[data.household.firstName, data.household.lastName].join(' ')}
+        <Link underline="hover" href={`/household/${data.householdId}`}>
+          {[data.firstName, data.lastName].join(' ')}
         </Link>
       ),
     },
