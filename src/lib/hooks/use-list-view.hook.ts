@@ -204,7 +204,7 @@ export function useListViewHook<
     const actions: DataTableAction<QueryResponse>[] = []
     if (canEdit) {
       actions.push({
-        label: 'Edit',
+        label: 'View',
         icon: EditIcon,
         ...(onEdit && {
           onClick: (row) => onEdit?.(row.id),

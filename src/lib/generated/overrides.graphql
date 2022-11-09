@@ -77,13 +77,24 @@ type InventoryOfLivestock {
 
 type CropProduce {
   name: String!
-  produce: float8!
   year: Int!
-  yield: float8!
 }
 
 type FisheriesProduce {
   name: String!
   produce: float8!
   year: Int!
+}
+
+type FarmView {
+  id: uuid!
+  name: String!
+  firstName: String!
+  lastName: String!
+  sizeInHaTotal: numeric!
+  ownerName: String!
+  ownershipType: String!
+  createdAt: timestamp!
+  location: jsonb!
+  householdId: uuid!
 }

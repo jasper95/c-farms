@@ -30,13 +30,13 @@ export function useDashboardHook() {
 
   const [cropProduceResponse] = useCropProduceListQuery({
     variables: {
-      orderBy: { year: OrderBy.Asc },
+      orderBy: { year: OrderBy.Asc, name: OrderBy.Asc },
     },
   })
 
   const [fisheriesProduceResponse] = useFisheriesProduceListQuery({
     variables: {
-      orderBy: { year: OrderBy.Asc },
+      orderBy: { year: OrderBy.Asc, name: OrderBy.Asc },
     },
   })
 
@@ -59,14 +59,9 @@ export function useDashboardHook() {
     name: 'crop',
   })
 
-  const cropYield = useWatch({
-    control: dashboardFormProps.control,
-    name: 'cropYield',
-  })
-
   const [inventoryOfLivestockResponse] = useInventoryOfLivestockListQuery({
     variables: {
-      orderBy: { year: OrderBy.Asc },
+      orderBy: { year: OrderBy.Asc, name: OrderBy.Asc },
     },
   })
 
@@ -172,18 +167,13 @@ export function useDashboardHook() {
   )
 
   const filteredCrop = useMemo(
-    () => cropProduceRows.filter((cp) => cp.cropId === crop),
+    () => cropProduceRows.sort().filter((cp) => cp.cropId === crop),
     [crop, cropProduceRows]
   )
 
   const filteredFish = useMemo(
     () => fisheryProduceRows.filter((fish) => fish.fishId === fishery),
     [fishery, fisheryProduceRows]
-  )
-
-  const filteredCropYield = useMemo(
-    () => cropProduceRows.filter((cp) => cp.cropId == cropYield),
-    [cropYield, cropProduceRows]
   )
 
   const uniqueLivestocks = uniqWith(
@@ -219,7 +209,6 @@ export function useDashboardHook() {
     dashboardFormProps,
     filteredLiveStock,
     filteredCrop,
-    filteredCropYield,
     uniqueFish,
     filteredFish,
   }

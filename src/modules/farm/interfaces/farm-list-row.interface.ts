@@ -1,3 +1,3 @@
-import { FarmListQuery } from '../api/queries'
+import { FarmListQuery, FarmViewListQuery } from '../api/queries'
 
-export type FarmListRowInterface = FarmListQuery['list'][0]
+export type FarmListRowInterface = FarmViewListQuery['list'][0]
