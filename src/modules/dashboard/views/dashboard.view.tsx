@@ -37,7 +37,7 @@ export function DashboardView() {
     dashboardFormProps,
     uniqueFish,
     filteredFish,
-    onExport,
+    onExportCrop,
   } = useDashboardHook()
 
   return (
@@ -256,7 +256,7 @@ export function DashboardView() {
                 <Grid item xs={2}>
                   <IconButton
                     name="cropExport"
-                    onClick={onExport}
+                    onClick={onExportCrop}
                     sx={{ ml: 2 }}
                   >
                     <DownloadIcon />
