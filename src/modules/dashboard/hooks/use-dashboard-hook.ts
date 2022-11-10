@@ -1,5 +1,5 @@
 import { OrderBy } from '@/lib/generated/graphql.types'
-import { useMemo } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   useAverageAnnualIncomeListQuery,
   useCropProduceListQuery,
@@ -20,6 +20,8 @@ import { useForm, useWatch } from 'react-hook-form'
 import { dashboardFormSchema } from '../constants/dashboard-form-schema'
 import isEqual from 'lodash/isEqual'
 import uniqWith from 'lodash/uniqWith'
+import { exportCsv } from '@/lib/utils/exporter'
+import { dashboardExportColumns } from '../constants/dashboard-export-columns'
 
 export function useDashboardHook() {
   const [averageAnnualIncomeResponse] = useAverageAnnualIncomeListQuery({
@@ -198,6 +200,24 @@ export function useDashboardHook() {
     )
   }, [averageAnnualIncomeResponse.data])
 
+  const [{ data: exportedCropData }, fetchCrop] = useCropProduceListQuery({
+    pause: true,
+  })
+
+  const [triggerDownload, setTriggerDownload] = useState(false)
+
+  useEffect(() => {
+    if (exportedCropData && triggerDownload) {
+      exportCsv(exportedCropData.list, dashboardExportColumns, 'Crop Produce')
+      setTriggerDownload(false)
+    }
+  }, [exportedCropData, triggerDownload, setTriggerDownload])
+
+  const onExportCrop = useCallback(() => {
+    fetchCrop({})
+    setTriggerDownload(true)
+  }, [setTriggerDownload, fetchCrop])
+
   return {
     averageAnnualIncomeRows,
     stats,
@@ -211,5 +231,6 @@ export function useDashboardHook() {
     filteredCrop,
     uniqueFish,
     filteredFish,
+    onExportCrop,
   }
 }
