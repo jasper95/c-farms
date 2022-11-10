@@ -6,14 +6,16 @@ export const programListColumns: DataTableColumn<ProgramListRow>[] = [
   {
     title: 'Name',
     accessor: 'name',
-    sortable: false,
+    sortable: true,
   },
   {
     title: 'Type',
     accessor: 'type',
+    sortable: true,
   },
   {
     title: 'Sponsoring Agency',
     accessor: 'sponsoringAgency',
+    sortable: true,
   },
 ]

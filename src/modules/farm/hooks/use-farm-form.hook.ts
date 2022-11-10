@@ -19,7 +19,7 @@ export function useFarmFormHook(props: FarmFormProps) {
     variables: {
       where: {
         annualInfos: {
-          mainLivelihood: { _contains: 'Farmer' },
+          mainLivelihood: { _contains: ['Farmer'] },
           year: { _eq: currentYear },
         },
       },

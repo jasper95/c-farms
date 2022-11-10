@@ -65,6 +65,7 @@ function View() {
       columns={annualInfoListColumns}
       filters={annualInfoListFilters}
       name={ResourceEnum.AnnualInfo}
+      searchFields={['mainLivelihood']}
     />
   )
 }

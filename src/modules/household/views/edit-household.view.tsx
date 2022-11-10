@@ -30,10 +30,10 @@ function View() {
         {tab === HouseholdDetailsRoutesEnum.AnnualInfo && (
           <AnnualInfoListView />
         )}
+        {tab === HouseholdDetailsRoutesEnum.Farm && <HouseholdFarmList />}
         {tab === HouseholdDetailsRoutesEnum.CommodityProduce && (
           <CommodityProduceInventoryListView />
         )}
-        {tab === HouseholdDetailsRoutesEnum.Farm && <HouseholdFarmList />}
       </DetailsTabsLayout>
     </>
   )
