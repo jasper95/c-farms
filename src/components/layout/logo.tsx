@@ -12,7 +12,7 @@ export function Logo() {
         },
       }}
     >
-      <Avatar component={Link} href="/" src="/images/logo.svg" />
+      <Avatar component={Link} href="/" src="/images/cfarms.svg" />
     </Box>
   )
 }
