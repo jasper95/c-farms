@@ -16,6 +16,7 @@ export const authOptions: NextAuthOptions = {
   adapter: HasuraAdapter(),
   theme: {
     colorScheme: 'auto',
+    logo: '/images/cfarms-welcome.svg',
   },
   // Use JWT strategy so we can forward them to Hasura
   session: { strategy: 'jwt' },
