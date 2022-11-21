@@ -9,6 +9,7 @@ import { DRAWER_WIDTH } from './constants'
 import Box from '@mui/material/Box'
 import { AccountMenu } from './account-menu.layout'
 import { Logo } from './logo'
+import theme from '@/lib/theme/theme'
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean
@@ -40,7 +41,7 @@ export default function Header() {
   const { sidbarOpened: open, toggleSidebar } = useSidebarStore()
   return (
     <AppBar elevation={0} position="fixed" open={open}>
-      <Toolbar>
+      <Toolbar sx={{ backgroundColor: theme.palette.primary.main }}>
         <IconButton
           edge="start"
           color="inherit"
