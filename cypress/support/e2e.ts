@@ -16,8 +16,18 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
-Cypress.Commands.add('login', () => {
-  cy.intercept('/api/auth/session', { fixture: 'session.json' }).as('session')
+Cypress.Commands.add('login', (role) => {
+  cy.intercept('/api/auth/session', {
+    body: {
+      user: {
+        name: 'Stub User',
+        email: 'test@example.com',
+        role,
+      },
+      expires: '3000-01-01T00:00:00.000Z',
+      accessToken: 'abcdefghijklmnopqrst',
+    },
+  }).as('session')
 
   // Set the cookie for cypress.
   // It has to be a valid cookie so next-auth can decrypt it and confirm its validity.
