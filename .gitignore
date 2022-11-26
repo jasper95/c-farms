@@ -40,3 +40,6 @@ yarn-error.log*
 cdk.out/
 .serverless
 .serverless_nextjs
+
+cypress/screenshots
+cypress/videos
