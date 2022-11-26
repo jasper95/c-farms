@@ -2,7 +2,7 @@ import { DataTableProps } from '@/components/data-table/types'
 import { OrderBy } from '@/lib/generated/graphql.types'
 import transformFilter from '@/lib/utils/transform-filter'
 import { useMemo } from 'react'
-import { useFarmListQuery } from '../api/queries'
+import { useFarmViewListQuery } from '../api/queries'
 import { FarmListRowInterface } from '../interfaces'
 
 interface UseFarmMapTableHookProps
@@ -16,7 +16,7 @@ export function useFarmMapTableHook(props: UseFarmMapTableHookProps) {
     () => transformFilter(tableState.filters),
     [tableState.filters]
   )
-  const [listResponse] = useFarmListQuery({
+  const [listResponse] = useFarmViewListQuery({
     variables: {
       orderBy: {
         createdAt: OrderBy.Desc,

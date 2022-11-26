@@ -1,4 +1,4 @@
-import { useFarmListQuery } from '@/modules/farm/api/queries'
+import { useFarmViewListQuery } from '@/modules/farm/api/queries'
 import DatatableListView from '@/components/views/datatable-list.view'
 import { farmListColumns } from '@/modules/farm/constants'
 import {
@@ -18,11 +18,12 @@ export function HouseholdFarmList() {
       }}
       onCreate={() => router.push(`/farm/new?householdId=${router.query.id}`)}
       actions={[]}
-      useListQueryHook={useFarmListQuery}
+      useListQueryHook={useFarmViewListQuery}
       columns={farmListColumns}
       component={FarmMapTableComponent}
       customActions={FarmMapTableActions}
       name="Farm"
+      searchFields={['name', 'lastName', 'firstName']}
     />
   )
 }

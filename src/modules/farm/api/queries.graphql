@@ -59,3 +59,27 @@ query FarmDetails($id: uuid!) {
     householdId
   }
 }
+
+query FarmViewList(
+  $where: FarmViewBoolExp
+  $orderBy: [FarmViewOrderBy!]
+  $offset: Int
+  $limit: Int
+) { list: farmView(where: $where, orderBy: $orderBy, offset: $offset, limit: $limit) {
+    id
+    name
+    firstName
+    lastName
+    sizeInHaTotal
+    ownerName
+    ownershipType
+    createdAt
+    location
+    householdId
+  }
+  meta: farmViewAggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}

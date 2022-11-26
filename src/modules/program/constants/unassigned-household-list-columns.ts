@@ -42,7 +42,7 @@ export const unassignedHouseholdListColumns: DataTableColumn<UnassignedHousehold
     {
       title: 'Commodities',
       type: 'function',
-      fn: (row) => row.commodities.join(', '),
+      fn: (row) => (row.commodities ? row.commodities.join(', ') : ''),
     },
     {
       title: 'Main Livelihood',
