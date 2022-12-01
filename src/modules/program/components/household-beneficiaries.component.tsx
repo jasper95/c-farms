@@ -44,6 +44,7 @@ function View() {
         additionalTypenames={['HouseholdPrograms']}
         actions={canUpdate ? unassignedActions : []}
         filters={programBeneficiariesListFilters}
+        searchFields={['barangay']}
       />
     )
   }

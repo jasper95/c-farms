@@ -2665,6 +2665,7 @@ export type FarmVarianceFields = {
 /** columns and relationships of "farmView" */
 export type FarmView = {
   __typename?: 'FarmView'
+  barangay?: Maybe<Scalars['String']>
   createdAt: Scalars['timestamp']
   firstName: Scalars['String']
   householdId: Scalars['uuid']
@@ -2722,6 +2723,7 @@ export type FarmViewBoolExp = {
   _and?: InputMaybe<Array<FarmViewBoolExp>>
   _not?: InputMaybe<FarmViewBoolExp>
   _or?: InputMaybe<Array<FarmViewBoolExp>>
+  barangay?: InputMaybe<StringComparisonExp>
   createdAt?: InputMaybe<TimestampComparisonExp>
   firstName?: InputMaybe<StringComparisonExp>
   householdId?: InputMaybe<UuidComparisonExp>
@@ -2737,6 +2739,7 @@ export type FarmViewBoolExp = {
 /** aggregate max on columns */
 export type FarmViewMaxFields = {
   __typename?: 'FarmViewMaxFields'
+  barangay?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
   firstName?: Maybe<Scalars['String']>
   householdId?: Maybe<Scalars['uuid']>
@@ -2751,6 +2754,7 @@ export type FarmViewMaxFields = {
 /** aggregate min on columns */
 export type FarmViewMinFields = {
   __typename?: 'FarmViewMinFields'
+  barangay?: Maybe<Scalars['String']>
   createdAt?: Maybe<Scalars['timestamp']>
   firstName?: Maybe<Scalars['String']>
   householdId?: Maybe<Scalars['uuid']>
@@ -2764,6 +2768,7 @@ export type FarmViewMinFields = {
 
 /** Ordering options when selecting data from "farmView". */
 export type FarmViewOrderBy = {
+  barangay?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
   firstName?: InputMaybe<OrderBy>
   householdId?: InputMaybe<OrderBy>
@@ -2778,6 +2783,8 @@ export type FarmViewOrderBy = {
 
 /** select columns of table "farmView" */
 export enum FarmViewSelectColumn {
+  /** column name */
+  Barangay = 'barangay',
   /** column name */
   CreatedAt = 'createdAt',
   /** column name */
@@ -6050,6 +6057,7 @@ export type FarmView_StreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type FarmView_StreamCursorValueInput = {
+  barangay?: InputMaybe<Scalars['String']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   firstName?: InputMaybe<Scalars['String']>
   householdId?: InputMaybe<Scalars['uuid']>
