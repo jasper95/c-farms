@@ -30,6 +30,9 @@ export function AssociationBeneficiaries() {
               _contains: id,
             },
           },
+          active: {
+            _eq: true,
+          },
         }}
         useListQueryHook={useAssociationProgramsListQuery}
         columns={unassignedAssociationListColumns}
@@ -40,6 +43,7 @@ export function AssociationBeneficiaries() {
         customActions={ProgramBeneficiariesActions}
         additionalTypenames={['AssociationPrograms']}
         actions={canUpdate ? unassignedActions : []}
+        searchFields={['name']}
       />
     )
   }
