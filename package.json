@@ -17,6 +17,7 @@
     "e2e": "start-server-and-test start http://localhost:3000 cypress",
     "coverage": "cypress run --headless --browser chrome --task coverage",
     "dev:instrumented": "INSTRUMENT_CODE=1 next dev",
+    "pretest": "rm -rf .nyc_output coverage .next",
     "test": "start-server-and-test dev:instrumented http://localhost:3000 cypress:headless"
   },
   "dependencies": {
