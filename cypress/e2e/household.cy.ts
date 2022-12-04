@@ -1,17 +1,20 @@
-describe('Household module', () => {
+import { interceptOperation } from '../utils/graphql-test-utils'
+
+describe('Household List', () => {
   before(() => {
+    // login as administrator
     cy.login('administrator')
-    cy.visit('/')
+    // Visit a route in order to allow cypress to actually set the cookie
+    cy.visit('/household')
+    // Wait until the intercepted request is ready
+    cy.wait('@session')
+    interceptOperation('HouseholdList')
   })
 
-  //   it('should contain create button and list view', () => {
-  //     cy.wait('@session')
-  //     cy.get('[data-test-id="create"]').should('be.visible')
-  //   })
-
-  it('should open household new page', () => {
-    cy.visit('/household/new')
-    cy.get('input[name="referenceNo"]').type('test')
+  it('list query should return valid response', () => {
+    cy.wait('@HouseholdList')
+      .its('response.body.data')
+      .should('have.property', 'list')
   })
 })
 export {}
