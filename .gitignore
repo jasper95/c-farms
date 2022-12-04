@@ -43,3 +43,4 @@ cdk.out/
 
 cypress/screenshots
 cypress/videos
+.nyc_output

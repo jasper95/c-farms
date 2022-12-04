@@ -15,7 +15,9 @@
     "cypress": "cypress open",
     "cypress:headless": "cypress run",
     "e2e": "start-server-and-test start http://localhost:3000 cypress",
-    "e2e:headless": "start-server-and-test start http://localhost:3000 cypress:headless"
+    "coverage": "cypress run --headless --browser chrome --task coverage",
+    "dev:instrumented": "INSTRUMENT_CODE=1 next dev",
+    "test": "start-server-and-test dev:instrumented http://localhost:3000 cypress:headless"
   },
   "dependencies": {
     "@aws-amplify/ui-react": "1.2.26",
@@ -69,6 +71,7 @@
     "zustand": "^3.6.5"
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.10.0",
     "@graphql-codegen/cli": "^2.12.1",
     "@graphql-codegen/import-types-preset": "^2.2.5",
     "@graphql-codegen/introspection": "2.1.0",
@@ -79,18 +82,21 @@
     "@graphql-codegen/typescript-urql": "^3.7.2",
     "@graphql-codegen/urql-introspection": "^2.2.1",
     "@testing-library/cypress": "^8.0.7",
+    "@types/cypress__code-coverage": "^3.10.0",
     "@types/js-search": "^1.4.0",
     "@types/leaflet": "^1.7.9",
     "@types/node": "16.11.9",
     "@types/react": "17.0.35",
     "@typescript-eslint/eslint-plugin": "5.5.0",
     "autoprefixer": "^10.4.0",
+    "babel-plugin-istanbul": "^6.1.1",
     "cypress": "^11.2.0",
     "eslint": "^8.13.0",
     "eslint-config-next": "^12.3.1",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.4",
+    "istanbul": "^0.4.5",
     "lint-staged": "^12.3.7",
     "postcss": "^8.3.11",
     "prettier": "2.5.0",

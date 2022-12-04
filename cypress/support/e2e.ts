@@ -15,6 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import '@cypress/code-coverage/support'
 
 Cypress.Commands.add('login', (role) => {
   cy.intercept('/api/auth/session', {
