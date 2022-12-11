@@ -20,9 +20,8 @@ export const householdListFilters: DataTableFilter<T.Household>[] = [
     label: 'First Name',
   },
   {
-    field: 'barangay',
-    type: FieldTypeEnum.Enumeration,
-    label: 'Barangay',
-    options: barangayOptions,
+    field: 'lastName',
+    type: FieldTypeEnum.String,
+    label: 'Last Name',
   },
 ]

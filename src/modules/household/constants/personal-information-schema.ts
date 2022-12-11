@@ -1,6 +1,10 @@
 import { fieldIsRequired } from '@/lib/utils/form-utils'
 import * as yup from 'yup'
-import { civilStatusOptions, genderOptions } from './form-options'
+import {
+  civilStatusOptions,
+  genderOptions,
+  regionOptions,
+} from './form-options'
 
 export const personalInfomationSchema = yup.object({
   lastName: yup
@@ -21,8 +25,19 @@ export const personalInfomationSchema = yup.object({
   barangay: yup.string().required(fieldIsRequired).default('ABIHILAN'),
   municipality: yup.string().required(fieldIsRequired).default('Candijay'),
   province: yup.string().required(fieldIsRequired).default('Bohol'),
-  region: yup.string().required(fieldIsRequired).default('VII'),
-  contactNumber: yup.string().required(fieldIsRequired).default(''),
+  region: yup
+    .string()
+    .oneOf(regionOptions.map((e) => e.value))
+    .required(fieldIsRequired)
+    .default('Region VII'),
+  contactNumber: yup
+    .string()
+    .required(fieldIsRequired)
+    .default('')
+    .matches(
+      /^09\d{9}?$/,
+      'Contact number must be in the following format: 09xxxxxxxxx'
+    ),
   sex: yup
     .number()
     .oneOf(genderOptions.map((e) => e.value))

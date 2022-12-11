@@ -4,6 +4,7 @@ export {
   livelihoodOptions,
   educationBackgroundOptions,
   barangayOptions,
+  regionOptions,
 } from './form-options'
 
 export { createHouseholdSteps } from './create-household-steps'
