@@ -37,7 +37,7 @@ export function useNewViewHook<
   MutationPayload,
   MutationResponse extends MutationResponseType
 >(props: UseNewViewProps<T, MutationPayload, MutationResponse>) {
-  const { notifySuccess } = useNotificationStore()
+  const { notifySuccess, notifyError } = useNotificationStore()
   const {
     useMutationHook,
     schema,
@@ -70,9 +70,13 @@ export function useNewViewHook<
       },
       { additionalTypenames }
     )
-    notifySuccess(`${name} successfully created`)
-    if (redirectBaseUrl) {
-      router.push(`${redirectBaseUrl}/${response.data?.data?.id}`)
+    if (response.error) {
+      notifyError(`Error on saving ${name}: duplicate value constraint.`)
+    } else {
+      notifySuccess(`${name} successfully created`)
+      if (redirectBaseUrl) {
+        router.push(`${redirectBaseUrl}/${response.data?.data?.id}`)
+      }
     }
   }
 

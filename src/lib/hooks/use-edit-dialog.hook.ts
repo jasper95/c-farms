@@ -35,7 +35,7 @@ export function useEditDialogHook<
     MutationResponse
   >
 ) {
-  const { notifySuccess } = useNotificationStore()
+  const { notifySuccess, notifyError } = useNotificationStore()
   const { showDialog } = useDialogStore()
   const {
     useMutationHook,
@@ -61,7 +61,7 @@ export function useEditDialogHook<
         title: `Edit ${name}`,
         onValid: async (data: AssertsShape<T>) => {
           const payload = transform(data) as MutationPayload
-          await onUpdate(
+          const response = await onUpdate(
             {
               id: {
                 id,
@@ -70,9 +70,13 @@ export function useEditDialogHook<
             },
             { additionalTypenames }
           )
-          notifySuccess(`${name} successfully updated`)
-          if (redirectBaseUrl) {
-            router.push(redirectBaseUrl)
+          if (response.error) {
+            notifyError(`${name} did not update.`)
+          } else {
+            notifySuccess(`${name} successfully updated`)
+            if (redirectBaseUrl) {
+              router.push(redirectBaseUrl)
+            }
           }
         },
         transform: transformResponse,

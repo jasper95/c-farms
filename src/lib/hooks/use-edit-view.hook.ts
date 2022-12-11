@@ -52,7 +52,7 @@ export function useEditViewHook<
 >(
   props: UseEditViewProps<T, DetailsResponse, MutationPayload, MutationResponse>
 ) {
-  const { notifySuccess } = useNotificationStore()
+  const { notifySuccess, notifyError } = useNotificationStore()
   const { ability } = useAuthStore()
   const {
     useMutationHook,
@@ -95,7 +95,7 @@ export function useEditViewHook<
 
   async function onValid(data: AssertsShape<T>) {
     const payload = transform(data) as MutationPayload
-    await onUpdate(
+    const response = await onUpdate(
       {
         id: {
           id,
@@ -106,9 +106,13 @@ export function useEditViewHook<
         additionalTypenames,
       }
     )
-    notifySuccess(`${name} successfully updated`)
-    if (redirectBaseUrl) {
-      router.push(redirectBaseUrl)
+    if (response.error) {
+      notifyError(`${name} did not update.`)
+    } else {
+      notifySuccess(`${name} successfully updated`)
+      if (redirectBaseUrl) {
+        router.push(redirectBaseUrl)
+      }
     }
   }
 
