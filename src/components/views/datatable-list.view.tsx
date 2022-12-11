@@ -108,6 +108,7 @@ export default function DatatableListView<
             />
             {canCreate && withCreate && (
               <Button
+                data-testid="create"
                 {...(onCreate
                   ? {
                       onClick: onCreate,
