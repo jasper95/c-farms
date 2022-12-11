@@ -1,6 +1,7 @@
 import { defineConfig } from 'cypress'
 
 export default defineConfig({
+  projectId: 't7n5kw',
   e2e: {
     setupNodeEvents(on, config) {
       require('@cypress/code-coverage/task')(on, config)
