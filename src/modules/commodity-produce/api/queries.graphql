@@ -27,6 +27,7 @@ query FarmOptions(
   list: farm(where: $where, orderBy: $orderBy, offset: $offset, limit: $limit) {
     id
     name
+    sizeInHaTotal
   }
 }
 
