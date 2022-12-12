@@ -8,17 +8,13 @@ describe('Program Household', () => {
   })
 
   it('can edit household programs', () => {
-    cy.intercept('https://hasura-a08a.onrender.com/v1/graphql').as(
-      'ProgramList'
-    )
+    interceptOperation('ProgramList')
     cy.wait('@ProgramList')
     cy.get('.MuiGrid2-grid-xs-2 > .MuiButtonBase-root').click()
     cy.get('[name="field"]').type('Type{downArrow}{enter}')
     cy.get('[name="value"]').type('Household{downArrow}{enter}')
     cy.get('.MuiBox-root > .MuiButton-root').click()
-    cy.intercept('https://hasura-a08a.onrender.com/v1/graphql').as(
-      'ProgramList'
-    )
+    interceptOperation('ProgramList')
     cy.wait('@ProgramList')
     cy.get(
       '.MuiTableBody-root > .MuiTableRow-root > :nth-child(4) > .MuiButtonBase-root'

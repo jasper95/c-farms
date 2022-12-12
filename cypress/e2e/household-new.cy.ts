@@ -13,6 +13,7 @@ context('Household Module', () => {
       interceptOperation('HouseholdList')
       cy.wait('@HouseholdList')
       cy.get('[data-testid="create"]').should('be.visible').click()
+      cy.wait(5000)
       cy.get('[name="referenceNo"]').type(
         faker.phone.number('#########').toString()
       )

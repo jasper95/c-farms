@@ -2,7 +2,7 @@ import { interceptOperation } from '../utils/graphql-test-utils'
 import { faker } from '@faker-js/faker'
 
 describe('Household Details Annual Info', () => {
-  before(() => {
+  beforeEach(() => {
     cy.login('manager')
     cy.visit('/household/342541bf-2649-4b9b-a912-93661c4ec31f/annual-info')
     interceptOperation('AnnualInfoList')
@@ -31,11 +31,29 @@ describe('Household Details Annual Info', () => {
       'High School Level{downArrow}{enter}'
     )
     cy.get('button').contains('Continue').click()
+    cy.intercept(Cypress.env('NEXT_PUBLIC_GRAPHQL_URL'), (req) => {
+      if (req.body.operationName !== 'AnnualInfoList') {
+        req.alias = 'AnnnualInfoList'
+        cy.wait('@AnnualInfoList')
+      }
+    })
+    cy.get('.MuiAlert-message').should('be.visible')
+  })
+
+  it('deletes annual info', () => {
+    cy.get(
+      '.MuiTableBody-root > :nth-child(1) > :nth-child(4) > .MuiButtonBase-root'
+    ).click()
+    cy.get(
+      '[tabindex="-1"] > .MuiListItemText-root > .MuiTypography-root'
+    ).click()
+    cy.get('button').contains('Continue').should('be.visible').click()
     interceptOperation('AnnualInfoList')
     cy.wait('@AnnualInfoList')
-    cy.get('.MuiAlert-message')
-      .should('be.visible')
-      .contains('Annual Info successfully created')
+    cy.get('.MuiAlert-message').should(
+      'contain',
+      'Annual Info successfully deleted'
+    )
   })
 })
 export {}

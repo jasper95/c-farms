@@ -11,9 +11,7 @@ describe('Household Details Commodity Produce', () => {
   })
 
   it('displays commodity produce tab', () => {
-    cy.intercept('https://hasura-a08a.onrender.com/v1/graphql').as(
-      'CommodityProduceList'
-    )
+    interceptOperation('CommodityProduceList')
     cy.wait('@CommodityProduceList')
     cy.get('@CommodityProduceList')
       .its('response.body.data')
@@ -23,22 +21,20 @@ describe('Household Details Commodity Produce', () => {
 
   it('creates commodity produce', () => {
     cy.get('button').contains('Create Commodity Produce').click()
+    cy.wait(3000)
     cy.get('.MuiInputAdornment-root > .MuiButtonBase-root').click()
     cy.get(':nth-child(27) > .PrivatePickersYear-yearButton').click()
-    cy.get('[name="farmId"]').type('{downArrow}{enter}')
     cy.get('[name="commodityId"]').type('{downArrow}{enter}')
     cy.get('[name="organicPractitioner"]').click()
     cy.get('[name="produceInUnit"]')
       .type('{backspace}')
       .type(faker.datatype.float().toString())
+    cy.get('[name="farmId"]').type('{downArrow}{enter}')
     cy.get('[name="areaUsed"]').type(
-      faker.datatype.float({ max: 2 }).toString()
+      faker.datatype.float({ min: 0.001, max: 0.5 }).toString()
     )
     cy.get('button').contains('Continue').click()
-
-    cy.intercept('https://hasura-a08a.onrender.com/v1/graphql').as(
-      'CommodityProduceList'
-    )
+    interceptOperation('CommodityProduceList')
     cy.wait('@CommodityProduceList')
     cy.get('.MuiAlert-message')
       .should('be.visible')
@@ -46,6 +42,18 @@ describe('Household Details Commodity Produce', () => {
     cy.get('@CommodityProduceList')
       .its('response')
       .should('have.property', 'statusCode', 200)
+  })
+
+  it('updates commodity produce', () => {
+    cy.get(
+      '.MuiTableBody-root > :nth-child(1) > :nth-child(6) > .MuiButtonBase-root'
+    ).click()
+    cy.get(
+      '.MuiList-root > [tabindex="0"] > .MuiListItemText-root > .MuiTypography-root'
+    ).click()
+    cy.get('.MuiInputAdornment-root > .MuiButtonBase-root').click()
+    cy.get(':nth-child(26) > .PrivatePickersYear-yearButton').click()
+    cy.get('button').contains('Continue').click()
   })
 
   it('deletes commodity produce data', () => {
@@ -57,10 +65,7 @@ describe('Household Details Commodity Produce', () => {
       '[tabindex="-1"] > .MuiListItemText-root > .MuiTypography-root'
     ).click()
     cy.get('button').contains('Continue').click()
-
-    cy.intercept('https://hasura-a08a.onrender.com/v1/graphql').as(
-      'CommodityProduceList'
-    )
+    interceptOperation('CommodityProduceList')
     cy.wait('@CommodityProduceList')
     cy.get('@CommodityProduceList')
       .its('response')
