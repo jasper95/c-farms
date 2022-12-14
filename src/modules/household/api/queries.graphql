@@ -1,3 +1,28 @@
+query HouseholdViewList(
+  $where: HouseholdViewBoolExp
+  $orderBy: [HouseholdViewOrderBy!]
+  $offset: Int
+  $limit: Int
+) {
+  list: householdView(
+    where: $where
+    orderBy: $orderBy
+    offset: $offset
+    limit: $limit
+  ) {
+    id
+    name
+    mainLivelihood
+    referenceNo
+    barangay
+  }
+  meta: householdViewAggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
+
 query HouseholdList(
   $where: HouseholdBoolExp
   $orderBy: [HouseholdOrderBy!]

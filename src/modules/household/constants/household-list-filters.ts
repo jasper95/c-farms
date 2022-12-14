@@ -1,13 +1,18 @@
 import { DataTableFilter } from '@/components/data-table/types'
 import { FieldTypeEnum } from '@/components/list-filter/field-type.enum'
 import * as T from '@/lib/generated/graphql.types'
-import { barangayOptions } from './form-options'
+import { livelihoodOptions } from './form-options'
 
-export const householdListFilters: DataTableFilter<T.Household>[] = [
+export const householdListFilters: DataTableFilter<T.HouseholdView>[] = [
   {
     field: 'referenceNo',
     type: FieldTypeEnum.String,
     label: 'Reference No.',
+  },
+  {
+    field: 'name',
+    type: FieldTypeEnum.String,
+    label: 'Name',
   },
   {
     field: 'barangay',
@@ -15,13 +20,9 @@ export const householdListFilters: DataTableFilter<T.Household>[] = [
     label: 'Barangay',
   },
   {
-    field: 'firstName',
-    type: FieldTypeEnum.String,
-    label: 'First Name',
-  },
-  {
-    field: 'lastName',
-    type: FieldTypeEnum.String,
-    label: 'Last Name',
+    field: 'mainLivelihood',
+    type: FieldTypeEnum.EnumerationMultiple,
+    options: livelihoodOptions,
+    label: 'Main Livelihood',
   },
 ]

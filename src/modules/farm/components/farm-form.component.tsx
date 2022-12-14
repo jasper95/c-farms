@@ -137,14 +137,16 @@ export function FarmForm(props: FarmFormProps) {
             />
           </Grid>
         </Grid>
-        <Grid item sm={12} md={12}>
-          <Button
-            className=".MuiButton-fullWidth	"
-            href={`/household/${householdId}`}
-          >
-            Visit {householdName}&apos;s Household Profile
-          </Button>
-        </Grid>
+        {householdId && (
+          <Grid item sm={12} md={12}>
+            <Button
+              className=".MuiButton-fullWidth	"
+              href={`/household/${householdId}`}
+            >
+              Visit {householdName}&apos;s Household Profile
+            </Button>
+          </Grid>
+        )}
         <FormToolbar
           cancelVisible={false}
           confirmVisible={false}

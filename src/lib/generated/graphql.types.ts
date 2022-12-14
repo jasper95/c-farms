@@ -1618,6 +1618,7 @@ export type CommodityProduce = {
   /** An object relationship */
   farm: Farm
   farmId: Scalars['uuid']
+  farmSize?: Maybe<Scalars['float8']>
   householdId: Scalars['uuid']
   id: Scalars['uuid']
   organicPractitioner: Scalars['Boolean']
@@ -1683,6 +1684,7 @@ export type CommodityProduceArrRelInsertInput = {
 export type CommodityProduceAvgFields = {
   __typename?: 'CommodityProduceAvgFields'
   areaUsed?: Maybe<Scalars['Float']>
+  farmSize?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
   produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
@@ -1698,6 +1700,7 @@ export type CommodityProduceBoolExp = {
   createdAt?: InputMaybe<TimestampComparisonExp>
   farm?: InputMaybe<FarmBoolExp>
   farmId?: InputMaybe<UuidComparisonExp>
+  farmSize?: InputMaybe<Float8ComparisonExp>
   householdId?: InputMaybe<UuidComparisonExp>
   id?: InputMaybe<UuidComparisonExp>
   organicPractitioner?: InputMaybe<BooleanComparisonExp>
@@ -1719,6 +1722,7 @@ export enum CommodityProduceConstraint {
 /** input type for incrementing numeric columns in table "commodityProduce" */
 export type CommodityProduceIncInput = {
   areaUsed?: InputMaybe<Scalars['float8']>
+  farmSize?: InputMaybe<Scalars['float8']>
   produce?: InputMaybe<Scalars['float8']>
   produceInUnit?: InputMaybe<Scalars['float8']>
   year?: InputMaybe<Scalars['Int']>
@@ -1731,6 +1735,7 @@ export type CommodityProduceInsertInput = {
   createdAt?: InputMaybe<Scalars['timestamp']>
   farm?: InputMaybe<FarmObjRelInsertInput>
   farmId?: InputMaybe<Scalars['uuid']>
+  farmSize?: InputMaybe<Scalars['float8']>
   householdId?: InputMaybe<Scalars['uuid']>
   id?: InputMaybe<Scalars['uuid']>
   organicPractitioner?: InputMaybe<Scalars['Boolean']>
@@ -1748,6 +1753,7 @@ export type CommodityProduceMaxFields = {
   commodityId?: Maybe<Scalars['uuid']>
   createdAt?: Maybe<Scalars['timestamp']>
   farmId?: Maybe<Scalars['uuid']>
+  farmSize?: Maybe<Scalars['float8']>
   householdId?: Maybe<Scalars['uuid']>
   id?: Maybe<Scalars['uuid']>
   produce?: Maybe<Scalars['float8']>
@@ -1764,6 +1770,7 @@ export type CommodityProduceMinFields = {
   commodityId?: Maybe<Scalars['uuid']>
   createdAt?: Maybe<Scalars['timestamp']>
   farmId?: Maybe<Scalars['uuid']>
+  farmSize?: Maybe<Scalars['float8']>
   householdId?: Maybe<Scalars['uuid']>
   id?: Maybe<Scalars['uuid']>
   produce?: Maybe<Scalars['float8']>
@@ -1796,6 +1803,7 @@ export type CommodityProduceOrderBy = {
   createdAt?: InputMaybe<OrderBy>
   farm?: InputMaybe<FarmOrderBy>
   farmId?: InputMaybe<OrderBy>
+  farmSize?: InputMaybe<OrderBy>
   householdId?: InputMaybe<OrderBy>
   id?: InputMaybe<OrderBy>
   organicPractitioner?: InputMaybe<OrderBy>
@@ -1822,6 +1830,8 @@ export enum CommodityProduceSelectColumn {
   /** column name */
   FarmId = 'farmId',
   /** column name */
+  FarmSize = 'farmSize',
+  /** column name */
   HouseholdId = 'householdId',
   /** column name */
   Id = 'id',
@@ -1845,6 +1855,7 @@ export type CommodityProduceSetInput = {
   commodityId?: InputMaybe<Scalars['uuid']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   farmId?: InputMaybe<Scalars['uuid']>
+  farmSize?: InputMaybe<Scalars['float8']>
   householdId?: InputMaybe<Scalars['uuid']>
   id?: InputMaybe<Scalars['uuid']>
   organicPractitioner?: InputMaybe<Scalars['Boolean']>
@@ -1859,6 +1870,7 @@ export type CommodityProduceSetInput = {
 export type CommodityProduceStddevFields = {
   __typename?: 'CommodityProduceStddevFields'
   areaUsed?: Maybe<Scalars['Float']>
+  farmSize?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
   produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
@@ -1868,6 +1880,7 @@ export type CommodityProduceStddevFields = {
 export type CommodityProduceStddev_PopFields = {
   __typename?: 'CommodityProduceStddev_popFields'
   areaUsed?: Maybe<Scalars['Float']>
+  farmSize?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
   produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
@@ -1877,6 +1890,7 @@ export type CommodityProduceStddev_PopFields = {
 export type CommodityProduceStddev_SampFields = {
   __typename?: 'CommodityProduceStddev_sampFields'
   areaUsed?: Maybe<Scalars['Float']>
+  farmSize?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
   produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
@@ -1886,6 +1900,7 @@ export type CommodityProduceStddev_SampFields = {
 export type CommodityProduceSumFields = {
   __typename?: 'CommodityProduceSumFields'
   areaUsed?: Maybe<Scalars['float8']>
+  farmSize?: Maybe<Scalars['float8']>
   produce?: Maybe<Scalars['float8']>
   produceInUnit?: Maybe<Scalars['float8']>
   year?: Maybe<Scalars['Int']>
@@ -1901,6 +1916,8 @@ export enum CommodityProduceUpdateColumn {
   CreatedAt = 'createdAt',
   /** column name */
   FarmId = 'farmId',
+  /** column name */
+  FarmSize = 'farmSize',
   /** column name */
   HouseholdId = 'householdId',
   /** column name */
@@ -1931,6 +1948,7 @@ export type CommodityProduceUpdates = {
 export type CommodityProduceVar_PopFields = {
   __typename?: 'CommodityProduceVar_popFields'
   areaUsed?: Maybe<Scalars['Float']>
+  farmSize?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
   produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
@@ -1940,6 +1958,7 @@ export type CommodityProduceVar_PopFields = {
 export type CommodityProduceVar_SampFields = {
   __typename?: 'CommodityProduceVar_sampFields'
   areaUsed?: Maybe<Scalars['Float']>
+  farmSize?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
   produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
@@ -1949,6 +1968,7 @@ export type CommodityProduceVar_SampFields = {
 export type CommodityProduceVarianceFields = {
   __typename?: 'CommodityProduceVarianceFields'
   areaUsed?: Maybe<Scalars['Float']>
+  farmSize?: Maybe<Scalars['Float']>
   produce?: Maybe<Scalars['Float']>
   produceInUnit?: Maybe<Scalars['Float']>
   year?: Maybe<Scalars['Float']>
@@ -3970,6 +3990,95 @@ export type HouseholdVarianceFields = {
   sex?: Maybe<Scalars['Float']>
 }
 
+/** columns and relationships of "householdView" */
+export type HouseholdView = {
+  __typename?: 'HouseholdView'
+  barangay: Scalars['String']
+  id: Scalars['uuid']
+  mainLivelihood: Scalars['jsonb']
+  name: Scalars['String']
+  referenceNo: Scalars['String']
+}
+
+/** columns and relationships of "householdView" */
+export type HouseholdViewMainLivelihoodArgs = {
+  path?: InputMaybe<Scalars['String']>
+}
+
+/** aggregated selection of "householdView" */
+export type HouseholdViewAggregate = {
+  __typename?: 'HouseholdViewAggregate'
+  aggregate?: Maybe<HouseholdViewAggregateFields>
+  nodes: Array<HouseholdView>
+}
+
+/** aggregate fields of "householdView" */
+export type HouseholdViewAggregateFields = {
+  __typename?: 'HouseholdViewAggregateFields'
+  count: Scalars['Int']
+  max?: Maybe<HouseholdViewMaxFields>
+  min?: Maybe<HouseholdViewMinFields>
+}
+
+/** aggregate fields of "householdView" */
+export type HouseholdViewAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<HouseholdViewSelectColumn>>
+  distinct?: InputMaybe<Scalars['Boolean']>
+}
+
+/** Boolean expression to filter rows from the table "householdView". All fields are combined with a logical 'AND'. */
+export type HouseholdViewBoolExp = {
+  _and?: InputMaybe<Array<HouseholdViewBoolExp>>
+  _not?: InputMaybe<HouseholdViewBoolExp>
+  _or?: InputMaybe<Array<HouseholdViewBoolExp>>
+  barangay?: InputMaybe<StringComparisonExp>
+  id?: InputMaybe<UuidComparisonExp>
+  mainLivelihood?: InputMaybe<JsonbComparisonExp>
+  name?: InputMaybe<StringComparisonExp>
+  referenceNo?: InputMaybe<StringComparisonExp>
+}
+
+/** aggregate max on columns */
+export type HouseholdViewMaxFields = {
+  __typename?: 'HouseholdViewMaxFields'
+  barangay?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['uuid']>
+  name?: Maybe<Scalars['String']>
+  referenceNo?: Maybe<Scalars['String']>
+}
+
+/** aggregate min on columns */
+export type HouseholdViewMinFields = {
+  __typename?: 'HouseholdViewMinFields'
+  barangay?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['uuid']>
+  name?: Maybe<Scalars['String']>
+  referenceNo?: Maybe<Scalars['String']>
+}
+
+/** Ordering options when selecting data from "householdView". */
+export type HouseholdViewOrderBy = {
+  barangay?: InputMaybe<OrderBy>
+  id?: InputMaybe<OrderBy>
+  mainLivelihood?: InputMaybe<OrderBy>
+  name?: InputMaybe<OrderBy>
+  referenceNo?: InputMaybe<OrderBy>
+}
+
+/** select columns of table "householdView" */
+export enum HouseholdViewSelectColumn {
+  /** column name */
+  Barangay = 'barangay',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  MainLivelihood = 'mainLivelihood',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  ReferenceNo = 'referenceNo',
+}
+
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type IntComparisonExp = {
   _eq?: InputMaybe<Scalars['Int']>
@@ -5895,6 +6004,7 @@ export type AverageAnnualIncome_StreamCursorValueInput = {
 /** order by avg() on columns of table "commodityProduce" */
 export type CommodityProduce_Avg_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
+  farmSize?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
   produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
@@ -5906,6 +6016,7 @@ export type CommodityProduce_Max_Order_By = {
   commodityId?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
   farmId?: InputMaybe<OrderBy>
+  farmSize?: InputMaybe<OrderBy>
   householdId?: InputMaybe<OrderBy>
   id?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
@@ -5921,6 +6032,7 @@ export type CommodityProduce_Min_Order_By = {
   commodityId?: InputMaybe<OrderBy>
   createdAt?: InputMaybe<OrderBy>
   farmId?: InputMaybe<OrderBy>
+  farmSize?: InputMaybe<OrderBy>
   householdId?: InputMaybe<OrderBy>
   id?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
@@ -5933,6 +6045,7 @@ export type CommodityProduce_Min_Order_By = {
 /** order by stddev() on columns of table "commodityProduce" */
 export type CommodityProduce_Stddev_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
+  farmSize?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
   produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
@@ -5941,6 +6054,7 @@ export type CommodityProduce_Stddev_Order_By = {
 /** order by stddev_pop() on columns of table "commodityProduce" */
 export type CommodityProduce_Stddev_Pop_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
+  farmSize?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
   produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
@@ -5949,6 +6063,7 @@ export type CommodityProduce_Stddev_Pop_Order_By = {
 /** order by stddev_samp() on columns of table "commodityProduce" */
 export type CommodityProduce_Stddev_Samp_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
+  farmSize?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
   produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
@@ -5968,6 +6083,7 @@ export type CommodityProduce_StreamCursorValueInput = {
   commodityId?: InputMaybe<Scalars['uuid']>
   createdAt?: InputMaybe<Scalars['timestamp']>
   farmId?: InputMaybe<Scalars['uuid']>
+  farmSize?: InputMaybe<Scalars['float8']>
   householdId?: InputMaybe<Scalars['uuid']>
   id?: InputMaybe<Scalars['uuid']>
   organicPractitioner?: InputMaybe<Scalars['Boolean']>
@@ -5981,6 +6097,7 @@ export type CommodityProduce_StreamCursorValueInput = {
 /** order by sum() on columns of table "commodityProduce" */
 export type CommodityProduce_Sum_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
+  farmSize?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
   produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
@@ -5989,6 +6106,7 @@ export type CommodityProduce_Sum_Order_By = {
 /** order by var_pop() on columns of table "commodityProduce" */
 export type CommodityProduce_Var_Pop_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
+  farmSize?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
   produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
@@ -5997,6 +6115,7 @@ export type CommodityProduce_Var_Pop_Order_By = {
 /** order by var_samp() on columns of table "commodityProduce" */
 export type CommodityProduce_Var_Samp_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
+  farmSize?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
   produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
@@ -6005,6 +6124,7 @@ export type CommodityProduce_Var_Samp_Order_By = {
 /** order by variance() on columns of table "commodityProduce" */
 export type CommodityProduce_Variance_Order_By = {
   areaUsed?: InputMaybe<OrderBy>
+  farmSize?: InputMaybe<OrderBy>
   produce?: InputMaybe<OrderBy>
   produceInUnit?: InputMaybe<OrderBy>
   year?: InputMaybe<OrderBy>
@@ -6226,6 +6346,23 @@ export type HouseholdToProgram_StreamCursorValueInput = {
   programId?: InputMaybe<Scalars['uuid']>
   remarks?: InputMaybe<Scalars['String']>
   updatedAt?: InputMaybe<Scalars['timestamp']>
+}
+
+/** Streaming cursor of the table "householdView" */
+export type HouseholdView_StreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: HouseholdView_StreamCursorValueInput
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>
+}
+
+/** Initial value of the column from where the streaming should start */
+export type HouseholdView_StreamCursorValueInput = {
+  barangay?: InputMaybe<Scalars['String']>
+  id?: InputMaybe<Scalars['uuid']>
+  mainLivelihood?: InputMaybe<Scalars['jsonb']>
+  name?: InputMaybe<Scalars['String']>
+  referenceNo?: InputMaybe<Scalars['String']>
 }
 
 /** Streaming cursor of the table "household" */
@@ -7144,6 +7281,10 @@ export type Query_Root = {
   householdToProgram: Array<HouseholdToProgram>
   /** fetch aggregated fields from the table: "householdToProgram" */
   householdToProgramAggregate: HouseholdToProgramAggregate
+  /** fetch data from the table: "householdView" */
+  householdView: Array<HouseholdView>
+  /** fetch aggregated fields from the table: "householdView" */
+  householdViewAggregate: HouseholdViewAggregate
   /** fetch data from the table: "inventoryOfLivestock" */
   inventoryOfLivestock: Array<InventoryOfLivestock>
   /** fetch aggregated fields from the table: "inventoryOfLivestock" */
@@ -7470,6 +7611,22 @@ export type Query_RootHouseholdToProgramAggregateArgs = {
   where?: InputMaybe<HouseholdToProgramBoolExp>
 }
 
+export type Query_RootHouseholdViewArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdViewSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<HouseholdViewOrderBy>>
+  where?: InputMaybe<HouseholdViewBoolExp>
+}
+
+export type Query_RootHouseholdViewAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdViewSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<HouseholdViewOrderBy>>
+  where?: InputMaybe<HouseholdViewBoolExp>
+}
+
 export type Query_RootInventoryOfLivestockArgs = {
   distinctOn?: InputMaybe<Array<InventoryOfLivestockSelectColumn>>
   limit?: InputMaybe<Scalars['Int']>
@@ -7756,6 +7913,12 @@ export type Subscription_Root = {
   householdToProgramAggregate: HouseholdToProgramAggregate
   /** fetch data from the table in a streaming manner : "householdToProgram" */
   householdToProgramStream: Array<HouseholdToProgram>
+  /** fetch data from the table: "householdView" */
+  householdView: Array<HouseholdView>
+  /** fetch aggregated fields from the table: "householdView" */
+  householdViewAggregate: HouseholdViewAggregate
+  /** fetch data from the table in a streaming manner : "householdView" */
+  householdViewStream: Array<HouseholdView>
   /** fetch data from the table: "inventoryOfLivestock" */
   inventoryOfLivestock: Array<InventoryOfLivestock>
   /** fetch aggregated fields from the table: "inventoryOfLivestock" */
@@ -8192,6 +8355,28 @@ export type Subscription_RootHouseholdToProgramStreamArgs = {
   batchSize: Scalars['Int']
   cursor: Array<InputMaybe<HouseholdToProgram_StreamCursorInput>>
   where?: InputMaybe<HouseholdToProgramBoolExp>
+}
+
+export type Subscription_RootHouseholdViewArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdViewSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<HouseholdViewOrderBy>>
+  where?: InputMaybe<HouseholdViewBoolExp>
+}
+
+export type Subscription_RootHouseholdViewAggregateArgs = {
+  distinctOn?: InputMaybe<Array<HouseholdViewSelectColumn>>
+  limit?: InputMaybe<Scalars['Int']>
+  offset?: InputMaybe<Scalars['Int']>
+  orderBy?: InputMaybe<Array<HouseholdViewOrderBy>>
+  where?: InputMaybe<HouseholdViewBoolExp>
+}
+
+export type Subscription_RootHouseholdViewStreamArgs = {
+  batchSize: Scalars['Int']
+  cursor: Array<InputMaybe<HouseholdView_StreamCursorInput>>
+  where?: InputMaybe<HouseholdViewBoolExp>
 }
 
 export type Subscription_RootInventoryOfLivestockArgs = {
