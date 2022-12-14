@@ -13,6 +13,7 @@ import SwitchField from '@/components/switch-field'
 import { FormToolbar } from '@/components/form-toolbar'
 import MapField from '@/components/map-field'
 import { useFarmFormHook } from '@/modules/farm/hooks'
+import Button from '@mui/material/Button'
 
 interface FarmFormProps {
   formProps: UseFormReturn<IFarmSchema>
@@ -23,7 +24,8 @@ interface FarmFormProps {
 
 export function FarmForm(props: FarmFormProps) {
   const { formProps, formDisabled, isMutating, onSave } = props
-  const { householdOptions } = useFarmFormHook(props)
+  const { householdOptions, householdId, householdName } =
+    useFarmFormHook(props)
   const { control } = formProps
 
   return (
@@ -134,6 +136,14 @@ export function FarmForm(props: FarmFormProps) {
               label="Within Ancestral Domain"
             />
           </Grid>
+        </Grid>
+        <Grid item sm={12} md={12}>
+          <Button
+            className=".MuiButton-fullWidth	"
+            href={`/household/${householdId}`}
+          >
+            Visit {householdName}&apos;s Household Profile
+          </Button>
         </Grid>
         <FormToolbar
           cancelVisible={false}

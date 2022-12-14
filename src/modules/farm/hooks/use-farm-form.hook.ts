@@ -37,7 +37,7 @@ export function useFarmFormHook(props: FarmFormProps) {
     name: 'ownerName',
   })
 
-  const household = useWatch({
+  const householdId = useWatch({
     control: farmFormProps.control,
     name: 'householdId',
   })
@@ -74,5 +74,7 @@ export function useFarmFormHook(props: FarmFormProps) {
 
   return {
     householdOptions,
+    householdId,
+    householdName,
   }
 }
