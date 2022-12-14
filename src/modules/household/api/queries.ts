@@ -21,7 +21,7 @@ export type HouseholdViewListQuery = {
     firstName: string
     lastName: string
     middleName: string
-    mainLivelihood: any
+    mainLivelihood?: any | null | undefined
     referenceNo: string
     barangay: string
     is4psBeneficiary: boolean

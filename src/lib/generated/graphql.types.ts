@@ -4001,7 +4001,7 @@ export type HouseholdView = {
   ipMembership: Scalars['String']
   is4psBeneficiary: Scalars['Boolean']
   lastName: Scalars['String']
-  mainLivelihood: Scalars['jsonb']
+  mainLivelihood?: Maybe<Scalars['jsonb']>
   maleCount: Scalars['Int']
   middleName: Scalars['String']
   name: Scalars['String']

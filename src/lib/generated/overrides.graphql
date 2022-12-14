@@ -104,7 +104,6 @@ type HouseholdView{
   name: String!
   barangay: String!
   referenceNo: String!
-  mainLivelihood(path: String): jsonb!
   firstName: String!
   lastName: String!
   middleName: String!
