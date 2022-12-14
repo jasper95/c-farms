@@ -18,9 +18,16 @@ export type HouseholdViewListQuery = {
     __typename?: 'HouseholdView'
     id: any
     name: string
+    firstName: string
+    lastName: string
+    middleName: string
     mainLivelihood: any
     referenceNo: string
     barangay: string
+    is4psBeneficiary: boolean
+    ipMembership: string
+    maleCount: number
+    femaleCount: number
   }>
   meta: {
     __typename?: 'HouseholdViewAggregate'
@@ -197,9 +204,16 @@ export const HouseholdViewListDocument = gql`
     ) {
       id
       name
+      firstName
+      lastName
+      middleName
       mainLivelihood
       referenceNo
       barangay
+      is4psBeneficiary
+      ipMembership
+      maleCount
+      femaleCount
     }
     meta: householdViewAggregate(where: $where) {
       aggregate {

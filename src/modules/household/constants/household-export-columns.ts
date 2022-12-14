@@ -1,5 +1,5 @@
 import { ExportOf } from '@/lib/hooks/use-list-view.hook'
-import { HouseholdListRow } from './household-list-columns'
+import { HouseholdListRow } from '../constants/household-list-columns'
 
 export const householdExportColumns: ExportOf<HouseholdListRow> = [
   'referenceNo',

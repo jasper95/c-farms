@@ -12,9 +12,16 @@ query HouseholdViewList(
   ) {
     id
     name
+    firstName
+    lastName
+    middleName
     mainLivelihood
     referenceNo
     barangay
+    is4psBeneficiary
+    ipMembership
+    maleCount
+    femaleCount
   }
   meta: householdViewAggregate(where: $where) {
     aggregate {

@@ -3994,8 +3994,16 @@ export type HouseholdVarianceFields = {
 export type HouseholdView = {
   __typename?: 'HouseholdView'
   barangay: Scalars['String']
+  createdAt?: Maybe<Scalars['timestamp']>
+  femaleCount: Scalars['Int']
+  firstName: Scalars['String']
   id: Scalars['uuid']
+  ipMembership: Scalars['String']
+  is4psBeneficiary: Scalars['Boolean']
+  lastName: Scalars['String']
   mainLivelihood: Scalars['jsonb']
+  maleCount: Scalars['Int']
+  middleName: Scalars['String']
   name: Scalars['String']
   referenceNo: Scalars['String']
 }
@@ -4015,9 +4023,17 @@ export type HouseholdViewAggregate = {
 /** aggregate fields of "householdView" */
 export type HouseholdViewAggregateFields = {
   __typename?: 'HouseholdViewAggregateFields'
+  avg?: Maybe<HouseholdViewAvgFields>
   count: Scalars['Int']
   max?: Maybe<HouseholdViewMaxFields>
   min?: Maybe<HouseholdViewMinFields>
+  stddev?: Maybe<HouseholdViewStddevFields>
+  stddevPop?: Maybe<HouseholdViewStddev_PopFields>
+  stddevSamp?: Maybe<HouseholdViewStddev_SampFields>
+  sum?: Maybe<HouseholdViewSumFields>
+  varPop?: Maybe<HouseholdViewVar_PopFields>
+  varSamp?: Maybe<HouseholdViewVar_SampFields>
+  variance?: Maybe<HouseholdViewVarianceFields>
 }
 
 /** aggregate fields of "householdView" */
@@ -4026,14 +4042,29 @@ export type HouseholdViewAggregateFieldsCountArgs = {
   distinct?: InputMaybe<Scalars['Boolean']>
 }
 
+/** aggregate avg on columns */
+export type HouseholdViewAvgFields = {
+  __typename?: 'HouseholdViewAvgFields'
+  femaleCount?: Maybe<Scalars['Float']>
+  maleCount?: Maybe<Scalars['Float']>
+}
+
 /** Boolean expression to filter rows from the table "householdView". All fields are combined with a logical 'AND'. */
 export type HouseholdViewBoolExp = {
   _and?: InputMaybe<Array<HouseholdViewBoolExp>>
   _not?: InputMaybe<HouseholdViewBoolExp>
   _or?: InputMaybe<Array<HouseholdViewBoolExp>>
   barangay?: InputMaybe<StringComparisonExp>
+  createdAt?: InputMaybe<TimestampComparisonExp>
+  femaleCount?: InputMaybe<IntComparisonExp>
+  firstName?: InputMaybe<StringComparisonExp>
   id?: InputMaybe<UuidComparisonExp>
+  ipMembership?: InputMaybe<StringComparisonExp>
+  is4psBeneficiary?: InputMaybe<BooleanComparisonExp>
+  lastName?: InputMaybe<StringComparisonExp>
   mainLivelihood?: InputMaybe<JsonbComparisonExp>
+  maleCount?: InputMaybe<IntComparisonExp>
+  middleName?: InputMaybe<StringComparisonExp>
   name?: InputMaybe<StringComparisonExp>
   referenceNo?: InputMaybe<StringComparisonExp>
 }
@@ -4042,7 +4073,14 @@ export type HouseholdViewBoolExp = {
 export type HouseholdViewMaxFields = {
   __typename?: 'HouseholdViewMaxFields'
   barangay?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  femaleCount?: Maybe<Scalars['Int']>
+  firstName?: Maybe<Scalars['String']>
   id?: Maybe<Scalars['uuid']>
+  ipMembership?: Maybe<Scalars['String']>
+  lastName?: Maybe<Scalars['String']>
+  maleCount?: Maybe<Scalars['Int']>
+  middleName?: Maybe<Scalars['String']>
   name?: Maybe<Scalars['String']>
   referenceNo?: Maybe<Scalars['String']>
 }
@@ -4051,7 +4089,14 @@ export type HouseholdViewMaxFields = {
 export type HouseholdViewMinFields = {
   __typename?: 'HouseholdViewMinFields'
   barangay?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['timestamp']>
+  femaleCount?: Maybe<Scalars['Int']>
+  firstName?: Maybe<Scalars['String']>
   id?: Maybe<Scalars['uuid']>
+  ipMembership?: Maybe<Scalars['String']>
+  lastName?: Maybe<Scalars['String']>
+  maleCount?: Maybe<Scalars['Int']>
+  middleName?: Maybe<Scalars['String']>
   name?: Maybe<Scalars['String']>
   referenceNo?: Maybe<Scalars['String']>
 }
@@ -4059,8 +4104,16 @@ export type HouseholdViewMinFields = {
 /** Ordering options when selecting data from "householdView". */
 export type HouseholdViewOrderBy = {
   barangay?: InputMaybe<OrderBy>
+  createdAt?: InputMaybe<OrderBy>
+  femaleCount?: InputMaybe<OrderBy>
+  firstName?: InputMaybe<OrderBy>
   id?: InputMaybe<OrderBy>
+  ipMembership?: InputMaybe<OrderBy>
+  is4psBeneficiary?: InputMaybe<OrderBy>
+  lastName?: InputMaybe<OrderBy>
   mainLivelihood?: InputMaybe<OrderBy>
+  maleCount?: InputMaybe<OrderBy>
+  middleName?: InputMaybe<OrderBy>
   name?: InputMaybe<OrderBy>
   referenceNo?: InputMaybe<OrderBy>
 }
@@ -4070,13 +4123,78 @@ export enum HouseholdViewSelectColumn {
   /** column name */
   Barangay = 'barangay',
   /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  FemaleCount = 'femaleCount',
+  /** column name */
+  FirstName = 'firstName',
+  /** column name */
   Id = 'id',
   /** column name */
+  IpMembership = 'ipMembership',
+  /** column name */
+  Is4psBeneficiary = 'is4psBeneficiary',
+  /** column name */
+  LastName = 'lastName',
+  /** column name */
   MainLivelihood = 'mainLivelihood',
+  /** column name */
+  MaleCount = 'maleCount',
+  /** column name */
+  MiddleName = 'middleName',
   /** column name */
   Name = 'name',
   /** column name */
   ReferenceNo = 'referenceNo',
+}
+
+/** aggregate stddev on columns */
+export type HouseholdViewStddevFields = {
+  __typename?: 'HouseholdViewStddevFields'
+  femaleCount?: Maybe<Scalars['Float']>
+  maleCount?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_pop on columns */
+export type HouseholdViewStddev_PopFields = {
+  __typename?: 'HouseholdViewStddev_popFields'
+  femaleCount?: Maybe<Scalars['Float']>
+  maleCount?: Maybe<Scalars['Float']>
+}
+
+/** aggregate stddev_samp on columns */
+export type HouseholdViewStddev_SampFields = {
+  __typename?: 'HouseholdViewStddev_sampFields'
+  femaleCount?: Maybe<Scalars['Float']>
+  maleCount?: Maybe<Scalars['Float']>
+}
+
+/** aggregate sum on columns */
+export type HouseholdViewSumFields = {
+  __typename?: 'HouseholdViewSumFields'
+  femaleCount?: Maybe<Scalars['Int']>
+  maleCount?: Maybe<Scalars['Int']>
+}
+
+/** aggregate var_pop on columns */
+export type HouseholdViewVar_PopFields = {
+  __typename?: 'HouseholdViewVar_popFields'
+  femaleCount?: Maybe<Scalars['Float']>
+  maleCount?: Maybe<Scalars['Float']>
+}
+
+/** aggregate var_samp on columns */
+export type HouseholdViewVar_SampFields = {
+  __typename?: 'HouseholdViewVar_sampFields'
+  femaleCount?: Maybe<Scalars['Float']>
+  maleCount?: Maybe<Scalars['Float']>
+}
+
+/** aggregate variance on columns */
+export type HouseholdViewVarianceFields = {
+  __typename?: 'HouseholdViewVarianceFields'
+  femaleCount?: Maybe<Scalars['Float']>
+  maleCount?: Maybe<Scalars['Float']>
 }
 
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
@@ -6359,8 +6477,16 @@ export type HouseholdView_StreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type HouseholdView_StreamCursorValueInput = {
   barangay?: InputMaybe<Scalars['String']>
+  createdAt?: InputMaybe<Scalars['timestamp']>
+  femaleCount?: InputMaybe<Scalars['Int']>
+  firstName?: InputMaybe<Scalars['String']>
   id?: InputMaybe<Scalars['uuid']>
+  ipMembership?: InputMaybe<Scalars['String']>
+  is4psBeneficiary?: InputMaybe<Scalars['Boolean']>
+  lastName?: InputMaybe<Scalars['String']>
   mainLivelihood?: InputMaybe<Scalars['jsonb']>
+  maleCount?: InputMaybe<Scalars['Int']>
+  middleName?: InputMaybe<Scalars['String']>
   name?: InputMaybe<Scalars['String']>
   referenceNo?: InputMaybe<Scalars['String']>
 }
