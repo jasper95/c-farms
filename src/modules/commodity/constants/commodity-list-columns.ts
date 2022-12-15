@@ -5,7 +5,7 @@ export const commodityListColumns: DataTableColumn<
   CommodityListQuery['list'][0]
 >[] = [
   {
-    title: 'Commodity',
+    title: 'Name',
     accessor: 'name',
     sortable: true,
   },

@@ -11,4 +11,8 @@ export const associationBeneficiariesListColumns: DataTableColumn<AssociationBen
       title: 'Active',
       accessor: 'active',
     },
+    {
+      title: 'Date Availed',
+      accessor: 'createdAt',
+    },
   ]

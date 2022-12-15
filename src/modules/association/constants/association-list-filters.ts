@@ -6,7 +6,7 @@ export const associationListFilters: DataTableFilter<T.Association>[] = [
   {
     field: 'active',
     type: FieldTypeEnum.Enumeration,
-    label: 'Active',
+    label: 'Status',
     options: ['true', 'false'].map((e) => ({
       label: e,
       value: e,
