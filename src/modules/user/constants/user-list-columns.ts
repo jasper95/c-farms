@@ -15,7 +15,7 @@ export const userListColumns: DataTableColumn<UserListQuery['list'][0]>[] = [
     accessor: 'role',
   },
   {
-    title: 'Active',
+    title: 'Status',
     type: 'function',
     fn: (row) => (row.active ? 'Active' : 'Suspended'),
     sortable: false,

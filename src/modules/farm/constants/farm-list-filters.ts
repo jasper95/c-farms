@@ -6,11 +6,6 @@ import { farmTypeOptions } from './farm-form-options'
 
 export const farmListFilters: DataTableFilter<T.Farm>[] = [
   {
-    field: 'name',
-    type: FieldTypeEnum.String,
-    label: 'Name',
-  },
-  {
     field: 'farmType',
     type: FieldTypeEnum.Enumeration,
     label: 'Type',

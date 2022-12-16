@@ -9,12 +9,18 @@ export const farmProduceListColumns: DataTableColumn<
     accessor: 'year',
   },
   {
-    title: 'Household',
-    accessor: 'householdName',
-  },
-  {
     title: 'Commodity',
     accessor: 'commodityName',
+  },
+  {
+    title: 'Area Used',
+    accessor: 'areaUsed',
+    type: 'function',
+    fn: (row) =>
+      `${parseFloat(row.areaUsed)
+        .toFixed(2)
+        .toString()
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')} ha`,
   },
   {
     title: 'Organic',

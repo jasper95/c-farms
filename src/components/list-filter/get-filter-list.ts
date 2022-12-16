@@ -94,43 +94,19 @@ export function getFilterList(type: FieldTypeEnum) {
     case FieldTypeEnum.Date: {
       return [
         {
-          label: 'is',
-          value: FilterTypeEnum.Is,
-        },
-        {
-          label: 'is not',
-          value: FilterTypeEnum.IsNot,
-        },
-        {
-          label: 'is null',
-          value: FilterTypeEnum.IsNull,
-        },
-        {
-          label: 'is not null',
-          value: FilterTypeEnum.IsNotNull,
-        },
-        {
-          label: 'contains (sensitive)',
-          value: FilterTypeEnum.Contains,
-        },
-        {
-          label: 'not contains (sensitive)',
-          value: FilterTypeEnum.NotContains,
-        },
-        {
-          label: 'is greater than',
+          label: 'is later than',
           value: FilterTypeEnum.GreaterThan,
         },
         {
-          label: 'is greater than or equal to',
+          label: 'is on or later than',
           value: FilterTypeEnum.GreaterThanEqual,
         },
         {
-          label: 'is less than',
+          label: 'is before',
           value: FilterTypeEnum.LessThan,
         },
         {
-          label: 'is less than or equal to',
+          label: 'is on or before',
           value: FilterTypeEnum.LessThanEqual,
         },
       ]
