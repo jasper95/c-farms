@@ -59,6 +59,7 @@ export function useEditDialogHook<
         useDetailsQueryHook,
         validationSchema: schema,
         title: `Edit ${name}`,
+        continueLabel: 'Save',
         onValid: async (data: AssertsShape<T>) => {
           const payload = transform(data) as MutationPayload
           const response = await onUpdate(

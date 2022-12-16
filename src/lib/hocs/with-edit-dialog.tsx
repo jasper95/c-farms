@@ -66,6 +66,7 @@ export function withEditDialog<T extends FieldValues, DetailsResponse>(
         title={title}
         onCancel={onClickCancel}
         onContinue={onContinue ?? onClickContinue}
+        continueLabel="Save"
       >
         <WrappedComponent formProps={formProps} />
       </DialogLayout>
