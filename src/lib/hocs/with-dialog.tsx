@@ -23,6 +23,7 @@ export type IDialogForm<T extends FieldValues> = {
   onContinue?(): void
   onValid: SubmitHandler<T>
   hideOnValid?: boolean
+  continueLabel: String
 }
 export type IWithDialogProps<T extends FieldValues> = Omit<
   DialogLayoutProps,
@@ -44,6 +45,7 @@ export function withDialog<T extends FieldValues>(
       onContinue,
       onCancel,
       defaultValues,
+      continueLabel,
       validationSchema,
       hideOnValid = true,
     } = props
@@ -57,6 +59,7 @@ export function withDialog<T extends FieldValues>(
       <DialogLayout
         {...pick(props, 'isProcessing', 'maxWidth')}
         title={title}
+        continueLabel={continueLabel}
         onCancel={onClickCancel}
         onContinue={onContinue ?? onClickContinue}
       >

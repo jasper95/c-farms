@@ -46,6 +46,7 @@ export function useNewDialogHook<
       component: withDialog(component),
       props: {
         title: `New ${name}`,
+        continueLabel: 'Save',
         validationSchema: schema,
         defaultValues: schema.cast({}) as DeepPartial<T>,
         onValid: async (data: AssertsShape<T>) => {
