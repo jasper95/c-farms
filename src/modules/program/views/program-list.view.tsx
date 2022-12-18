@@ -53,6 +53,7 @@ function View() {
         filters={programListFilters}
         additionalTypenames={['Program']}
         exportFields={programExportColumns}
+        searchFields={['name', 'type', 'sponsoringAgency']}
       />
     </>
   )

@@ -29,7 +29,7 @@ export interface UseDeleteDialogProps<
 export function useDeleteDialogHook<
   MutationResponse extends MutationResponseType
 >(props: UseDeleteDialogProps<MutationResponse>) {
-  const { notifySuccess } = useNotificationStore()
+  const { notifySuccess, notifyError } = useNotificationStore()
   const {
     useMutationHook,
     name,
@@ -53,6 +53,7 @@ export function useDeleteDialogHook<
         defaultValues: {
           message: 'Are you sure you want to delete?',
         },
+        continueLabel: 'Continue',
         onValid: async () => {
           const response = await onDelete(
             {
@@ -60,9 +61,13 @@ export function useDeleteDialogHook<
             },
             { additionalTypenames }
           )
-          notifySuccess(`${name} successfully deleted`)
-          if (redirectBaseUrl) {
-            router.push(`${redirectBaseUrl}/${response.data?.data?.id}`)
+          if (response.error) {
+            notifyError(`Cannot delete ${name}`)
+          } else {
+            notifySuccess(`${name} successfully deleted`)
+            if (redirectBaseUrl) {
+              router.push(`${redirectBaseUrl}/${response.data?.data?.id}`)
+            }
           }
         },
       },

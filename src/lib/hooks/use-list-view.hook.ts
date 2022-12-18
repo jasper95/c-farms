@@ -202,20 +202,19 @@ export function useListViewHook<
 
   const defaultActions = useMemo(() => {
     const actions: DataTableAction<QueryResponse>[] = []
-    if (canEdit) {
-      actions.push({
-        label: 'View',
-        icon: EditIcon,
-        ...(onEdit && {
-          onClick: (row) => onEdit?.(row.id),
+
+    actions.push({
+      label: 'View',
+      icon: EditIcon,
+      ...(onEdit && {
+        onClick: (row) => onEdit?.(row.id),
+      }),
+      ...(!onEdit &&
+        baseUrl && {
+          type: 'link',
+          href: (row) => `${baseUrl}/${row.id}`,
         }),
-        ...(!onEdit &&
-          baseUrl && {
-            type: 'link',
-            href: (row) => `${baseUrl}/${row.id}`,
-          }),
-      })
-    }
+    })
     if (canDelete && onDelete) {
       actions.push({
         label: 'Delete',

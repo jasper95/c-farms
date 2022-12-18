@@ -25,4 +25,9 @@ export const farmListColumns: DataTableColumn<FarmListRowInterface>[] = [
         .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`,
     sortable: true,
   },
+  {
+    title: 'Barangay',
+    accessor: 'barangay',
+    sortable: true,
+  },
 ]

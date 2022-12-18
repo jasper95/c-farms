@@ -98,3 +98,17 @@ type FarmView {
   location: jsonb!
   householdId: uuid!
 }
+
+type HouseholdView{
+  id: uuid!
+  name: String!
+  barangay: String!
+  referenceNo: String!
+  firstName: String!
+  lastName: String!
+  middleName: String!
+  is4psBeneficiary: Boolean!
+  ipMembership: String!
+  maleCount: Int!
+  femaleCount: Int!
+}

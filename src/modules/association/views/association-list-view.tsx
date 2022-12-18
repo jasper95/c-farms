@@ -22,6 +22,7 @@ import {
 import AssociationForm from '../components/association-form.component'
 import { associationListColumns, associationSchema } from '../constants'
 import { associationExportColumns } from '../constants/association-export-columns'
+import { associationListFilters } from '../constants/association-list-filters'
 
 const name = 'Association'
 function View() {
@@ -55,6 +56,8 @@ function View() {
         onEdit={onClickEdit}
         onDelete={onClickDelete}
         exportFields={associationExportColumns}
+        filters={associationListFilters}
+        searchFields={['name']}
       />
     </>
   )

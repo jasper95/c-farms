@@ -18,10 +18,10 @@ export const userListFilters: DataTableFilter<T.User>[] = [
   {
     field: 'active',
     type: FieldTypeEnum.Enumeration,
-    label: 'Active',
+    label: 'Status',
     options: [
-      { label: 'True', value: 'true' },
-      { label: 'False', value: 'False' },
+      { label: 'Active', value: 'true' },
+      { label: 'Suspended', value: 'false' },
     ],
   },
 ]

@@ -36,25 +36,10 @@ export function CommodityProduceForm(props: ICommodityProduceFormProps) {
       </Grid>
       <Grid item sm={12} md={6}>
         <SelectField
-          label="Farm"
-          control={control}
-          options={farmOptions}
-          name="farmId"
-        />
-      </Grid>
-      <Grid item sm={12} md={6}>
-        <SelectField
           label="Commodity"
           control={control}
           options={commodityOptions}
           name="commodityId"
-        />
-      </Grid>
-      <Grid item sm={12} md={6}>
-        <SwitchField
-          control={control}
-          name="organicPractitioner"
-          label="Organic"
         />
       </Grid>
       <Grid item sm={12} md={6}>
@@ -65,6 +50,13 @@ export function CommodityProduceForm(props: ICommodityProduceFormProps) {
           InputProps={{
             readOnly: true,
           }}
+        />
+      </Grid>
+      <Grid item sm={12} md={6}>
+        <SwitchField
+          control={control}
+          name="organicPractitioner"
+          label="Organic"
         />
       </Grid>
       <Grid item sm={12} md={6}>
@@ -86,10 +78,29 @@ export function CommodityProduceForm(props: ICommodityProduceFormProps) {
         />
       </Grid>
       <Grid item sm={12} md={6}>
+        <SelectField
+          label="Farm"
+          control={control}
+          options={farmOptions}
+          name="farmId"
+        />
+      </Grid>
+      <Grid item sm={12} md={6}>
         <TextField
           label="Area Used"
           control={control}
           name="areaUsed"
+          type="number"
+          InputProps={{
+            endAdornment: <InputAdornment position="end">ha</InputAdornment>,
+          }}
+        />
+      </Grid>
+      <Grid item sm={12} md={6}>
+        <TextField
+          label="Farm Size"
+          control={control}
+          name="farmSize"
           type="number"
           InputProps={{
             endAdornment: <InputAdornment position="end">ha</InputAdornment>,

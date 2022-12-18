@@ -36,6 +36,7 @@ export type FarmListQuery = {
     id: any
     location?: any | null | undefined
     name: string
+    barangay: string
     sizeInHaTotal: any
     ownerName: string
     ownershipType: string
@@ -97,6 +98,7 @@ export type FarmViewListQuery = {
     __typename?: 'FarmView'
     id: any
     name: string
+    barangay?: string | null | undefined
     firstName: string
     lastName: string
     sizeInHaTotal: any
@@ -159,6 +161,7 @@ export const FarmListDocument = gql`
       id
       location
       name
+      barangay
       household {
         id
         firstName
@@ -227,6 +230,7 @@ export const FarmViewListDocument = gql`
     ) {
       id
       name
+      barangay
       firstName
       lastName
       sizeInHaTotal

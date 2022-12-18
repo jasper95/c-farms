@@ -33,7 +33,12 @@ export type FarmOptionsQueryVariables = Types.Exact<{
 
 export type FarmOptionsQuery = {
   __typename?: 'query_root'
-  list: Array<{ __typename?: 'Farm'; id: any; name: string }>
+  list: Array<{
+    __typename?: 'Farm'
+    id: any
+    name: string
+    sizeInHaTotal: any
+  }>
 }
 
 export type CommodityProduceListQueryVariables = Types.Exact<{
@@ -138,6 +143,7 @@ export const FarmOptionsDocument = gql`
     ) {
       id
       name
+      sizeInHaTotal
     }
   }
 `

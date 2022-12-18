@@ -61,6 +61,7 @@ function View() {
         name={ResourceEnum.Commodity}
         filters={commodityListFilters}
         additionalTypenames={['Commodity']}
+        searchFields={['name', 'commodityType']}
       />
     </>
   )

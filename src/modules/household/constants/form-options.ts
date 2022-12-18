@@ -63,3 +63,74 @@ export const educationBackgroundOptions = [
   'College Graduate',
   'Postgraduate',
 ].map((e) => ({ label: e, value: e }))
+
+export const regionOptions = [
+  {
+    label: 'Ilocos Region (Region I)',
+    value: 'Region I',
+  },
+  {
+    label: 'Cagayan Valley (Region II)',
+    value: 'Region II',
+  },
+  {
+    label: 'Central Luzon (Region III)',
+    value: 'Region III',
+  },
+  {
+    label: 'CALABARZON (Region IV-A)',
+    value: 'Region IV-A',
+  },
+  {
+    label: 'MIMAROPA Region',
+    value: 'MIMAROPA Region',
+  },
+  {
+    label: 'Bicol Region (Region V)',
+    value: 'Region V',
+  },
+  {
+    label: 'Western Visayas (Region VI)',
+    value: 'Region VI',
+  },
+  {
+    label: 'Central Visayas (Region VII)',
+    value: 'Region VII',
+  },
+  {
+    label: 'Eastern Visayas (Region VIII)',
+    value: 'Region VIII',
+  },
+  {
+    label: 'Zamboanga Peninsula (Region IX)',
+    value: 'Region IX',
+  },
+  {
+    label: 'Northern Mindanao (Region X)',
+    value: 'Region X',
+  },
+  {
+    label: 'Davao Region (Region XI)',
+    value: 'Region XI',
+  },
+  {
+    label: 'SOCCSKSARGEN (Region XII)',
+    value: 'Region XII',
+  },
+  {
+    label: 'CARAGA (Region XIII)',
+    value: 'Region XIII',
+  },
+  {
+    label: 'National Capital Region (NCR)',
+    value: 'NCR',
+  },
+  {
+    label: 'Cordillera Administrative Region (CAR)',
+    value: 'CAR',
+  },
+  {
+    label: 'Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)',
+    value: 'BARMM',
+  },
+]

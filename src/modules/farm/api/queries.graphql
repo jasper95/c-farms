@@ -26,6 +26,7 @@ query FarmList(
     id
     location
     name
+    barangay
     household {
       id
       firstName
@@ -68,6 +69,7 @@ query FarmViewList(
 ) { list: farmView(where: $where, orderBy: $orderBy, offset: $offset, limit: $limit) {
     id
     name
+    barangay
     firstName
     lastName
     sizeInHaTotal

@@ -5,39 +5,18 @@ import {
   CommodityListQuery,
   useCommodityListQuery,
 } from '@/modules/commodity/api/queries'
-import { livelihoodOptions } from '@/modules/household/constants'
+import {
+  barangayOptions,
+  livelihoodOptions,
+} from '@/modules/household/constants'
 
 export const programBeneficiariesListFilters: DataTableFilter<T.HouseholdPrograms>[] =
   [
     {
-      field: 'grossAnnualIncomeFarming',
-      type: FieldTypeEnum.Number,
-      label: 'Gross Annual Income Farming',
-    },
-    {
-      field: 'farmSize',
-      type: FieldTypeEnum.Number,
-      label: 'Farm Size(ha)',
-    },
-    {
-      field: 'grossAnnualIncomeNonfarming',
-      type: FieldTypeEnum.Number,
-      label: 'Gross Annual Income Nonfarming',
-    },
-    {
       field: 'barangay',
-      type: FieldTypeEnum.String,
+      type: FieldTypeEnum.Enumeration,
       label: 'Barangay',
-    },
-    {
-      field: 'firstName',
-      type: FieldTypeEnum.String,
-      label: 'First Name',
-    },
-    {
-      field: 'lastName',
-      type: FieldTypeEnum.String,
-      label: 'Last Name',
+      options: barangayOptions,
     },
     {
       field: 'commodities',
@@ -49,6 +28,31 @@ export const programBeneficiariesListFilters: DataTableFilter<T.HouseholdProgram
         transform: (data) =>
           data.map((e) => ({ label: e.name, value: e.name })),
       },
+    },
+    {
+      field: 'farmSize',
+      type: FieldTypeEnum.Number,
+      label: 'Farm Size(ha)',
+    },
+    {
+      field: 'firstName',
+      type: FieldTypeEnum.String,
+      label: 'First Name',
+    },
+    {
+      field: 'grossAnnualIncomeFarming',
+      type: FieldTypeEnum.Number,
+      label: 'Gross Annual Income Farming',
+    },
+    {
+      field: 'grossAnnualIncomeNonfarming',
+      type: FieldTypeEnum.Number,
+      label: 'Gross Annual Income Nonfarming',
+    },
+    {
+      field: 'lastName',
+      type: FieldTypeEnum.String,
+      label: 'Last Name',
     },
     {
       field: 'mainLivelihood',

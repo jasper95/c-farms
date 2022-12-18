@@ -3,6 +3,41 @@ import * as Types from '@/lib/generated/graphql.types'
 import gql from 'graphql-tag'
 import * as Urql from 'urql'
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type HouseholdViewListQueryVariables = Types.Exact<{
+  where?: Types.InputMaybe<Types.HouseholdViewBoolExp>
+  orderBy?: Types.InputMaybe<
+    Array<Types.HouseholdViewOrderBy> | Types.HouseholdViewOrderBy
+  >
+  offset?: Types.InputMaybe<Types.Scalars['Int']>
+  limit?: Types.InputMaybe<Types.Scalars['Int']>
+}>
+
+export type HouseholdViewListQuery = {
+  __typename?: 'query_root'
+  list: Array<{
+    __typename?: 'HouseholdView'
+    id: any
+    name: string
+    firstName: string
+    lastName: string
+    middleName: string
+    mainLivelihood?: any | null | undefined
+    referenceNo: string
+    barangay: string
+    is4psBeneficiary: boolean
+    ipMembership: string
+    maleCount: number
+    femaleCount: number
+  }>
+  meta: {
+    __typename?: 'HouseholdViewAggregate'
+    aggregate?:
+      | { __typename?: 'HouseholdViewAggregateFields'; count: number }
+      | null
+      | undefined
+  }
+}
+
 export type HouseholdListQueryVariables = Types.Exact<{
   where?: Types.InputMaybe<Types.HouseholdBoolExp>
   orderBy?: Types.InputMaybe<
@@ -154,6 +189,47 @@ export const HouseholdFragmentFragmentDoc = gql`
     emergencyContactNumber
   }
 `
+export const HouseholdViewListDocument = gql`
+  query HouseholdViewList(
+    $where: HouseholdViewBoolExp
+    $orderBy: [HouseholdViewOrderBy!]
+    $offset: Int
+    $limit: Int
+  ) {
+    list: householdView(
+      where: $where
+      orderBy: $orderBy
+      offset: $offset
+      limit: $limit
+    ) {
+      id
+      name
+      firstName
+      lastName
+      middleName
+      mainLivelihood
+      referenceNo
+      barangay
+      is4psBeneficiary
+      ipMembership
+      maleCount
+      femaleCount
+    }
+    meta: householdViewAggregate(where: $where) {
+      aggregate {
+        count
+      }
+    }
+  }
+`
+
+export function useHouseholdViewListQuery(
+  options?: Omit<Urql.UseQueryArgs<HouseholdViewListQueryVariables>, 'query'>
+) {
+  return Urql.useQuery<HouseholdViewListQuery, HouseholdViewListQueryVariables>(
+    { query: HouseholdViewListDocument, ...options }
+  )
+}
 export const HouseholdListDocument = gql`
   query HouseholdList(
     $where: HouseholdBoolExp

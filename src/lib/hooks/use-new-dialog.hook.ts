@@ -6,6 +6,7 @@ import { useDialogStore } from '@/lib/stores/dialog'
 import { DeepPartial, FieldValues } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import { AssertsShape } from 'yup/lib/object'
+import { CombinedError } from 'urql'
 
 export interface UseNewDialogProps<
   T extends FieldValues,
@@ -20,7 +21,7 @@ export function useNewDialogHook<
   MutationPayload,
   MutationResponse extends MutationResponseType
 >(props: UseNewDialogProps<T, MutationPayload, MutationResponse>) {
-  const { notifySuccess } = useNotificationStore()
+  const { notifySuccess, notifyError } = useNotificationStore()
   const {
     useMutationHook,
     schema,
@@ -45,6 +46,7 @@ export function useNewDialogHook<
       component: withDialog(component),
       props: {
         title: `New ${name}`,
+        continueLabel: 'Save',
         validationSchema: schema,
         defaultValues: schema.cast({}) as DeepPartial<T>,
         onValid: async (data: AssertsShape<T>) => {
@@ -58,9 +60,13 @@ export function useNewDialogHook<
             },
             { additionalTypenames }
           )
-          notifySuccess(`${name} successfully created`)
-          if (redirectBaseUrl) {
-            router.replace(`${redirectBaseUrl}/${response.data?.data?.id}`)
+          if (response.error) {
+            notifyError(`Error on saving ${name}: duplicate value constraint.`)
+          } else {
+            notifySuccess(`${name} successfully created`)
+            if (redirectBaseUrl) {
+              router.replace(`${redirectBaseUrl}/${response.data?.data?.id}`)
+            }
           }
         },
       },

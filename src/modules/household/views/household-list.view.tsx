@@ -5,7 +5,7 @@ import {
   householdListColumns,
   householdListFilters,
 } from '@/modules/household/constants'
-import { useHouseholdListQuery } from '@/modules/household/api/queries'
+import { useHouseholdViewListQuery } from '@/modules/household/api/queries'
 import DatatableListView from '@/components/views/datatable-list.view'
 import { ResourceEnum } from '@/modules/common/authorization/enums/resource.enum'
 import { PermissionEnum } from '@/modules/common/authorization/enums/permission.enum'
@@ -18,12 +18,12 @@ function View() {
       <Breadcrumbs crumbs={[{ name: 'Household' }]} />
       <DatatableListView
         listQueryVariables={{}}
-        useListQueryHook={useHouseholdListQuery}
+        useListQueryHook={useHouseholdViewListQuery}
         columns={householdListColumns}
         name={ResourceEnum.Household}
         filters={householdListFilters}
         exportFields={householdExportColumns}
-        searchFields={['firstName', 'lastName']}
+        searchFields={['referenceNo', 'name']}
       />
     </>
   )

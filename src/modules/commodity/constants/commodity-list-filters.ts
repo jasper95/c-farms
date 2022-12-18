@@ -5,14 +5,19 @@ import { typeOptions } from '@/modules/commodity/constants/form-options'
 
 export const commodityListFilters: DataTableFilter<T.Commodity>[] = [
   {
+    field: 'commodityType',
+    type: FieldTypeEnum.Enumeration,
+    label: 'Type',
+    options: typeOptions,
+  },
+  {
     field: 'name',
     type: FieldTypeEnum.String,
     label: 'Name',
   },
   {
-    field: 'commodityType',
-    type: FieldTypeEnum.Enumeration,
-    label: 'Type',
-    options: typeOptions,
+    field: 'unit',
+    type: FieldTypeEnum.String,
+    label: 'Unit',
   },
 ]

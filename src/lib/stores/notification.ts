@@ -12,6 +12,7 @@ type NotificationsStore = {
   addNotification: (notification: Omit<Notification, 'id'>) => void
   dismissNotification: (id: string) => void
   notifySuccess: (message: string) => void
+  notifyError: (message: string) => void
 }
 
 export const useNotificationStore = create<NotificationsStore>((set) => ({
@@ -28,6 +29,13 @@ export const useNotificationStore = create<NotificationsStore>((set) => ({
       notifications: [
         ...state.notifications,
         { id: nanoid(), message, type: 'success' },
+      ],
+    })),
+  notifyError: (message: string) =>
+    set((state) => ({
+      notifications: [
+        ...state.notifications,
+        { id: nanoid(), message, type: 'error' },
       ],
     })),
   dismissNotification: (id) =>

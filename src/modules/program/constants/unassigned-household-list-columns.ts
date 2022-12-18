@@ -9,9 +9,10 @@ export const unassignedHouseholdListColumns: DataTableColumn<UnassignedHousehold
       fn: (row) => [row.firstName, row.lastName].join(' '),
     },
     {
-      title: 'Farm Size',
+      title: 'Farm Size (ha)',
       type: 'function',
       fn: (row) => `${row.farmSize ?? '0'} ha`,
+      sortable: true,
     },
     {
       title: 'Farming Income',

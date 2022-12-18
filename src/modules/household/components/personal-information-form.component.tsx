@@ -6,6 +6,7 @@ import {
   genderOptions,
   IPersonalInformationSchema,
   barangayOptions,
+  regionOptions,
 } from '@/modules/household/constants'
 import RadioSelect from '@/components/radio-select'
 import SelectField from '@/components/select-field'
@@ -111,11 +112,12 @@ export function PersonalInformationForm(props: IPersonalInformationFormProps) {
         />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
-        <TextField
+        <SelectField
           disabled={formDisabled}
           control={control}
           label="Region"
           name="region"
+          options={regionOptions}
         />
       </Grid>
       <Grid item xs={12} sm={6} md={3}>

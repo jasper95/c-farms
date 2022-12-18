@@ -29,6 +29,11 @@ export function useCommodityProduceFormHook(props: ICommodityProduceFormProps) {
     name: 'commodityId',
   })
 
+  const farmSize = useWatch({
+    control: commodityProduceFormProps.control,
+    name: 'farmId',
+  })
+
   const produceInUnit = useWatch({
     control: commodityProduceFormProps.control,
     name: 'produceInUnit',
@@ -45,24 +50,6 @@ export function useCommodityProduceFormHook(props: ICommodityProduceFormProps) {
     )
   }, [commodityListOptionsResponse.data])
 
-  const commodity = commodityOptions.find(
-    (option) => option.value === produceGetValues('commodityId')
-  )
-
-  useEffect(() => {
-    produceSetValue('unit', commodity?.unit ?? '')
-    produceSetValue(
-      'produce',
-      commodity?.factor * produceGetValues('produceInUnit')
-    )
-  }, [
-    commodity,
-    commodityOptions,
-    produceGetValues,
-    produceSetValue,
-    produceInUnit,
-  ])
-
   const [farmListOptionsResponse] = useFarmOptionsQuery({
     variables: {
       where: {
@@ -78,9 +65,35 @@ export function useCommodityProduceFormHook(props: ICommodityProduceFormProps) {
       farmListOptionsResponse.data?.list.map((farm) => ({
         label: farm.name,
         value: farm.id,
+        size: farm.sizeInHaTotal,
       })) ?? []
     )
   }, [farmListOptionsResponse.data])
+
+  const commodity = commodityOptions.find(
+    (option) => option.value === produceGetValues('commodityId')
+  )
+
+  const farm = farmOptions.find(
+    (option) => option.value === produceGetValues('farmId')
+  )
+
+  useEffect(() => {
+    produceSetValue('unit', commodity?.unit ?? '')
+    produceSetValue('farmSize', farm?.size ?? '0')
+    produceSetValue(
+      'produce',
+      commodity?.factor * produceGetValues('produceInUnit')
+    )
+  }, [
+    commodity,
+    commodityOptions,
+    produceGetValues,
+    produceSetValue,
+    produceInUnit,
+    farm,
+  ])
+
   return {
     commodityOptions,
     farmOptions,
