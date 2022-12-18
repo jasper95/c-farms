@@ -1,6 +1,6 @@
 import { IGeoJsonLayerProps, PopupState } from './interfaces'
-import { useMapEvents, GeoJSON, Marker, Popup } from 'react-leaflet'
-import { useMemo, useState } from 'react'
+import { useMapEvents, GeoJSON, Marker, Popup, useMap } from 'react-leaflet'
+import { useEffect, useMemo, useState } from 'react'
 import L from 'leaflet'
 import { styled } from '@mui/material/styles'
 import MarkerClusterGroup from './marker-clusterer'
@@ -33,6 +33,8 @@ export default function GeoJsonLayer<T>(props: IGeoJsonLayerProps<T>) {
   } = props
   const [zoom, setZoom] = useState(initialZoom)
   const [popupState, setPopupState] = useState<PopupState<T> | null>(null)
+  const map = useMap()
+
   const mapEvents = useMapEvents({
     zoomend: () => {
       setZoom(mapEvents.getZoom())
@@ -45,6 +47,13 @@ export default function GeoJsonLayer<T>(props: IGeoJsonLayerProps<T>) {
     () => layers.map((layer) => new L.GeoJSON(layer).getBounds().getCenter()),
     [layers]
   )
+  useEffect(() => {
+    if (layersCenter.length) {
+      map.fitBounds(
+        layersCenter.map((position) => [position.lat, position.lng])
+      )
+    }
+  }, [layersCenter, map])
   const popup = popupState && PopupComponent && (
     <StyledPop position={popupState.position}>
       <PopupComponent data={popupState.data} />
