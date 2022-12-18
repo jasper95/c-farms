@@ -16,7 +16,9 @@ describe('Household Details', () => {
     ).click()
     interceptOperation('HouseholdDetails')
     cy.wait('@HouseholdDetails').then((response) => {
-      expect(response.response.body.data.details).to.have.property('id')
+      if (response) {
+        expect(response?.response?.body?.data?.details).to.have.property('id')
+      }
     })
   })
 

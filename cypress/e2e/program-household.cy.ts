@@ -26,7 +26,7 @@ describe('Program Household', () => {
       '.MuiList-root > .MuiTypography-inherit > .MuiListItemText-root > .MuiTypography-root'
     ).click()
     cy.wait('@ProgramDetails').then((response) => {
-      expect(response.response.body.data.details).to.have.property('id')
+      expect(response?.response?.body?.data?.details).to.have.property('id')
     })
   })
 
@@ -65,7 +65,7 @@ describe('Program Household', () => {
     interceptOperation('ProgramBeneficiariesList')
     cy.get('.MuiButton-outlined').click()
     cy.wait('@ProgramBeneficiariesList').then((response) => {
-      expect(response.response.body.data.list).to.have.length.of.at.least(1)
+      expect(response?.response?.body?.data?.list).to.have.length.of.at.least(1)
     })
   })
 })

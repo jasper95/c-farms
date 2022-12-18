@@ -54,7 +54,7 @@ describe('Household List', () => {
       .type('{enter}')
     interceptOperation('HouseholdViewList')
     cy.wait('@HouseholdViewList').then((response) => {
-      expect(response.response.body.data.list).to.have.length(0)
+      expect(response?.response?.body?.data?.list).to.have.length(0)
     })
     cy.get('.MuiTableCell-root > .MuiTypography-root').contains(
       'No records found'

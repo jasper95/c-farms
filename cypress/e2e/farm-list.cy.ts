@@ -44,8 +44,10 @@ describe('Household Farms', () => {
     interceptOperation('CommodityProduceList')
     cy.get('.MuiTabs-flexContainer > [tabindex="-1"]').click()
     cy.wait('@CommodityProduceList').then((response) => {
-      const length = response.response.body.data.list.length
-      expect(response.response.body.data.list).to.have.length(length)
+      if (response) {
+        const length = response?.response?.body?.data?.list?.length
+        expect(response?.response?.body?.data?.list).to.have.length(length)
+      }
       cy.get('.MuiTablePagination-displayedRows').should('be.visible')
     })
   })

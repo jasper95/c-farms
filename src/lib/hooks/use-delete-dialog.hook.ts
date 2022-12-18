@@ -53,6 +53,7 @@ export function useDeleteDialogHook<
         defaultValues: {
           message: 'Are you sure you want to delete?',
         },
+        continueLabel: 'Continue',
         onValid: async () => {
           const response = await onDelete(
             {
