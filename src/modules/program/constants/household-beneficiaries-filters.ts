@@ -5,14 +5,18 @@ import {
   CommodityListQuery,
   useCommodityListQuery,
 } from '@/modules/commodity/api/queries'
-import { livelihoodOptions } from '@/modules/household/constants'
+import {
+  barangayOptions,
+  livelihoodOptions,
+} from '@/modules/household/constants'
 
 export const programBeneficiariesListFilters: DataTableFilter<T.HouseholdPrograms>[] =
   [
     {
       field: 'barangay',
-      type: FieldTypeEnum.String,
+      type: FieldTypeEnum.Enumeration,
       label: 'Barangay',
+      options: barangayOptions,
     },
     {
       field: 'commodities',

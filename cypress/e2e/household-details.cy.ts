@@ -3,32 +3,31 @@ import { faker } from '@faker-js/faker'
 
 describe('Household Details', () => {
   before(() => {
-    cy.login('administrator')
+    cy.login('encoder')
     cy.visit('/household')
-    cy.intercept('https://hasura-a08a.onrender.com/v1/graphql').as(
-      'HouseholdList'
-    )
-    cy.wait('@HouseholdList')
-    cy.get(
-      '.MuiTableBody-root > :nth-child(1) > :nth-child(4) > .MuiButtonBase-root'
-    ).click()
+    interceptOperation('HouseholdViewList')
+    cy.wait('@HouseholdViewList')
+  })
+
+  it('displays household details', () => {
+    cy.get('.MuiTableBody-root > :nth-child(1) > :nth-child(5)').click()
     cy.get(
       '.MuiList-root > .MuiTypography-inherit > .MuiListItemText-root > .MuiTypography-root'
     ).click()
+    interceptOperation('HouseholdDetails')
+    cy.wait('@HouseholdDetails').then((response) => {
+      expect(response.response.body.data.details).to.have.property('id')
+    })
   })
 
-  it('displays other details tab', () => {
+  it('updates household', () => {
     cy.get('input[name="firstName"]')
       .type('{selectAll}')
       .type('{backspace}')
-      .type('Sample')
+      .type(faker.name.firstName())
     cy.get('button').contains('Save').click()
     cy.get('.justify-self-end').should('be.visible')
-    cy.visit('/household/9b967e17-536f-48b3-814e-3b0d77863660/secondary')
-    cy.get('button').contains('Save').should('be.disabled')
-    cy.get('input[name="maleCount"]').type('{selectAll}{backspace}').type('2')
-    cy.get('input[name="femaleCount"]').type('{selectAll}{backspace}').type('3')
-    cy.get('button').contains('Save').should('be.enabled').click()
+    // cy.get('.MuiAlert-message').contains('Household successfully updated')
   })
 })
 export {}

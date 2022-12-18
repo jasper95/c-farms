@@ -5,13 +5,13 @@ context('Household Module', () => {
   //-----------New Household-----------//
   describe('New Household', () => {
     before(() => {
-      cy.login('administrator')
+      cy.login('encoder')
       cy.visit('/household')
     })
 
     it('creates new household', () => {
-      interceptOperation('HouseholdList')
-      cy.wait('@HouseholdList')
+      interceptOperation('HouseholdViewList')
+      cy.wait('@HouseholdViewList')
       cy.get('[data-testid="create"]').should('be.visible').click()
       cy.wait(5000)
       cy.get('[name="referenceNo"]').type(
@@ -67,8 +67,8 @@ context('Household Module', () => {
         .type('{enter}')
       cy.get('button').contains('Back').should('be.visible').click()
       cy.get('button').contains('Next').should('be.visible').click()
-      cy.get('button').contains('Save').click()
       interceptOperation('HouseholdDetails')
+      cy.get('button').contains('Save').click()
       cy.wait('@HouseholdDetails')
       cy.get('@HouseholdDetails')
         .its('response.body.data')
@@ -78,8 +78,8 @@ context('Household Module', () => {
     it('creates new household as farm worker', () => {
       cy.login('manager')
       cy.visit('/household')
-      interceptOperation('HouseholdList')
-      cy.wait('@HouseholdList')
+      interceptOperation('HouseholdViewList')
+      cy.wait('@HouseholdViewList')
       cy.get('[data-testid="create"]').should('be.visible').click()
       cy.get('[name="referenceNo"]').type(
         faker.phone.number('#########').toString()
@@ -122,10 +122,10 @@ context('Household Module', () => {
       )
       cy.get('button').contains('Next').click()
       cy.get('[name="grossAnnualIncomeFarming"]').type(
-        '{backspace}' + faker.datatype.float().toString()
+        '{selectAll}' + faker.datatype.float().toString()
       )
       cy.get('[name="grossAnnualIncomeNonfarming"]').type(
-        '{backspace}' + faker.datatype.float().toString()
+        '{selectAll}' + faker.datatype.float().toString()
       )
       cy.get('[name="mainLivelihood"]')
         .type('Farmworker')

@@ -21,7 +21,6 @@ const rolePermissions: Record<RoleEnum, DefinePermissions> = {
     can(PermissionEnum.Create, ResourceEnum.AnnualInfo)
     can(PermissionEnum.Read, ResourceEnum.AnnualInfo)
     can(PermissionEnum.Read, ResourceEnum.Association)
-    can(PermissionEnum.Read, ResourceEnum.Commodity)
     can(PermissionEnum.Read, ResourceEnum.CommodityProduce)
     can(PermissionEnum.Create, ResourceEnum.CommodityProduce)
     can(PermissionEnum.Read, ResourceEnum.Dashboard)

@@ -33,7 +33,7 @@ describe('Household Details Commodity Produce', () => {
     cy.get('[name="areaUsed"]').type(
       faker.datatype.float({ min: 0.001, max: 0.5 }).toString()
     )
-    cy.get('button').contains('Continue').click()
+    cy.get('button').contains('Save').click()
     interceptOperation('CommodityProduceList')
     cy.wait('@CommodityProduceList')
     cy.get('.MuiAlert-message')
@@ -53,7 +53,7 @@ describe('Household Details Commodity Produce', () => {
     ).click()
     cy.get('.MuiInputAdornment-root > .MuiButtonBase-root').click()
     cy.get(':nth-child(26) > .PrivatePickersYear-yearButton').click()
-    cy.get('button').contains('Continue').click()
+    cy.get('button').contains('Save').click()
   })
 
   it('deletes commodity produce data', () => {

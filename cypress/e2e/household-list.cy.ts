@@ -2,52 +2,34 @@ import { interceptOperation } from '../utils/graphql-test-utils'
 
 describe('Household List', () => {
   before(() => {
-    cy.login('administrator')
+    cy.login('encoder')
     cy.visit('/household')
-    interceptOperation('HouseholdList')
-    cy.wait('@HouseholdList')
+    interceptOperation('HouseholdViewList')
+    cy.wait('@HouseholdViewList')
   })
 
   it('should have household list', () => {
-    cy.get('@HouseholdList')
+    cy.get('@HouseholdViewList')
       .its('response.body.data')
       .should('have.property', 'list')
   })
 
   it('filters data by Reference No', () => {
     cy.get('.MuiGrid2-grid-xs-2 > .MuiButtonBase-root').click()
-    cy.get('[name="field"]').click()
-    cy.get('#mui-12-option-0').click()
-    cy.get('#mui-15').type('610349932{enter}')
+    cy.get('[name="field"]').click().type('Reference{downArrow}{enter}')
+    cy.get('[name="value"]').type('610349932{enter}')
     cy.get('.MuiBox-root > .MuiButton-root').click()
     cy.get('.MuiTablePagination-displayedRows').contains('1–1 of 1')
     cy.get('[data-testid="CancelIcon"]').click()
   })
 
   it('filters data by Barangay', () => {
+    interceptOperation('HouseholdViewList')
     cy.get('.MuiGrid2-grid-xs-2 > .MuiButtonBase-root').click()
-    cy.get('[name="field"]').click()
-    cy.get('#mui-17-option-1').click()
-    cy.get('#mui-20').type('ANOLING')
+    cy.get('[name="field"]').click().type('Barangay{downArrow}{enter}')
+    cy.get('[name="value"]').type('ABIHILAN{downArrow}{enter}')
     cy.get('.MuiBox-root > .MuiButton-root').click()
-    cy.get('[data-testid="CancelIcon"]').click()
-  })
-
-  it('filters data by First Name', () => {
-    cy.get('.MuiGrid2-grid-xs-2 > .MuiButtonBase-root').click()
-    cy.get('[name="field"]').click()
-    cy.get('#mui-22-option-2').click()
-    cy.get('#mui-25').type('ALMA MAE')
-    cy.get('.MuiBox-root > .MuiButton-root').click()
-    cy.get('[data-testid="CancelIcon"]').click()
-  })
-
-  it('filters data by Last Name', () => {
-    cy.get('.MuiGrid2-grid-xs-2 > .MuiButtonBase-root').click()
-    cy.get('[name="field"]').click()
-    cy.get('#mui-27-option-3').click()
-    cy.get('#mui-30').type('AUXTERO')
-    cy.get('.MuiBox-root > .MuiButton-root').click()
+    cy.wait('@HouseholdViewList')
     cy.get('[data-testid="CancelIcon"]').click()
   })
 
@@ -55,13 +37,28 @@ describe('Household List', () => {
     cy.get('[placeholder="Search"]')
       .should('be.visible')
       .focus()
-      .type('Alma')
+      .type('ALMA MAE AUXTERO')
       .type('{enter}')
-    interceptOperation('HouseholdList')
-    cy.wait('@HouseholdList')
-    cy.get('@HouseholdList')
+    interceptOperation('HouseholdViewList')
+    cy.wait('@HouseholdViewList')
+    cy.get('@HouseholdViewList')
       .its('response')
       .should('have.property', 'statusCode', 200)
+  })
+
+  it('searches the list with non-existent full name', () => {
+    cy.get('[placeholder="Search"]')
+      .should('be.visible')
+      .focus()
+      .type('{selectAll}MAS MAS')
+      .type('{enter}')
+    interceptOperation('HouseholdViewList')
+    cy.wait('@HouseholdViewList').then((response) => {
+      expect(response.response.body.data.list).to.have.length(0)
+    })
+    cy.get('.MuiTableCell-root > .MuiTypography-root').contains(
+      'No records found'
+    )
   })
 })
 export {}

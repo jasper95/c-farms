@@ -5,8 +5,8 @@ describe('Household Farms', () => {
   before(() => {
     cy.login('administrator')
     cy.visit('/household')
-    cy.visit('/household/342541bf-2649-4b9b-a912-93661c4ec31f/farm')
     interceptOperation('FarmViewList')
+    cy.visit('/household/342541bf-2649-4b9b-a912-93661c4ec31f/farm')
     cy.wait('@FarmViewList')
   })
 
@@ -15,10 +15,9 @@ describe('Household Farms', () => {
       .its('response.body.data')
       .should('have.property', 'list')
     cy.get('button').contains('Create Farm').should('be.visible')
-    cy.get('.MuiGrid2-root > .MuiIconButton-root').should('be.visible').click()
   })
 
-  it('creates farm', () => {
+  it('creates a farm', () => {
     cy.get('button').contains('Create Farm').click()
     cy.wait(5000)
     cy.get('.leaflet-control-zoom-out > span').click().click().click().click()
@@ -42,16 +41,33 @@ describe('Household Farms', () => {
     cy.get('.MuiAlert-message')
       .should('be.visible')
       .contains('Farm successfully created')
+    interceptOperation('CommodityProduceList')
+    cy.get('.MuiTabs-flexContainer > [tabindex="-1"]').click()
+    cy.wait('@CommodityProduceList').then((response) => {
+      const length = response.response.body.data.list.length
+      expect(response.response.body.data.list).to.have.length(length)
+      cy.get('.MuiTablePagination-displayedRows').should('be.visible')
+    })
   })
 
   it('deletes a farm', () => {
     cy.login('manager')
-    cy.visit('/farm')
     interceptOperation('FarmViewList')
+    cy.visit('/farm')
     cy.wait('@FarmViewList')
+    cy.get(':nth-child(2) > [data-testid="MapIcon"] > path').click({
+      force: true,
+    })
+    cy.get('.leaflet-container').should('be.visible')
+    cy.get('.MuiBreadcrumbs-ol > :nth-child(1) > .MuiTypography-root').click({
+      force: true,
+    })
+    cy.get(':nth-child(2) > [data-testid="ListIcon"] > path').click({
+      force: true,
+    })
     cy.get(
       '.MuiTableBody-root > :nth-child(1) > :nth-child(5) > .MuiButtonBase-root'
-    ).click()
+    ).click({ force: true })
     cy.get(
       '.mui-style-58nmbi-MuiButtonBase-root-MuiMenuItem-root > .MuiListItemText-root > .MuiTypography-root'
     ).click()

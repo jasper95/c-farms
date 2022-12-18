@@ -19,7 +19,7 @@ describe('Household Details Annual Info', () => {
   it('creates new annual info', () => {
     cy.get('button').contains('Create Annual Info').click()
     cy.get('.MuiInputAdornment-root > .MuiButtonBase-root').click()
-    cy.get(':nth-child(122) > .PrivatePickersYear-yearButton').click()
+    cy.get(':nth-child(121) > .PrivatePickersYear-yearButton').click()
     cy.get('[name="grossAnnualIncomeFarming"]')
       .type('{backspace}')
       .type(faker.datatype.float(0.01).toString())
@@ -30,7 +30,7 @@ describe('Household Details Annual Info', () => {
     cy.get('[name="highestFormalEducation"]').type(
       'High School Level{downArrow}{enter}'
     )
-    cy.get('button').contains('Continue').click()
+    cy.get('button').contains('Save').click()
     cy.intercept(Cypress.env('NEXT_PUBLIC_GRAPHQL_URL'), (req) => {
       if (req.body.operationName !== 'AnnualInfoList') {
         req.alias = 'AnnnualInfoList'
